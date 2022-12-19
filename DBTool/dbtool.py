@@ -62,8 +62,6 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 ONEHOT_DB_NAME = 'onehot_words'
 ONE_HOT_WORD_TABLE_NAME = 'words'
 ONEHOT_KEY = 'sentence'
-# PKL_PATH = '/home/overlordx/PycharmProjects/SeminoleScraper/data/pkl'
-# DIR_PATH = r'/home/overlordx/PycharmProjects/SeminoleScraper/data/cases/seminole/10_7_2022'
 
 
 def get_onehot_encoded_string(_string, _hash_mod):
