@@ -145,7 +145,7 @@ class DBTool:
             connection.close()
         except Error as err:
             if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__('Duplicate'):
-                print('non-fatal error in DBTool._execute_mysql: ' + _mysql_statement)
+                print('non-fatal error in dbtool._execute_mysql: ' + _mysql_statement)
             elif err.errno == 1064:
                 return 'mysql syntax error: ' +_mysql_statement
             else:
@@ -173,7 +173,7 @@ class DBTool:
                     port=port_num,
                     database=self.database_name
                 )
-            # print("DBTool._get_db_connection successful: " + db_name)
+            # print("dbtool._get_db_connection successful: " + db_name)
         except Error as err:
             # err.errno(1049) is database not exists
             if err.errno == 1049:
