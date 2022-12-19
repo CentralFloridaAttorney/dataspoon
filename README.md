@@ -109,7 +109,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. Get a free API Key at [https://centralfloridaattorney.net/](https://centralfloridaattorney.net/asdfasdf)
+1. Get a free API Key at [Talk to John](https://centralfloridaattorney.net/schedule-consultation/)
 2. Clone the repo
    ```sh
    git clone https://github.com/CentralFloridaAttorney/dbtool.git
