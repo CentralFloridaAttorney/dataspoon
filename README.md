@@ -33,8 +33,7 @@
   <a href="https://github.com/CentralFloridaAttorney/dbtool">
     <img src="images/dataspoon.png" alt="Logo" width="1280" height="480">
   </a>
-![dataspoon.png](dataspoon.png)
-<h3 align="center">project_title</h3>
+<h3 align="center">data spoon</h3>
 
   <p align="center">
     easy to use tools for onehot mysql databases
