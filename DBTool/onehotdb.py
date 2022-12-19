@@ -41,8 +41,8 @@ HOST = 'localhost'
 USER = 'bilbo'
 PASSWD = 'baggins'
 PORT = '3306'
-DB_NAME = 'dbtool'
-TABLE_NAME = 'dbtool'
+DB_NAME = 'onehot_db'
+TABLE_NAME = 'sentences'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
 ILLEGAL_WORDS = ['True']
 LINK_KEY = 'link_key'
@@ -420,8 +420,8 @@ class Pkl2DB(OneHotDB):
             these_columns = get_onehot_encoded_string(this_pickle.columns, HASH_MOD)
             if not hashed_column_names.__contains__(these_columns):
                 hashed_column_names.append(these_columns)
-            dbtool = DBTool(self.database_name, these_columns)
-            dbtool.add_dataframe(this_pickle, 0)
+            this_onehot_db = OneHotDB(self.database_name, these_columns)
+            this_onehot_db.add_dataframe(this_pickle, 0)
         # print('add_pickles done!')
         return hashed_column_names
 
@@ -463,6 +463,25 @@ def test_put():
     dbtool = OneHotDB()
     # make link_key/word_1
     dbtool.put_onehot('first_link_key', 'word is the bird')
+    dbtool.put_onehot('sef45', '''Business Insider
+A data scientist says Jack Dorsey told her Twitter was defenseless against a takeover by Elon Musk and the company should never have gone public
+Kate Duffy
+Mon, December 19, 2022 at 9:06 AM EST
+A collage of Elon Musk (left) and Twitter cofounder Jack Dorsey.
+Twitter owner Elon Musk and the platform's cofounder Jack Dorsey.Jim Watson/AFP via Getty Images
+Jack Dorsey said Twitter was defenseless against Elon Musk's acquisition, per a data scientist.
+
+Emily Gorcenski said she exchanged messages with Twitter cofounder about Musk's involvement.
+
+Dorsey said Twitter "should have never gone public" and that anyone could buy it, per Gorcenski.
+
+Jack Dorsey said Twitter had no defenses against Elon Musk acquiring the company in October, according to a data scientist and activist.
+
+Emily Gorcenski said she sent Dorsey a direct message via Twitter on November 4 about why he decided to hand the platform over to Musk. She said she told him: "It could have been so much more."
+
+Gorcenski, who shared images and screenshots with Insider to confirm her claims, told Dorsey he gave Twitter to a "charlatan" who was either "playing an act for fun" or chucking away the best of Twitter, adding that the employees who lost their jobs deserved better.
+
+Dorsey replied, saying these issues were expected to happen regardless of whether he was involved or not, according to Gorcenski's screenshots of the conversation posted on her Mastodon account.''')
     # dbtool.put('put_1')
     # dbtool.put('xyzzy', 'failures', '543')
     # dbtool.put('put_2')
