@@ -105,8 +105,8 @@
 1. Create a database ('xyzzydb'): xyzzydb = DBTool('xyzzydb').  The table_name will be a default value, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'xyzzy_table')) or after creation (ex. xyzzydb.open_table('new_table'))
 2. Create a record with a linking value ('link_key_1'): xyzzydb.put('link_key_1')
 3. Create or change an existing linking value ('new_link_key_1'): xyzzydb.put('link_key_1', 'new_link_key_1')
-4. Put key/value ('ala'/'kazam') into row with linking key ('new_linking_key_1'): xyzzydb.put('new_link_key_1', 'ala', 'kazam')
-5. Get this_value ('kazam') using key ('ala') from row with linking key ('new_linking_key_1'): this_value = xyzzydb.get('new_linking_key_1', 'ala')
+4. Put key/value ('ala'/'kazam') into row with linking key ('new_link_key_1'): xyzzydb.put('new_link_key_1', 'ala', 'kazam')
+5. Get this_value ('kazam') using key ('ala') from row with linking key ('new_link_key_1'): this_value = xyzzydb.get('new_link_key_1', 'ala')
 
 ### Prerequisites
 
