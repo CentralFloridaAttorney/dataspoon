@@ -33,7 +33,7 @@
   <a href="https://github.com/CentralFloridaAttorney/dbtool">
     <img src="images/onehotdb.png" alt="Logo" width="1280" height="480">
   </a>
-<h3 align="center">data spoon</h3>
+<h3 align="center">dataspoon</h3>
 
   <p align="center">
     easy to use tools for onehot mysql databases
