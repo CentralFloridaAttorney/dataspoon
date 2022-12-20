@@ -35,8 +35,8 @@ from mysql.connector import Error
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
 HOST = '192.168.1.227'
 # HOST = 'localhost'
-USER = 'bilbo'
-PASSWD = 'baggins'
+USER = 'overlordx'
+PASSWD = 'atomic99'
 PORT = '50011'
 DB_NAME = 'dbtool'
 TABLE_NAME = 'dbtool'
@@ -290,8 +290,8 @@ class DBTool:
 
     def put(self, _link_key, _key_value=None, _value=None):
         # returns row_number of _link_key
-        # 1 value: link_key
-        # 2 value: clean_key, value
+        # 1 value: new_link_key
+        # 2 value: old_link_key_value, new_link_key_value
         # 3 value: link_key, key, value
         result = 'default'
         if _key_value is None:
@@ -308,16 +308,14 @@ class DBTool:
             # copies the value of link_key/_link_key to link_key/_key_value
             # row_value = self.get(self.get_clean_key(_link_key))
             # columns = self._get_columns(self.get_clean_key(_link_key))
-            mysql_statement = "UPDATE {0} SET ({1}) = '{2}' WHERE {3} = '{4}';".format(self.table_name, LINK_KEY,
-                                                                                       self.get_clean_key(_link_key),
-                                                                                       LINK_KEY,
-                                                                                       self.get_clean_key(_link_key))
             self.put(self.get_clean_key(_link_key))
             # self._add_column(self.get_clean_key(_key_value))
             row_number = self.get_row_number(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY,
                                                                                     self.get_clean_key(_key_value),
                                                                                     row_number)
+            result = self.get_row_number(self.get_clean_key(_key_value))
+
         else:
             # update set _key_value = _value where id = row_number/link_key
             self.put(self.get_clean_key(_link_key))
@@ -326,9 +324,10 @@ class DBTool:
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name,
                                                                                     self.get_clean_key(_key_value),
                                                                                     self.get_clean_key(_value), row_number)
+            result = self.get_row_number(self.get_clean_key(_link_key))
+
         self._execute_mysql(mysql_statement)
         # print('put: ')
-        result = self.get_row_number(self.get_clean_key(_link_key))
         return result
 
     def get_row_number(self, _link_key, _key=None):
@@ -518,6 +517,7 @@ def test_add_data_frame():
 def test_sql2pkl():
     # this class creates a pandas DataFrame
     sql2pkl = Sql2Pkl(DB_NAME, TABLE_NAME)
+    # TODO implement Sql2Pkl
     dataframe = sql2pkl.get_dataframe()
     dataframe.to_pickle(DEFAULT_PKL_OUTPUT)
     print('test_sql2pkl done!')
@@ -534,14 +534,14 @@ def create_simple_pkl():
 
 
 if __name__ == '__main__':
-    # test_init()
-    # test_put()
-    # test_get()
-    # test_get_row_count()
-    # create_simple_pkl()
-    # test_add_data_frame()
-    # test_get()
+    test_init()
+    test_put()
+    test_get()
+    test_get_row_count()
+    create_simple_pkl()
+    test_add_data_frame()
+    test_get()
     test_get_clean_key()
-    # test_sql2pkl()
+    test_sql2pkl()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")
