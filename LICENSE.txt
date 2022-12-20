@@ -24,6 +24,6 @@ For avoidance of doubt, a license which is OSI-approved or categorized by the FS
 
  
 
-When referring to the exception, you may link to it here at http://oss.oracle.com/licenses/universal-foss-exception.
+As of December 19, 2022, a link to the exception could be found at http://oss.oracle.com/licenses/universal-foss-exception.
 
  
