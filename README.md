@@ -33,7 +33,7 @@
   <a href="https://github.com/CentralFloridaAttorney/dbtool">
     <img src="images/onehotdb.png" alt="Logo" width="1280" height="480">
   </a>
-<h3 align="center">data spoon</h3>
+<h3 align="center">dataspoon</h3>
 
   <p align="center">
     easy to use tools for onehot mysql databases
@@ -104,11 +104,12 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-
+1. mysql must be installed and you need to know the location (ex. 127.0.0.1 or 192.168.1.69) and port number (ex. 3306 or 50011)
+2. 
 
 ### Installation
 
-1. Get a free API Key at [Talk to John](https://centralfloridaattorney.net/schedule-consultation/)
+1. If you need help using dataspoon then [Talk to John](https://centralfloridaattorney.net/schedule-consultation/)
 2. Clone the repo
    ```sh
    git clone https://github.com/CentralFloridaAttorney/dbtool.git
@@ -117,9 +118,7 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Have fun!
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
