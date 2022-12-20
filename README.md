@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/CentralFloridaAttorney/dbtool">
-    <img src="images/spoon.png" alt="Logo" width="1280" height="480">
+    <img src="images/onehotdb.jpg" alt="Logo" width="1280" height="480">
   </a>
 <h3 align="center">data spoon</h3>
 
