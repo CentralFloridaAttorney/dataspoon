@@ -63,64 +63,17 @@ ONEHOT_KEY = 'sentence'
 DEFAULT_PKL_PATH = '../data/users.pkl'
 
 
-def get_onehot_encoded_string(_string, _hash_mod):
-    word_indices = []
-    try:
-        words = _string.split(' ')
-    except AttributeError:
-        words = [_string]
-    for word in words:
-        # OneHotWords().put(word)
-        word_index = OneHotWords().get(word)
-        if word_index is None:
-            OneHotWords().put(LINK_KEY, word)
-            word_index = OneHotWords().get(word)
-        word_indices.append(word_index)
-    encoded_string = ''
-    for index in word_indices:
-        encoded_string += '<' + index
-    print('encoded_string: ' + encoded_string)
-    return encoded_string
-
-
-def get_unhashed_string(_hashed_string, _hash_mod):
-    # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
-    # print('hash_string: ' + hashed_string[0])
-    # return str(hashed_string[0])
-    # sample_string_bytes = _hashed_string.encode("ascii")
-    # sample_string_bytes = base64.b64decode(base64_bytes)
-    # sample_string = sample_string_bytes.decode("ascii")
-    return _hashed_string
-
-
-def _get_html_escape(_string):
-    clean_string = str(_string)
-    print("***** test: " + clean_string)
-    clean_string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in clean_string)
-    if clean_string.isdigit():
-        clean_string = "_" + clean_string
-    print('get_html_escape: ' + clean_string)
-    return clean_string
-
-
-def get_clean_key(key):
-    clean_key = _get_html_escape(key)
-    if clean_key.isdigit():
-        clean_key = '_' + clean_key
-    return clean_key
-
-
 class DBTool:
     def __init__(self, _database_name=None, _table_name=None):
         self.base_dir = ROOT_DIR.rsplit('/', 1)[0] + '/'
         if _database_name is None:
             self.database_name = DB_NAME
         else:
-            self.database_name = get_clean_key(_database_name)
+            self.database_name = self.get_clean_key(_database_name)
         if _table_name is None:
             self.table_name = TABLE_NAME
         else:
-            self.table_name = get_clean_key(_table_name)
+            self.table_name = self.get_clean_key(_table_name)
         self.open_database(self.database_name)
         # self.open_table(self.table_name)
         # print('__init__ done!')
@@ -163,9 +116,9 @@ class DBTool:
                     user=user_name,
                     passwd=user_password,
                     port=port_num,
-                    database=get_clean_key(_db_name)
+                    database=self.get_clean_key(_db_name)
                 )
-                self.database_name = get_clean_key(_db_name)
+                self.database_name = self.get_clean_key(_db_name)
             else:
                 connection = mysql.connector.connect(
                     host=host_name,
@@ -187,10 +140,10 @@ class DBTool:
                 )
                 try:
                     cursor = connection.cursor(buffered=True)
-                    mysql_create_database = "CREATE DATABASE {0};".format(get_clean_key(_db_name))
+                    mysql_create_database = "CREATE DATABASE {0};".format(self.get_clean_key(_db_name))
                     cursor.execute(mysql_create_database)
                     connection.commit()
-                    self.database_name = get_clean_key(_db_name)
+                    self.database_name = self.get_clean_key(_db_name)
                     # print("_get_db_connection created database: " + db_name)
                 except Error as err:
                     print(f"Error: '{err}'")
@@ -217,6 +170,52 @@ class DBTool:
         cursor.execute(mysql_statement)
         return cursor.description
 
+    @staticmethod
+    def get_onehot_encoded_string(_string, _hash_mod):
+        word_indices = []
+        try:
+            words = _string.split(' ')
+        except AttributeError:
+            words = [_string]
+        for word in words:
+            # OneHotWords().put(word)
+            word_index = OneHotWords().get(word)
+            if word_index is None:
+                OneHotWords().put(LINK_KEY, word)
+                word_index = OneHotWords().get(word)
+            word_indices.append(word_index)
+        encoded_string = ''
+        for index in word_indices:
+            encoded_string += '<' + str(index[0])
+        print('encoded_string: ' + encoded_string)
+        return encoded_string
+
+    @staticmethod
+    def get_unhashed_string(_hashed_string, _hash_mod):
+        # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
+        # print('hash_string: ' + hashed_string[0])
+        # return str(hashed_string[0])
+        # sample_string_bytes = _hashed_string.encode("ascii")
+        # sample_string_bytes = base64.b64decode(base64_bytes)
+        # sample_string = sample_string_bytes.decode("ascii")
+        return _hashed_string
+
+    @staticmethod
+    def _get_html_escape(_string):
+        clean_string = str(_string)
+        print("***** test: " + clean_string)
+        clean_string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in clean_string)
+        if clean_string.isdigit():
+            clean_string = "_" + clean_string
+        print('get_html_escape: ' + clean_string)
+        return clean_string
+
+    def get_clean_key(self, key):
+        clean_key = self._get_html_escape(key)
+        if clean_key.isdigit():
+            clean_key = '_' + clean_key
+        return clean_key
+
     def get_row_count(self):
         get_row_count_mysql = "SELECT COUNT(*) FROM " + self.table_name + ";"
         row_count = self._execute_mysql(get_row_count_mysql)
@@ -225,10 +224,10 @@ class DBTool:
 
     def open_database(self, _database_name, _table_name=None):
         # self.database_name = str(re.sub(LEGAL_CHARACTERS, '_', _database_name.strip()))
-        self.database_name = get_clean_key(_database_name)
+        self.database_name = self.get_clean_key(_database_name)
         if _table_name is not None:
             # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
-            self.table_name = get_clean_key(_table_name)
+            self.table_name = self.get_clean_key(_table_name)
 
         # When you open_database self.table_name does not change
         # self.table is used in: _add_column, get, get_row_number, open_table, add_dataframe, and put
@@ -237,14 +236,14 @@ class DBTool:
 
         # self.database_name = _database_name
         # open_table_mysql = "CREATE TABLE " + self.table_name + "(id int(10) NOT NULL AUTO_INCREMENT," + LINK_KEY + " varchar(255), PRIMARY KEY (id))"
-        open_database_mysql = "CREATE DATABASE {0};".format(get_clean_key(_database_name))
+        open_database_mysql = "CREATE DATABASE {0};".format(self.get_clean_key(_database_name))
         opened_db = self._execute_mysql(open_database_mysql)
         self.open_table(self.table_name)
         print('open_database: ' + _database_name)
 
     def open_table(self, _table_name):
         # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
-        self.table_name = get_clean_key(_table_name)
+        self.table_name = self.get_clean_key(_table_name)
         # clean_table_name = self.get_clean_key(self.table_name)
         mysql_open_table = "CREATE TABLE {0} (id int(10) NOT NULL AUTO_INCREMENT, ".format(self.table_name)
         mysql_open_table += LINK_KEY + " varchar(255), PRIMARY KEY (id));"
@@ -253,36 +252,36 @@ class DBTool:
         # print('open_table: ' + _table_name)
 
     def _add_column(self, _column_name):
-        query = "ALTER TABLE {0} ADD {1} VARCHAR(4096);".format(self.table_name, get_clean_key(_column_name))
+        query = "ALTER TABLE {0} ADD {1} VARCHAR(4096);".format(self.table_name, self.get_clean_key(_column_name))
         # values = [self.table_name, self.get_clean_key(_column_name)]
 
         self._execute_mysql(query)
         # print('Add column: '+ _column_name)
 
     def delete_database(self, _database_name):
-        mysql_drop_database = "DROP DATABASE {0}".format(get_clean_key(_database_name))
+        mysql_drop_database = "DROP DATABASE {0}".format(self.get_clean_key(_database_name))
         self._execute_mysql(mysql_drop_database)
         # print('delete_database: ' + _database_name)
 
     def delete_table(self, _table_name):
-        mysql_drop_table = "DROP DATABASE {0}".format(get_clean_key(_table_name))
+        mysql_drop_table = "DROP DATABASE {0}".format(self.get_clean_key(_table_name))
         self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
 
     def get(self, _link_key, _key=None, _value=None):
         if _key is None:
             # 1 result: link_key returns row for link_key
             self._add_column(LINK_KEY)
-            sql_statement = SELECT_STATEMENT.format('*', self.table_name, LINK_KEY, get_clean_key(_link_key))
+            sql_statement = SELECT_STATEMENT.format('*', self.table_name, LINK_KEY, self.get_clean_key(_link_key))
         elif _value is None:
             # 2 result: link_key, value returns the value
-            self._add_column(get_clean_key(_link_key))
-            sql_statement = SELECT_STATEMENT.format(get_clean_key(_link_key), self.table_name, LINK_KEY,
-                                                    get_clean_key(_link_key))
+            self._add_column(self.get_clean_key(_link_key))
+            sql_statement = SELECT_STATEMENT.format(self.get_clean_key(_link_key), self.table_name, LINK_KEY,
+                                                    self.get_clean_key(_link_key))
         else:
             # 3 result: _key, _link_key, _value returns row_number of link_key
-            sql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format(get_clean_key(_key), self.table_name,
-                                                                            get_clean_key(_link_key),
-                                                                            get_clean_key(_value))
+            sql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format(self.get_clean_key(_key), self.table_name,
+                                                                            self.get_clean_key(_link_key),
+                                                                            self.get_clean_key(_value))
         result = self._execute_mysql(sql_statement)
 
         return result
@@ -296,48 +295,48 @@ class DBTool:
         if _key_value is None:
             row_number = self.get_row_number(_link_key)
             mysql_statement = "SELECT * FROM {0} WHERE {1} = {2};".format(self.table_name, LINK_KEY,
-                                                                          get_clean_key(_link_key))
+                                                                          self.get_clean_key(_link_key))
             if row_number == 0:
                 # add a link_key = _link_key
                 mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name, LINK_KEY,
-                                                                                 get_clean_key(_link_key))
+                                                                                 self.get_clean_key(_link_key))
             result = [self.get_row_number(_link_key), _link_key]
             # mysql_statement = "INSERT INTO {0}"
         elif _value is None:
             # copies the value of link_key/_link_key to link_key/_key_value
-            # row_value = self.get(get_clean_key(_link_key))
-            # columns = self._get_columns(get_clean_key(_link_key))
+            # row_value = self.get(self.get_clean_key(_link_key))
+            # columns = self._get_columns(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET ({1}) = '{2}' WHERE {3} = '{4}';".format(self.table_name, LINK_KEY,
-                                                                                       get_clean_key(_link_key),
+                                                                                       self.get_clean_key(_link_key),
                                                                                        LINK_KEY,
-                                                                                       get_clean_key(_link_key))
-            self.put(get_clean_key(_link_key))
+                                                                                       self.get_clean_key(_link_key))
+            self.put(self.get_clean_key(_link_key))
             # self._add_column(self.get_clean_key(_key_value))
-            row_number = self.get_row_number(get_clean_key(_link_key))
+            row_number = self.get_row_number(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY,
-                                                                                    get_clean_key(_key_value),
+                                                                                    self.get_clean_key(_key_value),
                                                                                     row_number)
         else:
             # update set _key_value = _value where id = row_number/link_key
-            self.put(get_clean_key(_link_key))
-            self._add_column(get_clean_key(_key_value))
-            row_number = self.get_row_number(get_clean_key(_link_key))
+            self.put(self.get_clean_key(_link_key))
+            self._add_column(self.get_clean_key(_key_value))
+            row_number = self.get_row_number(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name,
-                                                                                    get_clean_key(_key_value),
-                                                                                    get_clean_key(_value), row_number)
+                                                                                    self.get_clean_key(_key_value),
+                                                                                    self.get_clean_key(_value), row_number)
         self._execute_mysql(mysql_statement)
         # print('put: ')
-        result = self.get_row_number(get_clean_key(_link_key))
+        result = self.get_row_number(self.get_clean_key(_link_key))
         return result
 
     def get_row_number(self, _link_key, _key=None):
         # select_template = '''SELECT * FROM seminole_main.seminole_main where link_key = "jurney";'''
         # clean_link_key = str(re.sub(LEGAL_CHARACTERS, '_', clean_link_key.strip()))
-        clean_link_key = get_clean_key(_link_key)
+        clean_link_key = self.get_clean_key(_link_key)
         if _key is None:
             select_sql = "SELECT id FROM {0} WHERE {1} = '{2}';".format(self.table_name, LINK_KEY, clean_link_key)
         else:
-            clean_key = get_clean_key(_key)
+            clean_key = self.get_clean_key(_key)
             select_sql = "SELECT id FROM {0} WHERE {1} = '{2}';".format(self.table_name, LINK_KEY, clean_key)
 
         row_number = self._execute_mysql(select_sql)
@@ -356,7 +355,7 @@ class DBTool:
             for column in range(0, w, 1):
                 key = str(_data_frame.columns[column])
                 value = str(_data_frame.iloc[row][column])
-                self.put(get_clean_key(link_key), get_clean_key(key), get_clean_key(value))
+                self.put(self.get_clean_key(link_key), self.get_clean_key(key), self.get_clean_key(value))
         # print('add_dataframe done!')
 
     def get_column_based_name(self, _dataframe):
@@ -364,7 +363,7 @@ class DBTool:
         columns = columns.tolist()
         column_based_name = ''
         for column in columns:
-            this_column = get_clean_key(column)
+            this_column = self.get_clean_key(column)
             column_based_name += this_column
         print('get_column_based_name: ')
         return column_based_name
@@ -388,7 +387,7 @@ class OneHotWords(DBTool):
         # print('__init__ done!')
 
     def get_index_combo(self, _string):
-        words = get_clean_key(_string)
+        words = self.get_clean_key(_string)
         words = words.split(' ')
         word_indicies = []
         for word in words:
@@ -428,7 +427,7 @@ class OneHotWords(DBTool):
         return this_word
 
     def _put_word(self, _word, _word2=None, _word3=None):
-        clean_word = get_clean_key(_word)
+        clean_word = self.get_clean_key(_word)
         super().put(LINK_KEY, clean_word)
         # print('onehottool.put: ' + clean_word)
 
@@ -451,7 +450,7 @@ class OneHotWords(DBTool):
         for word in words:
             if word == 'ain''t':
                 clean_word = 'xyxxy'
-            clean_word = get_clean_key(word)
+            clean_word = self.get_clean_key(word)
             self._put_word(clean_word)
 
 
@@ -496,8 +495,8 @@ def test_get_row_count():
 def test_get_clean_key():
     KEY = "Instrument #"
     dbtool = DBTool()
-    clean_key = get_clean_key(KEY)
-    print('test_get_clean_key: ' + clean_key)
+    clean_key = dbtool.get_clean_key(KEY)
+    print("test_get_clean_key: '" + KEY + "' = '" + clean_key + "'")
 
 
 def test_add_data_frame():
@@ -533,14 +532,14 @@ def create_simple_pkl():
 
 
 if __name__ == '__main__':
-    test_init()
-    test_put()
-    test_get()
-    test_get_row_count()
-    create_simple_pkl()
-    test_add_data_frame()
-    test_get()
+    # test_init()
+    # test_put()
+    # test_get()
+    # test_get_row_count()
+    # create_simple_pkl()
+    # test_add_data_frame()
+    # test_get()
     test_get_clean_key()
-    test_sql2pkl()
+    # test_sql2pkl()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")
