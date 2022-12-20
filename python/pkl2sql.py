@@ -1,5 +1,7 @@
 import os
+
 import pandas
+
 from python.dbtool import DBTool, get_clean_key, get_onehot_encoded_string, HASH_MOD, get_unhashed_string
 
 DEFAULT_PKL_PATH = '../data/users.pkl'

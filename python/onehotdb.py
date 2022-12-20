@@ -1,5 +1,3 @@
-import base64
-import hashlib
 import os
 
 import mysql
@@ -63,6 +61,8 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 ONEHOT_DB_NAME = 'onehot_tool'
 ONE_HOT_WORD_TABLE_NAME = 'test_dict'
 SENTENCE_KEY = 'sentence'
+
+
 # PKL_PATH = '/home/overlordx/PycharmProjects/SeminoleScraper/data/pkl'
 # DIR_PATH = r'/home/overlordx/PycharmProjects/SeminoleScraper/data/cases/seminole/10_7_2022'
 
@@ -91,7 +91,6 @@ def get_onehot_encoded_string(_string, _hash_mod):
 
 
 def get_unhashed_string(_hashed_string, _hash_mod):
-
     # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
     # print('hash_string: ' + hashed_string[0])
     # return str(hashed_string[0])
@@ -157,7 +156,7 @@ class OneHotDB:
             if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__('Duplicate'):
                 print('non-fatal error in python._execute_mysql: ' + _mysql_statement)
             elif err.errno == 1064:
-                return 'mysql syntax error: ' +_mysql_statement
+                return 'mysql syntax error: ' + _mysql_statement
             else:
                 print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
             return False
@@ -275,7 +274,7 @@ class OneHotDB:
 
     def delete_table(self, _table_name):
         mysql_drop_table = "DROP DATABASE {0}".format(get_clean_key(_table_name))
-        self._execute_mysql(mysql_drop_table)        # print('delete_table: ' + _table_name)
+        self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
 
     def get(self, _link_key, _key=None, _value=None):
         if _key is None:
@@ -285,7 +284,8 @@ class OneHotDB:
         elif _value is None:
             # 2 result: link_key, value returns the value
             self._add_column(get_clean_key(_link_key))
-            sql_statement = SELECT_STATEMENT.format(get_clean_key(_link_key), self.table_name, LINK_KEY, get_clean_key(_link_key))
+            sql_statement = SELECT_STATEMENT.format(get_clean_key(_link_key), self.table_name, LINK_KEY,
+                                                    get_clean_key(_link_key))
         else:
             # 3 result: _key, _link_key, _value returns row_number of link_key
             sql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format(get_clean_key(_key), self.table_name,
@@ -304,10 +304,12 @@ class OneHotDB:
         result = 'default'
         if _key_value is None:
             row_number = self.get_row_number(_link_key)
-            mysql_statement = "SELECT * FROM {0} WHERE {1} = {2};".format(self.table_name, LINK_KEY, get_clean_key(_link_key))
+            mysql_statement = "SELECT * FROM {0} WHERE {1} = {2};".format(self.table_name, LINK_KEY,
+                                                                          get_clean_key(_link_key))
             if row_number == 0:
                 # add a link_key = _link_key
-                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name, LINK_KEY, get_clean_key(_link_key))
+                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name, LINK_KEY,
+                                                                                 get_clean_key(_link_key))
             result = [self.get_row_number(_link_key), _link_key]
             # mysql_statement = "INSERT INTO {0}"
         elif _value is None:
@@ -321,19 +323,20 @@ class OneHotDB:
             self.put(get_clean_key(_link_key))
             # self._add_column(self.get_clean_key(_key_value))
             row_number = self.get_row_number(get_clean_key(_link_key))
-            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY, get_clean_key(_key_value), row_number)
+            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY,
+                                                                                    get_clean_key(_key_value),
+                                                                                    row_number)
         else:
             # update set _key_value = _value where id = row_number/link_key
             self.put(get_clean_key(_link_key))
             self._add_column(get_clean_key(_key_value))
             row_number = self.get_row_number(get_clean_key(_link_key))
-            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, get_clean_key(_key_value), get_clean_key(_value), row_number)
+            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name,
+                                                                                    get_clean_key(_key_value),
+                                                                                    get_clean_key(_value), row_number)
         self._execute_mysql(mysql_statement)
         # print('put: ')
         result = self.get_row_number(get_clean_key(_link_key))
-
-
-
 
         return result
 
@@ -453,6 +456,7 @@ class DB2Pkl(OneHotDB):
 
     def get_dataframe(self):
         print('get_dataframe done!')
+
 
 def test_init():
     dbtool = OneHotDB()

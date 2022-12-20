@@ -60,6 +60,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 ONEHOT_DB_NAME = 'onehot_words'
 ONE_HOT_WORD_TABLE_NAME = 'words'
 ONEHOT_KEY = 'sentence'
+DEFAULT_PKL_PATH = '../data/users.pkl'
 
 
 def get_onehot_encoded_string(_string, _hash_mod):
@@ -83,7 +84,6 @@ def get_onehot_encoded_string(_string, _hash_mod):
 
 
 def get_unhashed_string(_hashed_string, _hash_mod):
-
     # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
     # print('hash_string: ' + hashed_string[0])
     # return str(hashed_string[0])
@@ -148,7 +148,7 @@ class DBTool:
             if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__('Duplicate'):
                 print('non-fatal error in python._execute_mysql: ' + _mysql_statement)
             elif err.errno == 1064:
-                return 'mysql syntax error: ' +_mysql_statement
+                return 'mysql syntax error: ' + _mysql_statement
             else:
                 print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
             return False
@@ -266,7 +266,7 @@ class DBTool:
 
     def delete_table(self, _table_name):
         mysql_drop_table = "DROP DATABASE {0}".format(get_clean_key(_table_name))
-        self._execute_mysql(mysql_drop_table)        # print('delete_table: ' + _table_name)
+        self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
 
     def get(self, _link_key, _key=None, _value=None):
         if _key is None:
@@ -276,7 +276,8 @@ class DBTool:
         elif _value is None:
             # 2 result: link_key, value returns the value
             self._add_column(get_clean_key(_link_key))
-            sql_statement = SELECT_STATEMENT.format(get_clean_key(_link_key), self.table_name, LINK_KEY, get_clean_key(_link_key))
+            sql_statement = SELECT_STATEMENT.format(get_clean_key(_link_key), self.table_name, LINK_KEY,
+                                                    get_clean_key(_link_key))
         else:
             # 3 result: _key, _link_key, _value returns row_number of link_key
             sql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format(get_clean_key(_key), self.table_name,
@@ -294,10 +295,12 @@ class DBTool:
         result = 'default'
         if _key_value is None:
             row_number = self.get_row_number(_link_key)
-            mysql_statement = "SELECT * FROM {0} WHERE {1} = {2};".format(self.table_name, LINK_KEY, get_clean_key(_link_key))
+            mysql_statement = "SELECT * FROM {0} WHERE {1} = {2};".format(self.table_name, LINK_KEY,
+                                                                          get_clean_key(_link_key))
             if row_number == 0:
                 # add a link_key = _link_key
-                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name, LINK_KEY, get_clean_key(_link_key))
+                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name, LINK_KEY,
+                                                                                 get_clean_key(_link_key))
             result = [self.get_row_number(_link_key), _link_key]
             # mysql_statement = "INSERT INTO {0}"
         elif _value is None:
@@ -311,13 +314,17 @@ class DBTool:
             self.put(get_clean_key(_link_key))
             # self._add_column(self.get_clean_key(_key_value))
             row_number = self.get_row_number(get_clean_key(_link_key))
-            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY, get_clean_key(_key_value), row_number)
+            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY,
+                                                                                    get_clean_key(_key_value),
+                                                                                    row_number)
         else:
             # update set _key_value = _value where id = row_number/link_key
             self.put(get_clean_key(_link_key))
             self._add_column(get_clean_key(_key_value))
             row_number = self.get_row_number(get_clean_key(_link_key))
-            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, get_clean_key(_key_value), get_clean_key(_value), row_number)
+            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name,
+                                                                                    get_clean_key(_key_value),
+                                                                                    get_clean_key(_value), row_number)
         self._execute_mysql(mysql_statement)
         # print('put: ')
         result = self.get_row_number(get_clean_key(_link_key))
@@ -343,7 +350,6 @@ class DBTool:
     def add_dataframe(self, _data_frame, _link_key_column_num=0):
         # when adding a dataframe each row requires a link_key
         # the link_key is the row_number of the newly added record
-        # must implement
         h, w = _data_frame.shape
         for row in range(0, h, 1):
             link_key = str(_data_frame.iloc[row][_link_key_column_num])
@@ -382,7 +388,7 @@ class OneHotWords(DBTool):
         # print('__init__ done!')
 
     def get_index_combo(self, _string):
-        words = get_clean_string(_string)
+        words = get_clean_key(_string)
         words = words.split(' ')
         word_indicies = []
         for word in words:
@@ -496,7 +502,7 @@ def test_get_clean_key():
 
 def test_add_data_frame():
     # create the test data_frame
-    data = [['bilbo', 'baggins'], ['thoron', 'falbright']]
+    data = [['bilbo', 'thoron'], ['baggins', 'falbright']]
     data_frame = pandas.DataFrame(data)
     data_frame = data_frame.transpose()
     columns = ['username', 'password']
@@ -508,7 +514,6 @@ def test_add_data_frame():
     print('test_add_dataframe: ')
 
 
-
 def test_sql2pkl():
     # this class creates a pandas DataFrame
     sql2pkl = Sql2Pkl(DB_NAME, TABLE_NAME)
@@ -517,15 +522,25 @@ def test_sql2pkl():
     print('test_sql2pkl done!')
 
 
+def create_simple_pkl():
+    # create the test data_frame and pickle file
+    user_data = [['bilbo', 'baggins'], ['thoron', 'falbright']]
+    data_frame = pandas.DataFrame(user_data)
+    data_frame = data_frame.transpose()
+    columns = ['username', 'password']
+    data_frame.columns = columns
+    data_frame.to_pickle(DEFAULT_PKL_PATH)
+
+
 if __name__ == '__main__':
     test_init()
     test_put()
     test_get()
     test_get_row_count()
+    create_simple_pkl()
     test_add_data_frame()
     test_get()
     test_get_clean_key()
-    test_pkl2sql()
     test_sql2pkl()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")
