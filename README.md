@@ -85,10 +85,14 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Create a database named 'xyzzy': xyzzydb = DBTool('xyzzy')
-Create a record with a linking value 'link_key_1': xyzzy.put('link_key_1')
-Create or change existing linking value to 'new_link_key_1': xyzzy.put('link_key_1', 'new_link_key_1')
-Add a key/value (ala/kazam) to row with linking key 'new_linking_key_1': xyzzy.put('new_link_key_1', 'ala', 'kazam')
+1. Create a database named 'xyzzy': xyzzydb = DBTool('xyzzy')
+
+2. Create a record with a linking value 'link_key_1': xyzzy.put('link_key_1')
+
+3. Create or change existing linking value to 'new_link_key_1': xyzzy.put('link_key_1', 'new_link_key_1')
+
+4. Add a key/value (ala/kazam) to row with linking key 'new_linking_key_1': xyzzy.put('new_link_key_1', 'ala', 'kazam')
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
