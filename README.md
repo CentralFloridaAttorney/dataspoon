@@ -85,6 +85,11 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
+Create a database named 'xyzzy': xyzzydb = DBTool('xyzzy')
+Create a record with a linking value 'link_key_1': xyzzy.put('link_key_1')
+Create or change existing linking value to 'new_link_key_1': xyzzy.put('link_key_1', 'new_link_key_1')
+Add a key/value (ala/kazam) to row with linking key 'new_linking_key_1': xyzzy.put('new_link_key_1', 'ala', 'kazam')
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -104,8 +109,9 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-1. mysql must be installed and you need to know the location (ex. 127.0.0.1 or 192.168.1.69) and port number (ex. 3306 or 50011)
-2. 
+1. mysql must be installed and you need to know the location (ex. 127.0.0.1 or 192.168.1.69) and port number (ex. 3306 or 50011); and
+2. mysql-connector-python must be installed in your environment.  dbtool.py was developed using version 8.0.31, but the version number may not be important.
+
 
 ### Installation
 
