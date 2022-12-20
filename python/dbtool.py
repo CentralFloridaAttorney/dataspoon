@@ -1,5 +1,3 @@
-import base64
-import hashlib
 import os
 
 import mysql
@@ -39,12 +37,12 @@ HOST = 'localhost'
 USER = 'bilbo'
 PASSWD = 'baggins'
 PORT = '3306'
-DB_NAME = 'python'
-TABLE_NAME = 'python'
+DB_NAME = 'dbtool'
+TABLE_NAME = 'dbtool'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
 ILLEGAL_WORDS = ['True']
 LINK_KEY = 'link_key'
-FORBIDDEN_DATABASES = ['users']
+FORBIDDEN_DATABASES = ['users', 'sys']
 HTML_ESCAPE_TABLE = {
     "&": "&amp;",
     '"': "&quot;",
@@ -66,18 +64,22 @@ ONEHOT_KEY = 'sentence'
 
 def get_onehot_encoded_string(_string, _hash_mod):
     word_indices = []
-    for word in _string:
-        OneHotWords().put(word)
+    try:
+        words = _string.split(' ')
+    except AttributeError:
+        words = [_string]
+    for word in words:
+        # OneHotWords().put(word)
         word_index = OneHotWords().get(word)
+        if word_index is None:
+            OneHotWords().put(LINK_KEY, word)
+            word_index = OneHotWords().get(word)
         word_indices.append(word_index)
-    # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
-    print('hash_string: ' + _string)
-    # return str(hashed_string[0])
-    # base64_bytes = _string.encode("ascii")
-    # base64_bytes = base64.b64encode(_string)
-    # base64_string = base64_bytes.decode("ascii")
-    # return base64_string
-    return word_indices
+    encoded_string = ''
+    for index in word_indices:
+        encoded_string += '<' + index
+    print('encoded_string: ' + encoded_string)
+    return encoded_string
 
 
 def get_unhashed_string(_hashed_string, _hash_mod):
@@ -111,7 +113,6 @@ def get_clean_key(key):
 class DBTool:
     def __init__(self, _database_name=None, _table_name=None):
         self.base_dir = ROOT_DIR.rsplit('/', 1)[0] + '/'
-        # TODO: make table for key storage
         if _database_name is None:
             self.database_name = DB_NAME
         else:
@@ -301,8 +302,8 @@ class DBTool:
             # mysql_statement = "INSERT INTO {0}"
         elif _value is None:
             # copies the value of link_key/_link_key to link_key/_key_value
-            row_value = self.get(get_clean_key(_link_key))
-            columns = self._get_columns(get_clean_key(_link_key))
+            # row_value = self.get(get_clean_key(_link_key))
+            # columns = self._get_columns(get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET ({1}) = '{2}' WHERE {3} = '{4}';".format(self.table_name, LINK_KEY,
                                                                                        get_clean_key(_link_key),
                                                                                        LINK_KEY,
@@ -363,55 +364,6 @@ class DBTool:
         return column_based_name
 
 
-class Pkl2Sql(DBTool):
-    def __init__(self, _db_name, _dir_path):
-        super().__init__(_db_name)
-        self.dir_path = self.base_dir + get_clean_key(_dir_path)
-        self.table_names = self._add_pickles()
-        self.unencoded_table_names = self._get_unencoded_table_names()
-        # print('Pickle2MySQL.__init__ done!')
-
-    def get_all_column_names(self):
-        # this returns the unhashed column_names that were added by _add_pickles
-        print('get_all_column_names done!')
-        return self.column_names
-
-    def _add_pickles(self):
-        files = self.get_files(self.dir_path, '.pkl')
-        hashed_column_names = []
-        for file in files:
-            this_pickle = pandas.read_pickle(file)
-            columns = this_pickle.columns
-            columns = map(str, columns)
-            joined_columns = '-'.join(columns)
-            these_columns = get_onehot_encoded_string(this_pickle.columns, HASH_MOD)
-            if not hashed_column_names.__contains__(these_columns):
-                hashed_column_names.append(these_columns)
-            dbtool = DBTool(self.database_name, these_columns)
-            dbtool.add_dataframe(this_pickle, 0)
-        # print('add_pickles done!')
-        return hashed_column_names
-
-    @staticmethod
-    def get_files(_base_directory, _extension):
-        selected_files = []
-        for root, dirs, files in os.walk(_base_directory):
-            for file in files:
-                if file.endswith(_extension):
-                    selected_files.append(os.path.join(root, file))
-                    # print(os.path.join(root, file))
-        # print('get_files done!')
-        return selected_files
-
-    def _get_unencoded_table_names(self):
-        unencoded_table_names = []
-        for table_name in self.table_names:
-            this_unencoded_table_name = get_unhashed_string(table_name, 1)
-            unencoded_table_names.append(this_unencoded_table_name)
-        print('get_unencoded_table_names done!')
-        return unencoded_table_names
-
-
 class Sql2Pkl(DBTool):
     # DB2Pkl takes a database_name and table_name and returns a pandas.DataFrame
     def __init__(self, _database_name, _table_name):
@@ -430,7 +382,7 @@ class OneHotWords(DBTool):
         # print('__init__ done!')
 
     def get_index_combo(self, _string):
-        words = self.get_clean_string(_string)
+        words = get_clean_string(_string)
         words = words.split(' ')
         word_indicies = []
         for word in words:
@@ -530,7 +482,7 @@ def test_get():
 
 
 def test_get_row_count():
-    dbtool = DBTool('python', 'python')
+    dbtool = DBTool()
     row_count = dbtool.get_row_count()
     print('test_get_row_count: ' + str(row_count))
 
@@ -556,19 +508,6 @@ def test_add_data_frame():
     print('test_add_dataframe: ')
 
 
-def test_pkl2sql():
-    # create the test data_frame and pickle file
-    data = [['bilbo', 'baggins'], ['thoron', 'falbright']]
-    data_frame = pandas.DataFrame(data)
-    data_frame = data_frame.transpose()
-    columns = ['username', 'password']
-    data_frame.columns = columns
-    output_file_path = '../data/users.pkl'
-    data_frame.to_pickle(output_file_path)
-    # test the system
-    pkl2sql = Pkl2Sql(DB_NAME, 'data/')
-    print('test_pkl2sql done!')
-
 
 def test_sql2pkl():
     # this class creates a pandas DataFrame
@@ -579,14 +518,14 @@ def test_sql2pkl():
 
 
 if __name__ == '__main__':
-    # test_init()
+    test_init()
     test_put()
-    # test_get()
-    # test_get_row_count()
-    # test_add_data_frame()
-    # test_get()
-    # test_get_clean_key()
-    # test_pkl2sql()
-    # test_sql2pkl()
+    test_get()
+    test_get_row_count()
+    test_add_data_frame()
+    test_get()
+    test_get_clean_key()
+    test_pkl2sql()
+    test_sql2pkl()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")
