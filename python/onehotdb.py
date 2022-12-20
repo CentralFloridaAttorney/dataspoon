@@ -6,7 +6,7 @@ import mysql
 import pandas
 from mysql.connector import Error
 
-from main.dbtool import OneHotWords
+from python.dbtool import OneHotWords
 
 # edit configuration /etc/mysql/mysql.conf.d/mysqld.cnf to change bind-address/127.0.0.1 and port/3306
 # configuration edits require terminal commands: sudo service mysql stop, start, status
@@ -155,7 +155,7 @@ class OneHotDB:
             connection.close()
         except Error as err:
             if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__('Duplicate'):
-                print('non-fatal error in main._execute_mysql: ' + _mysql_statement)
+                print('non-fatal error in python._execute_mysql: ' + _mysql_statement)
             elif err.errno == 1064:
                 return 'mysql syntax error: ' +_mysql_statement
             else:
@@ -183,7 +183,7 @@ class OneHotDB:
                     port=port_num,
                     database=self.database_name
                 )
-            # print("main._get_db_connection successful: " + db_name)
+            # print("python._get_db_connection successful: " + db_name)
         except Error as err:
             # err.errno(1049) is database not exists
             if err.errno == 1049:
@@ -241,7 +241,7 @@ class OneHotDB:
 
         # When you open_database self.table_name does not change
         # self.table is used in: _add_column, get, get_row_number, open_table, add_dataframe, and put
-        # The default value for self.table_name is main
+        # The default value for self.table_name is python
         # Therefore, _table_name may be required for open_database
 
         # self.database_name = _database_name
@@ -482,18 +482,18 @@ Emily Gorcenski said she sent Dorsey a direct message via Twitter on November 4 
 Gorcenski, who shared images and screenshots with Insider to confirm her claims, told Dorsey he gave Twitter to a "charlatan" who was either "playing an act for fun" or chucking away the best of Twitter, adding that the employees who lost their jobs deserved better.
 
 Dorsey replied, saying these issues were expected to happen regardless of whether he was involved or not, according to Gorcenski's screenshots of the conversation posted on her Mastodon account.''')
-    # main.put('put_1')
-    # main.put('xyzzy', 'failures', '543')
-    # main.put('put_2')
-    # main.put('put_2', 'failures', '345')
-    # main.put('put_1', 'xyzzy')
+    # python.put('put_1')
+    # python.put('xyzzy', 'failures', '543')
+    # python.put('put_2')
+    # python.put('put_2', 'failures', '345')
+    # python.put('put_1', 'xyzzy')
 
-    # main.put('old_index_1', "old_index_2")
+    # python.put('old_index_1', "old_index_2")
     # if link_key/word_1 does not exist then creates link_key/word_1 and renames link_key to word_1a
     # if link_key for word_1 does exist then this changes link_key/word_1 to word_1a
-    # main.put('word_1', 'word_1a')
+    # python.put('word_1', 'word_1a')
     # sets key/word_1 to value/word_1a in row with link_key/word_1b
-    # main.put('word_1', 'word_1a', 'word_1b')
+    # python.put('word_1', 'word_1a', 'word_1b')
     # print('test_put done!')
 
 
@@ -501,12 +501,12 @@ def test_get():
     dbtool = OneHotDB()
     link_key_index = dbtool.get('put_2')
     print('index of put_2 from test_get(): ' + str(link_key_index))
-    # link_key_update_status = main.get('put_1', 'reput_1')
+    # link_key_update_status = python.get('put_1', 'reput_1')
     # print(link_key_update_status)
 
 
 def test_get_row_count():
-    dbtool = OneHotDB('main', 'main')
+    dbtool = OneHotDB('python', 'python')
     row_count = dbtool.get_row_count()
     print('test_get_row_count: ' + str(row_count))
 
@@ -564,5 +564,5 @@ if __name__ == '__main__':
     # test_get_clean_key()
     # test_pkl2sql()
     # test_sql2pkl()
-    # the following line is not reached because of sys.exit() in main()
-    print("main done!")
+    # the following line is not reached because of sys.exit() in python()
+    print("python done!")

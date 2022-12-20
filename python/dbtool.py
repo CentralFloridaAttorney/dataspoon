@@ -39,8 +39,8 @@ HOST = 'localhost'
 USER = 'bilbo'
 PASSWD = 'baggins'
 PORT = '3306'
-DB_NAME = 'main'
-TABLE_NAME = 'main'
+DB_NAME = 'python'
+TABLE_NAME = 'python'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
 ILLEGAL_WORDS = ['True']
 LINK_KEY = 'link_key'
@@ -145,7 +145,7 @@ class DBTool:
             connection.close()
         except Error as err:
             if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__('Duplicate'):
-                print('non-fatal error in main._execute_mysql: ' + _mysql_statement)
+                print('non-fatal error in python._execute_mysql: ' + _mysql_statement)
             elif err.errno == 1064:
                 return 'mysql syntax error: ' +_mysql_statement
             else:
@@ -173,7 +173,7 @@ class DBTool:
                     port=port_num,
                     database=self.database_name
                 )
-            # print("main._get_db_connection successful: " + db_name)
+            # print("python._get_db_connection successful: " + db_name)
         except Error as err:
             # err.errno(1049) is database not exists
             if err.errno == 1049:
@@ -231,7 +231,7 @@ class DBTool:
 
         # When you open_database self.table_name does not change
         # self.table is used in: _add_column, get, get_row_number, open_table, add_dataframe, and put
-        # The default value for self.table_name is main
+        # The default value for self.table_name is python
         # Therefore, _table_name may be required for open_database
 
         # self.database_name = _database_name
@@ -505,19 +505,19 @@ def test_init():
 def test_put():
     dbtool = DBTool()
     # make link_key/word_1
-    # main.put('word')
-    # main.put('put_1')
+    # python.put('word')
+    # python.put('put_1')
     dbtool.put('xyzzy', 'failures', '543')
-    # main.put('put_2')
-    # main.put('put_2', 'failures', '345')
-    # main.put('put_1', 'xyzzy')
+    # python.put('put_2')
+    # python.put('put_2', 'failures', '345')
+    # python.put('put_1', 'xyzzy')
 
-    # main.put('old_index_1', "old_index_2")
+    # python.put('old_index_1', "old_index_2")
     # if link_key/word_1 does not exist then creates link_key/word_1 and renames link_key to word_1a
     # if link_key for word_1 does exist then this changes link_key/word_1 to word_1a
-    # main.put('word_1', 'word_1a')
+    # python.put('word_1', 'word_1a')
     # sets key/word_1 to value/word_1a in row with link_key/word_1b
-    # main.put('word_1', 'word_1a', 'word_1b')
+    # python.put('word_1', 'word_1a', 'word_1b')
     # print('test_put done!')
 
 
@@ -525,12 +525,12 @@ def test_get():
     dbtool = DBTool()
     link_key_index = dbtool.get('put_2')
     print('index of put_2 from test_get(): ' + str(link_key_index))
-    # link_key_update_status = main.get('put_1', 'reput_1')
+    # link_key_update_status = python.get('put_1', 'reput_1')
     # print(link_key_update_status)
 
 
 def test_get_row_count():
-    dbtool = DBTool('main', 'main')
+    dbtool = DBTool('python', 'python')
     row_count = dbtool.get_row_count()
     print('test_get_row_count: ' + str(row_count))
 
@@ -588,5 +588,5 @@ if __name__ == '__main__':
     # test_get_clean_key()
     # test_pkl2sql()
     # test_sql2pkl()
-    # the following line is not reached because of sys.exit() in main()
-    print("main done!")
+    # the following line is not reached because of sys.exit() in python()
+    print("python done!")
