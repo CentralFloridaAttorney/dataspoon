@@ -100,7 +100,7 @@
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Getting Started With dbtool.py
 
 1. Create a database ('xyzzydb'): xyzzydb = DBTool('xyzzydb').  The table_name will be a default value, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'xyzzy_table')) or after creation (ex. xyzzydb.open_table('new_table'))
 2. Create a record with a linking value ('link_key_1'): xyzzydb.put('link_key_1')
