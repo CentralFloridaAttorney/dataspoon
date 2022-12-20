@@ -84,8 +84,6 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `CentralFloridaAttorney`, `dataspoon`, `twitter_handle`, `linkedin_username`, `Xemail_client`, `contact@centralfloridaattorney.net`, `dataspoon`, `easy to use tools for onehot mysql databases`
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
