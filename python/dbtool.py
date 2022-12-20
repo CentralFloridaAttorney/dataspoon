@@ -514,15 +514,6 @@ def test_add_data_frame():
     print('test_add_dataframe: ')
 
 
-def test_sql2pkl():
-    # this class creates a pandas DataFrame
-    sql2pkl = Sql2Pkl(DB_NAME, TABLE_NAME)
-    # TODO implement Sql2Pkl
-    dataframe = sql2pkl.get_dataframe()
-    dataframe.to_pickle(DEFAULT_PKL_OUTPUT)
-    print('test_sql2pkl done!')
-
-
 def create_simple_pkl():
     # create the test data_frame and pickle file
     user_data = [['bilbo', 'baggins'], ['thoron', 'falbright']]
@@ -535,7 +526,7 @@ def create_simple_pkl():
 
 def test_to_pickle():
     dbtool = DBTool()
-    dbtool.to_pickle('data/dbtool.pkl')
+    dbtool.to_pickle('data/mysql.pkl')
     print('test_to_pickle done!')
 
 
