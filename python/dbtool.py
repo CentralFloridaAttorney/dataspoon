@@ -33,16 +33,17 @@ from mysql.connector import Error
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-HOST = 'localhost'
+HOST = '192.168.1.227'
+# HOST = 'localhost'
 USER = 'bilbo'
 PASSWD = 'baggins'
-PORT = '3306'
+PORT = '50011'
 DB_NAME = 'dbtool'
 TABLE_NAME = 'dbtool'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
 ILLEGAL_WORDS = ['True']
 LINK_KEY = 'link_key'
-FORBIDDEN_DATABASES = ['users', 'sys']
+FORBIDDEN_DATABASES = ['users']
 HTML_ESCAPE_TABLE = {
     "&": "&amp;",
     '"': "&quot;",
@@ -60,7 +61,8 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 ONEHOT_DB_NAME = 'onehot_words'
 ONE_HOT_WORD_TABLE_NAME = 'words'
 ONEHOT_KEY = 'sentence'
-DEFAULT_PKL_PATH = '../data/users.pkl'
+DEFAULT_PKL_INPUT = '../data/users.pkl'
+DEFAULT_PKL_OUTPUT = '../data/output.pkl'
 
 
 class DBTool:
@@ -517,7 +519,7 @@ def test_sql2pkl():
     # this class creates a pandas DataFrame
     sql2pkl = Sql2Pkl(DB_NAME, TABLE_NAME)
     dataframe = sql2pkl.get_dataframe()
-
+    dataframe.to_pickle(DEFAULT_PKL_OUTPUT)
     print('test_sql2pkl done!')
 
 
@@ -528,7 +530,7 @@ def create_simple_pkl():
     data_frame = data_frame.transpose()
     columns = ['username', 'password']
     data_frame.columns = columns
-    data_frame.to_pickle(DEFAULT_PKL_PATH)
+    data_frame.to_pickle(DEFAULT_PKL_INPUT)
 
 
 if __name__ == '__main__':
