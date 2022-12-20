@@ -109,7 +109,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. There is no API Key, but if you need help then [Talk to John](https://centralfloridaattorney.net/schedule-consultation/)
+1. If you need help using dataspoon then [Talk to John](https://centralfloridaattorney.net/schedule-consultation/)
 2. Clone the repo
    ```sh
    git clone https://github.com/CentralFloridaAttorney/dbtool.git
