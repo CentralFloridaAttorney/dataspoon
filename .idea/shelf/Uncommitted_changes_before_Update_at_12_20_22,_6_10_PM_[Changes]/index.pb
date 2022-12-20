@@ -1,4 +1,6 @@
 
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
@@ -70,7 +72,3 @@ w
 G.idea/sonarlint/issuestore/7/3/735cbdf86ba7c3a826f4a423b015173de7e1ed02,7/a/7ab564c48ecc6662b58884bea9a66c72cb4ef260
 w
 G.idea/sonarlint/issuestore/e/4/e473e96a9802225ebb04dc5291e186cbacea20bc,0/c/0c7a10e1445beed1339f5f5c15946540da0d0c94
-B
-python/onehotdb.py,4/c/4ce915c3f97350f01885c9ad91f56d795a95429b
-A
-python/pkl2sql.py,f/b/fb6a05ca24cc94821b02f125913ca215404f4c26

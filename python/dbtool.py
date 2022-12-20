@@ -33,11 +33,11 @@ from mysql.connector import Error
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-HOST = '192.168.1.227'
-# HOST = 'localhost'
-USER = 'overlordx'
-PASSWD = 'atomic99'
-PORT = '50011'
+# HOST = '192.168.1.227'
+HOST = 'localhost'
+USER = 'bilbo'
+PASSWD = 'baggins'
+PORT = '3306'
 DB_NAME = 'dbtool'
 TABLE_NAME = 'dbtool'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
@@ -79,6 +79,13 @@ class DBTool:
         self.open_database(self.database_name)
         # self.open_table(self.table_name)
         # print('__init__ done!')
+
+    def _add_column(self, _column_name):
+        query = "ALTER TABLE {0} ADD {1} VARCHAR(4096);".format(self.table_name, self.get_clean_key(_column_name))
+        # values = [self.table_name, self.get_clean_key(_column_name)]
+
+        self._execute_mysql(query)
+        # print('Add column: '+ _column_name)
 
     def _execute_mysql(self, _mysql_statement, _value=None):
         result = 'default'
@@ -155,6 +162,16 @@ class DBTool:
         return connection
 
     @staticmethod
+    def _get_html_escape(_string):
+        clean_string = str(_string)
+        print("***** test: " + clean_string)
+        clean_string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in clean_string)
+        if clean_string.isdigit():
+            clean_string = "_" + clean_string
+        print('get_html_escape: ' + clean_string)
+        return clean_string
+
+    @staticmethod
     def _init_connection():
         connection = mysql.connector.connect(
             host=HOST,
@@ -170,95 +187,19 @@ class DBTool:
         cursor = connection.cursor(buffered=True)
         mysql_statement = "SELECT * FROM {0}".format(self.database_name + '.' + self.table_name)
         cursor.execute(mysql_statement)
-        return cursor.description
+        return cursor.column_names
 
-    @staticmethod
-    def get_onehot_encoded_string(_string, _hash_mod):
-        word_indices = []
-        try:
-            words = _string.split(' ')
-        except AttributeError:
-            words = [_string]
-        for word in words:
-            # OneHotWords().put(word)
-            word_index = OneHotWords().get(word)
-            if word_index is None:
-                OneHotWords().put(LINK_KEY, word)
-                word_index = OneHotWords().get(word)
-            word_indices.append(word_index)
-        encoded_string = ''
-        for index in word_indices:
-            encoded_string += '<' + str(index[0])
-        print('encoded_string: ' + encoded_string)
-        return encoded_string
-
-    @staticmethod
-    def get_unhashed_string(_hashed_string, _hash_mod):
-        # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
-        # print('hash_string: ' + hashed_string[0])
-        # return str(hashed_string[0])
-        # sample_string_bytes = _hashed_string.encode("ascii")
-        # sample_string_bytes = base64.b64decode(base64_bytes)
-        # sample_string = sample_string_bytes.decode("ascii")
-        return _hashed_string
-
-    @staticmethod
-    def _get_html_escape(_string):
-        clean_string = str(_string)
-        print("***** test: " + clean_string)
-        clean_string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in clean_string)
-        if clean_string.isdigit():
-            clean_string = "_" + clean_string
-        print('get_html_escape: ' + clean_string)
-        return clean_string
-
-    def get_clean_key(self, key):
-        clean_key = self._get_html_escape(key)
-        if clean_key.isdigit():
-            clean_key = '_' + clean_key
-        return clean_key
-
-    def get_row_count(self):
-        get_row_count_mysql = "SELECT COUNT(*) FROM " + self.table_name + ";"
-        row_count = self._execute_mysql(get_row_count_mysql)
-        # print('get_row_count: ' + str(row_count[0]))
-        return row_count[0]
-
-    def open_database(self, _database_name, _table_name=None):
-        # self.database_name = str(re.sub(LEGAL_CHARACTERS, '_', _database_name.strip()))
-        self.database_name = self.get_clean_key(_database_name)
-        if _table_name is not None:
-            # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
-            self.table_name = self.get_clean_key(_table_name)
-
-        # When you open_database self.table_name does not change
-        # self.table is used in: _add_column, get, get_row_number, open_table, add_dataframe, and put
-        # The default value for self.table_name is python
-        # Therefore, _table_name may be required for open_database
-
-        # self.database_name = _database_name
-        # open_table_mysql = "CREATE TABLE " + self.table_name + "(id int(10) NOT NULL AUTO_INCREMENT," + LINK_KEY + " varchar(255), PRIMARY KEY (id))"
-        open_database_mysql = "CREATE DATABASE {0};".format(self.get_clean_key(_database_name))
-        opened_db = self._execute_mysql(open_database_mysql)
-        self.open_table(self.table_name)
-        print('open_database: ' + _database_name)
-
-    def open_table(self, _table_name):
-        # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
-        self.table_name = self.get_clean_key(_table_name)
-        # clean_table_name = self.get_clean_key(self.table_name)
-        mysql_open_table = "CREATE TABLE {0} (id int(10) NOT NULL AUTO_INCREMENT, ".format(self.table_name)
-        mysql_open_table += LINK_KEY + " varchar(255), PRIMARY KEY (id));"
-        self._execute_mysql(mysql_open_table)
-        # self._add_column('link_key')
-        # print('open_table: ' + _table_name)
-
-    def _add_column(self, _column_name):
-        query = "ALTER TABLE {0} ADD {1} VARCHAR(4096);".format(self.table_name, self.get_clean_key(_column_name))
-        # values = [self.table_name, self.get_clean_key(_column_name)]
-
-        self._execute_mysql(query)
-        # print('Add column: '+ _column_name)
+    def add_dataframe(self, _data_frame, _link_key_column_num=0):
+        # when adding a dataframe each row requires a link_key
+        # the link_key is the row_number of the newly added record
+        h, w = _data_frame.shape
+        for row in range(0, h, 1):
+            link_key = str(_data_frame.iloc[row][_link_key_column_num])
+            for column in range(0, w, 1):
+                key = str(_data_frame.columns[column])
+                value = str(_data_frame.iloc[row][column])
+                self.put(self.get_clean_key(link_key), self.get_clean_key(key), self.get_clean_key(value))
+        # print('add_dataframe done!')
 
     def delete_database(self, _database_name):
         mysql_drop_database = "DROP DATABASE {0}".format(self.get_clean_key(_database_name))
@@ -287,6 +228,104 @@ class DBTool:
         result = self._execute_mysql(sql_statement)
 
         return result
+
+    def get_clean_key(self, key):
+        clean_key = self._get_html_escape(key)
+        if clean_key.isdigit():
+            clean_key = '_' + clean_key
+        return clean_key
+
+    def get_column_based_name(self, _dataframe):
+        columns = _dataframe.columns.values
+        columns = columns.tolist()
+        column_based_name = ''
+        for column in columns:
+            this_column = self.get_clean_key(column)
+            column_based_name += this_column
+        print('get_column_based_name: ')
+        return column_based_name
+
+    @staticmethod
+    def get_onehot_encoded_string(_string, _hash_mod):
+        word_indices = []
+        try:
+            words = _string.split(' ')
+        except AttributeError:
+            words = [_string]
+        for word in words:
+            # OneHotWords().put(word)
+            word_index = OneHotWords().get(word)
+            if word_index is None:
+                OneHotWords().put(LINK_KEY, word)
+                word_index = OneHotWords().get(word)
+            word_indices.append(word_index)
+        encoded_string = ''
+        for index in word_indices:
+            encoded_string += '<' + str(index[0])
+        print('encoded_string: ' + encoded_string)
+        return encoded_string
+
+    def get_row_count(self):
+        get_row_count_mysql = "SELECT COUNT(*) FROM " + self.table_name + ";"
+        row_count = self._execute_mysql(get_row_count_mysql)
+        # print('get_row_count: ' + str(row_count[0]))
+        return row_count[0]
+
+    def get_row_number(self, _link_key, _key=None):
+        # select_template = '''SELECT * FROM seminole_main.seminole_main where link_key = "jurney";'''
+        # clean_link_key = str(re.sub(LEGAL_CHARACTERS, '_', clean_link_key.strip()))
+        clean_link_key = self.get_clean_key(_link_key)
+        if _key is None:
+            select_sql = "SELECT id FROM {0} WHERE {1} = '{2}';".format(self.table_name, LINK_KEY, clean_link_key)
+        else:
+            clean_key = self.get_clean_key(_key)
+            select_sql = "SELECT id FROM {0} WHERE {1} = '{2}';".format(self.table_name, LINK_KEY, clean_key)
+
+        row_number = self._execute_mysql(select_sql)
+        # print('get_row_number: ' + clean_link_key + ' = ' + str(row_number))
+        if row_number is None:
+            return 0
+        else:
+            return row_number
+
+    def open_database(self, _database_name, _table_name=None):
+        # self.database_name = str(re.sub(LEGAL_CHARACTERS, '_', _database_name.strip()))
+        self.database_name = self.get_clean_key(_database_name)
+        if _table_name is not None:
+            # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
+            self.table_name = self.get_clean_key(_table_name)
+
+        # When you open_database self.table_name does not change
+        # self.table is used in: _add_column, get, get_row_number, open_table, add_dataframe, and put
+        # The default value for self.table_name is python
+        # Therefore, _table_name may be required for open_database
+
+        # self.database_name = _database_name
+        # open_table_mysql = "CREATE TABLE " + self.table_name + "(id int(10) NOT NULL AUTO_INCREMENT," + LINK_KEY + " varchar(255), PRIMARY KEY (id))"
+        open_database_mysql = "CREATE DATABASE {0};".format(self.get_clean_key(_database_name))
+        opened_db = self._execute_mysql(open_database_mysql)
+        self.open_table(self.table_name)
+        print('open_database: ' + _database_name)
+
+    @staticmethod
+    def get_unhashed_string(_hashed_string, _hash_mod):
+        # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
+        # print('hash_string: ' + hashed_string[0])
+        # return str(hashed_string[0])
+        # sample_string_bytes = _hashed_string.encode("ascii")
+        # sample_string_bytes = base64.b64decode(base64_bytes)
+        # sample_string = sample_string_bytes.decode("ascii")
+        return _hashed_string
+
+    def open_table(self, _table_name):
+        # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
+        self.table_name = self.get_clean_key(_table_name)
+        # clean_table_name = self.get_clean_key(self.table_name)
+        mysql_open_table = "CREATE TABLE {0} (id int(10) NOT NULL AUTO_INCREMENT, ".format(self.table_name)
+        mysql_open_table += LINK_KEY + " varchar(255), PRIMARY KEY (id));"
+        self._execute_mysql(mysql_open_table)
+        # self._add_column('link_key')
+        # print('open_table: ' + _table_name)
 
     def put(self, _link_key, _key_value=None, _value=None):
         # returns row_number of _link_key
@@ -330,54 +369,15 @@ class DBTool:
         # print('put: ')
         return result
 
-    def get_row_number(self, _link_key, _key=None):
-        # select_template = '''SELECT * FROM seminole_main.seminole_main where link_key = "jurney";'''
-        # clean_link_key = str(re.sub(LEGAL_CHARACTERS, '_', clean_link_key.strip()))
-        clean_link_key = self.get_clean_key(_link_key)
-        if _key is None:
-            select_sql = "SELECT id FROM {0} WHERE {1} = '{2}';".format(self.table_name, LINK_KEY, clean_link_key)
-        else:
-            clean_key = self.get_clean_key(_key)
-            select_sql = "SELECT id FROM {0} WHERE {1} = '{2}';".format(self.table_name, LINK_KEY, clean_key)
-
-        row_number = self._execute_mysql(select_sql)
-        # print('get_row_number: ' + clean_link_key + ' = ' + str(row_number))
-        if row_number is None:
-            return 0
-        else:
-            return row_number
-
-    def add_dataframe(self, _data_frame, _link_key_column_num=0):
-        # when adding a dataframe each row requires a link_key
-        # the link_key is the row_number of the newly added record
-        h, w = _data_frame.shape
-        for row in range(0, h, 1):
-            link_key = str(_data_frame.iloc[row][_link_key_column_num])
-            for column in range(0, w, 1):
-                key = str(_data_frame.columns[column])
-                value = str(_data_frame.iloc[row][column])
-                self.put(self.get_clean_key(link_key), self.get_clean_key(key), self.get_clean_key(value))
-        # print('add_dataframe done!')
-
-    def get_column_based_name(self, _dataframe):
-        columns = _dataframe.columns.values
-        columns = columns.tolist()
-        column_based_name = ''
-        for column in columns:
-            this_column = self.get_clean_key(column)
-            column_based_name += this_column
-        print('get_column_based_name: ')
-        return column_based_name
-
-
-class Sql2Pkl(DBTool):
-    # DB2Pkl takes a database_name and table_name and returns a pandas.DataFrame
-    def __init__(self, _database_name, _table_name):
-        super().__init__(_database_name, _table_name)
-        print('DB2Pkl.__init__ done!')
-
-    def get_dataframe(self):
-        print('get_dataframe done!')
+    def to_pickle(self, _file_path):
+        mysql_statement = "SELECT * FROM {0}".format(self.table_name)
+        result = self._execute_mysql(mysql_statement)
+        columns = self._get_columns()
+        dataframe = pandas.DataFrame(result)
+        dataframe = dataframe.transpose()
+        dataframe.columns = columns
+        dataframe.to_pickle(self.base_dir + _file_path)
+        print('to_pickle: ' + self.base_dir + _file_path)
 
 
 class OneHotWords(DBTool):
@@ -533,15 +533,21 @@ def create_simple_pkl():
     data_frame.to_pickle(DEFAULT_PKL_INPUT)
 
 
+def test_to_pickle():
+    dbtool = DBTool()
+    dbtool.to_pickle('data/dbtool.pkl')
+    print('test_to_pickle done!')
+
+
 if __name__ == '__main__':
     test_init()
     test_put()
     test_get()
     test_get_row_count()
-    create_simple_pkl()
-    test_add_data_frame()
+    # create_simple_pkl()
+    # test_add_data_frame()
     test_get()
-    test_get_clean_key()
-    test_sql2pkl()
+    # test_get_clean_key()
+    test_to_pickle()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")

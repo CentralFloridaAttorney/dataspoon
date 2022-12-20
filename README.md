@@ -102,11 +102,12 @@
 <!-- GETTING STARTED -->
 ## Getting Started With dbtool.py
 
-1. Create a database ('xyzzydb'): xyzzydb = DBTool('xyzzydb').  The table_name will be a default value, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'xyzzy_table')) or after creation (ex. xyzzydb.open_table('new_table'))
+1. Create a database ('xyzzydb'): xyzzydb = DBTool('xyzzydb').  The MySQL.table_name will be a default name, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'table_name')) or after creation (ex. xyzzydb.open_table('new_table_name'))
 2. Create a record with a linking value ('link_key_1'): xyzzydb.put('link_key_1')
 3. Create or change an existing linking value ('new_link_key_1'): xyzzydb.put('link_key_1', 'new_link_key_1')
 4. Put key/value ('ala'/'kazam') into row with linking key ('new_link_key_1'): xyzzydb.put('new_link_key_1', 'ala', 'kazam')
 5. Get this_value ('kazam') using key ('ala') from row with linking key ('new_link_key_1'): this_value = xyzzydb.get('new_link_key_1', 'ala')
+6. Write MySQL.table_name to_pickle('data/mysql.pkl'): xyzzydb.to_pickle('data/mysql.pkl')
 
 ### Prerequisites
 

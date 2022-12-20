@@ -1,0 +1,31 @@
+
+<python:S125B"Remove this commented out code.(÷цЗ'8§чкс“0
+Bpython:S125S"Remove this commented out code.(Д„ц€ь€€€€8§чкс“0
+Bpython:S125U"Remove this commented out code.(ЮнЅЌщ€€€€8•чкс“0
+Bpython:S125^"Remove this commented out code.(Д„ц€ь€€€€8•чкс“0
+Xpython:S1135{"4Complete the task associated to this "TODO" comment.(Ўоєъш€€€€8•чкс“0
+>python:S125Е"Remove this commented out code.(ЈйЃж8¶чкс“0
+Mpython:S1481щ"-Remove the unused local variable "opened_db".(Ђн‘Ж8¶чкс“0
+>python:S125л"Remove this commented out code.(љґ÷Щ8¶чкс“0
+>python:S125о"Remove this commented out code.(жНбЕ8Ічкс“0
+>python:S125ц"Remove this commented out code.(”¶Юѓ8Ічкс“0
+>python:S125ю"Remove this commented out code.(жНбЕ8®чкс“0
+Cpython:S125А"Remove this commented out code.(льҐЋы€€€€8®чкс“0
+Cpython:S125Д"Remove this commented out code.(Её Џэ€€€€8©чкс“0
+>python:S125Й"Remove this commented out code.(ЩЉС€8©чкс“0
+ppython:S1854є"KRemove this assignment to local variable 'result'; the value is never used.(всх»щ€€€€8©чкс“0
+spython:S1854њ"TRemove this assignment to local variable 'mysql_statement'; the value is never used.(ЫЪШI8™чкс“0
+ppython:S1854∞"KRemove this assignment to local variable 'result'; the value is never used.(фќїґю€€€€8™чкс“0
+Mpython:S1481љ"-Remove the unused local variable "row_value".(ї»кЁ8Ђчкс“0
+Ppython:S1481Њ"+Remove the unused local variable "columns".(я¬Й≥€€€€€8Ђчкс“0
+>python:S125Ї"Remove this commented out code.(хЪН©8Ђчкс“0
+>python:S125к"Remove this commented out code.(еЧаБ8ђчкс“0
+Rpython:S1481¶"2Remove the unused local variable "joined_columns".(жйЦЅ8≠чкс“0
+>python:S125ґ"Remove this commented out code.(єЄУЖ8≠чкс“0
+Opython:S1481ќ"*Remove the unused local variable "dbtool".(Ы„ґею€€€€8Ѓчкс“0
+Cpython:S125й"Remove this commented out code.(—ЕјЫщ€€€€8Ѓчкс“0
+>python:S125ь"Remove this commented out code.(“’ѓі8ѓчкс“0
+Opython:S1481И"*Remove the unused local variable "dbtool".(Ы„ґею€€€€8ѓчкс“0
+Upython:S1481Ц"5Remove the unused local variable "column_based_name".(ЕѓЮй8∞чкс“0
+Kpython:S1481•"+Remove the unused local variable "pkl2sql".(й“мУ8∞чкс“0
+Rpython:S1481ђ"-Remove the unused local variable "dataframe".(≥±™Иш€€€€8±чкс“0
