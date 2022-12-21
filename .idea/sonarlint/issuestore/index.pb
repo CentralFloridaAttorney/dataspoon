@@ -20,8 +20,6 @@ w
 G.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,e/d/ed67eb178d523a4b3f117dcbe0eda5196367ceec
 w
 G.idea/sonarlint/issuestore/b/b/bb5afbfb42ef4ae77e927ad9a39bb8c7f6a27963,8/1/8196013379ab51018916e939dc1c107037eadca9
->
-data/users.pkl,2/c/2c082a090f16e5e2395271ecbaa78904a29c6d7d
 w
 G.idea/sonarlint/issuestore/1/e/1e9075f5bf079c01ef2c910709e91a497d262080,2/5/2511a7590eb091d560dac1615e6bcef0ceeaffb6
 w
@@ -66,9 +64,5 @@ w
 G.idea/sonarlint/issuestore/7/3/735cbdf86ba7c3a826f4a423b015173de7e1ed02,7/a/7ab564c48ecc6662b58884bea9a66c72cb4ef260
 w
 G.idea/sonarlint/issuestore/e/4/e473e96a9802225ebb04dc5291e186cbacea20bc,0/c/0c7a10e1445beed1339f5f5c15946540da0d0c94
-B
-python/onehotdb.py,4/c/4ce915c3f97350f01885c9ad91f56d795a95429b
 A
 python/pkl2sql.py,f/b/fb6a05ca24cc94821b02f125913ca215404f4c26
->
-data/mysql.pkl,f/8/f833b239c31b729bead5e735101455e11515e069
