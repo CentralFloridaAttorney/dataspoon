@@ -100,11 +100,15 @@
 
 dbtool allows you to create and use MySQL databases in Python using simple get and put commands.
 
-xyzzydb = DBTool() creates a default database with a default table.
+default database_name = 'dbtool'
 
-xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a default table.
+default table_name = 'default_table'
 
-xyzzydb = DBTool('xyzzydb', 'magic_table') creates a database named xyzzydb with a table named magic_table.
+xyzzydb = DBTool() creates a database named dbtool with table named default_table.
+
+xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a table named default_table.
+
+xyzzydb = DBTool('xyzzydb', 'best_magic_table') creates a database named xyzzydb with a table named best_magic_table.
 
 dbtool stores data in rows where link_key identifies the row for a key/value pair.  For example, xyzzydb.get('new_link_key_1') gets the whole row with the link_key ('new_link_key_1') and xyzzydb.get('new_link_key_1', 'ala') gets the value ('kazam') for key ('ala').  
 

@@ -39,7 +39,7 @@ USER = 'bilbo'
 PASSWD = 'baggins'
 PORT = '3306'
 DB_NAME = 'dbtool'
-TABLE_NAME = 'dbtool'
+DEFAULT_TABLE_NAME = 'default_table'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
 ILLEGAL_WORDS = ['True']
 LINK_KEY = 'link_key'
@@ -73,7 +73,7 @@ class DBTool:
         else:
             self.database_name = self.get_clean_key(_database_name)
         if _table_name is None:
-            self.table_name = TABLE_NAME
+            self.table_name = DEFAULT_TABLE_NAME
         else:
             self.table_name = self.get_clean_key(_table_name)
         self.open_database(self.database_name)
@@ -341,19 +341,19 @@ class DBTool:
                 # add a link_key = _link_key
                 mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name, LINK_KEY,
                                                                                  self.get_clean_key(_link_key))
-            result = [self.get_row_number(_link_key), _link_key]
+            result = self.get_row_number(_link_key)
             # mysql_statement = "INSERT INTO {0}"
         elif _value is None:
             # copies the value of link_key/_link_key to link_key/_key_value
             # row_value = self.get(self.get_clean_key(_link_key))
             # columns = self._get_columns(self.get_clean_key(_link_key))
-            self.put(self.get_clean_key(_link_key))
+            # self.put(self.get_clean_key(_link_key))
             # self._add_column(self.get_clean_key(_key_value))
             row_number = self.get_row_number(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY,
                                                                                     self.get_clean_key(_key_value),
                                                                                     row_number)
-            result = self.get_row_number(self.get_clean_key(_key_value))
+            result = self.get_row_number(_key_value)
 
         else:
             # update set _key_value = _value where id = row_number/link_key
@@ -363,7 +363,7 @@ class DBTool:
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name,
                                                                                     self.get_clean_key(_key_value),
                                                                                     self.get_clean_key(_value), row_number)
-            result = self.get_row_number(self.get_clean_key(_link_key))
+            result = self.get_row_number(_link_key)
 
         self._execute_mysql(mysql_statement)
         # print('put: ')
@@ -533,20 +533,23 @@ def test_to_pickle():
 def github_demo():
     xyzzydb = DBTool()
     xyzzydb = DBTool('xyzzydb')
-    xyxxydb = DBTool('xyzzydb', 'magic_table')
+    xyzzydb = DBTool('xyzzydb', 'new_magic_table')
+    xyzzydb.put('link_key_xyzzy')
+    xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy')
+    xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam')
     print('github_demo done!')
 
 
 if __name__ == '__main__':
     github_demo()
-    test_init()
+    # test_init()
     test_put()
-    test_get()
-    test_get_row_count()
+    # test_get()
+    # test_get_row_count()
     # create_simple_pkl()
     # test_add_data_frame()
-    test_get()
+    # test_get()
     # test_get_clean_key()
-    test_to_pickle()
+    # test_to_pickle()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")
