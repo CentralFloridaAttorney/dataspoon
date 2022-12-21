@@ -96,11 +96,13 @@
 
 
 <!-- GETTING STARTED -->
-## Getting Started With dbtool.py
+## Getting Started With dbtool and onehotdb
 
 dbtool allows you to create and use MySQL databases in Python using simple get and put commands.
 
-dbtool stores data in rows where link_key identifies the row for a key/value pair.  For example, xyzzydb.get('revised_link_key_xyzzy') gets the whole row with the link_key ('revised_link_key_xyzzy') and xyzzydb.get('revised_link_key_xyzzy', 'ala') gets the value ('kazam') for key ('ala').  
+dbtool stores data in rows where link_key identifies the row for a key/value pair.  For example, xyzzydb.get('revised_link_key_xyzzy') gets the whole row with the link_key ('revised_link_key_xyzzy') and xyzzydb.get('revised_link_key_xyzzy', 'ala') gets the value ('kazam') for key ('ala').
+
+onehotdb builds upon dbtool and instead of storing a value, onehotdb splits values into smaller values and stores an index to the smaller values, where the index is the location of the value's 'id' in a different database.
 
 ### Prerequisites
 
