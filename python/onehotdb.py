@@ -4,9 +4,8 @@ import mysql
 import pandas
 from mysql.connector import Error
 
-from python.dbtool import DBTool
-import sys
-sys.setrecursionlimit(1000000)
+from python.dbtool import OneHotWords
+
 # edit configuration /etc/mysql/mysql.conf.d/mysqld.cnf to change bind-address/127.0.0.1 and port/3306
 # configuration edits require terminal commands: sudo service mysql stop, start, status
 
@@ -66,8 +65,6 @@ SENTENCE_KEY = 'sentence'
 
 # PKL_PATH = '/home/overlordx/PycharmProjects/SeminoleScraper/data/pkl'
 # DIR_PATH = r'/home/overlordx/PycharmProjects/SeminoleScraper/data/cases/seminole/10_7_2022'
-
-
 
 
 
@@ -179,8 +176,7 @@ class OneHotDB:
         cursor.execute(mysql_statement)
         return cursor.description
 
-    @staticmethod
-    def get_onehot_encoded_string(_string, _hash_mod=None):
+    def get_onehot_encoded_string(_string, _hash_mod):
         word_indices = []
         words = _string.split(' ')
         for word in words:
@@ -192,7 +188,7 @@ class OneHotDB:
             word_indices.append(word_index)
         encoded_string = ''
         for index in word_indices:
-            encoded_string += '&' + str(index)
+            encoded_string += '<' + index
         # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
         print('encoded_string: ' + encoded_string)
         # return str(hashed_string[0])
@@ -201,6 +197,15 @@ class OneHotDB:
         # base64_string = base64_bytes.decode("ascii")
         # return base64_string
         return encoded_string
+
+    def get_unhashed_string(_hashed_string, _hash_mod):
+        # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
+        # print('hash_string: ' + hashed_string[0])
+        # return str(hashed_string[0])
+        # sample_string_bytes = _hashed_string.encode("ascii")
+        # sample_string_bytes = base64.b64decode(base64_bytes)
+        # sample_string = sample_string_bytes.decode("ascii")
+        return _hashed_string
 
     @staticmethod
     def _get_html_escape(_string):
@@ -298,38 +303,38 @@ class OneHotDB:
         if _key_value is None:
             row_number = self.get_row_number(_link_key)
             mysql_statement = "SELECT * FROM {0} WHERE {1} = {2};".format(self.table_name, LINK_KEY,
-                                                                          _link_key)
+                                                                          self.get_clean_key(_link_key))
             if row_number == 0:
                 # add a link_key = _link_key
                 mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name, LINK_KEY,
-                                                                                 self.get_onehot_encoded_string(_link_key))
+                                                                                 self.get_clean_key(_link_key))
             result = [self.get_row_number(_link_key), _link_key]
             # mysql_statement = "INSERT INTO {0}"
         elif _value is None:
             # copies the value of link_key/_link_key to link_key/_key_value
-            row_value = self.get(_link_key)
+            row_value = self.get(self.get_clean_key(_link_key))
             columns = self._get_columns()
             mysql_statement = "UPDATE {0} SET ({1}) = '{2}' WHERE {3} = '{4}';".format(self.table_name, LINK_KEY,
-                                                                                       _link_key,
+                                                                                       self.get_clean_key(_link_key),
                                                                                        LINK_KEY,
-                                                                                       _link_key)
+                                                                                       self.get_clean_key(_link_key))
             self.put(self.get_clean_key(_link_key))
             # self._add_column(self.get_clean_key(_key_value))
             row_number = self.get_row_number(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY,
-                                                                                    self.get_onehot_encoded_string(_key_value),
+                                                                                    self.get_clean_key(_key_value),
                                                                                     row_number)
         else:
             # update set _key_value = _value where id = row_number/link_key
-            self.put(_link_key)
-            self._add_column(_key_value)
-            row_number = self.get_row_number(_link_key)
+            self.put(self.get_clean_key(_link_key))
+            self._add_column(self.get_clean_key(_key_value))
+            row_number = self.get_row_number(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name,
-                                                                                    _key_value,
-                                                                                    _value, row_number)
+                                                                                    self.get_clean_key(_key_value),
+                                                                                    self.get_clean_key(_value), row_number)
         self._execute_mysql(mysql_statement)
         # print('put: ')
-        result = self.get_row_number(_link_key)
+        result = self.get_row_number(self.get_clean_key(_link_key))
 
         return result
 
@@ -413,7 +418,7 @@ class Pkl2DB(OneHotDB):
             columns = this_pickle.columns
             columns = map(str, columns)
             joined_columns = '-'.join(columns)
-            these_columns = self.get_onehot_encoded_string(this_pickle.columns, HASH_MOD)
+            these_columns = get_onehot_encoded_string(this_pickle.columns, HASH_MOD)
             if not hashed_column_names.__contains__(these_columns):
                 hashed_column_names.append(these_columns)
             this_onehot_db = OneHotDB(self.database_name, these_columns)
@@ -435,7 +440,7 @@ class Pkl2DB(OneHotDB):
     def _get_unencoded_table_names(self):
         unencoded_table_names = []
         for table_name in self.table_names:
-            this_unencoded_table_name = self.get_unhashed_string(table_name, 1)
+            this_unencoded_table_name = get_unhashed_string(table_name, 1)
             unencoded_table_names.append(this_unencoded_table_name)
         print('get_unencoded_table_names done!')
         return unencoded_table_names
@@ -450,47 +455,6 @@ class DB2Pkl(OneHotDB):
     def get_dataframe(self):
         print('get_dataframe done!')
 
-class OneHotWords(DBTool):
-    # mysql has a maximum number of 4096 columns per table
-    # Therefore, each sentence has a maximum number of words
-    def __init__(self):
-        super().__init__(ONEHOT_DB_NAME, ONE_HOT_WORD_TABLE_NAME)
-        # print('__init__ done!')
-
-    def get_index_combo(self, _string):
-        words = self.get_clean_key(_string)
-        words = words.split(' ')
-        word_indicies = []
-        for word in words:
-            word_indicies.append(self.get_row_number(word))
-        index_combo = ''
-        first = True
-        for word_index in word_indicies:
-            if not first:
-                index_combo += '&'
-            else:
-                first = False
-            index_combo += str(word_index)
-        return index_combo
-
-    def get_reconstituted_string(self, _index_combo):
-        indices = _index_combo.split('&')
-        words = []
-        for index in indices:
-            this_word = self.get_word_at_index(index)
-            if this_word is not None:
-                words.append(this_word)
-        reconstituted_string = ''
-        first = True
-        for word in words:
-            if not first:
-                reconstituted_string += ' '
-            else:
-                first = False
-            # # print('get_reconstituted_string word: ' + word)
-            reconstituted_string += str(word[0])
-        return reconstituted_string
-
 
 def test_init():
     dbtool = OneHotDB()
@@ -501,6 +465,25 @@ def test_put():
     dbtool = OneHotDB()
     # make link_key/word_1
     dbtool.put_onehot('first_link_key', 'word is the bird')
+    dbtool.put_onehot('sef45', '''Business Insider
+A data scientist says Jack Dorsey told her Twitter was defenseless against a takeover by Elon Musk and the company should never have gone public
+Kate Duffy
+Mon, December 19, 2022 at 9:06 AM EST
+A collage of Elon Musk (left) and Twitter cofounder Jack Dorsey.
+Twitter owner Elon Musk and the platform's cofounder Jack Dorsey.Jim Watson/AFP via Getty Images
+Jack Dorsey said Twitter was defenseless against Elon Musk's acquisition, per a data scientist.
+
+Emily Gorcenski said she exchanged messages with Twitter cofounder about Musk's involvement.
+
+Dorsey said Twitter "should have never gone public" and that anyone could buy it, per Gorcenski.
+
+Jack Dorsey said Twitter had no defenses against Elon Musk acquiring the company in October, according to a data scientist and activist.
+
+Emily Gorcenski said she sent Dorsey a direct message via Twitter on November 4 about why he decided to hand the platform over to Musk. She said she told him: "It could have been so much more."
+
+Gorcenski, who shared images and screenshots with Insider to confirm her claims, told Dorsey he gave Twitter to a "charlatan" who was either "playing an act for fun" or chucking away the best of Twitter, adding that the employees who lost their jobs deserved better.
+
+Dorsey replied, saying these issues were expected to happen regardless of whether he was involved or not, according to Gorcenski's screenshots of the conversation posted on her Mastodon account.''')
     # python.put('put_1')
     # python.put('xyzzy', 'failures', '543')
     # python.put('put_2')
@@ -533,7 +516,7 @@ def test_get_row_count():
 def test_get_clean_key():
     KEY = "Instrument #"
     dbtool = OneHotDB()
-    clean_key = dbtool.get_clean_key(KEY)
+    clean_key = get_clean_key(KEY)
     print('test_get_clean_key: ' + clean_key)
 
 

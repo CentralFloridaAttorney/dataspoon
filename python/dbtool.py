@@ -359,6 +359,82 @@ class DBTool:
         dataframe.to_pickle(self.base_dir + _file_path)
         print('to_pickle: ' + self.base_dir + _file_path)
 
+
+class OneHotWords(DBTool):
+    # mysql has a maximum number of 4096 columns per table
+    # Therefore, each sentence has a maximum number of words
+    def __init__(self):
+        super().__init__(ONEHOT_DB_NAME, ONE_HOT_WORD_TABLE_NAME)
+        # print('__init__ done!')
+
+    def get_index_combo(self, _string):
+        words = self.get_clean_key(_string)
+        words = words.split(' ')
+        word_indicies = []
+        for word in words:
+            word_indicies.append(self.get_row_number(word))
+        index_combo = ''
+        first = True
+        for word_index in word_indicies:
+            if not first:
+                index_combo += '&'
+            else:
+                first = False
+            index_combo += str(word_index)
+        return index_combo
+
+    def get_reconstituted_string(self, _index_combo):
+        indices = _index_combo.split('&')
+        words = []
+        for index in indices:
+            this_word = self.get_word_at_index(index)
+            if this_word is not None:
+                words.append(this_word)
+        reconstituted_string = ''
+        first = True
+        for word in words:
+            if not first:
+                reconstituted_string += ' '
+            else:
+                first = False
+            # # print('get_reconstituted_string word: ' + word)
+            reconstituted_string += str(word[0])
+        return reconstituted_string
+
+    def get_word_at_index(self, _index):
+        sql_statement = "SELECT link_key FROM {0} WHERE id = '{1}';".format(self.table_name, str(_index))
+        this_word = self._execute_mysql(sql_statement)
+        # print('get_word_at_index done!')
+        return this_word
+
+    def _put_word(self, _word, _word2=None, _word3=None):
+        clean_word = self.get_clean_key(_word)
+        super().put(LINK_KEY, clean_word)
+        # print('onehottool.put: ' + clean_word)
+
+    def _get_index(self, _word):
+        # This function returns the row number of _word in the onehot index
+        clean_word = self.get_clean_string(_word)
+        row_number = super().get_row_number(clean_word)
+        if row_number == '0':
+            self.put_word(clean_word)
+            row_number = super().get_row_number(clean_word)
+        # print('onehottool.get: ' + str(row_number))
+        return row_number
+
+    def load_dict(self, _dict_table_name, _dict_file_path):
+        self.open_table(_dict_table_name)
+        file_path = _dict_file_path
+        file = open(file_path, 'r')
+        text = file.read()
+        words = text.split('\n')
+        for word in words:
+            if word == 'ain''t':
+                clean_word = 'xyxxy'
+            clean_word = self.get_clean_key(word)
+            self._put_word(clean_word)
+
+
 def test_init():
     dbtool = DBTool()
     # print('test_init done!')
