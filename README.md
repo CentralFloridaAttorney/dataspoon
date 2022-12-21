@@ -147,7 +147,12 @@ dbtool stores data in rows where link_key identifies the row for a key/value pai
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+    xyzzydb = DBTool()
+    xyzzydb = DBTool('xyzzydb')
+    xyzzydb = DBTool('xyzzydb', 'new_magic_table')
+    xyzzydb.put('link_key_xyzzy')
+    xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy')
+    xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam')
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
