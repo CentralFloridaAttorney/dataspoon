@@ -98,7 +98,12 @@
 <!-- GETTING STARTED -->
 ## Getting Started With dbtool.py
 
-dbtool allows you to create and use MySQL databases in Python using simple get and put commands.  Records are referenced by the value in the link_key column, such that dbtool.get('bilbo') gets the whole row with the link_key ('bilbo') and dbtool.get('bilbo', 'password') gets the value ('baggins') where the link_key ('bilbo').
+dbtool allows you to create and use MySQL databases in Python using simple get and put commands.  
+dbtool = DBTool() creates a default database with a default table.
+dbtool = DBTool('xyzzydb') creates a database named xyzzy with a default table.
+dbtool = DBTool('xyzzydb', 'magic_table') creates a database named xyzzy and a table named magic_table.
+
+dbtool stores data in rows.  Each row is referenced by the value a column named link_key.  Thus, link_key as a mandatory parameter for all get and put commands.  For example, dbtool.get('bilbo') gets the whole row with the link_key ('bilbo') and dbtool.get('bilbo', 'password') gets the value ('baggins') where the link_key ('bilbo').  
 
 1. Create a database ('xyzzydb'): xyzzydb = DBTool('xyzzydb').  The MySQL.table_name will be a default name, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'table_name')) or after creation (ex. xyzzydb.open_table('new_table_name'))
 2. Create a record with a link_key value ('link_key_1'): xyzzydb.put('link_key_1')
