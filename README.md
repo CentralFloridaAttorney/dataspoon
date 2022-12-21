@@ -137,7 +137,7 @@ dbtool stores data in rows where link_key identifies the row for a key/value pai
     xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy') changes the link_key for link_key ('link_key_xyzzy') to link)key ('revised_link_key_xyzzy')
     xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam') sets key ('ala') to value ('kazam') in row with link_key ('revised_link_key_xyzzy')
     
-    1. Create a database ('xyzzydb', 'magic_table'): xyzzydb = DBTool('xyzzydb', 'magic_table').  The MySQL.table_name will be a default name, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'magic_table')) or after creation (ex. xyzzydb.open_table('new_magic_table'))
+    1. Create a database ('xyzzydb', 'magic_table'): xyzzydb = DBTool('xyzzydb', 'magic_table').  The MySQL.table_name is a default name, unless you specify a table_name during creation (ex. xyzzydb = DBTool('xyzzydb', 'magic_table')) or after creation (ex. xyzzydb.open_table('new_magic_table'))
     2. Create a new record with a link_key ('link_key_xyzzy'): xyzzydb.put('link_key_xyzzy')
     3. Revise an existing link_key ('revised_link_key_xyzzy'): xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy')
     4. Put key/value ('ala'/'kazam') into row with link_key ('revised_link_key_xyzzy'): xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam')
