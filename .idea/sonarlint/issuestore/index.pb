@@ -32,8 +32,6 @@ w
 G.idea/sonarlint/issuestore/7/9/79b82ce9b64a924266619555502f890dd80c83b9,5/e/5e279acda94e305a5894efa17b0724e6e56de0f1
 é
 ^.idea/dataSources/5421f7cc-10ca-4591-8b34-4c4b5eb0f149/storage_v2/_src_/schema/sys.zb4BAA.meta,7/3/735cbdf86ba7c3a826f4a423b015173de7e1ed02
-w
-G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
 ù
 m.idea/dataSources/5421f7cc-10ca-4591-8b34-4c4b5eb0f149/storage_v2/_src_/schema/performance_schema.kIw0nw.meta,c/6/c6cca72478eaaf836b213bc6fa694b3ff2e9d7ce
 ê

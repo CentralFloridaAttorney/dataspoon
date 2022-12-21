@@ -516,7 +516,7 @@ def test_add_data_frame():
 
 def create_simple_pkl():
     # create the test data_frame and pickle file
-    user_data = [['bilbo', 'baggins'], ['thoron', 'falbright']]
+    user_data = [['bilbo', 'thoron'], ['baggins', 'falbright']]
     data_frame = pandas.DataFrame(user_data)
     data_frame = data_frame.transpose()
     columns = ['username', 'password']
@@ -530,7 +530,15 @@ def test_to_pickle():
     print('test_to_pickle done!')
 
 
+def github_demo():
+    xyzzydb = DBTool()
+    xyzzydb = DBTool('xyzzydb')
+    xyxxydb = DBTool('xyzzydb', 'magic_table')
+    print('github_demo done!')
+
+
 if __name__ == '__main__':
+    github_demo()
     test_init()
     test_put()
     test_get()

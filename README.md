@@ -100,11 +100,11 @@
 
 dbtool allows you to create and use MySQL databases in Python using simple get and put commands.  Records are referenced by the value in the link_key column, such that dbtool.get('link_key_1') gets the row with the value ('link_key_1') in the column ('link_key') and dbtool.get('bilbo', 'password') gets the value ('baggins') where the link_key ('bilbo') 
 
-1. Create a database ('xyzzydb'): xyzzydb = DBTool('xyzzydb').  The MySQL.table_name will be a default name, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'table_name')) or after creation (ex. xyzzydb.open_table('new_table_name'))
-2. Create a record with a link_key value ('link_key_1'): xyzzydb.put('link_key_1')
-3. Create or change an existing link_key value ('new_link_key_1'): xyzzydb.put('link_key_1', 'new_link_key_1')
-4. Put key/value ('ala'/'kazam') into row with link_key value ('new_link_key_1'): xyzzydb.put('new_link_key_1', 'ala', 'kazam')
-5. Get this_value ('kazam') using key ('ala') from row with link_key value ('new_link_key_1'): this_value = xyzzydb.get('new_link_key_1', 'ala')
+1. Create a database ('xyzzydb'): xyzzydb = DBTool('xyzzydb').  The MySQL.table_name will be a default name, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'magic_table')) or after creation (ex. xyzzydb.open_table('new_magic_table'))
+2. Create a new record with a link_key ('link_key_xyzzy'): xyzzydb.put('link_key_xyzzy')
+3. Revise an existing link_key ('revised_link_key_xyzzy'): xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy')
+4. Put key/value ('ala'/'kazam') into row with link_key ('revised_link_key_xyzzy'): xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam')
+5. Get this_value ('kazam') using key ('ala') from row with link_key value ('revised_link_key_xyzzy'): this_value = xyzzydb.get('revised_link_key_xyzzy', 'ala')
 6. Write MySQL.table_name to_pickle('data/mysql.pkl'): xyzzydb.to_pickle('data/mysql.pkl')
 
 ### Prerequisites
