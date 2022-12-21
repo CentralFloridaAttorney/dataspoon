@@ -38,8 +38,8 @@ from python.dbtool import OneHotWords
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
 # HOST = 'localhost'
 HOST = '192.168.1.227'
-USER = 'overlordx'
-PASSWD = 'atomic99'
+USER = 'bilbo'
+PASSWD = 'baggins'
 PORT = '50011'
 DB_NAME = 'onehotdb'
 TABLE_NAME = 'sentences'
