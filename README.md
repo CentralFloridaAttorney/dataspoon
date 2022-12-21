@@ -117,7 +117,7 @@
 1. If you need help using dataspoon then [Talk to John](https://centralfloridaattorney.net/schedule-consultation/)
 2. Clone the repo
    ```sh
-   git clone https://github.com/CentralFloridaAttorney/dbtool.git
+   git clone https://github.com/CentralFloridaAttorney/dataspoon.git
    ```
 3. Install NPM packages
    ```sh
