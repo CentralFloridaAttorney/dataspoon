@@ -185,16 +185,6 @@ class DBTool:
             unescape_string = unescape_string.replace(item, HTML_UNESCAPE_TABLE.get(item))
         print("_get_html_unescape: " + unescape_string)
         return unescape_string
-    @staticmethod
-    def _init_connection():
-        connection = mysql.connector.connect(
-            host=HOST,
-            user=USER,
-            passwd=PASSWD,
-            port=PORT
-        )
-        print('_init_user_database: ')
-        return connection
 
     def _get_columns(self):
         connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
@@ -236,7 +226,7 @@ class DBTool:
             sql_statement = SELECT_STATEMENT.format(self.get_clean_key(_key), self.table_name, LINK_KEY,
                                                     self.get_clean_key(_link_key))
         result = self._execute_mysql(sql_statement)
-        result = self._get_html_unescape(result)
+        # result = self._get_html_unescape(result)
         return result
 
     def get_clean_key(self, key):
@@ -295,16 +285,6 @@ class DBTool:
         opened_db = self._execute_mysql(open_database_mysql)
         self.open_table(self.table_name)
         print('open_database: ' + _database_name)
-
-    @staticmethod
-    def get_unhashed_string(_hashed_string, _hash_mod):
-        # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
-        # print('hash_string: ' + hashed_string[0])
-        # return str(hashed_string[0])
-        # sample_string_bytes = _hashed_string.encode("ascii")
-        # sample_string_bytes = base64.b64decode(base64_bytes)
-        # sample_string = sample_string_bytes.decode("ascii")
-        return _hashed_string
 
     def open_table(self, _table_name):
         # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
@@ -419,14 +399,14 @@ class OneHotWords(DBTool):
     def _put_word(self, _word, _word2=None, _word3=None):
         clean_word = self.get_clean_key(_word)
         super().put(LINK_KEY, clean_word)
-        # print('onehottool.put: ' + clean_word)
+        # print('_put_word: ' + clean_word)
 
     def _get_index(self, _word):
         # This function returns the row number of _word in the onehot index
-        clean_word = self.get_clean_string(_word)
+        clean_word = self.get_clean_key(_word)
         row_number = super().get_row_number(clean_word)
         if row_number == '0':
-            self.put_word(clean_word)
+            self._put_word(clean_word)
             row_number = super().get_row_number(clean_word)
         # print('onehottool.get: ' + str(row_number))
         return row_number

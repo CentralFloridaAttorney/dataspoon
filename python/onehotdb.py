@@ -381,7 +381,6 @@ class OneHotDB:
             if word_result is None:
                 OneHotWords().put(clean_word)
                 word_result = OneHotWords().get(clean_word)
-
             index = str(word_result[0])
             indices.append(index)
         combined_indices = ''
@@ -502,52 +501,6 @@ def test_init():
     # print('test_init done!')
 
 
-def test_put():
-    dbtool = OneHotDB()
-    # make link_key/word_1
-    dbtool.put_onehot('first_link_key', 'word is the bird')
-    dbtool.put_onehot('sef45', '''Business Insider
-A data scientist says Jack Dorsey told her Twitter was defenseless against a takeover by Elon Musk and the company should never have gone public
-Kate Duffy
-Mon, December 19, 2022 at 9:06 AM EST
-A collage of Elon Musk (left) and Twitter cofounder Jack Dorsey.
-Twitter owner Elon Musk and the platform's cofounder Jack Dorsey.Jim Watson/AFP via Getty Images
-Jack Dorsey said Twitter was defenseless against Elon Musk's acquisition, per a data scientist.
-
-Emily Gorcenski said she exchanged messages with Twitter cofounder about Musk's involvement.
-
-Dorsey said Twitter "should have never gone public" and that anyone could buy it, per Gorcenski.
-
-Jack Dorsey said Twitter had no defenses against Elon Musk acquiring the company in October, according to a data scientist and activist.
-
-Emily Gorcenski said she sent Dorsey a direct message via Twitter on November 4 about why he decided to hand the platform over to Musk. She said she told him: "It could have been so much more."
-
-Gorcenski, who shared images and screenshots with Insider to confirm her claims, told Dorsey he gave Twitter to a "charlatan" who was either "playing an act for fun" or chucking away the best of Twitter, adding that the employees who lost their jobs deserved better.
-
-Dorsey replied, saying these issues were expected to happen regardless of whether he was involved or not, according to Gorcenski's screenshots of the conversation posted on her Mastodon account.''')
-    # python.put('put_1')
-    # python.put('xyzzy', 'failures', '543')
-    # python.put('put_2')
-    # python.put('put_2', 'failures', '345')
-    # python.put('put_1', 'xyzzy')
-
-    # python.put('old_index_1', "old_index_2")
-    # if link_key/word_1 does not exist then creates link_key/word_1 and renames link_key to word_1a
-    # if link_key for word_1 does exist then this changes link_key/word_1 to word_1a
-    # python.put('word_1', 'word_1a')
-    # sets key/word_1 to value/word_1a in row with link_key/word_1b
-    # python.put('word_1', 'word_1a', 'word_1b')
-    # print('test_put done!')
-
-
-def test_get():
-    dbtool = OneHotDB()
-    link_key_index = dbtool._get('put_2')
-    print('index of put_2 from test_get(): ' + str(link_key_index))
-    # link_key_update_status = python.get('put_1', 'reput_1')
-    # print(link_key_update_status)
-
-
 def test_get_row_count():
     dbtool = OneHotDB('python', 'python')
     row_count = dbtool.get_row_count()
@@ -599,7 +552,9 @@ def test_sql2pkl():
 
 def test_put_onehot():
     onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
-    onehotdb.put_onehot('first_key', '''"This is me expressing my truth. I'm comfortable in my own skin, and this is the way I am sharing that confidence," Twain, 57, tells PEOPLE. "I think the best fashion is confidence, and whatever you wear — if you're wearing it with that, it's fashionable. I am a woman in my late 50s, and I don't need to hide behind the clothes. I can't even tell you how good it felt to do nude shooting. I was just so unashamed of my new body, you know, as a woman that is well into my menopause. I'm not even emotional about it; I just feel okay about it. It's really liberating."''')
+    onehotdb.put_onehot('first_key', "Abra kadab'ro'")
+    onehotdb.put_onehot('second_key', '''This is an elegant approach, to do the search and replace using a <code>formatter</code>. However, if I hadn't seen @Martijn Pieters answer it would be a bit mysterious, so I will mark his as the accepted answer since it has more explanation. Richard Neish Feb 28, 2013 at 15:19 ''')
+
     first_key_value = onehotdb.get_onehot_indices('first_key')
     print('test_put_onehot get_onehot: ' + first_key_value[0])
 
@@ -622,8 +577,12 @@ def test_get_onehot():
     onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
     onehot_indices = onehotdb.get_onehot_indices('first_key')
     onehot_dataframe = onehotdb.get_onehot_dataframe('first_key')
-    translated_value = onehotdb.get_onehot('first_key')
-    print('test_get_onehot: ' + translated_value)
+    translated_value_1 = onehotdb.get_onehot('first_key')
+    translated_value_2 = onehotdb.get_onehot('second_key')
+
+    print('test_get_onehot: ' + translated_value_1)
+    print('test_get_onehot: ' + translated_value_2)
+
 
 
 def test_get_onehot_dataframe():
@@ -633,17 +592,14 @@ def test_get_onehot_dataframe():
 
 
 if __name__ == '__main__':
-    test_get_unescape()
-    test_get_onehot_dataframe()
-    test_get_onehot()
+    # test_init()
+    # test_get_row_count()
+    #test_add_data_frame()
+    #test_get_clean_key()
+    #test_get_unescape()
     test_put_onehot()
-    test_init()
-    test_put()
-    test_get()
-    test_get_row_count()
-    test_add_data_frame()
-    test_get()
-    test_get_clean_key()
+    test_get_onehot()
+    # test_get_onehot_dataframe()
     # test_pkl2sql()
     # test_sql2pkl()
     # the following line is not reached because of sys.exit() in python()
