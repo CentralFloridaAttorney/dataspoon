@@ -530,7 +530,7 @@ def test_to_pickle():
     print('test_to_pickle done!')
 
 
-def github_demo():
+def github_demo_1():
     xyzzydb = DBTool()
     xyzzydb = DBTool('xyzzydb')
     xyzzydb = DBTool('xyzzydb', 'new_magic_table')
@@ -541,7 +541,7 @@ def github_demo():
 
 
 if __name__ == '__main__':
-    github_demo()
+    github_demo_1()
     # test_init()
     test_put()
     # test_get()
