@@ -110,7 +110,7 @@ xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a table named 
 
 xyzzydb = DBTool('xyzzydb', 'best_magic_table') creates a database named xyzzydb with a table named best_magic_table.
 
-dbtool stores data in rows where link_key identifies the row for a key/value pair.  For example, xyzzydb.get('new_link_key_1') gets the whole row with the link_key ('new_link_key_1') and xyzzydb.get('new_link_key_1', 'ala') gets the value ('kazam') for key ('ala').  
+dbtool stores data in rows where link_key identifies the row for a key/value pair.  For example, xyzzydb.get('revised_link_key_xyzzy') gets the whole row with the link_key ('revised_link_key_xyzzy') and xyzzydb.get('revised_link_key_xyzzy', 'ala') gets the value ('kazam') for key ('ala').  
 
 1. Create a database ('xyzzydb', 'magic_table'): xyzzydb = DBTool('xyzzydb', 'magic_table').  The MySQL.table_name will be a default name, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'magic_table')) or after creation (ex. xyzzydb.open_table('new_magic_table'))
 2. Create a new record with a link_key ('link_key_xyzzy'): xyzzydb.put('link_key_xyzzy')
