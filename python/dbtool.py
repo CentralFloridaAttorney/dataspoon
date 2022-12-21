@@ -33,11 +33,11 @@ from mysql.connector import Error
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-# HOST = '192.168.1.227'
-HOST = 'localhost'
-USER = 'bilbo'
-PASSWD = 'baggins'
-PORT = '3306'
+HOST = '192.168.1.227'
+# HOST = 'localhost'
+USER = 'overlordx'
+PASSWD = 'atomic99'
+PORT = '50011'
 DB_NAME = 'dbtool'
 DEFAULT_TABLE_NAME = 'default_table'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"

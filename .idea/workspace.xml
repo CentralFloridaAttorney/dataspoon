@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="added simple instructions to About The Project section of README.md">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="old stuff">
       <change beforePath="$PROJECT_DIR$/python/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dbtool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/onehotdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/onehotdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/pkl2sql.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +65,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Python.dbtool">
+  <component name="RunManager" selected="Python.onehotdb">
     <configuration name="dbtool" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,7 +88,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="onehotdb (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="feedparser" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -95,12 +96,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/onehotdb.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/feedparser.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -109,7 +110,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="onehotdb (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="onehotdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -131,57 +132,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="onehotdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="dataspoon" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dbtool" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dbtool/onehotdb.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pkl2sql" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="dataspoon" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/pkl2sql.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dbtool" />
-        <item itemvalue="Python.pkl2sql" />
-        <item itemvalue="Python.onehotdb (2)" />
-        <item itemvalue="Python.onehotdb (1)" />
         <item itemvalue="Python.onehotdb" />
+        <item itemvalue="Python.dbtool" />
+        <item itemvalue="Python.feedparser" />
       </list>
     </recent_temporary>
   </component>
@@ -256,11 +211,36 @@
       <option name="project" value="LOCAL" />
       <updated>1671555419508</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="old stuff">
+      <created>1671639311892</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671639311892</updated>
+    </task>
+    <task id="LOCAL-00010" summary="old stuff">
+      <created>1671639328278</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1671639328278</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -269,24 +249,41 @@
     <MESSAGE value="working on initial tests" />
     <MESSAGE value="updated project image in README.md" />
     <MESSAGE value="added simple instructions to About The Project section of README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="added simple instructions to About The Project section of README.md" />
+    <MESSAGE value="old stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="old stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>109</line>
-          <option name="timeStamp" value="69" />
+          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <line>372</line>
+          <option name="timeStamp" value="161" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <line>631</line>
+          <option name="timeStamp" value="162" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <line>187</line>
+          <option name="timeStamp" value="163" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <line>469</line>
+          <option name="timeStamp" value="164" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dataspoon$pkl2sql.coverage" NAME="pkl2sql Coverage Results" MODIFIED="1671540338740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
-    <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1671508393244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dbtool" />
-    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1671575319404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1671655866012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1671655856345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb__1_.coverage" NAME="onehotdb (1) Coverage Results" MODIFIED="1671508484114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
-    <SUITE FILE_PATH="coverage/dataspoon$onehotdb__2_.coverage" NAME="onehotdb (2) Coverage Results" MODIFIED="1671519167854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$feedparser.coverage" NAME="feedparser Coverage Results" MODIFIED="1671649840399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$onehotdb__2_.coverage" NAME="onehotdb (2) Coverage Results" MODIFIED="1671639383407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
   </component>
 </project>
