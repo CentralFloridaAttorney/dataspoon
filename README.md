@@ -130,16 +130,9 @@ dbtool stores data in rows where link_key identifies the row for a key/value pai
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-    default database_name = 'dbtool'
-
-    default table_name = 'default_table'
-
     xyzzydb = DBTool() creates a database named dbtool with table named default_table.
-
     xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a table named default_table.
-
     xyzzydb = DBTool('xyzzydb', 'best_magic_table') creates a database named xyzzydb with a table named best_magic_table.
-
     xyzzydb = DBTool()
     xyzzydb = DBTool('xyzzydb')
     xyzzydb = DBTool('xyzzydb', 'new_magic_table')
