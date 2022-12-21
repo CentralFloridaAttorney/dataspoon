@@ -39,8 +39,8 @@
     <br />
     <a href="https://github.com/CentralFloridaAttorney/dataspoon/wiki"><strong>Explore the Wiki»</strong></a>
     <br />
-    <a href="https://github.com/CentralFloridaAttorney/dbtool">View Demo</a>
-    <a href="https://github.com/CentralFloridaAttorney/dbtool/issues">Report Bug</a>
+    <a href="https://github.com/CentralFloridaAttorney/dbtool">View Demo | </a>
+    <a href="https://github.com/CentralFloridaAttorney/dbtool/issues">Report Bug | </a>
     <a href="https://github.com/CentralFloridaAttorney/dbtool/issues">Request Feature</a>
   </p>
 </div>
