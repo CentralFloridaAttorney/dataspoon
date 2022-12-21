@@ -1,3 +1,4 @@
+import html
 import os
 
 import mysql
@@ -54,6 +55,10 @@ HTML_ESCAPE_TABLE = {
     "\n": "&#013",
     "True": "_1",
     "False": "_0"
+}
+HTML_UNESCAPE_TABLE = {
+    "&#x27;": "'",
+    "&quot;": "\""
 }
 SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
 HASH_MOD = 1
@@ -172,6 +177,15 @@ class DBTool:
         return clean_string
 
     @staticmethod
+    def _get_html_unescape(_string):
+        clean_string = str(_string)
+        clean_string = clean_string.lstrip('_')
+        unescape_string = html.unescape(clean_string)
+        for item in HTML_UNESCAPE_TABLE:
+            unescape_string = unescape_string.replace(item, HTML_UNESCAPE_TABLE.get(item))
+        print("_get_html_unescape: " + unescape_string)
+        return unescape_string
+    @staticmethod
     def _init_connection():
         connection = mysql.connector.connect(
             host=HOST,
@@ -198,7 +212,7 @@ class DBTool:
             for column in range(0, w, 1):
                 key = str(_data_frame.columns[column])
                 value = str(_data_frame.iloc[row][column])
-                self.put(self.get_clean_key(link_key), self.get_clean_key(key), self.get_clean_key(value))
+                self.put(link_key, key, value)
         # print('add_dataframe done!')
 
     def delete_database(self, _database_name):
@@ -210,23 +224,19 @@ class DBTool:
         mysql_drop_table = "DROP DATABASE {0}".format(self.get_clean_key(_table_name))
         self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
 
-    def get(self, _link_key, _key=None, _value=None):
+    def get(self, _link_key, _key=None):
+        sql_statement = "SELECT * FROM {0}".format(self.table_name)
         if _key is None:
-            # 1 result: link_key returns row for link_key
+            # 1 result: link_key returns the entire row for link_key
             self._add_column(LINK_KEY)
             sql_statement = SELECT_STATEMENT.format('*', self.table_name, LINK_KEY, self.get_clean_key(_link_key))
-        elif _value is None:
-            # 2 result: link_key, value returns the value
-            self._add_column(self.get_clean_key(_link_key))
-            sql_statement = SELECT_STATEMENT.format(self.get_clean_key(_link_key), self.table_name, LINK_KEY,
-                                                    self.get_clean_key(_link_key))
         else:
-            # 3 result: _key, _link_key, _value returns row_number of link_key
-            sql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format(self.get_clean_key(_key), self.table_name,
-                                                                            self.get_clean_key(_link_key),
-                                                                            self.get_clean_key(_value))
+            # 2 result: returns the value for key on the link_key row
+            self._add_column(_link_key)
+            sql_statement = SELECT_STATEMENT.format(self.get_clean_key(_key), self.table_name, LINK_KEY,
+                                                    self.get_clean_key(_link_key))
         result = self._execute_mysql(sql_statement)
-
+        result = self._get_html_unescape(result)
         return result
 
     def get_clean_key(self, key):
@@ -251,21 +261,20 @@ class DBTool:
         # print('get_row_count: ' + str(row_count[0]))
         return row_count[0]
 
-    def get_row_number(self, _link_key, _key=None):
+    def get_row_number(self, _link_key, _value=None):
         # select_template = '''SELECT * FROM seminole_main.seminole_main where link_key = "jurney";'''
         # clean_link_key = str(re.sub(LEGAL_CHARACTERS, '_', clean_link_key.strip()))
-        clean_link_key = self.get_clean_key(_link_key)
-        if _key is None:
-            select_sql = "SELECT id FROM {0} WHERE {1} = '{2}';".format(self.table_name, LINK_KEY, clean_link_key)
+        if _value is None:
+            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, LINK_KEY, self.get_clean_key(_link_key))
         else:
-            clean_key = self.get_clean_key(_key)
-            select_sql = "SELECT id FROM {0} WHERE {1} = '{2}';".format(self.table_name, LINK_KEY, clean_key)
+            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, self.get_clean_key(_link_key), self.get_clean_key(_value))
 
         row_number = self._execute_mysql(select_sql)
         # print('get_row_number: ' + clean_link_key + ' = ' + str(row_number))
         if row_number is None:
             return 0
         else:
+            print('get_row_number: ' + str(row_number))
             return row_number
 
     def open_database(self, _database_name, _table_name=None):
@@ -337,9 +346,9 @@ class DBTool:
 
         else:
             # update set _key_value = _value where id = row_number/link_key
-            self.put(self.get_clean_key(_link_key))
-            self._add_column(self.get_clean_key(_key_value))
-            row_number = self.get_row_number(self.get_clean_key(_link_key))
+            self.put(_link_key)
+            self._add_column(_key_value)
+            row_number = self.get_row_number(_link_key)
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name,
                                                                                     self.get_clean_key(_key_value),
                                                                                     self.get_clean_key(_value), row_number)
@@ -441,11 +450,13 @@ def test_init():
 
 
 def test_put():
-    dbtool = DBTool()
+    # dbtool = DBTool()
+    dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
     # make link_key/word_1
     # python.put('word')
     # python.put('put_1')
-    dbtool.put('xyzzy', 'failures', '543')
+    dbtool.put('xyzzy', 'failures', '543') # creates link_key ('xyzzy') and puts key/value ('failures'/'543')
+    dbtool.put('new_link_key', 'failures', '123') # creates link_key ('new_link_key')
     # python.put('put_2')
     # python.put('put_2', 'failures', '345')
     # python.put('put_1', 'xyzzy')
@@ -460,11 +471,12 @@ def test_put():
 
 
 def test_get():
-    dbtool = DBTool()
-    link_key_index = dbtool.get('put_2')
+    dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
+    link_key_index = dbtool.get('xyzzy') # returns row_number of link_key ('xyzzy')
+    value = dbtool.get('xyzzy', 'failures')
     print('index of put_2 from test_get(): ' + str(link_key_index))
     # link_key_update_status = python.get('put_1', 'reput_1')
-    # print(link_key_update_status)
+    print('value: ' + value)
 
 
 def test_get_row_count():
@@ -520,16 +532,25 @@ def github_demo_1():
     print('github_demo done!')
 
 
+def test_get_row_number():
+    dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
+    row_number_1 = dbtool.get_row_number('xyzzy')
+    row_number_2 = dbtool.get_row_number('new_link_key')
+    row_number_3 = dbtool.get_row_number('failures', '543')
+    row_number_4 = dbtool.get_row_number('failures', '123')
+    print('test_get_row_number done!')
+
+
 if __name__ == '__main__':
-    github_demo_1()
     test_init()
     test_put()
     test_get()
+    test_get_row_number()
     test_get_row_count()
     create_simple_pkl()
     test_add_data_frame()
-    test_get()
     test_get_clean_key()
+    github_demo_1()
     test_to_pickle()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")

@@ -291,7 +291,7 @@ class OneHotDB:
             sql_statement = SELECT_STATEMENT.format(self.get_clean_key(_key), self.table_name, LINK_KEY,
                                                     self.get_clean_key(_link_key))
         else:
-            # 3 result: _key, _link_key, _value returns row_number of link_key
+            # 3 result: _value, _link_key, _value returns row_number of link_key
             sql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format(self.get_clean_key(_key), self.table_name,
                                                                             self.get_clean_key(_link_key),
                                                                             self.get_clean_key(_value))
