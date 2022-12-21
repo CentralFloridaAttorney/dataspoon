@@ -100,24 +100,7 @@
 
 dbtool allows you to create and use MySQL databases in Python using simple get and put commands.
 
-default database_name = 'dbtool'
-
-default table_name = 'default_table'
-
-xyzzydb = DBTool() creates a database named dbtool with table named default_table.
-
-xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a table named default_table.
-
-xyzzydb = DBTool('xyzzydb', 'best_magic_table') creates a database named xyzzydb with a table named best_magic_table.
-
 dbtool stores data in rows where link_key identifies the row for a key/value pair.  For example, xyzzydb.get('revised_link_key_xyzzy') gets the whole row with the link_key ('revised_link_key_xyzzy') and xyzzydb.get('revised_link_key_xyzzy', 'ala') gets the value ('kazam') for key ('ala').  
-
-1. Create a database ('xyzzydb', 'magic_table'): xyzzydb = DBTool('xyzzydb', 'magic_table').  The MySQL.table_name will be a default name, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'magic_table')) or after creation (ex. xyzzydb.open_table('new_magic_table'))
-2. Create a new record with a link_key ('link_key_xyzzy'): xyzzydb.put('link_key_xyzzy')
-3. Revise an existing link_key ('revised_link_key_xyzzy'): xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy')
-4. Put key/value ('ala'/'kazam') into row with link_key ('revised_link_key_xyzzy'): xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam')
-5. Get this_value ('kazam') using key ('ala') from row with link_key value ('revised_link_key_xyzzy'): this_value = xyzzydb.get('revised_link_key_xyzzy', 'ala')
-6. Save xyzzydb.magic_table as a pandas.DataFrame .pkl file ('data/mysql.pkl'): xyzzydb.to_pickle('data/mysql.pkl')
 
 ### Prerequisites
 
@@ -147,12 +130,29 @@ dbtool stores data in rows where link_key identifies the row for a key/value pai
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+    default database_name = 'dbtool'
+
+    default table_name = 'default_table'
+
+    xyzzydb = DBTool() creates a database named dbtool with table named default_table.
+
+    xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a table named default_table.
+
+    xyzzydb = DBTool('xyzzydb', 'best_magic_table') creates a database named xyzzydb with a table named best_magic_table.
+
     xyzzydb = DBTool()
     xyzzydb = DBTool('xyzzydb')
     xyzzydb = DBTool('xyzzydb', 'new_magic_table')
     xyzzydb.put('link_key_xyzzy')
     xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy')
     xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam')
+    
+    1. Create a database ('xyzzydb', 'magic_table'): xyzzydb = DBTool('xyzzydb', 'magic_table').  The MySQL.table_name will be a default name, unless you specify it during creation (ex. xyzzydb = DBTool('xyzzydb', 'magic_table')) or after creation (ex. xyzzydb.open_table('new_magic_table'))
+    2. Create a new record with a link_key ('link_key_xyzzy'): xyzzydb.put('link_key_xyzzy')
+    3. Revise an existing link_key ('revised_link_key_xyzzy'): xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy')
+    4. Put key/value ('ala'/'kazam') into row with link_key ('revised_link_key_xyzzy'): xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam')
+    5. Get this_value ('kazam') using key ('ala') from row with link_key value ('revised_link_key_xyzzy'): this_value = xyzzydb.get('revised_link_key_xyzzy', 'ala')
+    6. Save xyzzydb.magic_table as a pandas.DataFrame .pkl file ('data/mysql.pkl'): xyzzydb.to_pickle('data/mysql.pkl')
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
