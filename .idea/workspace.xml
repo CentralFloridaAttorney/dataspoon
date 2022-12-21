@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on example code">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/c/4ce915c3f97350f01885c9ad91f56d795a95429b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/users.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/users.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dbtool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/onehotdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/onehotdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/c/2c082a090f16e5e2395271ecbaa78904a29c6d7d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/8/f833b239c31b729bead5e735101455e11515e069" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +124,7 @@
       <workItem from="1671554100131" duration="6221000" />
       <workItem from="1671577954182" duration="3418000" />
       <workItem from="1671585789492" duration="6624000" />
-      <workItem from="1671596208342" duration="6506000" />
+      <workItem from="1671596208342" duration="6703000" />
     </task>
     <task id="LOCAL-00001" summary="removed FOSS">
       <created>1671507769543</created>
@@ -228,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671597022124</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="work on example code">
+      <created>1671627958180</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1671627958180</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
