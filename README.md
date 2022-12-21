@@ -119,9 +119,9 @@
    ```sh
    git clone https://github.com/CentralFloridaAttorney/dataspoon.git
    ```
-3. Install NPM packages
+3. No NPM packages to install
    ```sh
-   npm install
+   NO npm install
    ```
 4. Have fun!
    ```
