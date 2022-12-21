@@ -36,6 +36,7 @@
 <h3 align="center">dataspoon</h3>
   <p align="center">
     easy to use tools for onehot mysql databases
+    <br />
     <a href="https://github.com/CentralFloridaAttorney/dataspoon/wiki"><strong>Explore the Wiki»</strong></a>
     <a href="https://github.com/CentralFloridaAttorney/dbtool">View Demo</a>
     <a href="https://github.com/CentralFloridaAttorney/dbtool/issues">Report Bug</a>
