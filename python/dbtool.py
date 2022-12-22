@@ -216,9 +216,10 @@ class DBTool:
 
     def get(self, _link_key, _key=None):
         """
+        DBTool.get() returns an entire row or the value of a column within a row.
 
-        :param _link_key: _link_key uniquely identifies a row.
-        :param _key: _key is an optional parameter, which is used to identify a column name.
+        :param _link_key: _link_key uniquely identifies the row.
+        :param _key: _key is an optional parameter, which is used to identify the column name.
         :return: If _key=None then return the entire row.  Otherwise, return the value in the column named _key.
         """
         sql_statement = "SELECT * FROM {0}".format(self.table_name)
