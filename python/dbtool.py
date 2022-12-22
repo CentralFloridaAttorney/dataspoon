@@ -215,6 +215,12 @@ class DBTool:
         self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
 
     def get(self, _link_key, _key=None):
+        """
+
+        :param _link_key: All DBTool.get() commands require a value for _link_key because link_key gets the id for rows.
+        :param _key: _key is an optional parameter.
+        :return: If _key=None then return the entire row.  Otherwise, return the value in the column named _key.
+        """
         sql_statement = "SELECT * FROM {0}".format(self.table_name)
         if _key is None:
             # 1 result: link_key returns the entire row for link_key
