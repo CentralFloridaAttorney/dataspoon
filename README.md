@@ -101,7 +101,7 @@
 ### dbtool.DBTool()
 
 
-dbtool stores data in rows where the column named link_key, which is used to identify the row for reference.  The values in the row are primarily accessed by referencing the value in the column named link_key.
+dbtool stores data in rows where a column named link_key is used to identify the row for reference.  The values in the row are primarily accessed by referencing the value in the column named link_key.
 
 DBTool has a default database and default table.  For example, you can set and get a key/value pair to ('ala'/'kazam') in a row that is referenced by the link_key ('xyzzy'):
 ````
