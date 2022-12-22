@@ -101,7 +101,7 @@
 ### dbtool.DBTool()
 
 
-dbtool stores data in rows where a column named link_key is used to identify the row during future references.  The values in the row are primarily accessed using the link_key.
+DBTool stores data in rows where a column named link_key is used to identify the row during future references.  The values in the row are primarily accessed using the link_key.
 
 DBTool has a default database and table.  For example, you can set and get a key/value pair to ('ala'/'kazam') in a row that is referenced by the link_key ('xyzzy'):
 ````
@@ -130,7 +130,7 @@ dbtool allows you to create and use MySQL databases in Python with simple get an
 ````
 
 
-    xyzzydb = DBTool() creates a database named dbtool with table named default_table.
+    xyzzydb = DBTool() creates a database named dBTool with table named default_table.
     xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a table named default_table.
     xyzzydb = DBTool('xyzzydb', 'best_magic_table') creates a database named xyzzydb with a table named best_magic_table.
     xyzzydb.put('link_key_xyzzy') creates a row with link_key ('link_key_xyzzy')
@@ -146,7 +146,7 @@ dbtool allows you to create and use MySQL databases in Python with simple get an
 ````
 ### dbtool.OneHotWords()
 
-onehotdb builds upon dbtool and instead of storing the value, onehotdb splits the value into smaller parts or words and stores the smaller parts in a database of words.  The indices to those words are stored in onehotdb.
+onehotdb builds upon dBTool and instead of storing the value, onehotdb splits the value into smaller parts or words and stores the smaller parts in a database of words.  The indices to those words are stored in onehotdb.
 
 ### Prerequisites
 
