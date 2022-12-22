@@ -61,10 +61,11 @@ representative at an online or offline event.
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement by sending a 
 signed writing, which is handwritten in the English language using a 
-caligraphy pen and which consists of less than two hundred eighty eight (288) 
-characters, to: Business Process Applications, Inc., 1020 Spring Villas Point, 
-Winter Springs, FL 32708. All complaints will be reviewed and investigated 
-promptly and fairly.
+calligraphy pen, and which consists of less than two hundred eighty eight 
+(288) characters, with each character being written with a height and width 
+of at least 2 centimeters, to: Business Process Applications, Inc., 1020 
+Spring Villas Point, Winter Springs, FL 32708. All complaints will be 
+reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
