@@ -72,6 +72,24 @@ DEFAULT_PKL_OUTPUT = '../data/output.pkl'
 
 class DBTool:
     def __init__(self, _database_name=None, _table_name=None):
+        """
+        DBTool() provides access to MySQL functions within Python.  DBTool().__init__() has default values for self.database_name and self.table_name.
+        :param _database_name: Optionally, specify self.database_name
+        :param _table_name: Optionally, specify self.table_name
+
+        To open the default database:
+
+        >>>dbtool = DBTool()
+
+        To open a database named 'xyzzydb'
+
+        >>>xyzzydb = DBTool('xyzzydb')
+
+        To open a database named 'xyzzydb' and a table named 'magic_table'
+
+        >>>xyzzydb = DBTool('xyzzydb', 'magic_table')
+
+        """
         self.base_dir = ROOT_DIR.rsplit('/', 1)[0] + '/'
         if _database_name is None:
             self.database_name = DB_NAME
@@ -86,6 +104,10 @@ class DBTool:
         # print('__init__ done!')
 
     def _add_column(self, _column_name):
+        """
+        DBTool._add_column() adds a column your MySQL database table
+        :param _column_name: name of the new column
+        """
         query = "ALTER TABLE {0} ADD {1} VARCHAR(4096);".format(self.table_name, self.get_clean_key(_column_name))
         # values = [self.table_name, self.get_clean_key(_column_name)]
 
@@ -93,6 +115,12 @@ class DBTool:
         # print('Add column: '+ _column_name)
 
     def _execute_mysql(self, _mysql_statement, _value=None):
+        """
+        DBTool._execute_mysql() executes MySQL commands, which are called by other methods.
+        :param _mysql_statement: a formatted string with a MySQL command.
+        :param _value: RESERVED for future use
+        :return: returns the result of the MySQL statement or an error message.
+        """
         result = 'default'
         try:
             connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
