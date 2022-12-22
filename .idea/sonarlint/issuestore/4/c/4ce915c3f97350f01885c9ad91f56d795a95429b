@@ -1,0 +1,28 @@
+
+=python:S125("Remove this commented out code.(ÅÄ£ı8Ä«ÕÓ0
+<python:S125H"Remove this commented out code.(Öö‡'8ƒÄ«ÕÓ0
+Xpython:S1135N"4Complete the task associated to this "TODO" comment.(Øî¹úøÿÿÿÿ8ƒÄ«ÕÓ0
+=python:S125X"Remove this commented out code.(·é®æ8„Ä«ÕÓ0
+Mpython:S1481Ú"-Remove the unused local variable "opened_db".(«íÔ†8„Ä«ÕÓ0
+>python:S125Ì"Remove this commented out code.(½¶Ö™8…Ä«ÕÓ0
+>python:S125Ï"Remove this commented out code.(æá…8…Ä«ÕÓ0
+>python:S125×"Remove this commented out code.(Ó¦¯8…Ä«ÕÓ0
+>python:S125ß"Remove this commented out code.(æá…8…Ä«ÕÓ0
+Cpython:S125á"Remove this commented out code.(ëü¢Ëûÿÿÿÿ8†Ä«ÕÓ0
+Cpython:S125å"Remove this commented out code.(…ŞÊÚıÿÿÿÿ8†Ä«ÕÓ0
+>python:S125ê"Remove this commented out code.(™¼‘ÿ8†Ä«ÕÓ0
+Opython:S1481ö"*Remove the unused local variable "result".(å™çâÿÿÿÿÿ8†Ä«ÕÓ0
+ppython:S1854›"KRemove this assignment to local variable 'result'; the value is never used.(âñõÈùÿÿÿÿ8‡Ä«ÕÓ0
+spython:S1854¡"TRemove this assignment to local variable 'mysql_statement'; the value is never used.(›š˜I8‡Ä«ÕÓ0
+ppython:S1854’"KRemove this assignment to local variable 'result'; the value is never used.(ôÎ»¶şÿÿÿÿ8‰Ä«ÕÓ0
+Rpython:S1481Ÿ"-Remove the unused local variable "row_value".(¹¡šÁøÿÿÿÿ8ŠÄ«ÕÓ0
+Ppython:S1481 "+Remove the unused local variable "columns".(ßÂ‰³ÿÿÿÿÿ8ŠÄ«ÕÓ0
+>python:S125œ"Remove this commented out code.(õš©8ŠÄ«ÕÓ0
+Cpython:S125À"Remove this commented out code.(è°¦ôüÿÿÿÿ8‹Ä«ÕÓ0
+>python:S125è"Remove this commented out code.(å—à8‹Ä«ÕÓ0
+>python:S125Ÿ"Remove this commented out code.(ÎÚ”±8‹Ä«ÕÓ0
+Qpython:S1481°",Remove the unused local variable "onehotdb".(‚åË•ıÿÿÿÿ8‹Ä«ÕÓ0
+Qpython:S1481Ï",Remove the unused local variable "onehotdb".(‚åË•ıÿÿÿÿ8ŒÄ«ÕÓ0
+Wpython:S1481Ø"2Remove the unused local variable "onehot_indices".(¾±ë’üÿÿÿÿ8ŒÄ«ÕÓ0
+Tpython:S1481Ù"4Remove the unused local variable "onehot_dataframe".(âÛ€¤8ŒÄ«ÕÓ0
+Rpython:S1481ã"-Remove the unused local variable "dataframe".(‡°¦¤ÿÿÿÿÿ8ŒÄ«ÕÓ0

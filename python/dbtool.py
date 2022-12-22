@@ -249,7 +249,6 @@ class DBTool:
         :param _key: _key is an optional parameter, which is used to identify the column name.
         :return: If _key=None then return the entire row.  Otherwise, return the value in the column named _key.
         """
-        sql_statement = "SELECT * FROM {0}".format(self.table_name)
         if _key is None:
             # 1 result: link_key returns the entire row for link_key
             self._add_column(LINK_KEY)
@@ -260,7 +259,6 @@ class DBTool:
             sql_statement = SELECT_STATEMENT.format(self.get_clean_key(_key), self.table_name, LINK_KEY,
                                                     self.get_clean_key(_link_key))
         result = self._execute_mysql(sql_statement)
-        # result = self._get_html_unescape(result)
         return result
 
     @staticmethod
@@ -356,7 +354,9 @@ class DBTool:
 
     def put(self, _link_key, _link_key_value=None, _key_value=None, _value=None):
         """
-        DBTool().put() inserts values and returns the row_number of the affected record.
+        DBTool().put() inserts values and returns the link_key of the affected record.
+
+        WARNING: This function may be rewritten to automatically generate link_keys
 
         DBTool().put() behaves differently depending upon the number of parameters that are passed:
             1) adds a row with link_key = _link_key
@@ -384,7 +384,8 @@ class DBTool:
                 mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name,
                                                                                  LINK_KEY,
                                                                                  self.get_clean_key(_link_key))
-            result = self.get_row_number(_link_key)
+            # result = self.get_row_number(_link_key)
+            result = _link_key
         elif _key_value is None:
             # mysql_statement = update table_name set LINK_KEY to _link_key_value where id is row_number of _link_key
             mysql_statement = UPDATE_STATEMENT.format(self.table_name,
@@ -392,8 +393,8 @@ class DBTool:
                                                       self.get_clean_key(_link_key_value),
                                                       'id',
                                                       self.get_row_number(_link_key))
-            result = self.get_row_number(_link_key_value)
-
+            # result = self.get_row_number(_link_key_value)
+            result = _link_key
         elif _value is None:
             self.put(_link_key)
             self._add_column(_link_key_value)
@@ -403,11 +404,20 @@ class DBTool:
                                                       self.get_clean_key(_key_value),
                                                       'id',
                                                       self.get_row_number(_link_key))
-            result = self.get_row_number(_link_key)
+            # result = self.get_row_number(_link_key)
+            result = _link_key
         else:
-            self.put(_link_key)
-            self._add_column(_link_key_value)
+            row_number = self.get_row_number(_link_key, _link_key_value)
+            # if row_number == 0 then create a new row with _link_key as the value for column and link_key:
+            #   1) add a row with link_key = _link_key
+            #   2) set the value of a column named _link_key to _link_key_value
+            #   3) set the value of a column named _key_value to _value
+            if row_number == 0:
+                self.put(_link_key)
+                self._add_column(_link_key)
+                self.put(_link_key, _link_key, _link_key_value)
             # mysql_statement = update table_name set _key_value = _value where _link_key is _link_key_value.
+            self._add_column(_key_value)
             mysql_statement = UPDATE_STATEMENT.format(self.table_name,
                                                       self.get_clean_key(_key_value),
                                                       self.get_clean_key(_value),
@@ -460,8 +470,9 @@ def test_put():
     # make link_key/word_1
     # python.put('word')
     # python.put('put_1')
-    dbtool.put('xyzzy', 'failures', '543') # creates link_key ('xyzzy') and puts key/value ('failures'/'543')
-    dbtool.put('new_link_key', 'failures', '123') # creates link_key ('new_link_key')
+    # dbtool.put('xyzzy', 'failures', '543') # creates link_key ('xyzzy') and puts key/value ('failures'/'543')
+    # dbtool.put('new_link_key', 'failures', '123') # creates link_key ('new_link_key')
+    dbtool.put('value_1', 'value_2', 'value_3', 'value_4')
     # python.put('put_2')
     # python.put('put_2', 'failures', '345')
     # python.put('put_1', 'xyzzy')
@@ -585,23 +596,23 @@ def test_static_operation():
 
 if __name__ == '__main__':
     # onehotwords
-    test_onehotwords()
+    # test_onehotwords()
 
     # dbtool
-    test_static_operation()
-    test_get_html_unescape()
-    test_init()
+    # test_static_operation()
+    # test_get_html_unescape()
+    # test_init()
     test_put()
-    test_get()
-    test_get_row_number()
-    test_get_row_count()
-    create_simple_pkl()
-    test_add_data_frame()
-    test_get_clean_key()
-    github_demo_1()
-    test_to_pickle()
-    test_delete_database()
-    test_delete_table()
+    # test_get()
+    # test_get_row_number()
+    # test_get_row_count()
+    # create_simple_pkl()
+    # test_add_data_frame()
+    # test_get_clean_key()
+    # github_demo_1()
+    # test_to_pickle()
+    # test_delete_database()
+    # test_delete_table()
 
     # the following line is not reached because of sys.exit() in python()
     print("python done!")
