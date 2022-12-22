@@ -490,11 +490,18 @@ def test_get_html_unescape():
     print('test_get_html_unescape: ' + test_unescape)
 
 
+def test_static_operation():
+    DBTool().put('1234', '5678', '9101112')
+    test_value = DBTool().get('1234', '5678')
+    print('test_static_operation test_value: ' + test_value)
+
+
 if __name__ == '__main__':
     # onehotwords
     test_onehotwords()
 
     # dbtool
+    test_static_operation()
     test_get_html_unescape()
     test_init()
     test_put()

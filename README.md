@@ -79,7 +79,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://CentralFloridaAttorney.net)
 
 
 
@@ -96,7 +96,26 @@
 
 
 <!-- GETTING STARTED -->
-## Getting Started With dbtool and onehotdb
+## Getting Started With dataspoon
+
+You should install mysql-workbench.  It will allow you to easily view the data within your MySQL databases.  You can use it to experiment with MySQL commands.  And, mysql-workbench allows you to load saved commands, such as a set of commands delete selected databases:
+
+DROP DATABASE `dbtool`;
+DROP DATABASE `onehot_words`;
+DROP DATABASE `python`;
+DROP DATABASE `pkl2sql`;
+DROP DATABASE `onehot_db`;
+DROP DATABASE `xyzzydb`;
+DROP DATABASE `onehot_tool`;
+DROP DATABASE `test_out_word_db`;
+DROP DATABASE `dbtool_test_db`;
+DROP DATABASE `onehotdb`;
+DROP DATABASE `onehotwords`;
+DROP DATABASE `pkl2sqldb`;
+
+### dbtool.DBTool()
+
+### dbtool.OneHotWords()
 
 dbtool allows you to create and use MySQL databases in Python with simple get and put commands.
 

@@ -66,7 +66,3 @@ A
 python/pkl2sql.py,f/b/fb6a05ca24cc94821b02f125913ca215404f4c26
 >
 data/users.pkl,2/c/2c082a090f16e5e2395271ecbaa78904a29c6d7d
->
-data/mysql.pkl,f/8/f833b239c31b729bead5e735101455e11515e069
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
