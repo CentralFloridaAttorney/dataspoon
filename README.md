@@ -181,7 +181,7 @@ sudo aptitude install mysql-workbench-community
    NO npm install
    ```
 4. Have fun!
-   
+   ````
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
