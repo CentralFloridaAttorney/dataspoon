@@ -100,7 +100,7 @@
 
 ### dbtool makes storing and retrieving data easy
 
-DBTool() allows you to easily create, access, and modify MySQL databases using Python using simple get and put commands to access key/value pairs.
+DBTool() allows you to create, access, and modify MySQL databases using Python using simple get and put commands to access key/value pairs.
 
 For example, you can set and get a key/value pair to ('ala'/'kazam') in a row that is referenced by the link_key ('xyzzy'):
 
