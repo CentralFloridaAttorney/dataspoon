@@ -100,10 +100,36 @@
 
 ### dbtool.DBTool()
 
-dbtool allows you to create and use MySQL databases in Python with simple get and put commands.
 
-dbtool stores data in rows where link_key identifies the row for a key/value pair.  For example, xyzzydb.get('revised_link_key_xyzzy') gets the whole row with the link_key ('revised_link_key_xyzzy') and xyzzydb.get('revised_link_key_xyzzy', 'ala') gets the value ('kazam') for key ('ala').
+dbtool stores data in rows where the column named link_key, which is used to identify the row for reference.  The values in the row are primarily accessed by referencing the value in the column named link_key.
+
+DBTool has a default database and default table.  For example, you can set and get a key/value pair to ('ala'/'kazam') in a row that is referenced by the link_key ('xyzzy'):
 ````
+DBTool().put('xyzzy', 'ala', 'kazam')
+value = DBTool().get('xyzzy', 'ala')
+````
+To perform the same operation in a different database ('magicdb'):
+````
+DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
+value = DBTool().get('xyzzy', 'ala')
+````
+by referencing a unique reference value called a link_key.  For example, to put key/value ('ala'/'kazam') into a row with link_key ('xyzzy') in a database ('magicdb'): 
+````
+DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
+````
+
+For example, xyzzydb.get('revised_link_key_xyzzy') gets the whole row with the link_key ('revised_link_key_xyzzy') and xyzzydb.get('revised_link_key_xyzzy', 'ala') gets the value ('kazam') for key ('ala').
+````
+dbtool allows you to create and use MySQL databases in Python with simple get and put commands.
+````
+    def put(self, _link_key, _key_value=None, _value=None):
+        # returns row_number of _link_key
+        # 1 value: new_link_key
+        # 2 value: old_link_key_value, new_link_key_value
+        # 3 value: link_key, key, value
+````
+
+
     xyzzydb = DBTool() creates a database named dbtool with table named default_table.
     xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a table named default_table.
     xyzzydb = DBTool('xyzzydb', 'best_magic_table') creates a database named xyzzydb with a table named best_magic_table.

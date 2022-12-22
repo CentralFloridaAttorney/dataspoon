@@ -494,6 +494,10 @@ def test_static_operation():
     DBTool().put('1234', '5678', '9101112')
     test_value = DBTool().get('1234', '5678')
     print('test_static_operation test_value: ' + test_value)
+    DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
+    DBTool().put('xyzzy', 'ala', 'kazam')
+    value = DBTool().get('xyzzy', 'ala')
+    print('value: ' + value)
 
 
 if __name__ == '__main__':
