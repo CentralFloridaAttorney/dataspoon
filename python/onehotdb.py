@@ -257,7 +257,7 @@ class OneHotDB:
             sql_statement = SELECT_STATEMENT.format(self.get_clean_key(_key), self.table_name, LINK_KEY,
                                                     self.get_clean_key(_link_key))
         else:
-            # 3 result: _value, _link_key, _value returns row_number of link_key
+            # 3 result: _key_value, _link_key, _key_value returns row_number of link_key
             sql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format(self.get_clean_key(_key), self.table_name,
                                                                             self.get_clean_key(_link_key),
                                                                             self.get_clean_key(_value))
@@ -283,7 +283,7 @@ class OneHotDB:
             result = [self.get_row_number(_link_key), _link_key]
             # mysql_statement = "INSERT INTO {0}"
         elif _value is None:
-            # copies the value of link_key/_link_key to link_key/_key_value
+            # copies the value of link_key/_link_key to link_key/_link_key_value
             row_value = self._get(self.get_clean_key(_link_key))
             columns = self._get_columns()
             mysql_statement = "UPDATE {0} SET ({1}) = '{2}' WHERE {3} = '{4}';".format(self.table_name, LINK_KEY,
@@ -291,13 +291,13 @@ class OneHotDB:
                                                                                        LINK_KEY,
                                                                                        self.get_clean_key(_link_key))
             self._put(self.get_clean_key(_link_key))
-            # self._add_column(self.get_clean_key(_key_value))
+            # self._add_column(self.get_clean_key(_link_key_value))
             row_number = self.get_row_number(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY,
                                                                                     self.get_clean_key(_key_value),
                                                                                     row_number)
         else:
-            # update set _key_value = _value where id = row_number/link_key
+            # update set _link_key_value = _key_value where id = row_number/link_key
             self._put(self.get_clean_key(_link_key))
             self._add_column(self.get_clean_key(_key_value))
             row_number = self.get_row_number(self.get_clean_key(_link_key))

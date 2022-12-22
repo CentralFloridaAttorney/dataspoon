@@ -84,5 +84,13 @@ w
 G.idea/sonarlint/issuestore/2/c/2c082a090f16e5e2395271ecbaa78904a29c6d7d,5/e/5eb897adb94f5b53a0cc43972dbfc4a88acf55a2
 Š
 Z.idea/shelf/Uncommitted_changes_before_Update_at_12_21_22,_9_29_PM_[Changes]/shelved.patch,7/c/7c074fef542073bab617e43179c2cb53a6219b00
->
-data/mysql.pkl,f/8/f833b239c31b729bead5e735101455e11515e069
+E
+python/source/conf.py,8/7/8791a8b9aaa788984b1ca9d207b84c60a56ec877
+?
+python/Makefile,3/8/38d818dfb4418857a8c763e33edd4375e821beca
+G
+python/source/index.rst,a/0/a0fae0092ae657e0d97b52df5b27df8fc268938c
+?
+python/make.bat,d/9/d95c4d56443bd7e5ab344435813691849383c728
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d

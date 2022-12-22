@@ -61,6 +61,7 @@ HTML_UNESCAPE_TABLE = {
     "&quot;": "\""
 }
 SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
+UPDATE_STATEMENT = "UPDATE {0} SET {1} = '{2}' WHERE {3} = '{4}';"
 HASH_MOD = 1
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 ONEHOT_DB_NAME = 'onehotwords'
@@ -73,21 +74,22 @@ DEFAULT_PKL_OUTPUT = '../data/output.pkl'
 class DBTool:
     def __init__(self, _database_name=None, _table_name=None):
         """
-        DBTool() provides access to MySQL functions within Python.  DBTool().__init__() has default values for self.database_name and self.table_name.
+        DBTool() provides access to MySQL functions within Python.
+
         :param _database_name: Optionally, specify self.database_name
         :param _table_name: Optionally, specify self.table_name
 
         To open the default database:
 
-        >>>dbtool = DBTool()
+        dbtool = DBTool()
 
         To open a database named 'xyzzydb'
 
-        >>>xyzzydb = DBTool('xyzzydb')
+        xyzzydb = DBTool('xyzzydb')
 
         To open a database named 'xyzzydb' and a table named 'magic_table'
 
-        >>>xyzzydb = DBTool('xyzzydb', 'magic_table')
+        xyzzydb = DBTool('xyzzydb', 'magic_table')
 
         """
         self.base_dir = ROOT_DIR.rsplit('/', 1)[0] + '/'
@@ -196,11 +198,9 @@ class DBTool:
 
     @staticmethod
     def _get_html_escape(_string):
-        clean_string = str(_string)
-        print("***** test: " + clean_string)
-        clean_string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in clean_string)
-        if clean_string.isdigit():
-            clean_string = "_" + clean_string
+        # clean_string = str(_string)
+        # print("***** test: " + clean_string)
+        clean_string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
         print('get_html_escape: ' + clean_string)
         return clean_string
 
@@ -263,9 +263,24 @@ class DBTool:
         # result = self._get_html_unescape(result)
         return result
 
-    def get_clean_key(self, key):
-        clean_key = self._get_html_escape(key)
-        return clean_key
+    @staticmethod
+    def get_clean_key(_string=str):
+        """
+        DBTool().get_clean_key() replaces certain characters with web entity values or escape codes.
+
+        :param _string: a string value
+        :return: returns a value that is suitable for being used as a name in MySQL
+
+        MySQL has rules about what values can be in an identifier. This method processes string values to comply with the rules.
+
+        clean_value = DBTool().get_clean_key("That's great!")
+
+        clean_value = 'That&apos;s&nbspa&nbspgreat!'
+        """
+        if _string.isdigit():
+            _string = "_" + str(_string)
+        _string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
+        return _string
 
     def get_column_based_name(self, _dataframe):
 
@@ -293,7 +308,7 @@ class DBTool:
         DBTool.get_row_number() returns a row number for either a link_key or key/value pair.
         :param _link_key: _link_key uniquely identifies the row.
         :param _value: _key is an optional parameter, which is used to identify the column name.
-        :return: If _key=None then return the row_number where link_key = _link_key.  Otherwise, return the ro_number where a key/value pair matches _link_key/_value.
+        :return: If _key=None then return the row_number where link_key = _link_key.  Otherwise, return the ro_number where a key/value pair matches _link_key/_key_value.
         """
         # select_template = '''SELECT * FROM seminole_main.seminole_main where link_key = "jurney";'''
         # clean_link_key = str(re.sub(LEGAL_CHARACTERS, '_', clean_link_key.strip()))
@@ -339,42 +354,65 @@ class DBTool:
         # self._add_column('link_key')
         # print('open_table: ' + _table_name)
 
-    def put(self, _link_key, _key_value=None, _value=None):
+    def put(self, _link_key, _link_key_value=None, _key_value=None, _value=None):
+        """
+        DBTool().put() inserts values and returns the row_number of the affected record.
+
+        DBTool().put() behaves differently depending upon the number of parameters that are passed:
+            1) adds a row with link_key = _link_key
+            2) changes the value of _link_key = _link_key_value
+            3) sets value in the column _link_key_value to _key_value in the row where the link_key is _link_key
+            4) sets value in the column _key_value to _value in the row where the column _link_key is _link_key_value
+
+        :param _link_key:
+        :param _link_key_value:
+        :param _key_value:
+        :param _value:
+        :return: returns the row_number of the affected row
+        """
         # returns row_number of _link_key
         # 1 value: new_link_key
         # 2 value: old_link_key_value, new_link_key_value
         # 3 value: link_key, key, value
         result = 'default'
-        if _key_value is None:
+        if _link_key_value is None:
             row_number = self.get_row_number(_link_key)
-            mysql_statement = "SELECT * FROM {0} WHERE {1} = {2};".format(self.table_name, LINK_KEY,
-                                                                          self.get_clean_key(_link_key))
+            # returns the row_number from mysql_statement = select all from table_name where LINK_KEY is _link_key
+            mysql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('*', self.table_name, LINK_KEY,self.get_clean_key(_link_key))
             if row_number == 0:
                 # add a link_key = _link_key
-                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name, LINK_KEY,
+                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name,
+                                                                                 LINK_KEY,
                                                                                  self.get_clean_key(_link_key))
             result = self.get_row_number(_link_key)
-            # mysql_statement = "INSERT INTO {0}"
-        elif _value is None:
-            # copies the value of link_key/_link_key to link_key/_key_value
-            # row_value = self.get(self.get_clean_key(_link_key))
-            # columns = self._get_columns(self.get_clean_key(_link_key))
-            # self.put(self.get_clean_key(_link_key))
-            # self._add_column(self.get_clean_key(_key_value))
-            row_number = self.get_row_number(self.get_clean_key(_link_key))
-            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY,
-                                                                                    self.get_clean_key(_key_value),
-                                                                                    row_number)
-            result = self.get_row_number(_key_value)
+        elif _key_value is None:
+            # mysql_statement = update table_name set LINK_KEY to _link_key_value where id is row_number of _link_key
+            mysql_statement = UPDATE_STATEMENT.format(self.table_name,
+                                                      LINK_KEY,
+                                                      self.get_clean_key(_link_key_value),
+                                                      'id',
+                                                      self.get_row_number(_link_key))
+            result = self.get_row_number(_link_key_value)
 
-        else:
-            # update set _key_value = _value where id = row_number/link_key
+        elif _value is None:
             self.put(_link_key)
-            self._add_column(_key_value)
-            row_number = self.get_row_number(_link_key)
-            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name,
-                                                                                    self.get_clean_key(_key_value),
-                                                                                    self.get_clean_key(_value), row_number)
+            self._add_column(_link_key_value)
+            # mysql_statement = update table_name set _link_key_value = _key_value where id is row number of _link_key
+            mysql_statement = UPDATE_STATEMENT.format(self.table_name,
+                                                      self.get_clean_key(_link_key_value),
+                                                      self.get_clean_key(_key_value),
+                                                      'id',
+                                                      self.get_row_number(_link_key))
+            result = self.get_row_number(_link_key)
+        else:
+            self.put(_link_key)
+            self._add_column(_link_key_value)
+            # mysql_statement = update table_name set _key_value = _value where _link_key is _link_key_value.
+            mysql_statement = UPDATE_STATEMENT.format(self.table_name,
+                                                      self.get_clean_key(_key_value),
+                                                      self.get_clean_key(_value),
+                                                      self.get_clean_key(_link_key),
+                                                      self.get_clean_key(_link_key_value))
             result = self.get_row_number(_link_key)
 
         self._execute_mysql(mysql_statement)
