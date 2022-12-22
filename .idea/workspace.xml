@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="all tests working with 94% line coverage">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/e/5eb897adb94f5b53a0cc43972dbfc4a88acf55a2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on documentation of getting started">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/8/f833b239c31b729bead5e735101455e11515e069" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dbtool.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671686362451</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="work on documentation of getting started">
+      <created>1671688674373</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1671688674373</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +320,8 @@
     <MESSAGE value="basic tests on onehotdb.py appear to be working, 74% line coverage on tests for project" />
     <MESSAGE value="work on tests 75% coverage" />
     <MESSAGE value="all tests working with 94% line coverage" />
-    <option name="LAST_COMMIT_MESSAGE" value="all tests working with 94% line coverage" />
+    <MESSAGE value="work on documentation of getting started" />
+    <option name="LAST_COMMIT_MESSAGE" value="work on documentation of getting started" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

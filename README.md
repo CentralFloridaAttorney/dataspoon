@@ -125,9 +125,20 @@ onehotdb builds upon dbtool and instead of storing the value, onehotdb splits th
 
 ### Prerequisites
 
-1. mysql must be installed and you need to know the location (ex. 127.0.0.1 or 192.168.1.69) and port number (ex. 3306 or 50011)
-2. you must know the username (ex. 'bilbo') and password (ex. 'baggins') of an authorized user in mysql
-3. mysql-connector-python must be installed in your environment.  dbtool.py was developed using version 8.0.31, but the version number may not be important.
+1. Install MySQL:
+````
+sudo rm -rf /var/lib/mysql/mysql
+sudo apt-get remove --purge mysql-server mysql-client mysql-common
+sudo apt-get autoremove
+sudo apt-get autoclean
+sudo apt-get install mysql-server
+````
+2. Install mysql-connector-python:
+````
+pip install mysql-connector-python
+````
+3. You need to know the location (ex. 127.0.0.1 or 192.168.1.69) and port number (ex. 3306 or 50011)
+4. You must know the username (ex. 'bilbo') and password (ex. 'baggins') of an authorized user in mysql
 
 
 ### Installation
