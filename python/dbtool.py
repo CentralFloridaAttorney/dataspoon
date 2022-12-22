@@ -205,7 +205,7 @@ class DBTool:
         return clean_string
 
     @staticmethod
-    def get_html_unescape(_string):
+    def _get_html_unescape(_string):
         clean_string = str(_string)
         clean_string = clean_string.lstrip('_')
         unescape_string = html.unescape(clean_string)
@@ -279,17 +279,6 @@ class DBTool:
             _string = "_" + str(_string)
         _string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
         return _string
-
-    def get_column_based_name(self, _dataframe):
-
-        columns = _dataframe.columns.values
-        columns = columns.tolist()
-        column_based_name = ''
-        for column in columns:
-            this_column = self.get_clean_key(column)
-            column_based_name += this_column
-        print('get_column_based_name: ')
-        return column_based_name
 
     def get_row_count(self):
         """
@@ -485,10 +474,11 @@ def test_put():
 def test_get():
     dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
     link_key_index = dbtool.get('xyzzy') # returns row_number of link_key ('xyzzy')
+    dbtool.put('xyzzy', 'failures', '2469')
     value = dbtool.get('xyzzy', 'failures')
     print('index of put_2 from test_get(): ' + str(link_key_index))
     # link_key_update_status = python.get('put_1', 'reput_1')
-    print('value: ' + value)
+    print('***** value: ' + value)
 
 
 def test_get_row_count():
@@ -513,7 +503,6 @@ def test_add_data_frame():
     data_frame.columns = columns
     # test the system
     dbtool = DBTool()
-    column_based_name = dbtool.get_column_based_name(data_frame)
     dbtool.add_dataframe(data_frame)
     print('test_add_dataframe: ')
 
@@ -576,7 +565,7 @@ def test_delete_table():
 
 def test_get_html_unescape():
     dbtool = DBTool('test_out_word_db', 'put_word_table')
-    test_unescape = dbtool.get_html_unescape('asdf&quot;erhert&quot;')
+    test_unescape = dbtool._get_html_unescape('asdf&quot;erhert&quot;')
     print('test_get_html_unescape: ' + test_unescape)
 
 
@@ -592,23 +581,23 @@ def test_static_operation():
 
 if __name__ == '__main__':
     # onehotwords
-    # test_onehotwords()
+    test_onehotwords()
 
     # dbtool
-    # test_static_operation()
-    # test_get_html_unescape()
-    # test_init()
+    test_static_operation()
+    test_get_html_unescape()
+    test_init()
     test_put()
-    # test_get()
-    # test_get_row_number()
-    # test_get_row_count()
-    # create_simple_pkl()
-    # test_add_data_frame()
-    # test_get_clean_key()
-    # github_demo_1()
-    # test_to_pickle()
-    # test_delete_database()
-    # test_delete_table()
+    test_get()
+    test_get_row_number()
+    test_get_row_count()
+    create_simple_pkl()
+    test_add_data_frame()
+    test_get_clean_key()
+    github_demo_1()
+    test_to_pickle()
+    test_delete_database()
+    test_delete_table()
 
     # the following line is not reached because of sys.exit() in python()
     print("python done!")
