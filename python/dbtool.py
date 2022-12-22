@@ -73,7 +73,8 @@ DEFAULT_PKL_OUTPUT = '../data/output.pkl'
 class DBTool:
     def __init__(self, _database_name=None, _table_name=None):
         """
-        DBTool() provides access to MySQL functions within Python.  DBTool().__init__() has default values for self.database_name and self.table_name.
+        DBTool() provides access to MySQL functions within Python.
+
         :param _database_name: Optionally, specify self.database_name
         :param _table_name: Optionally, specify self.table_name
 

@@ -101,7 +101,10 @@
 ### dbtool.DBTool()
 
 
-DBTool allows you to access any MySQL database using Python.  DBTool has a default database and table.  DBTool uses get and put commands to store key/value pairs.  Rows are identified by the value in a column named link_key.  For example, you can set and get a key/value pair to ('ala'/'kazam') in a row that is referenced by the link_key ('xyzzy'):
+DBTool allows you to easily create, access, and modify MySQL databases using Python, and uses simple get and put commands to access key/value pairs.
+
+For example, you can set and get a key/value pair to ('ala'/'kazam') in a row that is referenced by the link_key ('xyzzy'):
+
 ````
 DBTool().put('xyzzy', 'ala', 'kazam')
 value = DBTool().get('xyzzy', 'ala')
