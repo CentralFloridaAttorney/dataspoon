@@ -82,8 +82,6 @@ w
 G.idea/sonarlint/issuestore/2/c/2c082a090f16e5e2395271ecbaa78904a29c6d7d,5/e/5eb897adb94f5b53a0cc43972dbfc4a88acf55a2
 Š
 Z.idea/shelf/Uncommitted_changes_before_Update_at_12_21_22,_9_29_PM_[Changes]/shelved.patch,7/c/7c074fef542073bab617e43179c2cb53a6219b00
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 w
 G.idea/sonarlint/issuestore/c/9/c993adb6261a091c012010b9a13cbbf2d7626d5b,5/d/5d5f350831440b37030bb90b50958a6a6bcb80ab
 w

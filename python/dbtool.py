@@ -356,8 +356,6 @@ class DBTool:
         """
         DBTool().put() inserts values and returns the link_key of the affected record.
 
-        WARNING: This function may be rewritten to automatically generate link_keys
-
         DBTool().put() behaves differently depending upon the number of parameters that are passed:
             1) adds a row with link_key = _link_key
             2) changes the value of _link_key = _link_key_value
