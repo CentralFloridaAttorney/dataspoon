@@ -98,21 +98,6 @@
 <!-- GETTING STARTED -->
 ## Getting Started With dataspoon
 
-You should install mysql-workbench.  You can use it to view data within MySQL databases.  You can also use it to experiment with MySQL commands and to save those commands for later use.  For example, the following is a set of commands to delete certain databases:
-
-DROP DATABASE `dbtool`;
-DROP DATABASE `onehot_words`;
-DROP DATABASE `python`;
-DROP DATABASE `pkl2sql`;
-DROP DATABASE `onehot_db`;
-DROP DATABASE `xyzzydb`;
-DROP DATABASE `onehot_tool`;
-DROP DATABASE `test_out_word_db`;
-DROP DATABASE `dbtool_test_db`;
-DROP DATABASE `onehotdb`;
-DROP DATABASE `onehotwords`;
-DROP DATABASE `pkl2sqldb`;
-
 ### dbtool.DBTool()
 
 dbtool allows you to create and use MySQL databases in Python with simple get and put commands.
@@ -151,8 +136,13 @@ sudo apt-get install mysql-server
 ````
 pip install mysql-connector-python
 ````
-3. You need to know the location (ex. 127.0.0.1 or 192.168.1.69) and port number (ex. 3306 or 50011)
-4. You must know the username (ex. 'bilbo') and password (ex. 'baggins') of an authorized user in mysql
+3. Optionally, install mysql-workbench:
+````
+sudo aptitude install mysql-workbench-community
+````
+
+4. You need to know the location (ex. 127.0.0.1 or 192.168.1.69) and port number (ex. 3306 or 50011)
+5. You must know the username (ex. 'bilbo') and password (ex. 'baggins') of an authorized user in mysql
 
 
 ### Installation
