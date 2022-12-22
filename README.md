@@ -101,9 +101,7 @@
 ### dbtool.DBTool()
 
 
-DBTool stores data in rows where a column named link_key is used to identify the row during future references.  The values in the row are primarily accessed using the link_key.
-
-DBTool has a default database and table.  For example, you can set and get a key/value pair to ('ala'/'kazam') in a row that is referenced by the link_key ('xyzzy'):
+DBTool has a default database and table.  DBTool stores data in rows where a column named link_key is used to identify the row during future references.  The values in the row are as key/value pairs.  For example, you can set and get a key/value pair to ('ala'/'kazam') in a row that is referenced by the link_key ('xyzzy'):
 ````
 DBTool().put('xyzzy', 'ala', 'kazam')
 value = DBTool().get('xyzzy', 'ala')
@@ -113,13 +111,13 @@ To perform the same operation in a different database ('magicdb'):
 DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
 value = DBTool('magicdb').get('xyzzy', 'ala')
 ````
-by referencing a unique reference value called a link_key.  For example, to put key/value ('ala'/'kazam') into a row with link_key ('xyzzy') in a database ('magicdb'): 
+And, to perform the same operation in a different database ('magic_carpet') and a different table ('magic_table')
 ````
-DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
+DBTool('magicdb', 'magic_table').put('xyzzy', 'ala', 'kazam')
+value = DBTool('magicdb', 'magic_table').get('xyzzy', 'ala')
+
 ````
 
-For example, xyzzydb.get('revised_link_key_xyzzy') gets the whole row with the link_key ('revised_link_key_xyzzy') and xyzzydb.get('revised_link_key_xyzzy', 'ala') gets the value ('kazam') for key ('ala').
-````
 dbtool allows you to create and use MySQL databases in Python with simple get and put commands.
 ````
     def put(self, _link_key, _key_value=None, _value=None):
