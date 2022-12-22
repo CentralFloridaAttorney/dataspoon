@@ -111,7 +111,7 @@ value = DBTool().get('xyzzy', 'ala')
 To perform the same operation in a different database ('magicdb'):
 ````
 DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
-value = DBTool().get('xyzzy', 'ala')
+value = DBTool('magicdb').get('xyzzy', 'ala')
 ````
 by referencing a unique reference value called a link_key.  For example, to put key/value ('ala'/'kazam') into a row with link_key ('xyzzy') in a database ('magicdb'): 
 ````
