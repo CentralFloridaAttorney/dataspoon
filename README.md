@@ -98,7 +98,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started With dataspoon
 
-You should install mysql-workbench.  It will allow you to easily view the data within your MySQL databases.  You can use it to experiment with MySQL commands.  And, mysql-workbench allows you to load saved commands, such as a set of commands delete selected databases:
+You should install mysql-workbench.  You can use it to view data within MySQL databases.  You can also use it to experiment with MySQL commands and to save those commands for later use.  For example, the following is a set of commands to delete certain databases:
 
 DROP DATABASE `dbtool`;
 DROP DATABASE `onehot_words`;
