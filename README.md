@@ -119,7 +119,7 @@ And, to perform the same operation in a different database ('magic_carpet') and 
 DBTool('magicdb', 'magic_table').put('xyzzy', 'ala', 'kazam')
 value = DBTool('magicdb', 'magic_table').get('xyzzy', 'ala')
 
-````
+
 
 DBTool allows you to create and use MySQL databases in Python with simple get and put commands.
 ````
@@ -131,6 +131,10 @@ DBTool allows you to create and use MySQL databases in Python with simple get an
 ````
 
 
+azxf
+
+
+````
     xyzzydb = DBTool() creates a database named dBTool with table named default_table.
     xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a table named default_table.
     xyzzydb = DBTool('xyzzydb', 'best_magic_table') creates a database named xyzzydb with a table named best_magic_table.
