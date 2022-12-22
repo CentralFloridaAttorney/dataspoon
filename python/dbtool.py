@@ -362,10 +362,10 @@ class DBTool:
             3) sets value in the column _link_key_value to _key_value in the row where the link_key is _link_key
             4) sets value in the column _key_value to _value in the row where the column _link_key is _link_key_value
 
-        :param _link_key:
-        :param _link_key_value:
-        :param _key_value:
-        :param _value:
+        :param _link_key: up to 3 parameters is link_key; otherwise, is column name to find _link_key_value
+        :param _link_key_value: if 2 parameters then replaces link_key where link_key = _link_key; if 3 parameters then is column name where _key_value will be placed; if 4 parameters then is the value to match in column _link_key.
+        :param _key_value: if 3 parameters then is the value for column named _link_key_value; otherwise, is column name for _value
+        :param _value: is the value to be placed in column named _key_value, where a column named _link_key = _link_key_value
         :return: returns the row_number of the affected row
         """
         # returns row_number of _link_key
