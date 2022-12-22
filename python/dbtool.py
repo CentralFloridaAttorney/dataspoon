@@ -354,7 +354,7 @@ class DBTool:
 
     def put(self, _link_key, _link_key_value=None, _key_value=None, _value=None):
         """
-        DBTool().put() inserts values and returns the link_key of the affected record.
+        DBTool().put() inserts values and returns the row_number of the affected record.
 
         DBTool().put() behaves differently depending upon the number of parameters that are passed:
             1) adds a row with link_key = _link_key
@@ -382,8 +382,7 @@ class DBTool:
                 mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name,
                                                                                  LINK_KEY,
                                                                                  self.get_clean_key(_link_key))
-            # result = self.get_row_number(_link_key)
-            result = _link_key
+            result = self.get_row_number(_link_key)
         elif _key_value is None:
             # mysql_statement = update table_name set LINK_KEY to _link_key_value where id is row_number of _link_key
             mysql_statement = UPDATE_STATEMENT.format(self.table_name,
@@ -391,7 +390,7 @@ class DBTool:
                                                       self.get_clean_key(_link_key_value),
                                                       'id',
                                                       self.get_row_number(_link_key))
-            # result = self.get_row_number(_link_key_value)
+            result = self.get_row_number(_link_key_value)
             result = _link_key
         elif _value is None:
             self.put(_link_key)
@@ -402,8 +401,7 @@ class DBTool:
                                                       self.get_clean_key(_key_value),
                                                       'id',
                                                       self.get_row_number(_link_key))
-            # result = self.get_row_number(_link_key)
-            result = _link_key
+            result = self.get_row_number(_link_key)
         else:
             row_number = self.get_row_number(_link_key, _link_key_value)
             # if row_number == 0 then create a new row with _link_key as the value for column and link_key:

@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on documentation README.md">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/8/38d818dfb4418857a8c763e33edd4375e821beca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/7/8791a8b9aaa788984b1ca9d207b84c60a56ec877" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/0/a0fae0092ae657e0d97b52df5b27df8fc268938c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/b/bb5afbfb42ef4ae77e927ad9a39bb8c7f6a27963" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/9/d95c4d56443bd7e5ab344435813691849383c728" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/python/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dbtool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/make.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/source/conf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/source/index.rst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +208,7 @@
       <workItem from="1671554100131" duration="6221000" />
       <workItem from="1671726514442" duration="13272000" />
       <workItem from="1671741327557" duration="1246000" />
-      <workItem from="1671742623284" duration="1947000" />
+      <workItem from="1671742623284" duration="2607000" />
     </task>
     <task id="LOCAL-00001" summary="removed FOSS">
       <created>1671507769543</created>
@@ -445,7 +434,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671741413203</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="work on documentation README.md">
+      <created>1671744762812</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1671744762813</updated>
+    </task>
+    <task id="LOCAL-00034" summary="work on documentation README.md">
+      <created>1671744851241</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1671744851241</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,22 +491,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>427</line>
+          <line>425</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>425</line>
+          <line>423</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>429</line>
+          <line>427</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>420</line>
+          <line>418</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
