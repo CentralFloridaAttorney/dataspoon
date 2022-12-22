@@ -211,7 +211,7 @@ class DBTool:
         # print('delete_database: ' + _database_name)
 
     def delete_table(self, _table_name):
-        mysql_drop_table = "DROP DATABASE {0}".format(self.get_clean_key(_table_name))
+        mysql_drop_table = "DROP TABLE {0}".format(self.get_clean_key(_table_name))
         self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
 
     def get(self, _link_key, _key=None):

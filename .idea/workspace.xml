@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on documentation of getting started">
-      <change afterPath="$PROJECT_DIR$/python/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/make.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/source/conf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/source/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/b/fb6a05ca24cc94821b02f125913ca215404f4c26" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on documentation of dbtool.py">
       <change beforePath="$PROJECT_DIR$/python/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dbtool.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -192,7 +184,7 @@
       <workItem from="1671517873192" duration="1387000" />
       <workItem from="1671538328441" duration="4351000" />
       <workItem from="1671554100131" duration="6221000" />
-      <workItem from="1671726514442" duration="1196000" />
+      <workItem from="1671726514442" duration="1566000" />
     </task>
     <task id="LOCAL-00001" summary="removed FOSS">
       <created>1671507769543</created>
@@ -362,7 +354,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671717966159</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="work on documentation of dbtool.py">
+      <created>1671727738213</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1671727738213</updated>
+    </task>
+    <task id="LOCAL-00026" summary="work on documentation of dbtool.py">
+      <created>1671727926581</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1671727926581</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +397,8 @@
     <MESSAGE value="work on tests 75% coverage" />
     <MESSAGE value="all tests working with 94% line coverage" />
     <MESSAGE value="work on documentation of getting started" />
-    <option name="LAST_COMMIT_MESSAGE" value="work on documentation of getting started" />
+    <MESSAGE value="work on documentation of dbtool.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="work on documentation of dbtool.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -448,22 +455,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>515</line>
+          <line>516</line>
           <option name="timeStamp" value="291" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>516</line>
+          <line>517</line>
           <option name="timeStamp" value="292" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>514</line>
+          <line>515</line>
           <option name="timeStamp" value="293" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>501</line>
+          <line>502</line>
           <option name="timeStamp" value="295" />
         </line-breakpoint>
       </breakpoints>
