@@ -214,10 +214,9 @@ class DBTool:
         mysql_drop_table = "DROP TABLE {0}".format(self.get_clean_key(_table_name))
         self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
 
-    def get(self, _link_key, _key=None):
+    def get(self, _link_key=str, _key=None):
         """
         DBTool.get() returns an entire row or the value of a column within a row.
-
         :param _link_key: _link_key uniquely identifies the row.
         :param _key: _key is an optional parameter, which is used to identify the column name.
         :return: If _key=None then return the entire row.  Otherwise, return the value in the column named _key.
@@ -241,6 +240,7 @@ class DBTool:
         return clean_key
 
     def get_column_based_name(self, _dataframe):
+
         columns = _dataframe.columns.values
         columns = columns.tolist()
         column_based_name = ''
@@ -251,12 +251,22 @@ class DBTool:
         return column_based_name
 
     def get_row_count(self):
-        get_row_count_mysql = "SELECT COUNT(*) FROM " + self.table_name + ";"
+        """
+        Sometimes you need to know how many rows are in the table.
+        :return: Returns the number of rows in self.table_name.
+        """
+        get_row_count_mysql = "SELECT COUNT(*) FROM {0};".format(self.table_name)
         row_count = self._execute_mysql(get_row_count_mysql)
         # print('get_row_count: ' + str(row_count[0]))
         return row_count[0]
 
     def get_row_number(self, _link_key, _value=None):
+        """
+        DBTool.get_row_number() returns a row number for either a link_key or key/value pair.
+        :param _link_key: _link_key uniquely identifies the row.
+        :param _value: _key is an optional parameter, which is used to identify the column name.
+        :return: If _key=None then return the row_number where link_key = _link_key.  Otherwise, return the ro_number where a key/value pair matches _link_key/_value.
+        """
         # select_template = '''SELECT * FROM seminole_main.seminole_main where link_key = "jurney";'''
         # clean_link_key = str(re.sub(LEGAL_CHARACTERS, '_', clean_link_key.strip()))
         if _value is None:

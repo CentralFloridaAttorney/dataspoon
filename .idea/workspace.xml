@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on documentation of dbtool.py">
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on documentation of dbtool.py get()">
       <change beforePath="$PROJECT_DIR$/python/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dbtool.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +184,7 @@
       <workItem from="1671517873192" duration="1387000" />
       <workItem from="1671538328441" duration="4351000" />
       <workItem from="1671554100131" duration="6221000" />
-      <workItem from="1671726514442" duration="1566000" />
+      <workItem from="1671726514442" duration="2377000" />
     </task>
     <task id="LOCAL-00001" summary="removed FOSS">
       <created>1671507769543</created>
@@ -368,7 +368,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671727926581</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="work on documentation of dbtool.py get()">
+      <created>1671728101782</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1671728101782</updated>
+    </task>
+    <task id="LOCAL-00028" summary="work on documentation of dbtool.py get()">
+      <created>1671728181071</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1671728181071</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +412,8 @@
     <MESSAGE value="all tests working with 94% line coverage" />
     <MESSAGE value="work on documentation of getting started" />
     <MESSAGE value="work on documentation of dbtool.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="work on documentation of dbtool.py" />
+    <MESSAGE value="work on documentation of dbtool.py get()" />
+    <option name="LAST_COMMIT_MESSAGE" value="work on documentation of dbtool.py get()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -455,22 +470,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>516</line>
+          <line>526</line>
           <option name="timeStamp" value="291" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>517</line>
+          <line>527</line>
           <option name="timeStamp" value="292" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>515</line>
+          <line>525</line>
           <option name="timeStamp" value="293" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>502</line>
+          <line>512</line>
           <option name="timeStamp" value="295" />
         </line-breakpoint>
       </breakpoints>
