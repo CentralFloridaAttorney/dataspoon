@@ -36,11 +36,11 @@ from python.dbtool import OneHotWords
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-# HOST = 'localhost'
-HOST = '192.168.1.227'
+HOST = 'localhost'
+# HOST = '192.168.1.227'
 USER = 'bilbo'
 PASSWD = 'baggins'
-PORT = '50011'
+PORT = '3306'
 DB_NAME = 'onehotdb'
 TABLE_NAME = 'sentences'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
@@ -71,8 +71,6 @@ SENTENCE_KEY = 'sentence'
 
 # PKL_PATH = '/home/overlordx/PycharmProjects/SeminoleScraper/data/pkl'
 # DIR_PATH = r'/home/overlordx/PycharmProjects/SeminoleScraper/data/cases/seminole/10_7_2022'
-
-
 
 class OneHotDB:
     def __init__(self, _database_name=None, _table_name=None):
@@ -106,7 +104,7 @@ class OneHotDB:
                     if result is not None:
                         result = result[0]
                 else:
-                    result = cursor.fetchone()
+                    result = cursor.fetchall()
             cursor.close()
             connection.close()
         except Error as err:
@@ -164,45 +162,12 @@ class OneHotDB:
                 # print('created new database: ' + db_name)
         return connection
 
-    @staticmethod
-    def _init_connection():
-        connection = mysql.connector.connect(
-            host=HOST,
-            user=USER,
-            passwd=PASSWD,
-            port=PORT
-        )
-        print('_init_user_database: ')
-        return connection
-
     def _get_columns(self):
         connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
         cursor = connection.cursor(buffered=True)
         mysql_statement = "SELECT * FROM {0}".format(self.database_name + '.' + self.table_name)
         cursor.execute(mysql_statement)
-        return cursor.description
-
-    def get_onehot_encoded_string(self, _string):
-        word_indices = []
-        words = _string.split(' ')
-        for word in words:
-            # OneHotWords().put(word)
-            word_index = OneHotWords().get(word)
-            if word_index is None:
-                OneHotWords().put(LINK_KEY, word)
-                word_index = OneHotWords().get(word)
-            word_indices.append(word_index)
-        encoded_string = ''
-        for index in word_indices:
-            encoded_string += '<' + index
-        # hashed_string = hashlib.sha256(_string.encode('utf-8')).hexdigest(), 16 % 10 ** (8 * _hash_mod)
-        print('encoded_string: ' + encoded_string)
-        # return str(hashed_string[0])
-        # base64_bytes = _string.encode("ascii")
-        # base64_bytes = base64.b64encode(_string)
-        # base64_string = base64_bytes.decode("ascii")
-        # return base64_string
-        return encoded_string
+        return cursor.column_names
 
     @staticmethod
     def _get_html_escape(_string):
@@ -277,8 +242,9 @@ class OneHotDB:
         # print('delete_database: ' + _database_name)
 
     def delete_table(self, _table_name):
-        mysql_drop_table = "DROP DATABASE {0}".format(self.get_clean_key(_table_name))
-        self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
+        mysql_drop_table = "DROP TABLE `{0}`.`{1}`;".format(self.database_name, self.get_clean_key(_table_name))
+        result = self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
+        print('delete_table done!')
 
     def _get(self, _link_key, _key=None, _value=None):
         if _key is None:
@@ -340,11 +306,11 @@ class OneHotDB:
                                                                                     self.get_clean_key(_value), row_number)
         self._execute_mysql(mysql_statement)
         # print('put: ')
-        result = self.get_row_number(self.get_clean_key(_link_key))
+        result = self.get_row_number(_link_key)
 
         return result
 
-    def get_onehot_indices(self, _link_key):
+    def _get_onehot_indices(self, _link_key):
         result = self._get(_link_key, 'sentence')
         result = result.lstrip('|')
         indices = result.split('|')
@@ -356,20 +322,20 @@ class OneHotDB:
         print('get_onehot: ' + _link_key)
         return index_list
 
-    def get_onehot_words(self, _onehot_index_list):
+    def _get_onehot_words(self, _onehot_index_list):
         words = []
         for index in _onehot_index_list:
-            word = OneHotWords().get_word_at_index(index)
+            word = OneHotWords().get_word(index)
             word = self._get_html_unescape(word)
             words.append(word)
-        print('get_onehot_words: ' + _onehot_index_list[0])
+        print('_get_onehot_words: ' + _onehot_index_list[0])
         return words
 
     def get_onehot_dataframe(self, _link_key):
-        onehot_indices = self.get_onehot_indices(_link_key)
+        onehot_indices = self._get_onehot_indices(_link_key)
         dataframe = pandas.DataFrame(onehot_indices).astype(str)
         dataframe = dataframe.transpose()
-        dataframe.columns = self.get_onehot_words(onehot_indices)
+        dataframe.columns = self._get_onehot_words(onehot_indices)
         return dataframe
 
     def put_onehot(self, _link_key, _string):
@@ -420,21 +386,18 @@ class OneHotDB:
                 self._put(self.get_clean_key(link_key), self.get_clean_key(key), self.get_clean_key(value))
         # print('add_dataframe done!')
 
-    def get_column_based_name(self, _dataframe):
-        columns = _dataframe.columns.values
-        columns = columns.tolist()
-        column_based_name = ''
-        for column in columns:
-            this_column = self.get_clean_key(column)
-            column_based_name += this_column
-        print('get_column_based_name: ')
-        return column_based_name
+    def add_pickle(self, _pkl_path, _table_name=None):
+        dataframe = pandas.read_pickle(_pkl_path)
+        if _table_name is not None:
+            self.open_table(_table_name)
+        self.add_dataframe(dataframe)
+        print('add_pickle: ' + _pkl_path)
 
     def get_onehot(self, _link_key):
-        onehot_dataframe = self.get_onehot_indices(_link_key)
+        onehot_dataframe = self._get_onehot_indices(_link_key)
         translated_value = ''
         for index in onehot_dataframe:
-            this_word = OneHotWords().get_word_at_index(index)
+            this_word = OneHotWords().get_word(index)
             this_word = html.unescape(this_word)
             # html.escape() does not seem to work this_word may contain unescaped codes
             for item in HTML_UNESCAPE_TABLE:
@@ -444,125 +407,56 @@ class OneHotDB:
         print('get_translated_value: ' + translated_value)
         return translated_value
 
-
-class Pkl2DB(OneHotDB):
-    def __init__(self, _db_name, _dir_path):
-        super().__init__(_db_name)
-        self.dir_path = self.base_dir + self.get_clean_key(_dir_path)
-        self.table_names = self._add_pickles()
-        #self.unencoded_table_names = self._get_unencoded_table_names()
-        # print('Pickle2MySQL.__init__ done!')
-
-    def get_all_column_names(self):
-        # this returns the unhashed column_names that were added by _add_pickles
-        print('get_all_column_names done!')
-        return self.column_names
-
-    def _add_pickles(self):
-        files = self._get_files(self.dir_path, '.pkl')
-        hashed_column_names = []
-        for file in files:
-            this_pickle = pandas.read_pickle(file)
-            columns = this_pickle.columns
-            columns = map(str, columns)
-            joined_columns = '-'.join(columns)
-            these_columns = super().get_onehot_encoded_string(this_pickle.columns)
-            if not hashed_column_names.__contains__(these_columns):
-                hashed_column_names.append(these_columns)
-            this_onehot_db = OneHotDB(self.database_name, these_columns)
-            this_onehot_db.add_dataframe(this_pickle, 0)
-        # print('add_pickles done!')
-        return hashed_column_names
-
-    @staticmethod
-    def _get_files(_base_directory, _extension):
-        selected_files = []
-        for root, dirs, files in os.walk(_base_directory):
-            for file in files:
-                if file.endswith(_extension):
-                    selected_files.append(os.path.join(root, file))
-                    # print(os.path.join(root, file))
-        # print('get_files done!')
-        return selected_files
+    def to_pickle(self, _file_path):
+        mysql_statement = "SELECT * FROM {0}".format(self.table_name)
+        result = self._execute_mysql(mysql_statement)
+        columns = self._get_columns()
+        dataframe = pandas.DataFrame(result)
+        # dataframe = dataframe.transpose()
+        dataframe.columns = columns
+        dataframe.to_pickle(self.base_dir + _file_path)
+        print('to_pickle: ' + self.base_dir + _file_path)
 
 
-class DB2Pkl(OneHotDB):
-    # DB2Pkl takes a database_name and table_name and returns a pandas.DataFrame
-    def __init__(self, _database_name, _table_name):
-        super().__init__(_database_name, _table_name)
-        print('DB2Pkl.__init__ done!')
-
-    def get_dataframe(self):
-        print('get_dataframe done!')
+def create_dataframe():
+    data = [['bilbo', 'thoron'], ['baggins', 'falbright']]
+    data_frame = pandas.DataFrame(data)
+    data_frame = data_frame.transpose()
+    columns = ['username', 'password']
+    data_frame.columns = columns
+    data_frame.to_pickle('../data/users.pkl')
+    return data_frame
 
 
 def test_init():
-    dbtool = OneHotDB()
+    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
     # print('test_init done!')
 
 
 def test_get_row_count():
-    dbtool = OneHotDB('python', 'python')
-    row_count = dbtool.get_row_count()
+    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    row_count = onehotdb.get_row_count()
     print('test_get_row_count: ' + str(row_count))
 
 
 def test_get_clean_key():
     KEY = "Instrument #"
-    dbtool = OneHotDB()
-    clean_key = dbtool.get_clean_key(KEY)
+    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    clean_key = onehotdb.get_clean_key(KEY)
     print('test_get_clean_key: ' + clean_key)
 
 
 def test_add_data_frame():
-    # create the test data_frame
-    data = [['bilbo', 'baggins'], ['thoron', 'falbright']]
-    data_frame = pandas.DataFrame(data)
-    data_frame = data_frame.transpose()
-    columns = ['username', 'password']
-    data_frame.columns = columns
-    # test the system
-    dbtool = OneHotDB()
-    column_based_name = dbtool.get_column_based_name(data_frame)
-    dbtool.add_dataframe(data_frame)
+    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb.add_dataframe(create_dataframe())
     print('test_add_dataframe: ')
 
 
-def test_pkl2sql():
-    # create the test data_frame and pickle file
-    data = [['bilbo', 'baggins'], ['thoron', 'falbright']]
-    data_frame = pandas.DataFrame(data)
-    data_frame = data_frame.transpose()
-    columns = ['username', 'password']
-    data_frame.columns = columns
-    output_file_path = '../data/users.pkl'
-    data_frame.to_pickle(output_file_path)
-    # test the system
-    pkl2sql = Pkl2DB(DB_NAME, 'data/')
-    print('test_pkl2sql done!')
-
-
-def test_sql2pkl():
-    # this class creates a pandas DataFrame
-    sql2pkl = DB2Pkl(DB_NAME, TABLE_NAME)
-    dataframe = sql2pkl.get_dataframe()
+def test_add_pickle():
+    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb.add_pickle('../data/pkl/CaseGrid.pkl', 'case_grid')
 
     print('test_sql2pkl done!')
-
-
-def test_put_onehot():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
-    onehotdb.put_onehot('first_key', "Abra kadab'ro'")
-    onehotdb.put_onehot('second_key', '''This is an elegant approach, to do the search and replace using a <code>formatter</code>. However, if I hadn't seen @Martijn Pieters answer it would be a bit mysterious, so I will mark his as the accepted answer since it has more explanation. Richard Neish Feb 28, 2013 at 15:19 ''')
-
-    first_key_value = onehotdb.get_onehot_indices('first_key')
-    print('test_put_onehot get_onehot: ' + first_key_value[0])
-
-
-def test_get_onehot_dataframe():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
-    dataframe = onehotdb.get_onehot_dataframe('first_key')
-    print('test_get_onehot_dataframe : ')
 
 
 def test_get_unescape():
@@ -575,7 +469,7 @@ def test_get_unescape():
 
 def test_get_onehot():
     onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
-    onehot_indices = onehotdb.get_onehot_indices('first_key')
+    onehot_indices = onehotdb._get_onehot_indices('first_key')
     onehot_dataframe = onehotdb.get_onehot_dataframe('first_key')
     translated_value_1 = onehotdb.get_onehot('first_key')
     translated_value_2 = onehotdb.get_onehot('second_key')
@@ -584,23 +478,52 @@ def test_get_onehot():
     print('test_get_onehot: ' + translated_value_2)
 
 
-
 def test_get_onehot_dataframe():
     onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
     dataframe = onehotdb.get_onehot_dataframe('first_key')
     print('test_get_onehote_dtaframe done!')
 
 
+def test_put_onehot():
+    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb.put_onehot('first_key', "Abra kadab'ro'")
+    onehotdb.put_onehot('second_key', '''This is an elegant approach, to do the search and replace using a <code>formatter</code>. However, if I hadn't seen @Martijn Pieters answer it would be a bit mysterious, so I will mark his as the accepted answer since it has more explanation. Richard Neish Feb 28, 2013 at 15:19 ''')
+
+    first_key_value = onehotdb._get_onehot_indices('first_key')
+    print('test_put_onehot get_onehot: ' + first_key_value[0])
+
+
+def test_to_pickle():
+    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb.to_pickle('data/put_word_table.pkl')
+    print('test_to_pickle done!')
+
+
+def test_delete_database():
+    temp_onehotdb = OneHotDB('temp_db')
+    temp_onehotdb.delete_database('temp_db')
+
+
+def test_delete_table():
+    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb.open_table('temp_table')
+    onehotdb.delete_table('temp_table')
+    print('test_delete_table done!')
+
+
+
 if __name__ == '__main__':
-    # test_init()
-    # test_get_row_count()
-    #test_add_data_frame()
-    #test_get_clean_key()
-    #test_get_unescape()
+    test_delete_table()
+    test_delete_database()
+    test_init()
+    test_get_row_count()
+    test_add_data_frame()
+    test_get_clean_key()
+    test_get_unescape()
     test_put_onehot()
     test_get_onehot()
-    # test_get_onehot_dataframe()
-    # test_pkl2sql()
-    # test_sql2pkl()
+    test_get_onehot_dataframe()
+    test_add_pickle()
+    test_to_pickle()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")

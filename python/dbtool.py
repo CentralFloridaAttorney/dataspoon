@@ -34,11 +34,11 @@ from mysql.connector import Error
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-HOST = '192.168.1.227'
-# HOST = 'localhost'
+# HOST = '192.168.1.227'
+HOST = 'localhost'
 USER = 'bilbo'
 PASSWD = 'baggins'
-PORT = '50011'
+PORT = '3306'
 DB_NAME = 'dbtool'
 DEFAULT_TABLE_NAME = 'default_table'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
@@ -63,7 +63,7 @@ HTML_UNESCAPE_TABLE = {
 SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
 HASH_MOD = 1
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-ONEHOT_DB_NAME = 'onehot_words'
+ONEHOT_DB_NAME = 'onehotwords'
 ONE_HOT_WORD_TABLE_NAME = 'words'
 ONEHOT_KEY = 'sentence'
 DEFAULT_PKL_INPUT = '../data/users.pkl'
@@ -177,7 +177,7 @@ class DBTool:
         return clean_string
 
     @staticmethod
-    def _get_html_unescape(_string):
+    def get_html_unescape(_string):
         clean_string = str(_string)
         clean_string = clean_string.lstrip('_')
         unescape_string = html.unescape(clean_string)
@@ -189,7 +189,7 @@ class DBTool:
     def _get_columns(self):
         connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
         cursor = connection.cursor(buffered=True)
-        mysql_statement = "SELECT * FROM {0}".format(self.database_name + '.' + self.table_name)
+        mysql_statement = "SELECT * FROM {0};".format(self.table_name)
         cursor.execute(mysql_statement)
         return cursor.column_names
 
@@ -231,8 +231,6 @@ class DBTool:
 
     def get_clean_key(self, key):
         clean_key = self._get_html_escape(key)
-        if clean_key.isdigit():
-            clean_key = '_' + clean_key
         return clean_key
 
     def get_column_based_name(self, _dataframe):
@@ -356,73 +354,17 @@ class OneHotWords(DBTool):
         super().__init__(ONEHOT_DB_NAME, ONE_HOT_WORD_TABLE_NAME)
         # print('__init__ done!')
 
-    def get_index_combo(self, _string):
-        words = self.get_clean_key(_string)
-        words = words.split(' ')
-        word_indicies = []
-        for word in words:
-            word_indicies.append(self.get_row_number(word))
-        index_combo = ''
-        first = True
-        for word_index in word_indicies:
-            if not first:
-                index_combo += '&'
-            else:
-                first = False
-            index_combo += str(word_index)
-        return index_combo
-
-    def get_reconstituted_string(self, _index_combo):
-        indices = _index_combo.split('&')
-        words = []
-        for index in indices:
-            this_word = self.get_word_at_index(index)
-            if this_word is not None:
-                words.append(this_word)
-        reconstituted_string = ''
-        first = True
-        for word in words:
-            if not first:
-                reconstituted_string += ' '
-            else:
-                first = False
-            # # print('get_reconstituted_string word: ' + word)
-            reconstituted_string += str(word[0])
-        return reconstituted_string
-
-    def get_word_at_index(self, _index):
+    def get_word(self, _index):
         sql_statement = "SELECT link_key FROM {0} WHERE id = '{1}';".format(self.table_name, str(_index))
         this_word = self._execute_mysql(sql_statement)
-        # print('get_word_at_index done!')
+        # print('get_word done!')
         return this_word
 
-    def _put_word(self, _word, _word2=None, _word3=None):
-        clean_word = self.get_clean_key(_word)
-        super().put(LINK_KEY, clean_word)
-        # print('_put_word: ' + clean_word)
-
-    def _get_index(self, _word):
+    def get_index(self, _word):
         # This function returns the row number of _word in the onehot index
         clean_word = self.get_clean_key(_word)
         row_number = super().get_row_number(clean_word)
-        if row_number == '0':
-            self._put_word(clean_word)
-            row_number = super().get_row_number(clean_word)
-        # print('onehottool.get: ' + str(row_number))
         return row_number
-
-    def load_dict(self, _dict_table_name, _dict_file_path):
-        self.open_table(_dict_table_name)
-        file_path = _dict_file_path
-        file = open(file_path, 'r')
-        text = file.read()
-        words = text.split('\n')
-        for word in words:
-            if word == 'ain''t':
-                clean_word = 'xyxxy'
-            clean_word = self.get_clean_key(word)
-            self._put_word(clean_word)
-
 
 def test_init():
     dbtool = DBTool()
@@ -521,7 +463,39 @@ def test_get_row_number():
     print('test_get_row_number done!')
 
 
+def test_onehotwords():
+    onehotwords = OneHotWords()
+    word_index_1 = onehotwords.get_index('the')
+    word_index_2 = onehotwords.get_index('qwerty')
+    word_value_1 = onehotwords.get_word(12)
+
+    print('test_onehotwords done!')
+
+
+def test_delete_database():
+    temp_dbtool = DBTool('temp_db')
+    temp_dbtool.delete_database('temp_db')
+
+
+def test_delete_table():
+    dbtool = DBTool('test_out_word_db', 'put_word_table')
+    dbtool.open_table('temp_table')
+    dbtool.delete_table('temp_table')
+    print('test_delete_table done!')
+
+
+def test_get_html_unescape():
+    dbtool = DBTool('test_out_word_db', 'put_word_table')
+    test_unescape = dbtool.get_html_unescape('asdf&quot;erhert&quot;')
+    print('test_get_html_unescape: ' + test_unescape)
+
+
 if __name__ == '__main__':
+    # onehotwords
+    test_onehotwords()
+
+    # dbtool
+    test_get_html_unescape()
     test_init()
     test_put()
     test_get()
@@ -532,5 +506,8 @@ if __name__ == '__main__':
     test_get_clean_key()
     github_demo_1()
     test_to_pickle()
+    test_delete_database()
+    test_delete_table()
+
     # the following line is not reached because of sys.exit() in python()
     print("python done!")
