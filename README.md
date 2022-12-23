@@ -98,7 +98,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started With dataspoon
 
-### dbtool makes storing and retrieving data easy
+### dbtool helps you to eat more data
 
 DBTool() allows you to create and modify MySQL databases using Python with simple get and put commands.
 
@@ -114,7 +114,7 @@ DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
 value = DBTool('magicdb').get('xyzzy', 'ala')
 ````
 
-### onehotdb functions as a onehot encoder
+### onehotdb makes data taste better
 
 
 
