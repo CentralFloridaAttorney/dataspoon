@@ -4,65 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="verified results DBTool test_put()">
-      <change afterPath="$PROJECT_DIR$/docs/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/make.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/dbtool.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/modules.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/onehotdb.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/readme.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/.buildinfo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/.doctrees/dbtool.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/.doctrees/environment.pickle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/.doctrees/index.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/.doctrees/modules.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/.doctrees/onehotdb.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_sources/dbtool.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_sources/index.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_sources/modules.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_sources/onehotdb.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/_sphinx_javascript_frameworks_compat.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/background_b01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/basic.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/bizstyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/bizstyle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/css3-mediaqueries.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/css3-mediaqueries_src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/doctools.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/documentation_options.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/jquery-3.6.0.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/language_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/minus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/plus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/pygments.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/searchtools.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/underscore-1.13.1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/_static/underscore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/dbtool.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/genindex.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/modules.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/objects.inv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/onehotdb.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/search.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/searchindex.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/f/2f8364351a507fd4ee684f8de02b0f5ccaf97587" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/c/4ce915c3f97350f01885c9ad91f56d795a95429b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c7ee83aa92607e41d21c1c096082c59e58f1fea" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/f/8f4bd983d78720f6d42f9737983fe43836a9523b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/1/a1a218abffde15d621cbabe723f0171bfa2057e0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/c/bc6f444bf8bbf2fdca307d1b75d7c4a0c60defae" beforeDir="false" />
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="add requirements.txt, and sphinx documentation">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/f/ff9842780334be713ece2fd070bfb2afe6f23eba" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dbtool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/onehotdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/onehotdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/make.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/dbtool.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/modules.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/onehotdb.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/readme.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/speed_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/speed_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,33 +83,14 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.readme.html">
+  <component name="RunManager" selected="JavaScript Debug.genindex.html">
+    <configuration name="genindex.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dataspoon/docs/build/html/genindex.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dataspoon/docs/build/html/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="readme.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dataspoon/docs/build/html/readme.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="dbtool" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="dataspoon" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dbtool.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="onehotdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -203,19 +138,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JavaScript Debug.genindex.html" />
       <item itemvalue="JavaScript Debug.readme.html" />
       <item itemvalue="JavaScript Debug.index.html" />
-      <item itemvalue="Python.dbtool" />
       <item itemvalue="Python.onehotdb" />
       <item itemvalue="Python.speed_test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.readme.html" />
+        <item itemvalue="JavaScript Debug.genindex.html" />
         <item itemvalue="JavaScript Debug.index.html" />
-        <item itemvalue="Python.onehotdb" />
-        <item itemvalue="Python.dbtool" />
         <item itemvalue="Python.speed_test" />
+        <item itemvalue="JavaScript Debug.readme.html" />
+        <item itemvalue="Python.onehotdb" />
       </list>
     </recent_temporary>
   </component>
@@ -237,7 +172,7 @@
       <workItem from="1671741327557" duration="1246000" />
       <workItem from="1671742623284" duration="5031000" />
       <workItem from="1671750166053" duration="11262000" />
-      <workItem from="1671766692048" duration="3409000" />
+      <workItem from="1671766692048" duration="5592000" />
     </task>
     <task id="LOCAL-00001" summary="removed FOSS">
       <created>1671507769543</created>
@@ -547,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671754546154</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="add requirements.txt, and sphinx documentation">
+      <created>1671770512634</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1671770512634</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +530,8 @@
     <MESSAGE value="code coverage on tests 94%" />
     <MESSAGE value="update README.md" />
     <MESSAGE value="verified results DBTool test_put()" />
-    <option name="LAST_COMMIT_MESSAGE" value="verified results DBTool test_put()" />
+    <MESSAGE value="add requirements.txt, and sphinx documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="add requirements.txt, and sphinx documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -649,7 +592,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dataspoon$pkl2sql.coverage" NAME="pkl2sql Coverage Results" MODIFIED="1671540338740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$simple_database.coverage" NAME="speed_test Coverage Results" MODIFIED="1671740589610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
-    <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1671751222068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
+    <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1671771024279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1671763215855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$Doctests_in_dbtool.coverage" NAME="Doctests in dbtool Coverage Results" MODIFIED="1671740445782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1671754365271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />

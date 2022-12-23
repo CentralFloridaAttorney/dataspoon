@@ -1,4 +1,5 @@
 import datetime
+import html
 
 from python.dbtool import DBTool
 
@@ -15,5 +16,5 @@ elapsed_time = end_time-start_time
 print('write and retrieve time in microseconds: ' + str(elapsed_time.microseconds))
 print('Finished example!')
 
-clean_value = DBTool().get_clean_key("That's a great!")
-print("That's great! = " + clean_value)
+string_value = "That's great!"
+print(string_value + " = " + html.escape(string_value))
