@@ -100,7 +100,7 @@
 
 ### dbtool makes storing and retrieving data easy
 
-DBTool() allows you to X create, access, and modify MySQL databases using Python using simple get and put commands to access key/value pairs.
+DBTool() allows you to create and modify MySQL databases using Python with simple get and put commands.
 
 For example, you can set and get a key/value pair to ('ala'/'kazam') in a row that is referenced by the link_key ('xyzzy'):
 
@@ -113,6 +113,10 @@ To perform the same operation in a different database ('magicdb'):
 DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
 value = DBTool('magicdb').get('xyzzy', 'ala')
 ````
+
+### onehotdb dynamically creates one-hot indexes
+
+
 And, to perform the same operation in a different database ('magic_carpet') and a different table ('magic_table')
 ````
 DBTool('magicdb', 'magic_table').put('xyzzy', 'ala', 'kazam')

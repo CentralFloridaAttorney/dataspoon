@@ -201,6 +201,7 @@ class DBTool:
         # clean_string = str(_string)
         # print("***** test: " + clean_string)
         clean_string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
+        clean_string = html.escape(_string)
         print('get_html_escape: ' + clean_string)
         return clean_string
 
@@ -277,7 +278,8 @@ class DBTool:
         """
         if _string.isdigit():
             _string = "_" + str(_string)
-        _string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
+        # _string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
+        _string = html.escape(_string)
         return _string
 
     def get_row_count(self):
@@ -341,6 +343,18 @@ class DBTool:
         # self._add_column('link_key')
         # print('open_table: ' + _table_name)
 
+
+
+    def to_pickle(self, _file_path):
+        mysql_statement = "SELECT * FROM {0}".format(self.table_name)
+        result = self._execute_mysql(mysql_statement)
+        columns = self._get_columns()
+        dataframe = pandas.DataFrame(result)
+        dataframe = dataframe.transpose()
+        dataframe.columns = columns
+        dataframe.to_pickle(self.base_dir + _file_path)
+        print('to_pickle: ' + self.base_dir + _file_path)
+
     def put(self, _link_key, _link_key_value=None, _key_value=None, _value=None):
         """
         DBTool().put() inserts values and returns the row_number of the affected record.
@@ -374,13 +388,19 @@ class DBTool:
             result = self.get_row_number(_link_key)
         elif _key_value is None:
             # mysql_statement = update table_name set LINK_KEY to _link_key_value where id is row_number of _link_key
-            mysql_statement = UPDATE_STATEMENT.format(self.table_name,
-                                                      LINK_KEY,
-                                                      self.get_clean_key(_link_key_value),
-                                                      'id',
-                                                      self.get_row_number(_link_key))
+            # does _link_key exist
+            row_number = self.get_row_number(_link_key)
+            if row_number == 0:
+                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name,
+                                                                                 LINK_KEY,
+                                                                                 self.get_clean_key(_link_key))
+            else:
+                mysql_statement = UPDATE_STATEMENT.format(self.table_name,
+                                                          LINK_KEY,
+                                                          self.get_clean_key(_link_key_value),
+                                                          'id',
+                                                          self.get_row_number(_link_key))
             result = self.get_row_number(_link_key_value)
-            result = _link_key
         elif _value is None:
             self.put(_link_key)
             self._add_column(_link_key_value)
@@ -414,16 +434,6 @@ class DBTool:
         # print('put: ')
         return result
 
-    def to_pickle(self, _file_path):
-        mysql_statement = "SELECT * FROM {0}".format(self.table_name)
-        result = self._execute_mysql(mysql_statement)
-        columns = self._get_columns()
-        dataframe = pandas.DataFrame(result)
-        dataframe = dataframe.transpose()
-        dataframe.columns = columns
-        dataframe.to_pickle(self.base_dir + _file_path)
-        print('to_pickle: ' + self.base_dir + _file_path)
-
 
 class OneHotWords(DBTool):
     # mysql has a maximum number of 4096 columns per table
@@ -444,20 +454,14 @@ class OneHotWords(DBTool):
         row_number = super().get_row_number(clean_word)
         return row_number
 
-def test_init():
-    dbtool = DBTool()
-    # print('test_init done!')
-
 
 def test_put():
     # dbtool = DBTool()
     dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
-    # make link_key/word_1
-    # python.put('word')
-    # python.put('put_1')
-    # dbtool.put('xyzzy', 'failures', '543') # creates link_key ('xyzzy') and puts key/value ('failures'/'543')
-    # dbtool.put('new_link_key', 'failures', '123') # creates link_key ('new_link_key')
-    dbtool.put('value_1', 'value_2', 'value_3', 'value_4')
+    row_1 = dbtool.put('value_1a')
+    row_2 = dbtool.put('value_1a', 'value_2b') # creates link_key ('xyzzy') and puts key/value ('failures'/'543')
+    row_3 = dbtool.put('value_3a', 'value_3b', 'value_3c') # creates link_key ('new_link_key')
+    row_4 = dbtool.put('value_4a', 'value_4b', 'value_4c', 'value_4d')
     # python.put('put_2')
     # python.put('put_2', 'failures', '345')
     # python.put('put_1', 'xyzzy')
@@ -468,7 +472,7 @@ def test_put():
     # python.put('word_1', 'word_1a')
     # sets key/word_1 to value/word_1a in row with link_key/word_1b
     # python.put('word_1', 'word_1a', 'word_1b')
-    # print('test_put done!')
+    print('test_put done!')
 
 
 def test_get():
@@ -569,6 +573,11 @@ def test_get_html_unescape():
     print('test_get_html_unescape: ' + test_unescape)
 
 
+def test_init():
+    dbtool = DBTool()
+    # print('test_init done!')
+
+
 def test_static_operation():
     DBTool().put('1234', '5678', '9101112')
     test_value = DBTool().get('1234', '5678')
@@ -581,14 +590,14 @@ def test_static_operation():
 
 if __name__ == '__main__':
     # onehotwords
-    test_onehotwords()
+    # test_onehotwords()
 
     # dbtool
-    test_static_operation()
-    test_get_html_unescape()
-    test_init()
+    # test_static_operation()
+    # test_get_html_unescape()
+    # test_init()
     test_put()
-    test_get()
+    #test_get()
     test_get_row_number()
     test_get_row_count()
     create_simple_pkl()
