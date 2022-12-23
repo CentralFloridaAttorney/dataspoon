@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="removed sphinx documentation">
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,7 +162,7 @@
       <workItem from="1671741327557" duration="1246000" />
       <workItem from="1671742623284" duration="5031000" />
       <workItem from="1671750166053" duration="11262000" />
-      <workItem from="1671766692048" duration="7528000" />
+      <workItem from="1671766692048" duration="8665000" />
     </task>
     <task id="LOCAL-00001" summary="removed FOSS">
       <created>1671507769543</created>
@@ -494,7 +493,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671774994321</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="work on README.md">
+      <created>1671776644545</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1671776644545</updated>
+    </task>
+    <task id="LOCAL-00049" summary="work on README.md">
+      <created>1671778136641</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1671778136641</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +550,8 @@
     <MESSAGE value="verified results DBTool test_put()" />
     <MESSAGE value="add requirements.txt, and sphinx documentation" />
     <MESSAGE value="removed sphinx documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed sphinx documentation" />
+    <MESSAGE value="work on README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="work on README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
