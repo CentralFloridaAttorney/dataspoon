@@ -246,7 +246,28 @@ class OneHotDB:
         result = self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
         print('delete_table done!')
 
-    def _get(self, _link_key, _key=None, _value=None):
+    def get(self, _link_key=str, _key=None):
+        """
+        DBTool.get() returns an entire row or the value of a column within a row.
+        :param _link_key: _link_key uniquely identifies the row.
+        :param _key: _key is an optional parameter, which is used to identify the column name.
+        :return: If _key=None then return the entire row.  Otherwise, return the value in the column named _key.
+        """
+        if _key is None:
+            # 1 result: link_key returns the entire row for link_key
+            self._add_column(LINK_KEY)
+            sql_statement = SELECT_STATEMENT.format('*', self.table_name, LINK_KEY, self.get_clean_key(_link_key))
+        else:
+            # 2 result: returns the value for key on the link_key row
+            self._add_column(_key)
+            sql_statement = SELECT_STATEMENT.format(self.get_clean_key(_key),
+                                                    self.table_name,
+                                                    LINK_KEY,
+                                                    self.get_clean_key(_link_key))
+        result = self._execute_mysql(sql_statement)
+        return result
+
+    def _get_old(self, _link_key, _key=None, _value=None):
         if _key is None:
             # 1 result: link_key returns row for link_key
             self._add_column(LINK_KEY)
@@ -262,7 +283,8 @@ class OneHotDB:
                                                                             self.get_clean_key(_link_key),
                                                                             self.get_clean_key(_value))
         result = self._execute_mysql(sql_statement)
-
+        if result is None:
+            result = 'default'
         return result
 
     def _put(self, _link_key, _key_value=None, _value=None):
@@ -310,15 +332,20 @@ class OneHotDB:
 
         return result
 
-    def _get_onehot_indices(self, _link_key):
-        result = self._get(_link_key, 'sentence')
+    def get_onehot_list(self, _link_key):
+        """
+
+        :param _link_key: references the row with the one-hot encoded value
+        :return: returns a list of integers, where each integer is an index to a word in OneHotWords()
+        """
+        result = self.get(_link_key, 'sentence')
+        if result is None:
+            return ['1', '2']
         result = result.lstrip('|')
         indices = result.split('|')
         index_list = []
         for index in indices:
             index_list.append(index)
-        # dataframe = pandas.DataFrame(indices)
-        # dataframe = dataframe.transpose()
         print('get_onehot: ' + _link_key)
         return index_list
 
@@ -332,7 +359,7 @@ class OneHotDB:
         return words
 
     def get_onehot_dataframe(self, _link_key):
-        onehot_indices = self._get_onehot_indices(_link_key)
+        onehot_indices = self.get_onehot_list(_link_key)
         dataframe = pandas.DataFrame(onehot_indices).astype(str)
         dataframe = dataframe.transpose()
         dataframe.columns = self._get_onehot_words(onehot_indices)
@@ -344,15 +371,12 @@ class OneHotDB:
         for word in words:
             clean_word = html.escape(word)
             word_result = OneHotWords().get(clean_word)
-            if word_result is None:
-                OneHotWords().put(clean_word)
-                word_result = OneHotWords().get(clean_word)
             index = str(word_result[0])
             indices.append(index)
         combined_indices = ''
         for part in indices:
             combined_indices = combined_indices + '|' + part
-            clean_link_key = self.get_clean_key(_link_key)
+        clean_link_key = self.get_clean_key(_link_key)
         self._put(clean_link_key, SENTENCE_KEY, combined_indices)
         print('put_onehot: ' + self.get_clean_key(_link_key) + combined_indices)
 
@@ -394,7 +418,7 @@ class OneHotDB:
         print('add_pickle: ' + _pkl_path)
 
     def get_onehot(self, _link_key):
-        onehot_dataframe = self._get_onehot_indices(_link_key)
+        onehot_dataframe = self.get_onehot_list(_link_key)
         translated_value = ''
         for index in onehot_dataframe:
             this_word = OneHotWords().get_word(index)
@@ -469,19 +493,21 @@ def test_get_unescape():
 
 def test_get_onehot():
     onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
-    onehot_indices = onehotdb._get_onehot_indices('first_key')
+    onehotdb.put_onehot('second_key', '''
+spark ml StringIndexer vs OneHotEncoder, when to use which?https://datascience.stackexchange.com › questions › spa...
+Jan 17, 2022 — I don't see many people using StringIndexer, when indexing, but see OneHot as the primary form for categorical indexing. Share.''')
+    onehot_indices = onehotdb.get_onehot_list('first_key')
     onehot_dataframe = onehotdb.get_onehot_dataframe('first_key')
     translated_value_1 = onehotdb.get_onehot('first_key')
-    translated_value_2 = onehotdb.get_onehot('second_key')
-
     print('test_get_onehot: ' + translated_value_1)
-    print('test_get_onehot: ' + translated_value_2)
 
 
 def test_get_onehot_dataframe():
     onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb.put_onehot('first_key', '''Transform Data - Amazon SageMaker - AWS Documentationhttps://docs.aws.amazon.com › data-wrangler-transform
+The Data Wrangler categorical encoders create encodings for all categories that exist in a column at the time the step is defined. If new categories have been ...''')
     dataframe = onehotdb.get_onehot_dataframe('first_key')
-    print('test_get_onehote_dtaframe done!')
+    print('test_get_onehot_dataframe done!')
 
 
 def test_put_onehot():
@@ -489,7 +515,7 @@ def test_put_onehot():
     onehotdb.put_onehot('first_key', "Abra kadab'ro'")
     onehotdb.put_onehot('second_key', '''This is an elegant approach, to do the search and replace using a <code>formatter</code>. However, if I hadn't seen @Martijn Pieters answer it would be a bit mysterious, so I will mark his as the accepted answer since it has more explanation. Richard Neish Feb 28, 2013 at 15:19 ''')
 
-    first_key_value = onehotdb._get_onehot_indices('first_key')
+    first_key_value = onehotdb.get_onehot_list('first_key')
     print('test_put_onehot get_onehot: ' + first_key_value[0])
 
 
@@ -513,17 +539,17 @@ def test_delete_table():
 
 
 if __name__ == '__main__':
-    test_delete_table()
-    test_delete_database()
-    test_init()
-    test_get_row_count()
-    test_add_data_frame()
-    test_get_clean_key()
-    test_get_unescape()
-    test_put_onehot()
+    # test_delete_table()
+    # test_delete_database()
+    # test_init()
+    # test_get_row_count()
+    # test_add_data_frame()
+    # test_get_clean_key()
+    # test_get_unescape()
+    # test_put_onehot()
     test_get_onehot()
-    test_get_onehot_dataframe()
-    test_add_pickle()
-    test_to_pickle()
+    # test_get_onehot_dataframe()
+    # test_add_pickle()
+    # test_to_pickle()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")

@@ -114,7 +114,8 @@ DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
 value = DBTool('magicdb').get('xyzzy', 'ala')
 ````
 
-### onehotdb dynamically creates one-hot indexes
+### onehotdb functions as a onehot encoder
+
 
 
 And, to perform the same operation in a different database ('magic_carpet') and a different table ('magic_table')

@@ -443,9 +443,14 @@ class OneHotWords(DBTool):
         # print('__init__ done!')
 
     def get_word(self, _index):
-        sql_statement = "SELECT link_key FROM {0} WHERE id = '{1}';".format(self.table_name, str(_index))
+        # try to get the word at _index, if it fails then add _index
+        sql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format(LINK_KEY,
+                                                                        self.table_name,
+                                                                        'id',
+                                                                        str(_index))
         this_word = self._execute_mysql(sql_statement)
-        # print('get_word done!')
+        if this_word is None:
+            this_word = 'default'
         return this_word
 
     def get_index(self, _word):

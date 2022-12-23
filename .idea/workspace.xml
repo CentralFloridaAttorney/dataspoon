@@ -4,11 +4,65 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="update README.md">
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="verified results DBTool test_put()">
+      <change afterPath="$PROJECT_DIR$/docs/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/make.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/dbtool.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/modules.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/onehotdb.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/readme.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/.buildinfo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/.doctrees/dbtool.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/.doctrees/environment.pickle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/.doctrees/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/.doctrees/modules.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/.doctrees/onehotdb.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_sources/dbtool.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_sources/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_sources/modules.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_sources/onehotdb.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/_sphinx_javascript_frameworks_compat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/background_b01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/basic.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/bizstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/bizstyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/css3-mediaqueries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/css3-mediaqueries_src.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/doctools.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/documentation_options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/file.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/jquery-3.6.0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/language_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/minus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/plus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/pygments.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/searchtools.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/underscore-1.13.1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/_static/underscore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/dbtool.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/genindex.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/modules.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/objects.inv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/onehotdb.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/searchindex.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/f/2f8364351a507fd4ee684f8de02b0f5ccaf97587" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/c/4ce915c3f97350f01885c9ad91f56d795a95429b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c7ee83aa92607e41d21c1c096082c59e58f1fea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/f/8f4bd983d78720f6d42f9737983fe43836a9523b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/1/a1a218abffde15d621cbabe723f0171bfa2057e0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/c/bc6f444bf8bbf2fdca307d1b75d7c4a0c60defae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dbtool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/onehotdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/onehotdb.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,33 +94,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "true",
-    "last_opened_file_path": "/home/overlordx/PycharmProjects/dataspoon/temp",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/overlordx/PycharmProjects/dataspoon/temp&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "MySQL",
-      "Oracle"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;MySQL&quot;,
+      &quot;Oracle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data/pkl" />
@@ -75,7 +129,13 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dbtool">
+  <component name="RunManager" selected="JavaScript Debug.readme.html">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dataspoon/docs/build/html/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="readme.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dataspoon/docs/build/html/readme.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="dbtool" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,58 +202,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Doctests in DBTool" type="tests" factoryName="Doctests" temporary="true" nameIsGenerated="true">
-      <module name="dataspoon" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dbtool.py" />
-      <option name="CLASS_NAME" value="DBTool" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_CLASS" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Doctests in dbtool" type="tests" factoryName="Doctests" temporary="true" nameIsGenerated="true">
-      <module name="dataspoon" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dbtool.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
     <list>
+      <item itemvalue="JavaScript Debug.readme.html" />
+      <item itemvalue="JavaScript Debug.index.html" />
       <item itemvalue="Python.dbtool" />
       <item itemvalue="Python.onehotdb" />
       <item itemvalue="Python.speed_test" />
-      <item itemvalue="Python tests.Doctests in DBTool" />
-      <item itemvalue="Python tests.Doctests in dbtool" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dbtool" />
+        <item itemvalue="JavaScript Debug.readme.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Python.onehotdb" />
+        <item itemvalue="Python.dbtool" />
         <item itemvalue="Python.speed_test" />
-        <item itemvalue="Python tests.Doctests in dbtool" />
-        <item itemvalue="Python tests.Doctests in DBTool" />
       </list>
     </recent_temporary>
   </component>
@@ -214,7 +236,8 @@
       <workItem from="1671726514442" duration="13272000" />
       <workItem from="1671741327557" duration="1246000" />
       <workItem from="1671742623284" duration="5031000" />
-      <workItem from="1671750166053" duration="4189000" />
+      <workItem from="1671750166053" duration="11262000" />
+      <workItem from="1671766692048" duration="3409000" />
     </task>
     <task id="LOCAL-00001" summary="removed FOSS">
       <created>1671507769543</created>
@@ -517,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671752443174</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="verified results DBTool test_put()">
+      <created>1671754546154</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1671754546154</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,7 +587,8 @@
     <MESSAGE value="work on documentation dbtool.py put()" />
     <MESSAGE value="code coverage on tests 94%" />
     <MESSAGE value="update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="update README.md" />
+    <MESSAGE value="verified results DBTool test_put()" />
+    <option name="LAST_COMMIT_MESSAGE" value="verified results DBTool test_put()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -574,28 +605,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>600</line>
+          <line>605</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>474</line>
+          <line>479</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>461</line>
+          <line>466</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>432</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <line>362</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/dbtool.py</url>
-          <line>402</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <line>501</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <line>500</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <line>358</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <line>373</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -604,9 +650,9 @@
     <SUITE FILE_PATH="coverage/dataspoon$pkl2sql.coverage" NAME="pkl2sql Coverage Results" MODIFIED="1671540338740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$simple_database.coverage" NAME="speed_test Coverage Results" MODIFIED="1671740589610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
     <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1671751222068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
-    <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1671751241875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1671763215855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$Doctests_in_dbtool.coverage" NAME="Doctests in dbtool Coverage Results" MODIFIED="1671740445782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
-    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1671754351319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1671754365271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb__1_.coverage" NAME="onehotdb (1) Coverage Results" MODIFIED="1671508484114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
     <SUITE FILE_PATH="coverage/dataspoon$feedparser.coverage" NAME="feedparser Coverage Results" MODIFIED="1671649840399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb__2_.coverage" NAME="onehotdb (2) Coverage Results" MODIFIED="1671599684375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
