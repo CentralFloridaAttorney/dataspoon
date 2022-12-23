@@ -1,5 +1,2 @@
 mysql-connector-python
 myst-parser
-pyautogui
-python3-xlib
-pillow==9.3.0
