@@ -5,7 +5,7 @@ import mysql
 import pandas
 from mysql.connector import Error
 
-from python.dbtool import OneHotWords
+from python.dataspoon.dbtool import OneHotWords
 
 # edit configuration /etc/mysql/mysql.conf.d/mysqld.cnf to change bind-address/127.0.0.1 and port/3306
 # configuration edits require terminal commands: sudo service mysql stop, start, status

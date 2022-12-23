@@ -1,7 +1,7 @@
 import datetime
 import html
 
-from python.dbtool import DBTool
+from python.dataspoon.dbtool import DBTool
 
 # This example demonstrates the use of DBTool as a static tool
 # The following code inserts the current time in the column named 'time' in the row with a link_key 'xyzzy'

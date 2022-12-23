@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/docs/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Tkinter-By-Example-master" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (mysql_3_8_13)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -4,9 +4,78 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on README.md">
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="begin working on gui/main.py">
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter1-1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter1-2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter2-1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter2-2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter2-3-abridged.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter2-3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter3-1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter3-2-abridged.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter3-2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter3-3-LanguageTab.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter3-3-NewLanguageForm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter3-3-TranslateBook.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter3-3-ttk.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter3-3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter4-1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter4-2-abridged.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter4-2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter5-1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter5-2-abridged.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter5-2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter5-3-abridged.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter5-3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter6-1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter6-2-abridged.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter6-2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter6-3-abridged.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter6-3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter6-regex-explain.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter7-1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter7-2-abridged.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter7-2-old.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter7-2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter7-3-abridged.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter7-3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/.directory" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch1-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch2-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch3-1-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch3-1-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch3-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch3-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch4-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch5-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch6-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch6-ws.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch7-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Images/Ch7-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/Tkinter-By-Example.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/assets/Tkinter-By-Example.epub" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/assets/Tkinter-By-Example.mobi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/assets/Tkinter-By-Example.tex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/assets/key.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/assets/questionmark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/assets/roomProject.xcf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/assets/scene1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/assets/scene2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/assets/scene3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tkinter-By-Example-master/ini_files/test.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configuration.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/dataspoon/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/tkinter/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/tkinter/inieditor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/speed_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/speed_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/dbtool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/main_gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/onehotdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/onehotdb.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,20 +139,15 @@
       <recent name="$PROJECT_DIR$/data/pkl" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/python/dataspoon" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.genindex.html">
+  <component name="RunManager" selected="Python.main_gui">
     <configuration name="genindex.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dataspoon/docs/build/html/genindex.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dataspoon/docs/build/html/index.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="readme.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dataspoon/docs/build/html/readme.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="onehotdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Chapter2-3-abridged" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -91,12 +155,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tkinter-By-Example-master/Code" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/onehotdb.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter2-3-abridged.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -105,7 +169,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="speed_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Chapter2-3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -113,12 +177,56 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tkinter-By-Example-master/Code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter2-3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="inieditor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dataspoon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/tkinter" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/speed_test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/tkinter/inieditor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_gui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dataspoon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/dataspoon" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dataspoon/main_gui.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -129,18 +237,18 @@
     </configuration>
     <list>
       <item itemvalue="JavaScript Debug.genindex.html" />
-      <item itemvalue="JavaScript Debug.readme.html" />
-      <item itemvalue="JavaScript Debug.index.html" />
-      <item itemvalue="Python.onehotdb" />
-      <item itemvalue="Python.speed_test" />
+      <item itemvalue="Python.Chapter2-3" />
+      <item itemvalue="Python.Chapter2-3-abridged" />
+      <item itemvalue="Python.inieditor" />
+      <item itemvalue="Python.main_gui" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main_gui" />
+        <item itemvalue="Python.Chapter2-3-abridged" />
+        <item itemvalue="Python.Chapter2-3" />
+        <item itemvalue="Python.inieditor" />
         <item itemvalue="JavaScript Debug.genindex.html" />
-        <item itemvalue="JavaScript Debug.index.html" />
-        <item itemvalue="Python.speed_test" />
-        <item itemvalue="JavaScript Debug.readme.html" />
-        <item itemvalue="Python.onehotdb" />
       </list>
     </recent_temporary>
   </component>
@@ -162,21 +270,7 @@
       <workItem from="1671741327557" duration="1246000" />
       <workItem from="1671742623284" duration="5031000" />
       <workItem from="1671750166053" duration="11262000" />
-      <workItem from="1671766692048" duration="8665000" />
-    </task>
-    <task id="LOCAL-00001" summary="removed FOSS">
-      <created>1671507769543</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1671507769543</updated>
-    </task>
-    <task id="LOCAL-00002" summary="removed FOSS">
-      <created>1671508116539</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1671508116539</updated>
+      <workItem from="1671766692048" duration="14345000" />
     </task>
     <task id="LOCAL-00003" summary="initial tests are working">
       <created>1671508557072</created>
@@ -507,7 +601,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671778136641</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="work on README.md">
+      <created>1671778553754</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1671778553756</updated>
+    </task>
+    <task id="LOCAL-00051" summary="begin working on gui/main.py">
+      <created>1671779399651</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1671779399651</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -526,7 +634,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed FOSS" />
     <MESSAGE value="initial tests are working" />
     <MESSAGE value="working on initial tests" />
     <MESSAGE value="updated project image in README.md" />
@@ -551,75 +658,85 @@
     <MESSAGE value="add requirements.txt, and sphinx documentation" />
     <MESSAGE value="removed sphinx documentation" />
     <MESSAGE value="work on README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="work on README.md" />
+    <MESSAGE value="begin working on gui/main.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="begin working on gui/main.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/dbtool.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/dbtool.py</url>
           <line>203</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/dbtool.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/dbtool.py</url>
           <line>204</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/dbtool.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/dbtool.py</url>
           <line>605</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/dbtool.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/dbtool.py</url>
           <line>479</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/dbtool.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/dbtool.py</url>
           <line>466</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
           <line>362</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
           <line>501</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
           <line>500</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
           <line>358</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/onehotdb.py</url>
+          <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
           <line>373</line>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/tkinter/inieditor.py</url>
+          <line>82</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/dataspoon$pkl2sql.coverage" NAME="pkl2sql Coverage Results" MODIFIED="1671540338740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$simple_database.coverage" NAME="speed_test Coverage Results" MODIFIED="1671740589610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
-    <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1671771024279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
-    <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1671763215855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$main_gui.coverage" NAME="main_gui Coverage Results" MODIFIED="1671807325361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$Doctests_in_dbtool.coverage" NAME="Doctests in dbtool Coverage Results" MODIFIED="1671740445782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1671754365271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
-    <SUITE FILE_PATH="coverage/dataspoon$onehotdb__1_.coverage" NAME="onehotdb (1) Coverage Results" MODIFIED="1671508484114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
     <SUITE FILE_PATH="coverage/dataspoon$feedparser.coverage" NAME="feedparser Coverage Results" MODIFIED="1671649840399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$Chapter2_3.coverage" NAME="Chapter2-3 Coverage Results" MODIFIED="1671806328787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tkinter-By-Example-master/Code" />
+    <SUITE FILE_PATH="coverage/dataspoon$Doctests_in_DBTool.coverage" NAME="Doctests in DBTool Coverage Results" MODIFIED="1671740382895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$pkl2sql.coverage" NAME="pkl2sql Coverage Results" MODIFIED="1671540338740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1671771024279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
+    <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1671763215855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$Chapter2_3_abridged.coverage" NAME="Chapter2-3-abridged Coverage Results" MODIFIED="1671806481523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tkinter-By-Example-master/Code" />
+    <SUITE FILE_PATH="coverage/dataspoon$onehotdb__1_.coverage" NAME="onehotdb (1) Coverage Results" MODIFIED="1671508484114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb__2_.coverage" NAME="onehotdb (2) Coverage Results" MODIFIED="1671599684375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1671686012205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
-    <SUITE FILE_PATH="coverage/dataspoon$Doctests_in_DBTool.coverage" NAME="Doctests in DBTool Coverage Results" MODIFIED="1671740382895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/dataspoon$inieditor.coverage" NAME="inieditor Coverage Results" MODIFIED="1671805448187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/tkinter" />
   </component>
 </project>

@@ -82,21 +82,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://CentralFloridaAttorney.net)
-
-
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started With dataspoon
@@ -269,6 +260,7 @@ Project Link: [https://github.com/CentralFloridaAttorney/dbtool](https://github.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+[![Product Name Screen Shot][product-screenshot]](https://CentralFloridaAttorney.net)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
