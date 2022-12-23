@@ -22,7 +22,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![License: GPL v2][license-shield][license-url]
+[![License: GPL v2][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 # Why use dataspoon?
