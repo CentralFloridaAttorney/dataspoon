@@ -36,11 +36,11 @@ from python.dataspoon.dbtool import OneHotWords
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-HOST = 'localhost'
-# HOST = '192.168.1.227'
-USER = 'bilbo'
-PASSWD = 'baggins'
-PORT = '3306'
+# HOST = 'localhost'
+HOST = '192.168.1.227'
+USER = 'overlordx'
+PASSWD = 'atomic99'
+PORT = '50011'
 DB_NAME = 'onehotdb'
 TABLE_NAME = 'sentences'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
@@ -63,7 +63,7 @@ HTML_UNESCAPE_TABLE = {
 }
 SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
 HASH_MOD = 1
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__)).rsplit('/', 1)[0] + '/'
 ONEHOT_DB_NAME = 'onehot_tool'
 ONE_HOT_WORD_TABLE_NAME = 'test_dict'
 SENTENCE_KEY = 'sentence'
@@ -242,7 +242,8 @@ class OneHotDB:
         # print('delete_database: ' + _database_name)
 
     def delete_table(self, _table_name):
-        mysql_drop_table = "DROP TABLE `{0}`.`{1}`;".format(self.database_name, self.get_clean_key(_table_name))
+        mysql_drop_table = "DROP TABLE '{0}'/.'{1}';".format(self.database_name,
+                                                             self.get_clean_key(_table_name))
         result = self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
         print('delete_table done!')
 
@@ -325,7 +326,8 @@ class OneHotDB:
             row_number = self.get_row_number(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name,
                                                                                     self.get_clean_key(_key_value),
-                                                                                    self.get_clean_key(_value), row_number)
+                                                                                    self.get_clean_key(_value),
+                                                                                    row_number)
         self._execute_mysql(mysql_statement)
         # print('put: ')
         result = self.get_row_number(_link_key)
@@ -370,7 +372,7 @@ class OneHotDB:
         indices = []
         for word in words:
             clean_word = html.escape(word)
-            word_result = OneHotWords().get(clean_word)
+            word_result = OneHotWords().get_word(clean_word)
             index = str(word_result[0])
             indices.append(index)
         combined_indices = ''
@@ -379,6 +381,7 @@ class OneHotDB:
         clean_link_key = self.get_clean_key(_link_key)
         self._put(clean_link_key, SENTENCE_KEY, combined_indices)
         print('put_onehot: ' + self.get_clean_key(_link_key) + combined_indices)
+        return combined_indices
 
     def get_row_number(self, _link_key, _key=None):
         # select_template = '''SELECT * FROM seminole_main.seminole_main where link_key = "jurney";'''
@@ -418,6 +421,12 @@ class OneHotDB:
         print('add_pickle: ' + _pkl_path)
 
     def get_onehot(self, _link_key):
+        test_link_key = _link_key.split(' ')
+        try:
+            first_value = test_link_key[0]
+        except AttributeError as err:
+            print(err.name)
+
         onehot_dataframe = self.get_onehot_list(_link_key)
         translated_value = ''
         for index in onehot_dataframe:
@@ -448,43 +457,43 @@ def create_dataframe():
     data_frame = data_frame.transpose()
     columns = ['username', 'password']
     data_frame.columns = columns
-    data_frame.to_pickle('../data/users.pkl')
+    data_frame.to_pickle('../../data/users.pkl')
     return data_frame
 
 
 def test_init():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'put_word_table')
     # print('test_init done!')
 
 
 def test_get_row_count():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     row_count = onehotdb.get_row_count()
     print('test_get_row_count: ' + str(row_count))
 
 
 def test_get_clean_key():
     KEY = "Instrument #"
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     clean_key = onehotdb.get_clean_key(KEY)
     print('test_get_clean_key: ' + clean_key)
 
 
 def test_add_data_frame():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     onehotdb.add_dataframe(create_dataframe())
     print('test_add_dataframe: ')
 
 
 def test_add_pickle():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
-    onehotdb.add_pickle('../data/pkl/CaseGrid.pkl', 'case_grid')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
+    onehotdb.add_pickle('../../data/pkl/CaseGrid.pkl', 'case_grid')
 
     print('test_sql2pkl done!')
 
 
 def test_get_unescape():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     string_value = '''This is the "best" test of the * everything & nothing.'''
     escaped_string = html.escape(string_value)
     unescaped_string = html.unescape(escaped_string)
@@ -492,7 +501,7 @@ def test_get_unescape():
 
 
 def test_get_onehot():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     onehotdb.put_onehot('second_key', '''
 spark ml StringIndexer vs OneHotEncoder, when to use which?https://datascience.stackexchange.com › questions › spa...
 Jan 17, 2022 — I don't see many people using StringIndexer, when indexing, but see OneHot as the primary form for categorical indexing. Share.''')
@@ -503,7 +512,7 @@ Jan 17, 2022 — I don't see many people using StringIndexer, when indexing, but
 
 
 def test_get_onehot_dataframe():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     onehotdb.put_onehot('first_key', '''Transform Data - Amazon SageMaker - AWS Documentationhttps://docs.aws.amazon.com › data-wrangler-transform
 The Data Wrangler categorical encoders create encodings for all categories that exist in a column at the time the step is defined. If new categories have been ...''')
     dataframe = onehotdb.get_onehot_dataframe('first_key')
@@ -511,45 +520,45 @@ The Data Wrangler categorical encoders create encodings for all categories that 
 
 
 def test_put_onehot():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     onehotdb.put_onehot('first_key', "Abra kadab'ro'")
-    onehotdb.put_onehot('second_key', '''This is an elegant approach, to do the search and replace using a <code>formatter</code>. However, if I hadn't seen @Martijn Pieters answer it would be a bit mysterious, so I will mark his as the accepted answer since it has more explanation. Richard Neish Feb 28, 2013 at 15:19 ''')
+    onehotdb.put_onehot('second_key',
+                        '''This is an elegant approach, to do the search and replace using a <code>formatter</code>. However, if I hadn't seen @Martijn Pieters answer it would be a bit mysterious, so I will mark his as the accepted answer since it has more explanation. Richard Neish Feb 28, 2013 at 15:19 ''')
 
     first_key_value = onehotdb.get_onehot_list('first_key')
     print('test_put_onehot get_onehot: ' + first_key_value[0])
 
 
 def test_to_pickle():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     onehotdb.to_pickle('data/put_word_table.pkl')
     print('test_to_pickle done!')
 
 
 def test_delete_database():
-    temp_onehotdb = OneHotDB('temp_db')
-    temp_onehotdb.delete_database('temp_db')
+    temp_onehotdb = OneHotDB('test_onehotdb')
+    temp_onehotdb.delete_database('test_onehotdb')
 
 
 def test_delete_table():
-    onehotdb = OneHotDB('test_out_word_db', 'put_word_table')
+    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     onehotdb.open_table('temp_table')
     onehotdb.delete_table('temp_table')
     print('test_delete_table done!')
 
 
-
 if __name__ == '__main__':
-    # test_delete_table()
-    # test_delete_database()
-    # test_init()
-    # test_get_row_count()
-    # test_add_data_frame()
-    # test_get_clean_key()
-    # test_get_unescape()
-    # test_put_onehot()
+    test_delete_table()
+    test_delete_database()
+    test_init()
+    test_get_row_count()
+    test_add_data_frame()
+    test_get_clean_key()
+    test_get_unescape()
+    test_put_onehot()
     test_get_onehot()
-    # test_get_onehot_dataframe()
-    # test_add_pickle()
-    # test_to_pickle()
+    test_get_onehot_dataframe()
+    test_add_pickle()
+    test_to_pickle()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")

@@ -34,11 +34,11 @@ from mysql.connector import Error
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-# HOST = '192.168.1.227'
-HOST = 'localhost'
-USER = 'bilbo'
-PASSWD = 'baggins'
-PORT = '3306'
+HOST = '192.168.1.227'
+# HOST = 'localhost'
+USER = 'overlordx'
+PASSWD = 'atomic99'
+PORT = '50011'
 DB_NAME = 'dbtool'
 DEFAULT_TABLE_NAME = 'default_table'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
@@ -302,9 +302,12 @@ class DBTool:
         # select_template = '''SELECT * FROM seminole_main.seminole_main where link_key = "jurney";'''
         # clean_link_key = str(re.sub(LEGAL_CHARACTERS, '_', clean_link_key.strip()))
         if _value is None:
-            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, LINK_KEY, self.get_clean_key(_link_key))
+            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, LINK_KEY,
+                                                                         self.get_clean_key(_link_key))
         else:
-            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, self.get_clean_key(_link_key), self.get_clean_key(_value))
+            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name,
+                                                                         self.get_clean_key(_link_key),
+                                                                         self.get_clean_key(_value))
 
         row_number = self._execute_mysql(select_sql)
         # print('get_row_number: ' + clean_link_key + ' = ' + str(row_number))
@@ -343,8 +346,6 @@ class DBTool:
         # self._add_column('link_key')
         # print('open_table: ' + _table_name)
 
-
-
     def to_pickle(self, _file_path):
         mysql_statement = "SELECT * FROM {0}".format(self.table_name)
         result = self._execute_mysql(mysql_statement)
@@ -379,7 +380,8 @@ class DBTool:
         if _link_key_value is None:
             row_number = self.get_row_number(_link_key)
             # returns the row_number from mysql_statement = select all from table_name where LINK_KEY is _link_key
-            mysql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('*', self.table_name, LINK_KEY,self.get_clean_key(_link_key))
+            mysql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('*', self.table_name, LINK_KEY,
+                                                                              self.get_clean_key(_link_key))
             if row_number == 0:
                 # add a link_key = _link_key
                 mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name,
@@ -464,8 +466,8 @@ def test_put():
     # dbtool = DBTool()
     dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
     row_1 = dbtool.put('value_1a')
-    row_2 = dbtool.put('value_1a', 'value_2b') # creates link_key ('xyzzy') and puts key/value ('failures'/'543')
-    row_3 = dbtool.put('value_3a', 'value_3b', 'value_3c') # creates link_key ('new_link_key')
+    row_2 = dbtool.put('value_1a', 'value_2b')  # creates link_key ('xyzzy') and puts key/value ('failures'/'543')
+    row_3 = dbtool.put('value_3a', 'value_3b', 'value_3c')  # creates link_key ('new_link_key')
     row_4 = dbtool.put('value_4a', 'value_4b', 'value_4c', 'value_4d')
     # python.put('put_2')
     # python.put('put_2', 'failures', '345')
@@ -482,7 +484,7 @@ def test_put():
 
 def test_get():
     dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
-    link_key_index = dbtool.get('xyzzy') # returns row_number of link_key ('xyzzy')
+    link_key_index = dbtool.get('xyzzy')  # returns row_number of link_key ('xyzzy')
     dbtool.put('xyzzy', 'failures', '2469')
     value = dbtool.get('xyzzy', 'failures')
     print('index of put_2 from test_get(): ' + str(link_key_index))
@@ -602,7 +604,7 @@ if __name__ == '__main__':
     # test_get_html_unescape()
     # test_init()
     test_put()
-    #test_get()
+    # test_get()
     test_get_row_number()
     test_get_row_count()
     create_simple_pkl()
