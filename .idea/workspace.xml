@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="add requirements.txt, and sphinx documentation">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/f/ff9842780334be713ece2fd070bfb2afe6f23eba" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="removed sphinx documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/make.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/dbtool.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/modules.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/onehotdb.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/readme.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/speed_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/speed_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +163,7 @@
       <workItem from="1671741327557" duration="1246000" />
       <workItem from="1671742623284" duration="5031000" />
       <workItem from="1671750166053" duration="11262000" />
-      <workItem from="1671766692048" duration="5592000" />
+      <workItem from="1671766692048" duration="7528000" />
     </task>
     <task id="LOCAL-00001" summary="removed FOSS">
       <created>1671507769543</created>
@@ -489,7 +480,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671770512634</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="removed sphinx documentation">
+      <created>1671774711013</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1671774711013</updated>
+    </task>
+    <task id="LOCAL-00047" summary="removed sphinx documentation">
+      <created>1671774994321</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1671774994321</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +536,8 @@
     <MESSAGE value="update README.md" />
     <MESSAGE value="verified results DBTool test_put()" />
     <MESSAGE value="add requirements.txt, and sphinx documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="add requirements.txt, and sphinx documentation" />
+    <MESSAGE value="removed sphinx documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed sphinx documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

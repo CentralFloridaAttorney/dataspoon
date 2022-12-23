@@ -22,10 +22,11 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[![License: GPL v2][https://img.shields.io/badge/License-GPL_v2-blue.svg][https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-Why use dataspoon?
+# Why use dataspoon?
+
 
 <!-- PROJECT LOGO -->
 <br />
