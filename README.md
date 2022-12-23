@@ -279,8 +279,8 @@ Project Link: [https://github.com/CentralFloridaAttorney/dbtool](https://github.
 [stars-url]: https://github.com/CentralFloridaAttorney/dbtool/stargazers
 [issues-shield]: https://img.shields.io/github/issues/CentralFloridaAttorney/dbtool.svg?style=for-the-badge
 [issues-url]: https://github.com/CentralFloridaAttorney/dbtool/issues
-[license-shield]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html]
-[license-url]: https://github.com/CentralFloridaAttorney/dbtool/blob/master/LICENSE.txt]
+[license-shield]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+[license-url]: https://github.com/CentralFloridaAttorney/dbtool/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]:https://www.linkedin.com/in/john-m-iriye-3136478
 [product-screenshot]: images/dataspoon_project.png
