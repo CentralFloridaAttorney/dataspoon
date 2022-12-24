@@ -404,7 +404,7 @@ class DBTool:
             # index 0 is id and index 1 is link_key, copied values thus begin at index 2
             for index in range(2, len(old_keys), 1):
                 if old_values[index] is None:
-                    # if a key/value is null then consider setting value as 'default'
+                    # if a key/value is null then consider setting value s 'default'
                     # self.put(_to_link_key, old_keys[index], 'default')
                     pass
                 else:

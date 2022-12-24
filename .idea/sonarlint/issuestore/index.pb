@@ -1,7 +1,4 @@
 
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 ;
 LICENSE.txt,7/9/79b82ce9b64a924266619555502f890dd80c83b9
 Å
@@ -14,8 +11,6 @@ Q.idea/shelf/Uncommitted_changes_before_Update_at_12_19_22__10_42_PM__Changes_.x
 [.idea/shelf/Uncommitted_changes_before_Update_at_12_19_22,_10_42_PM_[Changes]/shelved.patch,4/d/4d85a3c87ef0587f9256d3f5e753b9a3db403afb
 w
 G.idea/sonarlint/issuestore/a/5/a56fb76b81466c79cdee7d4ea49fc2392440282e,6/8/68e1e6d338a84c78fc63e0d9c1cf501ad695e6e6
-w
-G.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,e/d/ed67eb178d523a4b3f117dcbe0eda5196367ceec
 w
 G.idea/sonarlint/issuestore/1/e/1e9075f5bf079c01ef2c910709e91a497d262080,2/5/2511a7590eb091d560dac1615e6bcef0ceeaffb6
 w
