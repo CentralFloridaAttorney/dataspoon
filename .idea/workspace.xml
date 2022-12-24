@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="onehotdb.py put_onehot() and get_onehot() are working">
-      <change afterPath="$PROJECT_DIR$/data/txt/onehot_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="major work restructuring dbtool.get() and dbtool.put()">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/dataspoon/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/dbtool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dataspoon/onehotdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/onehotdb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dataspoon/onehotdb_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/onehotdb_gui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +24,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="5f7c7a64-6221-4770-b5b9-6f43d387ec7f" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -325,7 +317,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671820508060</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="major work restructuring dbtool.get(0 and dbtool.put()">
+      <created>1671923861554</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1671923861554</updated>
+    </task>
+    <task id="LOCAL-00017" summary="major work restructuring dbtool.get() and dbtool.put()">
+      <created>1671923948829</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1671923948829</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +359,9 @@
     <MESSAGE value="basic tests on onehotdb.py appear to be working, 74% line coverage on tests for project" />
     <MESSAGE value="work on tests 75% coverage" />
     <MESSAGE value="onehotdb.py put_onehot() and get_onehot() are working" />
-    <option name="LAST_COMMIT_MESSAGE" value="onehotdb.py put_onehot() and get_onehot() are working" />
+    <MESSAGE value="major work restructuring dbtool.get(0 and dbtool.put()" />
+    <MESSAGE value="major work restructuring dbtool.get() and dbtool.put()" />
+    <option name="LAST_COMMIT_MESSAGE" value="major work restructuring dbtool.get() and dbtool.put()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
