@@ -36,11 +36,11 @@ from python.dataspoon.dbtool import OneHotWords
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-# HOST = 'localhost'
-HOST = '192.168.1.227'
-USER = 'overlordx'
-PASSWD = 'atomic99'
-PORT = '50011'
+HOST = 'localhost'
+# HOST = '192.168.1.227'
+USER = 'bilbo'
+PASSWD = 'baggins'
+PORT = '3306'
 DB_NAME = 'onehotdb'
 TABLE_NAME = 'sentences'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
@@ -208,7 +208,7 @@ class OneHotDB:
             self.table_name = self.get_clean_key(_table_name)
 
         # When you open_database self.table_name does not change
-        # self.table is used in: _add_column, get, get_row_number, open_table, add_dataframe, and put
+        # self.table is used in: _add_column, get, get_id, open_table, add_dataframe, and put
         # The default value for self.table_name is python
         # Therefore, _table_name may be required for open_database
 
@@ -222,7 +222,7 @@ class OneHotDB:
     def open_table(self, _table_name):
         # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
         self.table_name = self.get_clean_key(_table_name)
-        # clean_table_name = self.get_clean_key(self.table_name)
+        # clean_table_name = self.get_clean_key_string(self.table_name)
         mysql_open_table = "CREATE TABLE {0} (id int(10) NOT NULL AUTO_INCREMENT, ".format(self.table_name)
         mysql_open_table += LINK_KEY + " varchar(255), PRIMARY KEY (id));"
         self._execute_mysql(mysql_open_table)
@@ -231,7 +231,7 @@ class OneHotDB:
 
     def _add_column(self, _column_name):
         query = "ALTER TABLE {0} ADD {1} VARCHAR(4096);".format(self.table_name, self.get_clean_key(_column_name))
-        # values = [self.table_name, self.get_clean_key(_column_name)]
+        # values = [self.table_name, self.get_clean_key_string(_column_name)]
 
         self._execute_mysql(query)
         # print('Add column: '+ _column_name)
@@ -314,7 +314,7 @@ class OneHotDB:
                                                                                        LINK_KEY,
                                                                                        self.get_clean_key(_link_key))
             self._put(self.get_clean_key(_link_key))
-            # self._add_column(self.get_clean_key(_link_key_value))
+            # self._add_column(self.get_clean_key_string(_link_key_value))
             row_number = self.get_row_number(self.get_clean_key(_link_key))
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE id = '{3}';".format(self.table_name, LINK_KEY,
                                                                                     self.get_clean_key(_key_value),
@@ -344,7 +344,7 @@ class OneHotDB:
         if result is None:
             return ['1', '2']
         result = result.lstrip('|')
-        indices = result.split('|')
+        indices = result.split(',')
         index_list = []
         for index in indices:
             index_list.append(index)
@@ -371,16 +371,18 @@ class OneHotDB:
         words = _string.strip().split(' ')
         indices = []
         for word in words:
-            clean_word = html.escape(word)
-            word_result = OneHotWords().get_word(clean_word)
-            index = str(word_result[0])
-            indices.append(index)
-        combined_indices = ''
+            if word != '':
+                clean_word = html.escape(word)
+                word_result = OneHotWords().put(clean_word)
+                index = str(word_result)
+                indices.append(index)
+        combined_indices = '|'
         for part in indices:
-            combined_indices = combined_indices + '|' + part
+            combined_indices = combined_indices + part + ','
+        combined_indices = combined_indices.rstrip(',')
         clean_link_key = self.get_clean_key(_link_key)
         self._put(clean_link_key, SENTENCE_KEY, combined_indices)
-        print('put_onehot: ' + self.get_clean_key(_link_key) + combined_indices)
+        # print('put_onehot: ' + self.get_clean_key_string(_link_key) + combined_indices)
         return combined_indices
 
     def get_row_number(self, _link_key, _key=None):
@@ -394,7 +396,7 @@ class OneHotDB:
             select_sql = "SELECT id FROM {0} WHERE {1} = '{2}';".format(self.table_name, LINK_KEY, clean_key)
 
         row_number = self._execute_mysql(select_sql)
-        # print('get_row_number: ' + clean_link_key + ' = ' + str(row_number))
+        # print('get_id: ' + clean_link_key + ' = ' + str(row_number))
         if row_number is None:
             return 0
         else:

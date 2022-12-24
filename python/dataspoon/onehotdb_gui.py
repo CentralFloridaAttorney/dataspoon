@@ -23,7 +23,7 @@ class OneHotDBGUI(tk.Tk):
         self.menubar = tk.Menu(self, bg="lightgrey", fg="black")
 
         self.file_menu = tk.Menu(self.menubar, tearoff=0, bg="lightgrey", fg="black")
-        self.file_menu.add_command(label="Open", command=self.file_open, accelerator="Ctrl+O")
+        self.file_menu.add_command(label="Open", command=self.open_data_file, accelerator="Ctrl+O")
         self.file_menu.add_command(label="Save", command=self.file_save, accelerator="Ctrl+S")
 
         self.menubar.add_cascade(label="File", menu=self.file_menu)
@@ -50,18 +50,18 @@ class OneHotDBGUI(tk.Tk):
 
         self.right_frame.bind("<Configure>", self.frame_height)
 
-        self.bind("<Control-o>", self.file_open)
+        self.bind("<Control-o>", self.open_data_file)
         self.bind("<Control-s>", self.file_save)
 
     def frame_height(self, event=None):
         new_height = self.winfo_height()
         self.right_frame.configure(height=new_height)
 
-    def file_open(self, event=None):
-        data_file = filedialog.askopenfilename(initialdir='../../')
+    def open_data_file(self, event=None):
+        data_file = filedialog.askopenfilename(initialdir='../../data/txt/')
 
         while data_file and not (data_file.endswith(".pkl") or data_file.endswith(".txt")):
-            msg.showerror("Wrong Filetype", "Please select an ini file")
+            msg.showerror("Wrong Filetype", "Please select an pkl or txt file")
             data_file = filedialog.askopenfilename()
 
         if data_file:
@@ -92,7 +92,7 @@ class OneHotDBGUI(tk.Tk):
             file = open(_file_path, 'r+')
             file_text = file.read()
             if file_text.startswith('|'):
-                result = file_text.lstrip('|').split('|')
+                result = file_text.lstrip('|').split(',')
             else:
                 result = OneHotDB().put_onehot('onehotdb_parse_data_file', file_text)
             file.close()
