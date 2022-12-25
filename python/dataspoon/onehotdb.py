@@ -449,8 +449,8 @@ class OneHotDB:
         dataframe = pandas.DataFrame(result)
         # dataframe = dataframe.transpose()
         dataframe.columns = columns
-        dataframe.to_pickle(self.base_dir + _file_path)
-        print('to_pickle: ' + self.base_dir + _file_path)
+        dataframe.to_pickle(_file_path)
+        print('to_pickle: ' + _file_path)
 
 
 def create_dataframe():
@@ -533,7 +533,7 @@ def test_put_onehot():
 
 def test_to_pickle():
     onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
-    onehotdb.to_pickle('data/put_word_table.pkl')
+    onehotdb.to_pickle('../../data/put_word_table.pkl')
     print('test_to_pickle done!')
 
 

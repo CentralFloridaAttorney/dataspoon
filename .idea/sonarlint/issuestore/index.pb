@@ -65,8 +65,6 @@ N
 data/pkl/party_name_matrix.pkl,f/7/f7da5395b8bdca758251d301625c9844c2ae6214
 M
 data/pkl/party_name_pairs.pkl,b/c/bc0212e2f3f0d9a7316d2c6c47343adb93a56984
-G
-data/put_word_table.pkl,b/4/b43e72a817d7416535ef22fe4e69294f56ab5ea0
 €
 P.idea/shelf/Uncommitted_changes_before_Update_at_12_21_22__9_29_PM__Changes_.xml,2/8/28131ae3b604fb700f16332910f5a1cb9bca0220
 w
@@ -79,8 +77,6 @@ w
 G.idea/sonarlint/issuestore/2/8/28131ae3b604fb700f16332910f5a1cb9bca0220,5/7/572b6fd46944468599cb647567251dca115f32d0
 w
 G.idea/sonarlint/issuestore/7/c/7c074fef542073bab617e43179c2cb53a6219b00,3/c/3ce491b581084f5d8b23b4298da85ede61a1e512
-w
-G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
 w
 G.idea/sonarlint/issuestore/5/e/5eb897adb94f5b53a0cc43972dbfc4a88acf55a2,5/c/5c3deb66ce77f8115d429b7d7d705e02a1e3d6c8
 w
@@ -111,8 +107,6 @@ w
 G.idea/sonarlint/issuestore/5/c/5c3deb66ce77f8115d429b7d7d705e02a1e3d6c8,6/e/6e9fc83c92caea8dc22dc86b1a56f605018f9686
 w
 G.idea/sonarlint/issuestore/b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3,b/0/b04578cffb47b1e57970601a0cacef6081245859
-w
-G.idea/sonarlint/issuestore/f/f/ff9842780334be713ece2fd070bfb2afe6f23eba,6/5/65d365af280344cc927b9ac9bc7a15c81cc2438c
 w
 G.idea/sonarlint/issuestore/5/d/5d5f350831440b37030bb90b50958a6a6bcb80ab,a/b/ab1b7c44dbdde1e4c241141ab5adafe35b3d600e
 w

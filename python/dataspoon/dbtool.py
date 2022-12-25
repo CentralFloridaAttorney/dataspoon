@@ -60,7 +60,8 @@ HTML_UNESCAPE_TABLE = {
     "&#x27;": "'",
     "&quot;": "\""
 }
-SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
+MYSQL_SELECT_ROW_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
+MYSQL_SELECT_SINGLE_ROW_STATEMENT = "SELECT FROM {1} WHERE {2} = '{3}';"
 UPDATE_STATEMENT = "UPDATE {0} SET {1} = '{2}' WHERE {3} = '{4}';"
 MYSQL_DELETE_STATEMENT = "DELETE FROM {0} WHERE {1} = '{2}';"
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -140,7 +141,10 @@ class DBTool:
                         result = result[0]
                 else:
                     result = cursor.fetchall()
-                    result = [list(x) for x in result]
+                    if result is not None:
+                        result = [list(x) for x in result]
+                        if len(result) == 1:
+                            result = result[0]
             cursor.close()
             connection.close()
         except Error as err:
@@ -152,6 +156,19 @@ class DBTool:
                 print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
             return False
         return result
+
+    @staticmethod
+    def _replace_none(_lists):
+        if type(_lists) == list and len(_lists) > 0:
+            if type(_lists[0]) == list:
+                for list_index in range(0, len(_lists)):
+                    _lists[list_index] = ['None' if v is None else v for v in _lists[list_index]]
+                    print('replace many')
+            else:
+                _lists = ['None' if v is None else v for v in _lists]
+        _lists = ['default']
+        return _lists
+
 
     def _get_db_connection(self, host_name, user_name, user_password, port_num, _db_name=None):
         connection = None
@@ -241,14 +258,17 @@ class DBTool:
 
     def get_link_keys(self):
         dataframe = self.get_dataframe()
+        link_keys = dataframe[LINK_KEY].values.tolist()
+        # link_key_array = link_keys.
         print('get_link_keys done!')
+        return link_keys
 
     def get_values(self, _link_key, _exclude_2=False):
         values = list(self.get(_link_key))
         if _exclude_2:
             values.pop(0)
             values.pop(0)
-        return values[0]
+        return values
 
     def add_dataframe(self, _data_frame, _link_key_column_num=0):
         # when adding a dataframe each row requires a link_key
@@ -281,15 +301,28 @@ class DBTool:
         if _key is None:
             # 1 result: link_key returns the entire row for link_key
             self._add_column(LINK_KEY)
-            sql_statement = SELECT_STATEMENT.format('*', self.table_name, LINK_KEY,
-                                                    self.get_clean_key_string(_link_key))
+            sql_statement = MYSQL_SELECT_ROW_STATEMENT.format('*',
+                                                              self.table_name,
+                                                              LINK_KEY,
+                                                              self.get_clean_key_string(_link_key))
         else:
             # 2 result: returns the value for key on the link_key row
             self._add_column(_link_key)
-            sql_statement = SELECT_STATEMENT.format(self.get_clean_key_string(_key), self.table_name, LINK_KEY,
-                                                    self.get_clean_key_string(_link_key))
+            sql_statement = MYSQL_SELECT_ROW_STATEMENT.format(self.get_clean_key_string(_key), self.table_name,
+                                                              LINK_KEY,
+                                                              self.get_clean_key_string(_link_key))
         result = self._execute_mysql(sql_statement)
-        return result
+        return self.remove_none(result)
+
+    @staticmethod
+    def remove_none(_result):
+        if _result is None:
+            _result = 'None'
+        if type(_result) == list:
+            for index in range (0, len(_result), 1):
+                if _result[index] is None:
+                    _result[index] = 'None'
+        return _result
 
     @staticmethod
     def get_clean_key_string(_string=str):
@@ -387,6 +420,7 @@ class DBTool:
                                                          self.get_id(_link_key))
         self._execute_mysql(mysql_insert_statement)
         return self.get_id(_link_key)
+
     def copy_link_key(self, _from_link_key, _to_link_key):
         # this method creates a shallow paste by ignoring None values in _from_link_key
         # if a key/value is null then skip (or consider set value as 'default' for deep paste)
@@ -578,9 +612,8 @@ def test_static_operation():
 
 
 def test_put():
-    # dbtool = DBTool()
     dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
-    # row_1 = dbtool.put('link_key_1')
+    row_1 = dbtool.put('link_key_1')
     row_1 = dbtool.put('link_key_1', 'first_key', 'link_key_1_first_value')
     row_1 = dbtool.put('link_key_1', 'second_key', 'link_key_1_second_value')
     row_2 = dbtool.put('link_key_2', 'first_key', 'link_key_2_first_value')
@@ -592,35 +625,40 @@ def test_put():
     row_3 = dbtool.put('link_key_1', 'link_key_3')
     row_3 = dbtool.put('link_key_3', 'magic_key', "link_key_3_magic_key")
     row_3 = dbtool.put('link_key_2', 'link_key_3')
-
-    # row_3 = dbtool.put('link_key_3', 'first_key', 'link_key_3_first_key_xyzzy')
-
+    row_3 = dbtool.put('link_key_3', 'first_key', 'link_key_3_first_key_xyzzy')
     print('test_put done!')
 
 
 def test_get():
     dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
-    keys = dbtool.get_columns()
+    columns = dbtool.get_columns()
     link_keys = dbtool.get_link_keys()
+    rows = []
+    for link_key in link_keys:
+        this_row = dbtool.get(link_key)
+        for column in columns:
+            value = dbtool.get(link_key, column)
+            print("*** test_get link_key: " + link_key + " \n*** column: " + column + " \n*** value: " + str(value))
+        rows.append(this_row)
     print('test_get done!')
 
 
 if __name__ == '__main__':
     test_put()
-    # test_get()
-    # test_onehotwords()
-    # test_static_operation()
-    # test_get_html_unescape()
-    # test_init()
-    # test_get_row_number()
-    # test_get_row_count()
-    # create_simple_pkl()
-    # test_add_data_frame()
-    # test_get_clean_key()
-    # github_demo_1()
-    # test_to_pickle()
-    # test_delete_database()
-    # test_delete_table()
+    test_get()
+    test_onehotwords()
+    test_static_operation()
+    test_get_html_unescape()
+    test_init()
+    test_get_row_number()
+    test_get_row_count()
+    create_simple_pkl()
+    test_add_data_frame()
+    test_get_clean_key()
+    github_demo_1()
+    test_to_pickle()
+    test_delete_database()
+    test_delete_table()
 
     # the following line is not reached because of sys.exit() in python()
     print("dbtool done!")
