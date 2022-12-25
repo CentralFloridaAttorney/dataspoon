@@ -4,14 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="major work restructuring dbtool.get() and dbtool.put()">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/5/65d365af280344cc927b9ac9bc7a15c81cc2438c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3" beforeDir="false" />
+    <list default="true" id="efd971b1-7517-49ad-bd14-022e0a5de9f4" name="Changes" comment="work on OneHotWords, need to make a better sentence splitter">
+      <change afterPath="$PROJECT_DIR$/data/textprocessor.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/txt/onehot_2.hot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/txt/onehot_2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/txt/onehot_3.hot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/txt/onehot_3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/dataspoon/textprocessor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/a/8a6dae537be9f47878c6964c6ee40cab0ca75e28" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/b/bb5afbfb42ef4ae77e927ad9a39bb8c7f6a27963" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/put_word_table.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/put_word_table.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dataspoon/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/dbtool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dataspoon/onehotdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/onehotdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/txt/onehot_1.hot" beforeDir="false" afterPath="$PROJECT_DIR$/data/txt/onehot_1.hot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/txt/onehot_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/txt/onehot_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/txt/words.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/txt/words.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/onehotdb_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/onehotdb_gui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "true",
-    "last_opened_file_path": "/home/overlordx/PycharmProjects/dataspoon/python/dataspoon",
+    "last_opened_file_path": "/home/overlordx/PycharmProjects/dataspoon/data/txt",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -68,10 +75,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/txt" />
       <recent name="$PROJECT_DIR$/python/dataspoon" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="Python.onehotdb_gui">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/dataspoon/temp/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -89,28 +97,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tkinter-By-Example-master/Code/Chapter1-1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="onehotdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="dataspoon" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/dataspoon" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dataspoon/onehotdb.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -163,20 +149,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="textprocessor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dataspoon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/dataspoon" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dataspoon/textprocessor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="JavaScript Debug.index.html" />
+      <item itemvalue="Python.textprocessor" />
       <item itemvalue="Python.Chapter1-1" />
-      <item itemvalue="Python.onehotdb" />
       <item itemvalue="Python.onehotdb_gui" />
       <item itemvalue="Python.speed_test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.onehotdb_gui" />
+        <item itemvalue="Python.textprocessor" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Python.Chapter1-1" />
         <item itemvalue="Python.speed_test" />
-        <item itemvalue="Python.onehotdb_gui" />
-        <item itemvalue="Python.onehotdb" />
       </list>
     </recent_temporary>
   </component>
@@ -195,6 +203,7 @@
       <workItem from="1671538328441" duration="4351000" />
       <workItem from="1671554100131" duration="6221000" />
       <workItem from="1671820554698" duration="10242000" />
+      <workItem from="1671957636849" duration="11356000" />
     </task>
     <task id="LOCAL-00001" summary="removed FOSS">
       <created>1671507769543</created>
@@ -329,7 +338,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671924416659</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="major work restructuring dbtool.get() and dbtool.put()">
+      <created>1671943187623</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1671943187623</updated>
+    </task>
+    <task id="LOCAL-00021" summary="work on OneHotWords, need to make a better sentence splitter">
+      <created>1671949453511</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1671949453511</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,30 +382,51 @@
     <MESSAGE value="onehotdb.py put_onehot() and get_onehot() are working" />
     <MESSAGE value="major work restructuring dbtool.get(0 and dbtool.put()" />
     <MESSAGE value="major work restructuring dbtool.get() and dbtool.put()" />
-    <option name="LAST_COMMIT_MESSAGE" value="major work restructuring dbtool.get() and dbtool.put()" />
+    <MESSAGE value="work on OneHotWords, need to make a better sentence splitter" />
+    <option name="LAST_COMMIT_MESSAGE" value="work on OneHotWords, need to make a better sentence splitter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+        <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dataspoon/dbtool.py</url>
           <line>439</line>
           <option name="timeStamp" value="226" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+        <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dataspoon/dbtool.py</url>
           <line>432</line>
           <option name="timeStamp" value="227" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+        <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dataspoon/dbtool.py</url>
           <line>642</line>
           <option name="timeStamp" value="228" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+        <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
           <line>451</line>
           <option name="timeStamp" value="229" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
+          <line>385</line>
+          <option name="timeStamp" value="233" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/dataspoon/textprocessor.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="239" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/dataspoon/textprocessor.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="241" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/dataspoon/textprocessor.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="242" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -402,6 +446,7 @@
     <SUITE FILE_PATH="coverage/dataspoon$main_gui.coverage" NAME="main_gui Coverage Results" MODIFIED="1671807325361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$Doctests_in_dbtool.coverage" NAME="Doctests in dbtool Coverage Results" MODIFIED="1671740445782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$Chapter6_regex_explain.coverage" NAME="Chapter6-regex-explain Coverage Results" MODIFIED="1671853142184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tkinter-By-Example-master/Code" />
+    <SUITE FILE_PATH="coverage/dataspoon$textprocessor.coverage" NAME="textprocessor Coverage Results" MODIFIED="1671965569575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1671942527515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$feedparser.coverage" NAME="feedparser Coverage Results" MODIFIED="1671649840399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$Chapter2_3.coverage" NAME="Chapter2-3 Coverage Results" MODIFIED="1671806328787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tkinter-By-Example-master/Code" />
@@ -411,8 +456,9 @@
     <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1671942878595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui_2.coverage" NAME="onehotdb_gui_2 Coverage Results" MODIFIED="1671853450222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1671942767532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$Chapter1_1.coverage" NAME="Chapter1-1 Coverage Results" MODIFIED="1671943068428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tkinter-By-Example-master/Code" />
     <SUITE FILE_PATH="coverage/dataspoon$Chapter2_3_abridged.coverage" NAME="Chapter2-3-abridged Coverage Results" MODIFIED="1671806481523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tkinter-By-Example-master/Code" />
-    <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui.coverage" NAME="onehotdb_gui Coverage Results" MODIFIED="1671942805825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui.coverage" NAME="onehotdb_gui Coverage Results" MODIFIED="1671968940238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb__1_.coverage" NAME="onehotdb (1) Coverage Results" MODIFIED="1671508484114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb__2_.coverage" NAME="onehotdb (2) Coverage Results" MODIFIED="1671599684375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/dataspoon$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1671686012205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />

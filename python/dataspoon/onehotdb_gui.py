@@ -9,7 +9,9 @@ import pandas
 
 from python.dataspoon.dbtool import OneHotWords
 from python.dataspoon.onehotdb import OneHotDB
+from python.dataspoon.textprocessor import TextProcessor
 
+ONE_HOT_KEY = 'onehotdb_gui'
 
 class OneHotDBGUI(tk.Tk):
 
@@ -25,7 +27,7 @@ class OneHotDBGUI(tk.Tk):
         self.menubar = tk.Menu(self, bg="lightgrey", fg="black")
 
         self.file_menu = tk.Menu(self.menubar, tearoff=0, bg="lightgrey", fg="black")
-        self.file_menu.add_command(label="Select File", command=self.open_data_file, accelerator="Ctrl+O")
+        self.file_menu.add_command(label="Select File", command=self.get_processed_text, accelerator="Ctrl+O")
         self.file_menu.add_command(label="Save Words", command=self.save_words, accelerator="Ctrl+W")
         self.file_menu.add_command(label="Save", command=self.file_save, accelerator="Ctrl+S")
 
@@ -53,7 +55,7 @@ class OneHotDBGUI(tk.Tk):
 
         self.right_frame.bind("<Configure>", self.frame_height)
 
-        self.bind("<Control-o>", self.open_data_file)
+        self.bind("<Control-o>", self.get_processed_text)
         self.bind("<Control-s>", self.file_save)
 
     def frame_height(self, event=None):
@@ -65,7 +67,7 @@ class OneHotDBGUI(tk.Tk):
         dataframe = OneHotWords().get_dataframe()
         dataframe.to_csv('../../data/txt/words.csv', index=False)
 
-    def open_data_file(self, event=None):
+    def get_processed_text(self, event=None):
         data_file = filedialog.askopenfilename(initialdir='../../data/txt/')
 
         while data_file and not (data_file.endswith(".pkl") or data_file.endswith(".txt")):
@@ -80,7 +82,8 @@ class OneHotDBGUI(tk.Tk):
         onehot_file = open(onehot_file_name, 'w+')
         onehot_file.write(result)
         onehot_file.close()
-        print('open_data_file done!')
+        print('get_processed_text done!')
+        return result
 
     def file_save(self, event=None):
         if not self.active_ini:
@@ -100,19 +103,19 @@ class OneHotDBGUI(tk.Tk):
 
         msg.showinfo("Saved", "File Saved Successfully")
 
-    def parse_data_file(self, _file_path):
+    @staticmethod
+    def parse_data_file(_file_path):
         if _file_path.endswith('.pkl'):
-            result = pandas.read_pickle(_file_path)
+            processed_string = pandas.read_pickle(_file_path)
         elif _file_path.endswith('.txt'):
             file = open(_file_path, 'r+')
             file_text = file.read()
-            if file_text.startswith('|'):
-                result = file_text.lstrip('|').split(',')
-            else:
-                result = OneHotDB().put_onehot('onehotdb_parse_data_file', file_text)
             file.close()
+            processed_string = TextProcessor(_given_string=file_text).get_processed_string()
         else:
-            result = "OneHotDBGUI.parse_data_file expected a _file_path ending with .txt or .pkl"
+            processed_string = "OneHotDBGUI.parse_data_file expected a _file_path ending with .txt or .pkl"
+        onehotdb = OneHotDB()
+        result = onehotdb.put_onehot(ONE_HOT_KEY, processed_string)
         return result
 
     def parse_ini_file(self, ini_file):
