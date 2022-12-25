@@ -479,7 +479,7 @@ class DBTool:
             if self.get_id(_link_key) == 0:
                 self.put(_link_key)
             self._add_column(_key_value)
-            link_key_id = self.update_value(_link_key, _key_value, _value)
+            link_key_id = self.update_value(_link_key, _key_value, html.escape(_value))
         return link_key_id
 
 
@@ -499,7 +499,7 @@ class OneHotWords(DBTool):
         this_word = self._execute_mysql(sql_statement)
         if this_word is None:
             this_word = 'default'
-        return this_word
+        return html.unescape(this_word)
 
     def get_index(self, _word):
         # This function returns the row number of _word in the onehot index

@@ -376,7 +376,7 @@ class OneHotDB:
                 word_result = OneHotWords().put(clean_word)
                 index = str(word_result)
                 indices.append(index)
-        combined_indices = '|'
+        combined_indices = ''
         for part in indices:
             combined_indices = combined_indices + part + ','
         combined_indices = combined_indices.rstrip(',')

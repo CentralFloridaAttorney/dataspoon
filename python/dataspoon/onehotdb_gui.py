@@ -2,10 +2,12 @@ import configparser as cp
 import ntpath
 import tkinter as tk
 import tkinter.messagebox as msg
+from pathlib import Path
 from tkinter import filedialog
 
 import pandas
 
+from python.dataspoon.dbtool import OneHotWords
 from python.dataspoon.onehotdb import OneHotDB
 
 
@@ -23,7 +25,8 @@ class OneHotDBGUI(tk.Tk):
         self.menubar = tk.Menu(self, bg="lightgrey", fg="black")
 
         self.file_menu = tk.Menu(self.menubar, tearoff=0, bg="lightgrey", fg="black")
-        self.file_menu.add_command(label="Open", command=self.open_data_file, accelerator="Ctrl+O")
+        self.file_menu.add_command(label="Select File", command=self.open_data_file, accelerator="Ctrl+O")
+        self.file_menu.add_command(label="Save Words", command=self.save_words, accelerator="Ctrl+W")
         self.file_menu.add_command(label="Save", command=self.file_save, accelerator="Ctrl+S")
 
         self.menubar.add_cascade(label="File", menu=self.file_menu)
@@ -57,6 +60,11 @@ class OneHotDBGUI(tk.Tk):
         new_height = self.winfo_height()
         self.right_frame.configure(height=new_height)
 
+    @staticmethod
+    def save_words():
+        dataframe = OneHotWords().get_dataframe()
+        dataframe.to_csv('../../data/txt/words.csv', index=False)
+
     def open_data_file(self, event=None):
         data_file = filedialog.askopenfilename(initialdir='../../data/txt/')
 
@@ -65,7 +73,14 @@ class OneHotDBGUI(tk.Tk):
             data_file = filedialog.askopenfilename()
 
         if data_file:
-            self.parse_data_file(data_file)
+            result = self.parse_data_file(data_file)
+
+        onehot_file_path = Path(data_file)
+        onehot_file_name = onehot_file_path.with_suffix('.hot')
+        onehot_file = open(onehot_file_name, 'w+')
+        onehot_file.write(result)
+        onehot_file.close()
+        print('open_data_file done!')
 
     def file_save(self, event=None):
         if not self.active_ini:
