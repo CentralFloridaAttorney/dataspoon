@@ -1,4 +1,3 @@
-import html
 import os
 
 import mysql
@@ -6,6 +5,7 @@ import pandas
 from mysql.connector import Error
 
 from python.dataspoon.dbtool import OneHotWords
+from python.dataspoon.textprocessor import TextProcessor
 
 # edit configuration /etc/mysql/mysql.conf.d/mysqld.cnf to change bind-address/127.0.0.1 and port/3306
 # configuration edits require terminal commands: sudo service mysql stop, start, status
@@ -182,13 +182,17 @@ class OneHotDB:
     def _get_html_unescape(_string):
         clean_string = str(_string)
         clean_string = clean_string.lstrip('_')
-        unescape_string = html.unescape(clean_string)
+        # unescape_string = html.unescape(clean_string)
+        unescape_string = TextProcessor().get_clean_word(clean_string)
         for item in HTML_UNESCAPE_TABLE:
             unescape_string = unescape_string.replace(item, HTML_UNESCAPE_TABLE.get(item))
         print("_get_html_unescape: " + unescape_string)
         return unescape_string
 
     def get_clean_key(self, key):
+        return TextProcessor().get_processed_string(key)
+
+    def get_clean_key_OLD(self, key):
         clean_key = self._get_html_escape(key)
         if clean_key.isdigit():
             clean_key = '_' + clean_key
@@ -372,7 +376,8 @@ class OneHotDB:
         indices = []
         for word in words:
             if word != '':
-                clean_word = html.escape(word)
+                # clean_word = html.escape(word)
+                clean_word = TextProcessor().get_clean_word(word)
                 word_result = OneHotWords().put(clean_word)
                 index = str(word_result)
                 indices.append(index)
@@ -433,7 +438,8 @@ class OneHotDB:
         translated_value = ''
         for index in onehot_dataframe:
             this_word = OneHotWords().get_word(index)
-            this_word = html.unescape(this_word)
+            # this_word = html.unescape(this_word)
+            this_word = TextProcessor().get_clean_word(this_word)
             # html.escape() does not seem to work this_word may contain unescaped codes
             for item in HTML_UNESCAPE_TABLE:
                 this_word = this_word.replace(item, HTML_UNESCAPE_TABLE.get(item))
@@ -494,14 +500,6 @@ def test_add_pickle():
     print('test_sql2pkl done!')
 
 
-def test_get_unescape():
-    onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
-    string_value = '''This is the "best" test of the * everything & nothing.'''
-    escaped_string = html.escape(string_value)
-    unescaped_string = html.unescape(escaped_string)
-    print("test_get_unescape: \n" + unescaped_string + "\n ***** \n" + escaped_string)
-
-
 def test_get_onehot():
     onehotdb = OneHotDB('test_onehotdb', 'test_onehotdb_table')
     onehotdb.put_onehot('second_key', '''
@@ -556,7 +554,7 @@ if __name__ == '__main__':
     test_get_row_count()
     test_add_data_frame()
     test_get_clean_key()
-    test_get_unescape()
+    # test_get_unescape()
     test_put_onehot()
     test_get_onehot()
     test_get_onehot_dataframe()

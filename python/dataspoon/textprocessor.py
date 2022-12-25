@@ -1,4 +1,3 @@
-import html
 import re
 
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
@@ -22,6 +21,8 @@ HTML_UNESCAPE_TABLE = {
     "_&#x27;": "'",
     "_&quot;": "\""
 }
+
+
 class TextProcessor:
     def __init__(self, _given_string="that's given!",  _output_path='../../data/textprocessor.txt'):
         self.given_string = _given_string
@@ -55,6 +56,14 @@ class TextProcessor:
         for item in HTML_ESCAPE_TABLE:
             _string = _string.replace(item, HTML_ESCAPE_TABLE.get(item))
         return _string
+
+    def get_clean_word(self, _string):
+        """
+        :param _string: the string to be processed
+        :return:
+        """
+        clean_string = self.get_replaced_characters(_string)
+        return clean_string
 
 
 def test_init():
