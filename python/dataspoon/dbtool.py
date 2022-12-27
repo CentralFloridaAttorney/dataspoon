@@ -5,8 +5,6 @@ import mysql
 import pandas
 from mysql.connector import Error
 
-from python.dataspoon.configtool import ConfigTool
-
 # edit configuration /etc/mysql/mysql.conf.d/mysqld.cnf to change bind-address/127.0.0.1 and port/3306
 # configuration edits require terminal commands: sudo service mysql stop, start, status
 
@@ -95,7 +93,7 @@ class DBTool:
 
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
-        configtool = ConfigTool('overlordx').get_configs()
+        configtool = ConfigTool('overlordx')
         if _database_name is None:
             self.database_name = DB_NAME
         else:
