@@ -1,0 +1,4 @@
+[DEFAULT]
+path = ../data/
+default_message = Hey! help me!!
+
