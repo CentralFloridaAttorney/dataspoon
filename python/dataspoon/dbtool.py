@@ -1,6 +1,6 @@
 import html
 import os
-
+import configparser
 import mysql
 import pandas
 from mysql.connector import Error
@@ -34,11 +34,11 @@ from mysql.connector import Error
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-# HOST = '192.168.1.227'
-HOST = 'localhost'
-USER = 'bilbo'
-PASSWD = 'baggins'
-PORT = '3306'
+HOST = '192.168.1.227'
+# HOST = 'localhost'
+USER = 'overlordx'
+PASSWD = 'atomic99'
+PORT = '50011'
 DB_NAME = 'dbtool'
 DEFAULT_TABLE_NAME = 'default_table'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
@@ -93,6 +93,9 @@ class DBTool:
 
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
+        # ***
+        self._load_ini_file('dbtool_overlordx')
+        # ***
         if _database_name is None:
             self.database_name = DB_NAME
         else:
@@ -220,6 +223,17 @@ class DBTool:
                 print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
             return False
         return result
+
+    def _load_ini_file(self, _file_path):
+        config = configparser.ConfigParser()
+        config.read(_file_path)
+        config['DEFAULT']['path'] = '../data/'  # update
+        config['DEFAULT']['default_message'] = 'Hey! help me!!'  # create
+
+        with open(_file_path, 'w') as configfile:  # save
+            config.write(configfile)
+        print('load_ini_file done!')
+
 
     @staticmethod
     def _replace_none(_lists):
