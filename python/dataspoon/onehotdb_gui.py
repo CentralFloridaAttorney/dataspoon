@@ -13,6 +13,7 @@ from python.dataspoon.textprocessor import TextProcessor
 
 ONE_HOT_KEY = 'onehotdb_gui'
 
+
 class OneHotDBGUI(tk.Tk):
 
     def __init__(self):
@@ -76,7 +77,6 @@ class OneHotDBGUI(tk.Tk):
 
         if data_file:
             result = self.parse_data_file(data_file)
-
         onehot_file_path = Path(data_file)
         onehot_file_name = onehot_file_path.with_suffix('.hot')
         onehot_file = open(onehot_file_name, 'w+')

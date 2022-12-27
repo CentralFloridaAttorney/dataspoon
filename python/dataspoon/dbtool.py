@@ -46,7 +46,6 @@ ILLEGAL_WORDS = ['True']
 LINK_KEY = 'link_key'
 FORBIDDEN_DATABASES = ['users']
 HTML_ESCAPE_TABLE = {
-    "&": "&amp;",
     '"': "&quot;",
     "'": "&apos;",
     ">": "&gt;",
@@ -118,58 +117,6 @@ class DBTool:
         self._execute_mysql(query)
         # print('Add column: '+ _column_name)
 
-    def _execute_mysql(self, _mysql_statement, _value=None):
-        """
-        DBTool._execute_mysql() executes MySQL commands, which are called by other methods.
-        :param _mysql_statement: a formatted string with a MySQL command.
-        :param _value: RESERVED for future use
-        :return: returns the result of the MySQL statement or an error message.
-        """
-        result = 'default'
-        try:
-            connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
-            cursor = connection.cursor(buffered=True)
-            if _value is None:
-                cursor.execute(_mysql_statement)
-            else:
-                cursor.execute(_mysql_statement, _value)
-            connection.commit()
-            if _mysql_statement.startswith('SELECT'):
-                if "*" not in _mysql_statement:
-                    result = cursor.fetchone()
-                    if result is not None:
-                        result = result[0]
-                else:
-                    result = cursor.fetchall()
-                    if result is not None:
-                        result = [list(x) for x in result]
-                        if len(result) == 1:
-                            result = result[0]
-            cursor.close()
-            connection.close()
-        except Error as err:
-            if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__('Duplicate'):
-                print('non-fatal error in dbtool._execute_mysql: ' + _mysql_statement)
-            elif err.errno == 1064:
-                return 'mysql syntax error: ' + _mysql_statement
-            else:
-                print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
-            return False
-        return result
-
-    @staticmethod
-    def _replace_none(_lists):
-        if type(_lists) == list and len(_lists) > 0:
-            if type(_lists[0]) == list:
-                for list_index in range(0, len(_lists)):
-                    _lists[list_index] = ['None' if v is None else v for v in _lists[list_index]]
-                    print('replace many')
-            else:
-                _lists = ['None' if v is None else v for v in _lists]
-        _lists = ['default']
-        return _lists
-
-
     def _get_db_connection(self, host_name, user_name, user_password, port_num, _db_name=None):
         connection = None
         try:
@@ -235,40 +182,56 @@ class DBTool:
         print("_get_html_unescape: " + unescape_string)
         return unescape_string
 
-    def get_dataframe(self):
-        get_all_rows_mysql_statement = "SELECT * FROM {0}".format(self.table_name)
-        all_rows = self._execute_mysql(get_all_rows_mysql_statement)
-        dataframe = pandas.DataFrame(all_rows)
-        columns = self.get_columns(_exclude_2_keys=False)
-        dataframe.columns = columns
-        return dataframe
+    def _execute_mysql(self, _mysql_statement, _value=None):
+        """
+        DBTool._execute_mysql() executes MySQL commands, which are called by other methods.
+        :param _mysql_statement: a formatted string with a MySQL command.
+        :param _value: RESERVED for future use
+        :return: returns the result of the MySQL statement or an error message.
+        """
+        result = 'default'
+        try:
+            connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+            cursor = connection.cursor(buffered=True)
+            if _value is None:
+                cursor.execute(_mysql_statement)
+            else:
+                cursor.execute(_mysql_statement, _value)
+            connection.commit()
+            if _mysql_statement.startswith('SELECT'):
+                if "*" not in _mysql_statement:
+                    result = cursor.fetchone()
+                    if result is not None:
+                        result = result[0]
+                else:
+                    result = cursor.fetchall()
+                    if result is not None:
+                        result = [list(x) for x in result]
+                        if len(result) == 1:
+                            result = result[0]
+            cursor.close()
+            connection.close()
+        except Error as err:
+            if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__('Duplicate'):
+                print('non-fatal error in dbtool._execute_mysql: ' + _mysql_statement)
+            elif err.errno == 1064:
+                return 'mysql syntax error: ' + _mysql_statement
+            else:
+                print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
+            return False
+        return result
 
-    def get_columns(self, _exclude_2_keys=False):
-        connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
-        cursor = connection.cursor(buffered=True)
-        mysql_statement = "SELECT * FROM {0};".format(self.table_name)
-        cursor.execute(mysql_statement)
-        columns = list(cursor.column_names)
-        if _exclude_2_keys:
-            columns.pop(0)
-            columns.pop(0)
-        cursor.close()
-        connection.close()
-        return columns
-
-    def get_link_keys(self):
-        dataframe = self.get_dataframe()
-        link_keys = dataframe[LINK_KEY].values.tolist()
-        # link_key_array = link_keys.
-        print('get_link_keys done!')
-        return link_keys
-
-    def get_values(self, _link_key, _exclude_2=False):
-        values = list(self.get(_link_key))
-        if _exclude_2:
-            values.pop(0)
-            values.pop(0)
-        return values
+    @staticmethod
+    def _replace_none(_lists):
+        if type(_lists) == list and len(_lists) > 0:
+            if type(_lists[0]) == list:
+                for list_index in range(0, len(_lists)):
+                    _lists[list_index] = ['None' if v is None else v for v in _lists[list_index]]
+                    print('replace many')
+            else:
+                _lists = ['None' if v is None else v for v in _lists]
+        _lists = ['default']
+        return _lists
 
     def add_dataframe(self, _data_frame, _link_key_column_num=0):
         # when adding a dataframe each row requires a link_key
@@ -282,6 +245,31 @@ class DBTool:
                 self.put(link_key, key, value)
         # print('add_dataframe done!')
 
+    def copy_link_key(self, _from_link_key, _to_link_key):
+        # this method creates a shallow paste by ignoring None values in _from_link_key
+        # if a key/value is null then skip (or consider set value as 'default' for deep paste)
+        # index 0 is id and index 1 is link_key, copied values thus begin at index 2
+        # if the _from_link_key does not exist then create it
+        # if the _to_link_key does not exist then create it
+        if self.get_id(_from_link_key) == 0:
+            self.put(_from_link_key)
+        else:
+            old_values = self.get_values(_from_link_key)
+            old_keys = self.get_columns()
+            # if the _to_link_key does not exist then create it
+            if self.get_id(_to_link_key) == 0:
+                self.put(_to_link_key)
+            # index 0 is id and index 1 is link_key, copied values thus begin at index 2
+            for index in range(2, len(old_keys), 1):
+                if old_values[index] is None:
+                    # if a key/value is null then consider setting value s 'default'
+                    # self.put(_to_link_key, old_keys[index], 'default')
+                    pass
+                else:
+                    # otherwise, insert the old_value
+                    self.put(_to_link_key, old_keys[index], old_values[index])
+        return self.get_id(_to_link_key)
+
     def delete_database(self, _database_name):
         mysql_drop_database = "DROP DATABASE {0}".format(self.get_clean_key_string(_database_name))
         self._execute_mysql(mysql_drop_database)
@@ -290,39 +278,6 @@ class DBTool:
     def delete_table(self, _table_name):
         mysql_drop_table = "DROP TABLE {0}".format(self.get_clean_key_string(_table_name))
         self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
-
-    def get(self, _link_key=str, _key=None):
-        """
-        DBTool.get() returns an entire row or the value of a column within a row.
-        :param _link_key: _link_key uniquely identifies the row.
-        :param _key: _key is an optional parameter, which is used to identify the column name.
-        :return: If _key=None then return the entire row.  Otherwise, return the value in the column named _key.
-        """
-        if _key is None:
-            # 1 result: link_key returns the entire row for link_key
-            self._add_column(LINK_KEY)
-            sql_statement = MYSQL_SELECT_ROW_STATEMENT.format('*',
-                                                              self.table_name,
-                                                              LINK_KEY,
-                                                              self.get_clean_key_string(_link_key))
-        else:
-            # 2 result: returns the value for key on the link_key row
-            self._add_column(_link_key)
-            sql_statement = MYSQL_SELECT_ROW_STATEMENT.format(self.get_clean_key_string(_key), self.table_name,
-                                                              LINK_KEY,
-                                                              self.get_clean_key_string(_link_key))
-        result = self._execute_mysql(sql_statement)
-        return self.remove_none(result)
-
-    @staticmethod
-    def remove_none(_result):
-        if _result is None:
-            _result = 'None'
-        if type(_result) == list:
-            for index in range (0, len(_result), 1):
-                if _result[index] is None:
-                    _result[index] = 'None'
-        return _result
 
     @staticmethod
     def get_clean_key_string(_string=str):
@@ -345,15 +300,26 @@ class DBTool:
         _string = html.escape(_string)
         return _string
 
-    def get_row_count(self):
-        """
-        Sometimes you need to know how many rows are in the table.
-        :return: Returns the number of rows in self.table_name.
-        """
-        get_row_count_mysql = "SELECT COUNT(*) FROM {0};".format(self.table_name)
-        row_count = self._execute_mysql(get_row_count_mysql)
-        # print('get_row_count: ' + str(row_count[0]))
-        return row_count[0]
+    def get_columns(self, _exclude_2_keys=False):
+        connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+        cursor = connection.cursor(buffered=True)
+        mysql_statement = "SELECT * FROM {0};".format(self.table_name)
+        cursor.execute(mysql_statement)
+        columns = list(cursor.column_names)
+        if _exclude_2_keys:
+            columns.pop(0)
+            columns.pop(0)
+        cursor.close()
+        connection.close()
+        return columns
+
+    def get_dataframe(self):
+        get_all_rows_mysql_statement = "SELECT * FROM {0}".format(self.table_name)
+        all_rows = self._execute_mysql(get_all_rows_mysql_statement)
+        dataframe = pandas.DataFrame(all_rows)
+        columns = self.get_columns(_exclude_2_keys=False)
+        dataframe.columns = columns
+        return dataframe
 
     def get_id(self, _link_key, _value=None):
         """
@@ -380,6 +346,53 @@ class DBTool:
             print('get_id: ' + str(link_key_id))
             return link_key_id
 
+    def get_link_keys(self):
+        dataframe = self.get_dataframe()
+        link_keys = dataframe[LINK_KEY].values.tolist()
+        # link_key_array = link_keys.
+        print('get_link_keys done!')
+        return link_keys
+
+    def get_row_count(self):
+        """
+        Sometimes you need to know how many rows are in the table.
+        :return: Returns the number of rows in self.table_name.
+        """
+        get_row_count_mysql = "SELECT COUNT(*) FROM {0};".format(self.table_name)
+        row_count = self._execute_mysql(get_row_count_mysql)
+        # print('get_row_count: ' + str(row_count[0]))
+        return row_count[0]
+
+    def get_values(self, _link_key, _exclude_2=False):
+        values = list(self.get(_link_key))
+        if _exclude_2:
+            values.pop(0)
+            values.pop(0)
+        return values
+
+    def get(self, _link_key=str, _key=None):
+        """
+        DBTool.get() returns an entire row or the value of a column within a row.
+        :param _link_key: _link_key uniquely identifies the row.
+        :param _key: _key is an optional parameter, which is used to identify the column name.
+        :return: If _key=None then return the entire row.  Otherwise, return the value in the column named _key.
+        """
+        if _key is None:
+            # 1 result: link_key returns the entire row for link_key
+            self._add_column(LINK_KEY)
+            sql_statement = MYSQL_SELECT_ROW_STATEMENT.format('*',
+                                                              self.table_name,
+                                                              LINK_KEY,
+                                                              self.get_clean_key_string(_link_key))
+        else:
+            # 2 result: returns the value for key on the link_key row
+            self._add_column(_link_key)
+            sql_statement = MYSQL_SELECT_ROW_STATEMENT.format(self.get_clean_key_string(_key), self.table_name,
+                                                              LINK_KEY,
+                                                              self.get_clean_key_string(_link_key))
+        result = self._execute_mysql(sql_statement)
+        return self.remove_none(result)
+
     def open_database(self, _database_name, _table_name=None):
         # self.database_name = str(re.sub(LEGAL_CHARACTERS, '_', _database_name.strip()))
         self.database_name = self.get_clean_key_string(_database_name)
@@ -403,48 +416,11 @@ class DBTool:
         # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
         self.table_name = self.get_clean_key_string(_table_name)
         # clean_table_name = self.get_clean_key_string(self.table_name)
-        mysql_open_table = "CREATE TABLE {0} (id int(10) NOT NULL AUTO_INCREMENT, ".format(self.table_name)
-        mysql_open_table += LINK_KEY + " varchar(255), PRIMARY KEY (id));"
+        mysql_open_table = "CREATE TABLE {0} ({1} int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,  {2} varchar(4096));".format(
+            self.table_name, 'id', LINK_KEY)
         self._execute_mysql(mysql_open_table)
         # self._add_column('link_key')
         # print('open_table: ' + _table_name)
-
-    def to_pickle(self, _file_path):
-        dataframe = self.get_dataframe()
-        dataframe.to_pickle(_file_path)
-        print('to_pickle: ' + _file_path)
-
-    def update_value(self, _link_key, _key, _value):
-        mysql_insert_statement = UPDATE_STATEMENT.format(self.table_name, self.get_clean_key_string(_key),
-                                                         self.get_clean_key_string(_value), 'id',
-                                                         self.get_id(_link_key))
-        self._execute_mysql(mysql_insert_statement)
-        return self.get_id(_link_key)
-
-    def copy_link_key(self, _from_link_key, _to_link_key):
-        # this method creates a shallow paste by ignoring None values in _from_link_key
-        # if a key/value is null then skip (or consider set value as 'default' for deep paste)
-        # index 0 is id and index 1 is link_key, copied values thus begin at index 2
-        # if the _from_link_key does not exist then create it
-        # if the _to_link_key does not exist then create it
-        if self.get_id(_from_link_key) == 0:
-            self.put(_from_link_key)
-        else:
-            old_values = self.get_values(_from_link_key)
-            old_keys = self.get_columns()
-            # if the _to_link_key does not exist then create it
-            if self.get_id(_to_link_key) == 0:
-                self.put(_to_link_key)
-            # index 0 is id and index 1 is link_key, copied values thus begin at index 2
-            for index in range(2, len(old_keys), 1):
-                if old_values[index] is None:
-                    # if a key/value is null then consider setting value s 'default'
-                    # self.put(_to_link_key, old_keys[index], 'default')
-                    pass
-                else:
-                    # otherwise, insert the old_value
-                    self.put(_to_link_key, old_keys[index], old_values[index])
-        return self.get_id(_to_link_key)
 
     def put(self, _link_key, _key_value=None, _value=None):
         """
@@ -481,6 +457,28 @@ class DBTool:
             self._add_column(_key_value)
             link_key_id = self.update_value(_link_key, _key_value, html.escape(_value))
         return link_key_id
+
+    @staticmethod
+    def remove_none(_result):
+        if _result is None:
+            _result = 'None'
+        if type(_result) == list:
+            for index in range(0, len(_result), 1):
+                if _result[index] is None:
+                    _result[index] = 'None'
+        return _result
+
+    def to_pickle(self, _file_path):
+        dataframe = self.get_dataframe()
+        dataframe.to_pickle(_file_path)
+        print('to_pickle: ' + _file_path)
+
+    def update_value(self, _link_key, _key, _value):
+        mysql_insert_statement = UPDATE_STATEMENT.format(self.table_name, self.get_clean_key_string(_key),
+                                                         self.get_clean_key_string(_value), 'id',
+                                                         self.get_id(_link_key))
+        self._execute_mysql(mysql_insert_statement)
+        return self.get_id(_link_key)
 
 
 class OneHotWords(DBTool):

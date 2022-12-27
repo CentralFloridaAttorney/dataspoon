@@ -135,8 +135,6 @@ A
 configuration.ini,b/4/b4fbce37b00cd72816c68326bb1b5af2abf395f8
 J
 python/tkinter/__init__.py,8/4/8478bda84dac3d35f790ea189e12b00d17cb4003
-K
-python/tkinter/inieditor.py,e/e/ee7518b6723c117227e30bccb25222d5c9a9789f
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 F
@@ -219,8 +217,6 @@ G.idea/sonarlint/issuestore/b/4/b49737a7bf3ca17ec300aa495bab0f0acfdba7bf,b/9/b9
 w
 G.idea/sonarlint/issuestore/b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3,b/0/b04578cffb47b1e57970601a0cacef6081245859
 w
-G.idea/sonarlint/issuestore/8/1/8196013379ab51018916e939dc1c107037eadca9,2/f/2f8364351a507fd4ee684f8de02b0f5ccaf97587
-w
 G.idea/sonarlint/issuestore/6/5/65d365af280344cc927b9ac9bc7a15c81cc2438c,a/f/afc6e313ebdcc74c49ef1c5f86708b5e783954cb
 w
 G.idea/sonarlint/issuestore/4/9/4929887d53f91ca004f76ad53295f9c4d318b713,b/c/bc10388c72de4cf0ede4e72602222689a439fd6f
@@ -256,3 +252,7 @@ w
 G.idea/sonarlint/issuestore/f/8/f833b239c31b729bead5e735101455e11515e069,7/1/71bb1e8e14c3c003e2950a2c113be097c0fc0465
 w
 G.idea/sonarlint/issuestore/a/1/a189bb099fcbb5a2d89194b172fb1f6d7e9b396d,c/3/c3a40842e2bba697ffa402a1dbcae3f56121771f
+j
+:.idea/dataSources/5421f7cc-10ca-4591-8b34-4c4b5eb0f149.xml,e/4/e473e96a9802225ebb04dc5291e186cbacea20bc
+B
+data/txt/words.csv,e/7/e7cb6ec00766d64f97056410f85c298afee30916

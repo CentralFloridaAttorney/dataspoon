@@ -5,8 +5,6 @@ ILLEGAL_WORDS = ['True']
 HTML_ESCAPE_TABLE = {
     '"': "_&quot;",
     "'": "_&apos;",
-    ">": "_&gt;",
-    "<": "_&lt;",
     "\n": "_&#013",
     "True": "_1",
     "False": "_0",
@@ -15,6 +13,8 @@ HTML_ESCAPE_TABLE = {
     "(": "_&#x28;",
     ")": "_&#x29;",
     "”": "_&#x201d;",
+    "<": "_&#x3c;",
+    ">": "_&#x3c;"
 }
 WORD_BREAK_CHARACTERS = "[ . | ' ' | , | :]"
 HTML_UNESCAPE_TABLE = {
@@ -24,7 +24,7 @@ HTML_UNESCAPE_TABLE = {
 
 
 class TextProcessor:
-    def __init__(self, _given_string="that's given!",  _output_path='../../data/textprocessor.txt'):
+    def __init__(self, _given_string="that's given!", _output_path='../../data/textprocessor.txt'):
         self.given_string = _given_string
         self.output_path = _output_path
 
@@ -47,8 +47,8 @@ class TextProcessor:
         clean_split_words = list(filter(None, split_words))
         processed_string = ""
         for word in clean_split_words:
-            processed_string = processed_string + " " + word
-        processed_string = processed_string.strip()
+            processed_string = processed_string + "," + word
+        processed_string = processed_string.rstrip(',')
         return processed_string
 
     @staticmethod

@@ -1,8 +1,9 @@
-import tkinter as tk
-from tkinter import filedialog
-import tkinter.messagebox as msg
 import configparser as cp
 import ntpath
+import tkinter as tk
+import tkinter.messagebox as msg
+from tkinter import filedialog
+
 
 class IniEditor(tk.Tk):
 
@@ -106,23 +107,24 @@ class IniEditor(tk.Tk):
 
         for key in sorted(self.active_ini[chosen_section]):
             new_label = tk.Label(self.right_frame, text=key, font=(None, 12), bg="black", fg="white")
-            new_label.pack(fill=tk.X, side=tk.TOP, pady=(10,0))
+            new_label.pack(fill=tk.X, side=tk.TOP, pady=(10, 0))
 
             value = self.active_ini[chosen_section][key]
 
             if value.isnumeric():
                 spinbox_default = tk.IntVar(self.right_frame)
                 spinbox_default.set(int(value))
-                ini_element = tk.Spinbox(self.right_frame, from_=0, to=99999, textvariable=spinbox_default, bg="white", fg="black", justify="center")
+                ini_element = tk.Spinbox(self.right_frame, from_=0, to=99999, textvariable=spinbox_default, bg="white",
+                                         fg="black", justify="center")
             else:
                 ini_element = tk.Entry(self.right_frame, bg="white", fg="black", justify="center")
                 ini_element.insert(0, value)
 
-            ini_element.pack(fill=tk.X, side=tk.TOP, pady=(0,10))
+            ini_element.pack(fill=tk.X, side=tk.TOP, pady=(0, 10))
             self.ini_elements[key] = ini_element
 
         save_button = tk.Button(self.right_frame, text="Save Changes", command=self.file_save)
-        save_button.pack(side=tk.BOTTOM, pady=(0,20))
+        save_button.pack(side=tk.BOTTOM, pady=(0, 20))
 
 
 if __name__ == "__main__":
