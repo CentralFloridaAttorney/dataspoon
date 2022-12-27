@@ -5,6 +5,8 @@ import mysql
 import pandas
 from mysql.connector import Error
 
+from python.dataspoon.configtool import ConfigTool
+
 # edit configuration /etc/mysql/mysql.conf.d/mysqld.cnf to change bind-address/127.0.0.1 and port/3306
 # configuration edits require terminal commands: sudo service mysql stop, start, status
 
@@ -34,11 +36,11 @@ from mysql.connector import Error
 #   sudo apt-get autoclean
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
-# HOST = '192.168.1.227'
-HOST = 'localhost'
-USER = 'bilbo'
-PASSWD = 'baggins'
-PORT = '3306'
+HOST = '192.168.1.227'
+# HOST = 'localhost'
+USER = 'overlordx'
+PASSWD = 'atomic99'
+PORT = '50011'
 DB_NAME = 'dbtool'
 DEFAULT_TABLE_NAME = 'default_table'
 LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
@@ -93,6 +95,7 @@ class DBTool:
 
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
+        configtool = ConfigTool('overlordx').get_configs()
         if _database_name is None:
             self.database_name = DB_NAME
         else:

@@ -12,8 +12,8 @@ FILE_PATH_CONFIG_INI = '../configuration.ini'
 DB_NAME = 'onehotdb'
 FORBIDDEN_DATABASES = ['users']
 HASH_MOD = 1
-HOST = 'localhost'
-# HOST = '192.168.1.227'
+# HOST = 'localhost'
+HOST = '192.168.1.227'
 HTML_ESCAPE_TABLE = {
     '"': "&quot;",
     "'": "&apos;",
@@ -33,8 +33,8 @@ LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
 LINK_KEY = 'link_key'
 ONEHOT_DB_NAME = 'onehot_tool'
 ONE_HOT_WORD_TABLE_NAME = 'test_dict'
-PASSWD = 'baggins'
-PORT = '3306'
+PASSWD = 'atomic99'
+PORT = '50011'
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)).rsplit('/', 1)[0] + '/'
 MYSQL_SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
 MYSQL_SELECT_ROW_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
@@ -43,7 +43,7 @@ MYSQL_UPDATE_STATEMENT = "UPDATE {0} SET {1} = '{2}' WHERE {3} = '{4}';"
 MYSQL_DELETE_STATEMENT = "DELETE FROM {0} WHERE {1} = '{2}';"
 SENTENCE_KEY = 'sentence'
 TABLE_NAME = 'sentences'
-USER = 'bilbo'
+USER = 'overlordx'
 
 
 class OneHotDB:
