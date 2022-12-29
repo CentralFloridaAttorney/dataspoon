@@ -5,46 +5,9 @@ import mysql
 import pandas
 from mysql.connector import Error
 
-# edit configuration /etc/mysql/mysql.conf.d/mysqld.cnf to change bind-address/127.0.0.1 and port/3306
-# configuration edits require terminal commands: sudo service mysql stop, start, status
+from python.dataspoon.configtool import ConfigTool
 
-# To use mysql from a terminal: mysql, sudo mysql, sudo mysql -u root -p
-# SHOW DATABASES;
-# If missing iriyedb then create using mysql: CREATE DATABASE iriyedb;
-# Show All Users: SELECT user,authentication_string,plugin,host FROM mysql.user;
-# If bilbo is not present then use mysql command: create user 'bilbo'@'127.0.0.1' identified by 'baggins';
-#   GRANT ALL PRIVILEGES ON *.* TO 'bilbo'@'127.0.0.1' WITH GRANT OPTION;
-#   show grants for 'bilbo'@'127.0.0.1';
-# repeat the above process for any other user/pw combo
-# CREATE ONE_HOT_WORD_TABLE_NAME users
-# (
-#   id              INT unsigned NOT NULL AUTO_INCREMENT,
-#   username        VARCHAR(150) NOT NULL,
-#   password        VARCHAR(150) NOT NULL,
-#   birth           DATE NOT NULL,
-#   PRIMARY KEY     (id)
-# );
-# INSERT INTO users ( username, password, birth) VALUES
-#   ( 'bilbo', 'baggins', '2015-01-03' ),
-#   ( 'john', 'doe', '2013-11-13' );
-# Install mysql with the following commands:
-#   sudo rm -rf /var/lib/mysql/mysql
-#   sudo apt-get remove --purge mysql-server mysql-client mysql-common
-#   sudo apt-get autoremove
-#   sudo apt-get autoclean
-#   sudo apt-get install mysql-server
-# import pickle5 as pickle is used to convert formats when pkl files are from an older version
-HOST = '192.168.1.227'
-# HOST = 'localhost'
-USER = 'overlordx'
-PASSWD = 'atomic99'
-PORT = '50011'
-DB_NAME = 'dbtool'
-DEFAULT_TABLE_NAME = 'default_table'
-LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
-ILLEGAL_WORDS = ['True']
 LINK_KEY = 'link_key'
-FORBIDDEN_DATABASES = ['users']
 HTML_ESCAPE_TABLE = {
     '"': "&quot;",
     "'": "&apos;",
@@ -72,7 +35,7 @@ DEFAULT_PKL_OUTPUT = '../../data/output.pkl'
 
 
 class DBTool:
-    def __init__(self, _database_name=None, _table_name=None):
+    def __init__(self, _database_name=None, _table_name=None, _config_key=None):
         """
         DBTool() provides access to MySQL functions within Python.
 
@@ -93,15 +56,14 @@ class DBTool:
 
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
-        configtool = ConfigTool('overlordx')
-        if _database_name is None:
-            self.database_name = DB_NAME
-        else:
-            self.database_name = self.get_clean_key_string(_database_name)
-        if _table_name is None:
-            self.table_name = DEFAULT_TABLE_NAME
-        else:
-            self.table_name = self.get_clean_key_string(_table_name)
+        configtool = ConfigTool('bilbo' if _config_key is None else _config_key)
+        these_configs = configtool.get_configs()
+        self.user = these_configs.get('user')
+        self.passwd = these_configs.get('passwd')
+        self.port = these_configs.get('port')
+        self.host = these_configs.get('host')
+        self.database_name = (these_configs.get('database_name') if _database_name is None else _database_name)
+        self.table_name = (these_configs.get('database_name') if _database_name is None else _database_name)
         self.open_database(self.database_name)
         # self.open_table(self.table_name)
         # print('__init__ done!')
@@ -143,10 +105,10 @@ class DBTool:
             # err.errno(1049) is database not exists
             if err.errno == 1049:
                 connection = mysql.connector.connect(
-                    host=HOST,
-                    user=USER,
-                    passwd=PASSWD,
-                    port=PORT,
+                    host=self.host,
+                    user=self.user,
+                    passwd=self.passwd,
+                    port=self.port,
                     database='sys'
                 )
                 try:
@@ -192,7 +154,7 @@ class DBTool:
         """
         result = 'default'
         try:
-            connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+            connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
             cursor = connection.cursor(buffered=True)
             if _value is None:
                 cursor.execute(_mysql_statement)
@@ -302,9 +264,9 @@ class DBTool:
         return _string
 
     def get_columns(self, _exclude_2_keys=False):
-        connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+        connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
         cursor = connection.cursor(buffered=True)
-        mysql_statement = "SELECT * FROM {0};".format(self.table_name)
+        mysql_statement = "SELECT {0} FROM {1};".format('*', self.table_name)
         cursor.execute(mysql_statement)
         columns = list(cursor.column_names)
         if _exclude_2_keys:
@@ -329,8 +291,7 @@ class DBTool:
         :param _value: _key is an optional parameter, which is used to identify the column name.
         :return: If _key=None then return the row_number where link_key = _link_key.  Otherwise, return the ro_number where a key/value pair matches _link_key/_key_value.
         """
-        # select_template = '''SELECT * FROM seminole_main.seminole_main where link_key = "jurney";'''
-        # clean_link_key = str(re.sub(LEGAL_CHARACTERS, '_', clean_link_key.strip()))
+
         if _value is None:
             select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, LINK_KEY,
                                                                          self.get_clean_key_string(_link_key))
@@ -340,8 +301,8 @@ class DBTool:
                                                                          self.get_clean_key_string(_value))
 
         link_key_id = self._execute_mysql(select_sql)
-        # print('get_id: ' + clean_link_key + ' = ' + str(row_number))
         if link_key_id is None:
+            print('get_id: ' + str(link_key_id))
             return 0
         else:
             print('get_id: ' + str(link_key_id))

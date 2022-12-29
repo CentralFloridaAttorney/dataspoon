@@ -32,12 +32,7 @@ class ConfigTool:
         file_path = '../../data/ini/' + self.config_key + '.ini'
         config_object = ConfigParser()
         config_object.read(file_path)
-        sections = config_object.sections()
-        config_list = []
-        for section in sections:
-            config_values = [section, config_object.items(section)]
-            config_list.append(config_values)
-        return config_list
+        return config_object.defaults()
 
 
 def test_init(_user):
