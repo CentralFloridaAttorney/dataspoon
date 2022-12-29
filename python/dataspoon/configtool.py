@@ -2,10 +2,10 @@ from configparser import ConfigParser
 
 DEFAULT_INI_FILE_PATH = '../../data/ini/configtool_default.ini'
 DEFAULT_INI = {
-            "user": "bilbo",
-            "passwd": "baggins",
-            "port": "(3306/50011)",
-            "host": "(localhost/192.168.1.227)",
+            "user": "overlordx",
+            "passwd": "atomic99",
+            "port": "50011",
+            "host": "192.168.1.227",
             "database_name": "dbtool_db",
             "table_name": "dbtool_table"
         }
@@ -58,7 +58,7 @@ def test_get_values(_user):
 
 
 if __name__ == '__main__':
-    _user = 'default'
+    _user = 'overlordx'
     test_init(_user)
     test_write_default_configs(_user)
     test_get_configs(_user)
