@@ -338,18 +338,15 @@ class OneHotDB:
         except AttributeError as err:
             print(err.name)
 
-        onehot_dataframe = self.get_onehot_list(_link_key)
+        onehot_list = self.get_onehot_list(_link_key)
+        onehot_list_dataframe = pandas.DataFrame(numpy.ones((1, len(onehot_list))), dtype=int)
+        onehot_list_dataframe.columns = onehot_list
         translated_value = ''
-        for index in onehot_dataframe:
-            this_word = OneHotWords().get_word(index)
-            # this_word = html.unescape(this_word)
-            this_word = TextProcessor().get_clean_word(this_word)
-            # html.escape() does not seem to work this_word may contain unescaped codes
-            for item in HTML_UNESCAPE_TABLE:
-                this_word = this_word.replace(item, HTML_UNESCAPE_TABLE.get(item))
-            clean_word = "".join(HTML_UNESCAPE_TABLE.get(c, c) for c in this_word)
-            translated_value = translated_value + " " + clean_word
-        print('get_translated_value: ' + translated_value)
+        onehot_dataframe = pandas.DataFrame(numpy.zeros((1, OneHotWords().get_row_count())), dtype=int)
+        for column in onehot_list_dataframe:
+            # indices begin at 1 and dataframe begins at 0
+            print(column)
+        print('get_onehot: ' + translated_value)
         return translated_value
 
     def get_onehot_dataframe(self, _link_key):
@@ -361,6 +358,7 @@ class OneHotDB:
 
     def get_onehot_list(self, _link_key):
         """
+        onehot_list is a list of the indices for the words in the sentence referenced by _link_key
 
         :param _link_key: references the row with the one-hot encoded value
         :return: returns a list of integers, where each integer is an index to a word in OneHotWords()
@@ -530,7 +528,7 @@ class OneHotDB:
 
 def test_add_pickle():
     onehotdb = OneHotDB()
-    onehotdb.add_pickle('../../data/pkl/CaseGrid.pkl', 'case_grid')
+    onehotdb.add_pickle('../../data/mysql.pkl', 'case_grid')
 
     print('test_sql2pkl done!')
 

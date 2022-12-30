@@ -56,7 +56,7 @@ class DBTool:
 
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
-        configtool = ConfigTool('bilbo' if _config_key is None else _config_key)
+        configtool = ConfigTool('overlordx' if _config_key is None else _config_key)
         these_configs = configtool.get_configs()
         self.user = these_configs.get('user')
         self.passwd = these_configs.get('passwd')
