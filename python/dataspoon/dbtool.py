@@ -54,6 +54,11 @@ class DBTool:
 
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
+        try:
+            open('../../default.ini', 'r+')
+        except FileNotFoundError:
+            config_tool = ConfigTool('default')
+            config_tool.write_default_configs()
         configtool = ConfigTool('default' if _config_key is None else _config_key)
         these_configs = configtool.get_configs()
         self.user = these_configs.get('user')
@@ -61,7 +66,7 @@ class DBTool:
         self.host = these_configs.get('host')
         self.port = these_configs.get('port')
         self.database_name = (these_configs.get('database_name') if _database_name is None else _database_name)
-        self.table_name = (these_configs.get('database_name') if _database_name is None else _database_name)
+        self.table_name = (these_configs.get('table_name)') if _database_name is None else _database_name)
         self.onehotdb_name = these_configs.get('onehotdb_name')
         self.onehotdb_table = these_configs.get('onehotdb_table')
         self.open_database(self.database_name)
