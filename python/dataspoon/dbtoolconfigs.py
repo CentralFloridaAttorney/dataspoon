@@ -3,7 +3,7 @@ import configparser
 
 FIELD_1 = 'INI_FILE_PATH'
 FIELD_2 = 'HOST'
-FIELD_3 = 'PORT'
+FIELD_3 = 'port'
 FIELD_4 = 'USER'
 FIELD_5 = 'PASSWD'
 FIELD_6 = ''
@@ -26,7 +26,7 @@ class DBToolConfigs:
 
         # Get the password
         userinfo = config_object["DBTOOL"]
-        print("Port is {}".format(userinfo["PORT"]))
+        print("Port is {}".format(userinfo["port"]))
         return userinfo
 
     @staticmethod

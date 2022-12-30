@@ -27,8 +27,6 @@ MYSQL_SELECT_SINGLE_ROW_STATEMENT = "SELECT FROM {1} WHERE {2} = '{3}';"
 UPDATE_STATEMENT = "UPDATE {0} SET {1} = '{2}' WHERE {3} = '{4}';"
 MYSQL_DELETE_STATEMENT = "DELETE FROM {0} WHERE {1} = '{2}';"
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-ONEHOT_DB_NAME = 'onehotwords'
-ONE_HOT_WORD_TABLE_NAME = 'words'
 ONEHOT_KEY = 'sentence'
 DEFAULT_PKL_INPUT = '../../data/users.pkl'
 DEFAULT_PKL_OUTPUT = '../../data/output.pkl'
@@ -41,7 +39,7 @@ class DBTool:
 
         :param _database_name: Optionally, specify self.database_name
         :param _table_name: Optionally, specify self.table_name
-
+        :param _config_key: Optionally, specify ConfigTool(_config_key); default is 'bilbo'
         To open the default database:
 
         dbtool = DBTool()
@@ -56,14 +54,16 @@ class DBTool:
 
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
-        configtool = ConfigTool('overlordx' if _config_key is None else _config_key)
+        configtool = ConfigTool('default' if _config_key is None else _config_key)
         these_configs = configtool.get_configs()
         self.user = these_configs.get('user')
         self.passwd = these_configs.get('passwd')
-        self.port = these_configs.get('port')
         self.host = these_configs.get('host')
+        self.port = these_configs.get('port')
         self.database_name = (these_configs.get('database_name') if _database_name is None else _database_name)
         self.table_name = (these_configs.get('database_name') if _database_name is None else _database_name)
+        self.onehotdb_name = these_configs.get('onehotdb_name')
+        self.onehotdb_table = these_configs.get('onehotdb_table')
         self.open_database(self.database_name)
         # self.open_table(self.table_name)
         # print('__init__ done!')
@@ -446,8 +446,10 @@ class DBTool:
 class OneHotWords(DBTool):
     # mysql has a maximum number of 4096 columns per table
     # Therefore, each sentence has a maximum number of words
-    def __init__(self):
-        super().__init__(ONEHOT_DB_NAME, ONE_HOT_WORD_TABLE_NAME)
+    def __init__(self, _config_key=None):
+        configtool = ConfigTool('default' if _config_key is None else _config_key)
+
+        super().__init__(configtool.get_configs().get('onehotdb_name'), configtool.get_configs().get('onehotdb_table'))
         # print('__init__ done!')
 
     def get_word(self, _index):

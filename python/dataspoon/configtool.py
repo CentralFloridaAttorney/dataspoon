@@ -2,12 +2,15 @@ from configparser import ConfigParser
 
 DEFAULT_INI_FILE_PATH = '../../data/ini/configtool_default.ini'
 DEFAULT_INI = {
-            "user": "overlordx",
-            "passwd": "atomic99",
-            "port": "50011",
-            "host": "192.168.1.227",
+            "ini_file_path": "../../default.ini",
+            "user": "bilbo",
+            "passwd": "baggins",
+            "port": "3306",
+            "host": "localhost",
             "database_name": "dbtool_db",
-            "table_name": "dbtool_table"
+            "table_name": "dbtool_table",
+            "onehotdb_name": "onehotwords",
+            "onehotdb_table": "words"
         }
 
 
@@ -17,19 +20,20 @@ class ConfigTool:
         print('__init__ done!')
 
     def write_default_configs(self):
-        file_path = '../../data/ini/' + self.config_key + '.ini'
+        file_path = '../../' + self.config_key + '.ini'
         #Get the configparser object
         config_object = ConfigParser()
         #Assume we need 2 sections in the config file, let's call them USERINFO and SERVERCONFIG
-        config_object["DEFAULT"] = DEFAULT_INI
         config_object["DEFAULT"]["user"] = self.config_key
         config_object["DEFAULT"]["INI_FILE_PATH"] = file_path
+        config_object["DEFAULT"] = DEFAULT_INI
+
         #Write the above sections to config.ini file
         with open(file_path, 'w') as conf:
             config_object.write(conf)
 
     def get_configs(self):
-        file_path = '../../data/ini/' + self.config_key + '.ini'
+        file_path = '../../' + self.config_key + '.ini'
         config_object = ConfigParser()
         config_object.read(file_path)
         return config_object.defaults()
@@ -58,7 +62,7 @@ def test_get_values(_user):
 
 
 if __name__ == '__main__':
-    _user = 'overlordx'
+    _user = 'default'
     test_init(_user)
     test_write_default_configs(_user)
     test_get_configs(_user)

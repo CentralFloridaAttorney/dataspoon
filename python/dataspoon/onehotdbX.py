@@ -5,6 +5,7 @@ import numpy
 import pandas
 from mysql.connector import Error
 
+from python.dataspoon.configtool import ConfigTool
 from python.dataspoon.dbtool import OneHotWords
 from python.dataspoon.textprocessor import TextProcessor
 
@@ -34,7 +35,7 @@ LINK_KEY = 'link_key'
 ONEHOT_DB_NAME = 'onehot_tool'
 ONE_HOT_WORD_TABLE_NAME = 'test_dict'
 PASSWD = 'atomic99'
-PORT = '50011'
+port = '50011'
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)).rsplit('/', 1)[0] + '/'
 MYSQL_SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
 MYSQL_SELECT_ROW_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
@@ -47,13 +48,25 @@ USER = 'overlordx'
 
 
 class OneHotDB:
-    def __init__(self):
+    def __init__(self, _config_key=None):
         """
         OneHotDB() requires no parameters
         """
+        self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
+        configtool = ConfigTool('default' if _config_key is None else _config_key)
+        these_configs = configtool.get_configs()
+        self.user = these_configs.get('user')
+        self.passwd = these_configs.get('passwd')
+        self.host = these_configs.get('host')
+        self.port = these_configs.get('port')
+        self.database_name = these_configs.get('database_name')
+        self.table_name = these_configs.get('database_name')
+        self.onehotdb_name = these_configs.get('onehotdb_name')
+        self.onehotdb_table = these_configs.get('onehotdb_table')
+
         self.base_dir = ROOT_DIR.rsplit('/', 1)[0] + '/'
-        self.database_name = DB_NAME
-        self.table_name = TABLE_NAME
+        #self.database_name = DB_NAME
+        # self.table_name = TABLE_NAME
         self.open_database(self.database_name)
         self.open_table(self.table_name)
         # print('__init__ done!')
@@ -69,7 +82,7 @@ class OneHotDB:
     def _execute_mysql(self, _mysql_statement, _value=None):
         result = 'default'
         try:
-            connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+            connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
             cursor = connection.cursor(buffered=True)
             if _value is None:
                 cursor.execute(_mysql_statement)
@@ -100,9 +113,9 @@ class OneHotDB:
         return result
 
     def _get_columns(self):
-        connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+        connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
         cursor = connection.cursor(buffered=True)
-        mysql_statement = "SELECT * FROM {0}".format(self.database_name + '.' + self.table_name)
+        mysql_statement = "SELECT {0} FROM {1}.{2}".format('*', self.database_name, self.table_name)
         cursor.execute(mysql_statement)
         return cursor.column_names
 
@@ -134,7 +147,7 @@ class OneHotDB:
                     host=HOST,
                     user=USER,
                     passwd=PASSWD,
-                    port=PORT,
+                    port=port,
                     database='sys'
                 )
                 try:
@@ -279,7 +292,7 @@ class OneHotDB:
         return _string
 
     def get_columns(self, _exclude_2_keys=False):
-        connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+        connection = self._get_db_connection(HOST, USER, PASSWD, port, self.database_name)
         cursor = connection.cursor(buffered=True)
         mysql_statement = "SELECT * FROM {0};".format(self.table_name)
         cursor.execute(mysql_statement)
@@ -338,15 +351,18 @@ class OneHotDB:
         except AttributeError as err:
             print(err.name)
 
-        onehot_list = self.get_onehot_list(_link_key)
-        onehot_list_dataframe = pandas.DataFrame(numpy.ones((1, len(onehot_list))), dtype=int)
-        onehot_list_dataframe.columns = onehot_list
+        onehot_dataframe = self.get_onehot_list(_link_key)
         translated_value = ''
-        onehot_dataframe = pandas.DataFrame(numpy.zeros((1, OneHotWords().get_row_count())), dtype=int)
-        for column in onehot_list_dataframe:
-            # indices begin at 1 and dataframe begins at 0
-            print(column)
-        print('get_onehot: ' + translated_value)
+        for index in onehot_dataframe:
+            this_word = OneHotWords().get_word(index)
+            # this_word = html.unescape(this_word)
+            this_word = TextProcessor().get_clean_word(this_word)
+            # html.escape() does not seem to work this_word may contain unescaped codes
+            for item in HTML_UNESCAPE_TABLE:
+                this_word = this_word.replace(item, HTML_UNESCAPE_TABLE.get(item))
+            clean_word = "".join(HTML_UNESCAPE_TABLE.get(c, c) for c in this_word)
+            translated_value = translated_value + " " + clean_word
+        print('get_translated_value: ' + translated_value)
         return translated_value
 
     def get_onehot_dataframe(self, _link_key):
@@ -358,7 +374,6 @@ class OneHotDB:
 
     def get_onehot_list(self, _link_key):
         """
-        onehot_list is a list of the indices for the words in the sentence referenced by _link_key
 
         :param _link_key: references the row with the one-hot encoded value
         :return: returns a list of integers, where each integer is an index to a word in OneHotWords()
@@ -528,7 +543,7 @@ class OneHotDB:
 
 def test_add_pickle():
     onehotdb = OneHotDB()
-    onehotdb.add_pickle('../../data/mysql.pkl', 'case_grid')
+    onehotdb.add_pickle('../../data/mysql.pkl', 'mysql_test')
 
     print('test_sql2pkl done!')
 
