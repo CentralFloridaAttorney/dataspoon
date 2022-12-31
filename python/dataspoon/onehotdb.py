@@ -1,3 +1,4 @@
+import html
 import os
 
 import mysql
@@ -5,6 +6,7 @@ import numpy
 import pandas
 from mysql.connector import Error
 
+from python.dataspoon.configtool import ConfigTool
 from python.dataspoon.dbtool import OneHotWords
 from python.dataspoon.textprocessor import TextProcessor
 
@@ -12,8 +14,8 @@ FILE_PATH_CONFIG_INI = '../configuration.ini'
 DB_NAME = 'onehotdb'
 FORBIDDEN_DATABASES = ['users']
 HASH_MOD = 1
-# HOST = 'localhost'
-HOST = '192.168.1.227'
+# host = 'localhost'
+# host = '192.168.1.227'
 HTML_ESCAPE_TABLE = {
     '"': "&quot;",
     "'": "&apos;",
@@ -34,7 +36,7 @@ LINK_KEY = 'link_key'
 ONEHOT_DB_NAME = 'onehot_tool'
 ONE_HOT_WORD_TABLE_NAME = 'test_dict'
 PASSWD = 'atomic99'
-PORT = '50011'
+# port = '50011'
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)).rsplit('/', 1)[0] + '/'
 MYSQL_SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
 MYSQL_SELECT_ROW_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
@@ -47,18 +49,42 @@ USER = 'overlordx'
 
 
 class OneHotDB:
-    def __init__(self):
+    def __init__(self, _database_name=None, _table_name=None, _config_key=None):
         """
         OneHotDB() requires no parameters
         """
         self.base_dir = ROOT_DIR.rsplit('/', 1)[0] + '/'
-        self.database_name = DB_NAME
-        self.table_name = TABLE_NAME
+        # self.database_name = DB_NAME
+        # self.table_name = TABLE_NAME
+        # self.open_database(self.database_name)
+        # self.open_table(self.table_name)
+
+        self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
+        try:
+            open('../../default.ini', 'r+')
+        except FileNotFoundError:
+            config_tool = ConfigTool('default')
+            config_tool.write_default_configs()
+        configtool = ConfigTool('default' if _config_key is None else _config_key)
+        these_configs = configtool.get_configs()
+        self.user = these_configs.get('user')
+        self.passwd = these_configs.get('passwd')
+        self.host = these_configs.get('host')
+        self.port = these_configs.get('port')
+        self.database_name = (these_configs.get('database_name') if _database_name is None else _database_name)
+        self.table_name = (these_configs.get('table_name)') if _table_name is None else _table_name)
+        self.onehotdb_name = these_configs.get('onehotdb_name')
+        self.onehotdb_table = these_configs.get('onehotdb_table')
+        self.words_filename_key = these_configs.get('words_filename_key')  # used in pickle_words
         self.open_database(self.database_name)
-        self.open_table(self.table_name)
+        # self.open_table(self.table_name)
         # print('__init__ done!')
 
     def _add_column(self, _column_name):
+        """
+        DBTool._add_column() adds a column your MySQL database table
+        :param _column_name: name of the new column
+        """
         query = "ALTER TABLE {0} ADD {1} VARCHAR(4096);".format(self.table_name,
                                                                 self.get_clean_key_string(_column_name))
         # values = [self.table_name, self.get_clean_key_string(_column_name)]
@@ -66,10 +92,35 @@ class OneHotDB:
         self._execute_mysql(query)
         # print('Add column: '+ _column_name)
 
+    def _copy_link_key(self, _from_link_key, _to_link_key):
+        # this method creates a shallow paste by ignoring None values in _from_link_key
+        # if a key/value is null then skip (or consider set value as 'default' for deep paste)
+        # index 0 is id and index 1 is link_key, copied values thus begin at index 2
+        # if the _from_link_key does not exist then create it
+        # if the _to_link_key does not exist then create it
+        if self.get_id(_from_link_key) == 0:
+            self.put(_from_link_key)
+        else:
+            old_values = self.get_values(_from_link_key)
+            old_keys = self.get_columns()
+            # if the _to_link_key does not exist then create it
+            if self.get_id(_to_link_key) == 0:
+                self.put(_to_link_key)
+            # index 0 is id and index 1 is link_key, copied values thus begin at index 2
+            for index in range(2, len(old_keys), 1):
+                if old_values[index] is None:
+                    # if a key/value is null then consider setting value s 'default'
+                    # self.put(_to_link_key, old_keys[index], 'default')
+                    pass
+                else:
+                    # otherwise, insert the old_value
+                    self.put(_to_link_key, old_keys[index], old_values[index])
+        return self.get_id(_to_link_key)
+
     def _execute_mysql(self, _mysql_statement, _value=None):
         result = 'default'
         try:
-            connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+            connection = self._get_db_connection(self.host, USER, PASSWD, self.port, self.database_name)
             cursor = connection.cursor(buffered=True)
             if _value is None:
                 cursor.execute(_mysql_statement)
@@ -100,7 +151,7 @@ class OneHotDB:
         return result
 
     def _get_columns(self):
-        connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+        connection = self._get_db_connection(self.host, USER, PASSWD, self.port, self.database_name)
         cursor = connection.cursor(buffered=True)
         mysql_statement = "SELECT * FROM {0}".format(self.database_name + '.' + self.table_name)
         cursor.execute(mysql_statement)
@@ -131,10 +182,10 @@ class OneHotDB:
             # err.errno(1049) is database not exists
             if err.errno == 1049:
                 connection = mysql.connector.connect(
-                    host=HOST,
-                    user=USER,
-                    passwd=PASSWD,
-                    port=PORT,
+                    host=self.host,
+                    user=self.user,
+                    passwd=self.passwd,
+                    port=self.port,
                     database='sys'
                 )
                 try:
@@ -163,6 +214,13 @@ class OneHotDB:
         print("_get_html_unescape: " + unescape_string)
         return unescape_string
 
+    def _get_onehot_dataframe(self, _link_key):
+        onehot_indices = self.get_onehot_list(_link_key)
+        dataframe = pandas.DataFrame(onehot_indices).astype(str)
+        dataframe = dataframe.transpose()
+        dataframe.columns = self._get_onehot_words(onehot_indices)
+        return dataframe
+
     def _get_onehot_words(self, _onehot_index_list):
         words = []
         for index in _onehot_index_list:
@@ -183,47 +241,6 @@ class OneHotDB:
                 _lists = ['None' if v is None else v for v in _lists]
         _lists = ['default']
         return _lists
-
-    def add_dataframe(self, _data_frame, _link_key_column_num=0):
-        """
-
-        :param _data_frame: the pandas.DataFrame to be added to self.table_name
-        :param _link_key_column_num: when adding a dataframe each row requires a link_key.  _link_key_column_row is the column_number of _data_frame to be used as link_key then adding each row
-        """
-
-        h, w = _data_frame.shape
-        for row in range(0, h, 1):
-            link_key = str(_data_frame.iloc[row][_link_key_column_num])
-            for column in range(0, w, 1):
-                key = str(_data_frame.columns[column])
-                value = str(_data_frame.iloc[row][column])
-                self.put(link_key, key, value)
-        # print('add_dataframe done!')
-
-    def add_pickle(self, _pkl_path, _table_name=None):
-        dataframe = pandas.read_pickle(_pkl_path)
-        if _table_name is not None:
-            self.open_table(_table_name)
-        self.add_dataframe(dataframe)
-        print('add_pickle: ' + _pkl_path)
-
-    def copy_link_key(self, _from_link_key, _to_link_key):
-        # this method creates a shallow paste by ignoring None values in _from_link_key
-        # if a key/value is null then skip (or consider set value as 'default' for deep paste)
-        # index 0 is id and index 1 is link_key, copied values thus begin at index 2
-        # if the _from_link_key does not exist then create it
-        # if the _to_link_key does not exist then create it
-        if self.get_id(_from_link_key) == 0:
-            self.put(_from_link_key)
-        else:
-            # 2 result: returns the value for key on the link_key row
-            self._add_column(_key)
-            sql_statement = MYSQL_SELECT_STATEMENT.format(self.get_clean_key_string(_key),
-                                                          self.table_name,
-                                                          LINK_KEY,
-                                                          self.get_clean_key_string(_link_key))
-        result = self._execute_mysql(sql_statement)
-        return result
 
     def delete_database(self, _database_name):
         mysql_drop_database = "DROP DATABASE {0}".format(self.get_clean_key_string(_database_name))
@@ -274,14 +291,14 @@ class OneHotDB:
         _string = str(_string)
         if _string.isdigit():
             _string = "_" + str(_string)
-        _string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
-        # _string = html.escape(_string)
+        # _string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
+        _string = html.escape(_string)
         return _string
 
     def get_columns(self, _exclude_2_keys=False):
-        connection = self._get_db_connection(HOST, USER, PASSWD, PORT, self.database_name)
+        connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
         cursor = connection.cursor(buffered=True)
-        mysql_statement = "SELECT * FROM {0};".format(self.table_name)
+        mysql_statement = "SELECT {0} FROM {1};".format('*', self.table_name)
         cursor.execute(mysql_statement)
         columns = list(cursor.column_names)
         if _exclude_2_keys:
@@ -324,14 +341,21 @@ class OneHotDB:
             print('get_id: ' + str(link_key_id))
             return link_key_id
 
-    def get_link_keys(self):
+    def get_sentence_indices(self):
         dataframe = self.get_dataframe()
         link_keys = dataframe[LINK_KEY].values.tolist()
         # link_key_array = link_keys.
-        print('get_link_keys done!')
+        print('get_sentence_indices done!')
         return link_keys
 
-    def get_onehot(self, _link_key):
+    def get_onehot(self, _link_key, _use_column_names=True, _count_uses=False):
+        """
+        You must use OneHotDB.put_onehot() before using puts a sentence This method creates a pandas.DataFrame where
+        :param _link_key: is the reference to the sentence
+        :param _use_column_names: if True then sets column names to the words in OneHotWords()
+        :param _count_uses: if True then the value in the column is then number is instances that the word appears in the sentence; Otherwise, the value in the column is True when the word is present in the sentence
+        :return: a dataframe where each row is the 'id' for each word from OneHotWords(); if the sentence has a word then 1 is placed in the column corresponding to the word 'id'
+        """
         test_link_key = _link_key.split(' ')
         try:
             first_value = test_link_key[0]
@@ -341,20 +365,18 @@ class OneHotDB:
         onehot_list = self.get_onehot_list(_link_key)
         onehot_list_dataframe = pandas.DataFrame(numpy.ones((1, len(onehot_list))), dtype=int)
         onehot_list_dataframe.columns = onehot_list
-        translated_value = ''
         onehot_dataframe = pandas.DataFrame(numpy.zeros((1, OneHotWords().get_row_count())), dtype=int)
         for column in onehot_list_dataframe:
+            word_index = int(onehot_list.pop())
             # indices begin at 1 and dataframe begins at 0
-            print(column)
-        print('get_onehot: ' + translated_value)
-        return translated_value
-
-    def get_onehot_dataframe(self, _link_key):
-        onehot_indices = self.get_onehot_list(_link_key)
-        dataframe = pandas.DataFrame(onehot_indices).astype(str)
-        dataframe = dataframe.transpose()
-        dataframe.columns = self._get_onehot_words(onehot_indices)
-        return dataframe
+            onehot_dataframe.iat[0, word_index - 1] = (1 if not _count_uses else onehot_dataframe.iat[0, word_index - 1] + 1)
+            print('word index: ' + str(word_index))
+        # print('get_onehot: ' + translated_value)
+        if _use_column_names:
+            words = OneHotWords().get_words()
+            onehot_dataframe.columns = words
+        print(onehot_dataframe)
+        return onehot_dataframe
 
     def get_onehot_list(self, _link_key):
         """
@@ -425,7 +447,7 @@ class OneHotDB:
             self.table_name = self.get_clean_key_string(_table_name)
 
         # When you open_database self.table_name does not change
-        # self.table is used in: _add_column, get, get_id, open_table, add_dataframe, and put
+        # self.table is used in: _add_column, get, get_id, open_table, _add_dataframe, and put
         # The default value for self.table_name is python
         # Therefore, _table_name may be required for open_database
 
@@ -473,7 +495,7 @@ class OneHotDB:
                 self._execute_mysql(mysql_statement)
             link_key_id = self.get_id(_link_key)
         elif _value is None:
-            link_key_id = self.copy_link_key(_link_key, _key_value)
+            link_key_id = self._copy_link_key(_link_key, _key_value)
         else:
             # sets value in the column _link_key_value to _key_value in the row where the link_key is _link_key
             if self.get_id(_link_key) == 0:
@@ -508,15 +530,25 @@ class OneHotDB:
                     _result[index] = 'None'
         return _result
 
-    def to_pickle(self, _file_path):
-        mysql_statement = "SELECT * FROM {0}".format(self.table_name)
-        result = self._execute_mysql(mysql_statement)
-        columns = self._get_columns()
-        dataframe = pandas.DataFrame(result)
-        # dataframe = dataframe.transpose()
-        dataframe.columns = columns
-        dataframe.to_pickle(_file_path)
-        print('to_pickle: ' + _file_path)
+    @staticmethod
+    def pickle_words(_filename_key=None):
+        """
+        This method pickles the words in OneHotWords using _filename_key
+        :param _words_filename_key:
+        :return:
+        """
+        words = OneHotWords().get_words()
+        # pickle
+        try:
+            os.mkdir("../../data/words/")
+        except FileExistsError:
+            pass
+        words_file_name = "../../data/words/" + ('default' if _filename_key is None else _filename_key) + ".onehotwords.pkl"
+        words_dataframe = pandas.DataFrame(words)
+        words_dataframe = words_dataframe.transpose()
+        words_dataframe.to_pickle(words_file_name)
+        print('pickle_words: ' + words_file_name)
+        return words_dataframe
 
     def update_value(self, _link_key, _key, _value):
         mysql_insert_statement = MYSQL_UPDATE_STATEMENT.format(self.table_name, self.get_clean_key_string(_key),
@@ -524,13 +556,6 @@ class OneHotDB:
                                                                self.get_id(_link_key))
         self._execute_mysql(mysql_insert_statement)
         return self.get_id(_link_key)
-
-
-def test_add_pickle():
-    onehotdb = OneHotDB()
-    onehotdb.add_pickle('../../data/mysql.pkl', 'case_grid')
-
-    print('test_sql2pkl done!')
 
 
 def test_delete_database():
@@ -554,8 +579,15 @@ def test_get_clean_key_string():
 
 def test_get_onehot():
     onehotdb = OneHotDB()
+    second_key = onehotdb.get_onehot('first_key', _use_column_names=False)
     onehotdb.put_onehot('second_key', "That's not it?")
     second_key = onehotdb.get_onehot('second_key')
+    second_key = onehotdb.get_onehot('second_key', _use_column_names=False)
+    tmp_file = open('../../data/txt/shakespear.txt', 'r+')
+    file_text = tmp_file.read()
+    onehotdb.put_onehot('third_key', file_text)
+    third_onehot = onehotdb.get_onehot('third_key', _count_uses=True, _use_column_names=False)
+    print(third_onehot)
     print('test_get_onehot done!')
 
 
@@ -588,8 +620,13 @@ def test_put_onehot():
 
 def test_to_pickle():
     onehotdb = OneHotDB()
-    onehotdb.to_pickle('../../data/put_word_table.pkl')
+    onehotdb.pickle_words('word_key')
     print('test_to_pickle done!')
+
+def test_get_sentence_indices():
+    onehotdb = OneHotDB()
+    link_keys = onehotdb.get_sentence_indices()
+    print('test_get_sentence_indices done!')
 
 
 # edit configuration /etc/mysql/mysql.conf.d/mysqld.cnf to change bind-address/127.0.0.1 and port/3306
@@ -622,16 +659,15 @@ def test_to_pickle():
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
 if __name__ == '__main__':
-    test_get_onehot_matrix()
-    test_delete_table()
-    test_delete_database()
-    test_init()
-    test_get_row_count()
-    test_get_clean_key_string()
-    test_put_onehot()
-    test_get_onehot()
-    test_add_pickle()
+    # test_get_onehot_matrix()
+    # test_delete_table()
+    # test_delete_database()
+    # test_init()
+    # test_get_row_count()
+    # test_get_clean_key_string()
+    # test_put_onehot()
+    # test_get_onehot()
     test_to_pickle()
-
+    test_get_sentence_indices()
     # the following line is not reached because of sys.exit() in python()
     print("python done!")

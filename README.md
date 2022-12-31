@@ -145,7 +145,7 @@ azxf
     3. Revise an existing link_key ('revised_link_key_xyzzy'): xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy')
     4. Put key/value ('ala'/'kazam') into row with link_key ('revised_link_key_xyzzy'): xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam')
     5. Get this_value ('kazam') using key ('ala') from row with link_key value ('revised_link_key_xyzzy'): this_value = xyzzydb.get('revised_link_key_xyzzy', 'ala')
-    6. Save xyzzydb.magic_table as a pandas.DataFrame .pkl file ('data/mysql.pkl'): xyzzydb.to_pickle('data/mysql.pkl')
+    6. Save xyzzydb.magic_table as a pandas.DataFrame .pkl file ('data/mysql.pkl'): xyzzydb.pickle_words('data/mysql.pkl')
 ````
 ### dbtool.OneHotWords()
 

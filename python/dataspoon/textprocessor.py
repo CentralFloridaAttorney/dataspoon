@@ -68,7 +68,7 @@ class TextProcessor:
 
 def test_init():
     textprocessor = TextProcessor()
-    textprocessor.load_given_string('../../data/txt/onehot_1.txt')
+    textprocessor.load_given_string('../../data/txt/shakespear.txt')
     textprocessor.save_processed_string()
 
 

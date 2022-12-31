@@ -66,7 +66,7 @@ class DBTool:
         self.host = these_configs.get('host')
         self.port = these_configs.get('port')
         self.database_name = (these_configs.get('database_name') if _database_name is None else _database_name)
-        self.table_name = (these_configs.get('table_name)') if _database_name is None else _database_name)
+        self.table_name = (these_configs.get('table_name)') if _table_name is None else _table_name)
         self.onehotdb_name = these_configs.get('onehotdb_name')
         self.onehotdb_table = these_configs.get('onehotdb_table')
         self.open_database(self.database_name)
@@ -202,8 +202,12 @@ class DBTool:
         return _lists
 
     def add_dataframe(self, _data_frame, _link_key_column_num=0):
-        # when adding a dataframe each row requires a link_key
-        # the link_key is the row_number of the newly added record
+        """
+
+        :param _data_frame: the pandas.DataFrame to be added to self.table_name
+        :param _link_key_column_num: when adding a dataframe each row requires a link_key.  _link_key_column_row is the column_number of _data_frame to be used as link_key then adding each row
+        """
+
         h, w = _data_frame.shape
         for row in range(0, h, 1):
             link_key = str(_data_frame.iloc[row][_link_key_column_num])
@@ -211,7 +215,7 @@ class DBTool:
                 key = str(_data_frame.columns[column])
                 value = str(_data_frame.iloc[row][column])
                 self.put(link_key, key, value)
-        # print('add_dataframe done!')
+        # print('_add_dataframe done!')
 
     def copy_link_key(self, _from_link_key, _to_link_key):
         # this method creates a shallow paste by ignoring None values in _from_link_key
@@ -317,7 +321,7 @@ class DBTool:
         dataframe = self.get_dataframe()
         link_keys = dataframe[LINK_KEY].values.tolist()
         # link_key_array = link_keys.
-        print('get_link_keys done!')
+        print('get_sentence_indices done!')
         return link_keys
 
     def get_row_count(self):
@@ -368,7 +372,7 @@ class DBTool:
             self.table_name = self.get_clean_key_string(_table_name)
 
         # When you open_database self.table_name does not change
-        # self.table is used in: _add_column, get, get_id, open_table, add_dataframe, and put
+        # self.table is used in: _add_column, get, get_id, open_table, _add_dataframe, and put
         # The default value for self.table_name is python
         # Therefore, _table_name may be required for open_database
 
@@ -438,7 +442,7 @@ class DBTool:
     def to_pickle(self, _file_path):
         dataframe = self.get_dataframe()
         dataframe.to_pickle(_file_path)
-        print('to_pickle: ' + _file_path)
+        print('pickle_words: ' + _file_path)
 
     def update_value(self, _link_key, _key, _value):
         mysql_insert_statement = UPDATE_STATEMENT.format(self.table_name, self.get_clean_key_string(_key),
@@ -446,6 +450,12 @@ class DBTool:
                                                          self.get_id(_link_key))
         self._execute_mysql(mysql_insert_statement)
         return self.get_id(_link_key)
+
+    def get_column(self, _column_name):
+        dataframe = self.get_dataframe()
+        column_values  = dataframe[_column_name].values.tolist()
+        print('get_column done!')
+        return column_values
 
 
 class OneHotWords(DBTool):
@@ -473,6 +483,11 @@ class OneHotWords(DBTool):
         clean_word = self.get_clean_key_string(_word)
         row_number = super().get_id(clean_word)
         return row_number
+
+    def get_words(self):
+        words = super().get_column(LINK_KEY)
+        print('get_words done!')
+        return words
 
 
 def test_get_row_count():

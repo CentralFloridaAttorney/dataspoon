@@ -1,0 +1,10 @@
+mysql-connector-python
+myst-parser
+ConfigParser
+pandas
+numpy
+matplotlib
+scikit-learn
+scipy
+joblib
+torch

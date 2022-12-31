@@ -28,7 +28,7 @@ class OneHotDBGUI(tk.Tk):
         self.menubar = tk.Menu(self, bg="lightgrey", fg="black")
 
         self.file_menu = tk.Menu(self.menubar, tearoff=0, bg="lightgrey", fg="black")
-        self.file_menu.add_command(label="Select File", command=self.get_processed_text, accelerator="Ctrl+O")
+        self.file_menu.add_command(label="Select File", command=self.txt2onehot, accelerator="Ctrl+O")
         self.file_menu.add_command(label="Save Words", command=self.save_words, accelerator="Ctrl+W")
         self.file_menu.add_command(label="Save", command=self.file_save, accelerator="Ctrl+S")
 
@@ -56,7 +56,7 @@ class OneHotDBGUI(tk.Tk):
 
         self.right_frame.bind("<Configure>", self.frame_height)
 
-        self.bind("<Control-o>", self.get_processed_text)
+        self.bind("<Control-o>", self.txt2onehot)
         self.bind("<Control-s>", self.file_save)
 
     def frame_height(self, event=None):
@@ -68,22 +68,22 @@ class OneHotDBGUI(tk.Tk):
         dataframe = OneHotWords().get_dataframe()
         dataframe.to_csv('../../data/txt/words.csv', index=False)
 
-    def get_processed_text(self, event=None):
+    def txt2onehot(self, event=None):
+        # read the string from a txt file for processing into onehot
         data_file = filedialog.askopenfilename(initialdir='../../data/txt/')
-
         while data_file and not (data_file.endswith(".pkl") or data_file.endswith(".txt")):
             msg.showerror("Wrong Filetype", "Please select an pkl or txt file")
             data_file = filedialog.askopenfilename()
 
         if data_file:
             result = self.parse_data_file(data_file)
-        onehot_file_path = Path(data_file)
-        onehot_file_name = onehot_file_path.with_suffix('.hot')
-        onehot_file = open(onehot_file_name, 'w+')
-        onehot_file.write(result)
-        onehot_file.close()
-        print('get_processed_text done!')
-        return result
+        txt_file = open(data_file, 'r+')
+        file_string = txt_file.read()
+        # convert file_string into onehot
+        onehotdb = OneHotDB()
+        onehotdb.put_onehot('txt2onehot', file_string)
+        onehot_data = onehotdb._get_onehot_dataframe('txt2onehot')
+        return onehot_data
 
     def file_save(self, event=None):
         if not self.active_ini:

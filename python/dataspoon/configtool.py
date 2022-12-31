@@ -10,7 +10,8 @@ DEFAULT_INI = {
             "database_name": "dbtool_db",
             "table_name": "dbtool_table",
             "onehotdb_name": "onehotwords",
-            "onehotdb_table": "words"
+            "onehotdb_table": "words",
+            "words_filename_key": "default_words"
         }
 
 
