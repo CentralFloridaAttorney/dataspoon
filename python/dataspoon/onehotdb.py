@@ -35,7 +35,7 @@ LEGAL_CHARACTERS = r"[^'a-zA-Z0-9\s\·\,\.\:\:\(\)\[\]\\\\]]"
 LINK_KEY = 'link_key'
 ONEHOT_DB_NAME = 'onehot_tool'
 ONE_HOT_WORD_TABLE_NAME = 'test_dict'
-PASSWD = 'atomic99'
+PASSWD = 'baggins'
 # port = '50011'
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)).rsplit('/', 1)[0] + '/'
 MYSQL_SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
@@ -45,14 +45,19 @@ MYSQL_UPDATE_STATEMENT = "UPDATE {0} SET {1} = '{2}' WHERE {3} = '{4}';"
 MYSQL_DELETE_STATEMENT = "DELETE FROM {0} WHERE {1} = '{2}';"
 SENTENCE_KEY = 'sentence'
 TABLE_NAME = 'sentences'
-USER = 'overlordx'
+USER = 'bilbo'
 
 
 class OneHotDB:
     def __init__(self, _database_name=None, _table_name=None, _config_key=None):
         """
-        OneHotDB() requires no parameters
+        OneHotDB takes data, breaks it into smaller parts, and then stores indices to those smaller parts in a database.  Those smaller parts are stored using OneHotWords.
+
+        :param _database_name: Optionally, specify a database_name.  The default database_name is onehotdb.
+        :param _table_name: Optionally, specify a table_name.  The default table_name is sentences.
+        :param _config_key: Optionally, specify a configuration key.  (ex. 'default')  The default configuration key is default, which maps to a file named "default.ini", located in the project root.
         """
+
         self.base_dir = ROOT_DIR.rsplit('/', 1)[0] + '/'
         # self.database_name = DB_NAME
         # self.table_name = TABLE_NAME
@@ -92,7 +97,14 @@ class OneHotDB:
         self._execute_mysql(query)
         # print('Add column: '+ _column_name)
 
-    def _copy_link_key(self, _from_link_key, _to_link_key):
+    def _copy_row(self, _from_link_key, _to_link_key):
+        """
+        _copy_row copies the values from one row to another.
+
+        :param _from_link_key: the link_key for the row that you want to copy
+        :param _to_link_key: the link_key for the destination row
+        :return: This function returns the 'id' of the destination row.
+        """
         # this method creates a shallow paste by ignoring None values in _from_link_key
         # if a key/value is null then skip (or consider set value as 'default' for deep paste)
         # index 0 is id and index 1 is link_key, copied values thus begin at index 2
@@ -150,14 +162,30 @@ class OneHotDB:
             return False
         return result
 
-    def _get_columns(self):
+    def _get_column_names(self):
+        """
+        :return: This function returns the names of the columns for the currently active table.
+        """
         connection = self._get_db_connection(self.host, USER, PASSWD, self.port, self.database_name)
         cursor = connection.cursor(buffered=True)
-        mysql_statement = "SELECT * FROM {0}".format(self.database_name + '.' + self.table_name)
+        query_part = self.database_name + '.' + self.table_name
+        mysql_statement = "SELECT {0} FROM {1}".format('*', query_part)
         cursor.execute(mysql_statement)
         return cursor.column_names
 
     def _get_db_connection(self, host_name, user_name, user_password, port_num, _db_name=None):
+        """
+        _get_db_connection is called by this class as needed to operate the MySQL database.
+
+        :param host_name: (ex. localhost, 192.168.1.227)
+        :param user_name: (ex. bilbo)
+        :param user_password: (ex. baggins)
+        :param port_num: (ex. 3306, 50011)
+        :param _db_name: (ex. database_12, best_database)
+        :return: This function returns a connection to a MySQL database.
+
+        WARNING: If the values in the default.ini file are not correct then this function will fail.
+        """
         connection = None
         try:
             if _db_name is not None:
@@ -495,7 +523,7 @@ class OneHotDB:
                 self._execute_mysql(mysql_statement)
             link_key_id = self.get_id(_link_key)
         elif _value is None:
-            link_key_id = self._copy_link_key(_link_key, _key_value)
+            link_key_id = self._copy_row(_link_key, _key_value)
         else:
             # sets value in the column _link_key_value to _key_value in the row where the link_key is _link_key
             if self.get_id(_link_key) == 0:

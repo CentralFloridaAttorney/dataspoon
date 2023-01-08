@@ -127,7 +127,7 @@ class DBTool:
                 except Error as err:
                     print(f"Error: '{err}'")
             else:
-                print('_get_db_connection error: ' + _db_name)
+                print('*** Did you update default.ini: ' + self.user)
                 # print('created new database: ' + db_name)
         return connection
 
@@ -158,35 +158,36 @@ class DBTool:
         :return: returns the result of the MySQL statement or an error message.
         """
         result = 'default'
-        try:
-            connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
-            cursor = connection.cursor(buffered=True)
-            if _value is None:
-                cursor.execute(_mysql_statement)
-            else:
-                cursor.execute(_mysql_statement, _value)
-            connection.commit()
-            if _mysql_statement.startswith('SELECT'):
-                if "*" not in _mysql_statement:
-                    result = cursor.fetchone()
-                    if result is not None:
-                        result = result[0]
+        connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
+        if connection is not None:
+            try:
+                cursor = connection.cursor(buffered=True)
+                if _value is None:
+                    cursor.execute(_mysql_statement)
                 else:
-                    result = cursor.fetchall()
-                    if result is not None:
-                        result = [list(x) for x in result]
-                        if len(result) == 1:
+                    cursor.execute(_mysql_statement, _value)
+                connection.commit()
+                if _mysql_statement.startswith('SELECT'):
+                    if "*" not in _mysql_statement:
+                        result = cursor.fetchone()
+                        if result is not None:
                             result = result[0]
-            cursor.close()
-            connection.close()
-        except Error as err:
-            if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__('Duplicate'):
-                print('non-fatal error in dbtool._execute_mysql: ' + _mysql_statement)
-            elif err.errno == 1064:
-                return 'mysql syntax error: ' + _mysql_statement
-            else:
-                print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
-            return False
+                    else:
+                        result = cursor.fetchall()
+                        if result is not None:
+                            result = [list(x) for x in result]
+                            if len(result) == 1:
+                                result = result[0]
+                cursor.close()
+                connection.close()
+            except Error as err:
+                if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__('Duplicate'):
+                    print('non-fatal error in dbtool._execute_mysql: ' + _mysql_statement)
+                elif err.errno == 1064:
+                    return 'mysql syntax error: ' + _mysql_statement
+                else:
+                    print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
+                return False
         return result
 
     @staticmethod
@@ -274,16 +275,19 @@ class DBTool:
 
     def get_columns(self, _exclude_2_keys=False):
         connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
-        cursor = connection.cursor(buffered=True)
-        mysql_statement = "SELECT {0} FROM {1};".format('*', self.table_name)
-        cursor.execute(mysql_statement)
-        columns = list(cursor.column_names)
-        if _exclude_2_keys:
-            columns.pop(0)
-            columns.pop(0)
-        cursor.close()
-        connection.close()
-        return columns
+        if connection is not None:
+            cursor = connection.cursor(buffered=True)
+            mysql_statement = "SELECT {0} FROM {1};".format('*', self.table_name)
+            cursor.execute(mysql_statement)
+            columns = list(cursor.column_names)
+            if _exclude_2_keys:
+                columns.pop(0)
+                columns.pop(0)
+            cursor.close()
+            connection.close()
+            return columns
+        else:
+            return None
 
     def get_dataframe(self):
         get_all_rows_mysql_statement = "SELECT * FROM {0}".format(self.table_name)
