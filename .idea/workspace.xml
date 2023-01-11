@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="work on documentation">
+      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.in" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +44,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -59,7 +62,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.onehotdb_gui">
+  <component name="RunManager" selected="Python.dbtool">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,8 +197,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.onehotdb_gui" />
         <item itemvalue="Python.dbtool" />
+        <item itemvalue="Python.onehotdb_gui" />
         <item itemvalue="Python.speed_test" />
         <item itemvalue="Python.configtool" />
         <item itemvalue="Python.onehotdb" />
@@ -217,7 +220,10 @@
       <workItem from="1672871203617" duration="2365000" />
       <workItem from="1672955328926" duration="1238000" />
       <workItem from="1673197556113" duration="4465000" />
-      <workItem from="1673211302821" duration="820000" />
+      <workItem from="1673211302821" duration="1392000" />
+      <workItem from="1673455937921" duration="918000" />
+      <workItem from="1673469462598" duration="1315000" />
+      <workItem from="1673470784229" duration="973000" />
     </task>
     <task id="LOCAL-00001" summary="work on configtool.py">
       <created>1672355787029</created>
@@ -254,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673202889546</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="work on documentation">
+      <created>1673212310568</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673212310568</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,17 +295,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
-          <line>400</line>
+          <line>395</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
-          <line>396</line>
+          <line>391</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/dataspoon/onehotdb.py</url>
-          <line>395</line>
+          <line>390</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -342,7 +355,7 @@
     <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1672872368118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1672359294203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui.coverage" NAME="onehotdb_gui Coverage Results" MODIFIED="1673198489944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1673198404110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1673469832936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$configtool.coverage" NAME="configtool Coverage Results" MODIFIED="1672359662108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
   </component>
 </project>
