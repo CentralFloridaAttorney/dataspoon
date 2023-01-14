@@ -1,0 +1,4 @@
+mysql-connector-python
+myst-parser
+ConfigParser
+pandas
