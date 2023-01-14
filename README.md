@@ -187,6 +187,8 @@ sudo aptitude install mysql-workbench-community
    ```
 4. Have fun!
    ````
+   conda config --append channels conda-forge
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

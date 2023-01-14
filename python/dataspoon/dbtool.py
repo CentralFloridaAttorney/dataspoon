@@ -594,7 +594,7 @@ def test_static_operation():
     DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
     DBTool().put('xyzzy', 'ala', 'kazam')
     value = DBTool().get('xyzzy', 'ala')
-    print('value: ' + value)
+    print('value: ' + str(value))
 
 
 def test_put():

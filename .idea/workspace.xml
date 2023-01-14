@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="work on documentation" />
+    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="work on documentation">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/default.ini" beforeDir="false" afterPath="$PROJECT_DIR$/default.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/dbtool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.in" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +22,13 @@
   </component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="5f7c7a64-6221-4770-b5b9-6f43d387ec7f" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,18 +56,12 @@
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings sdk-home="$USER_HOME$/anaconda3/envs/mysql_3_8_13/bin/python" working-directory="$PROJECT_DIR$">
-        <option name="sdk">
-          <Sdk />
-        </option>
         <option name="mySdkHome" value="$USER_HOME$/anaconda3/envs/mysql_3_8_13/bin/python" />
-        <option name="mySdk">
-          <Sdk />
-        </option>
         <option name="myWorkingDirectory" value="$PROJECT_DIR$" />
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.onehotdb_gui">
+  <component name="RunManager" selected="Python.dbtool">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -120,7 +128,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="onehotdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="inieditor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -128,14 +136,14 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/dataspoon" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/tkinter" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dataspoon/onehotdb.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/tkinter/inieditor.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -188,11 +196,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.onehotdb_gui" />
         <item itemvalue="Python.dbtool" />
+        <item itemvalue="Python.inieditor" />
+        <item itemvalue="Python.onehotdb_gui" />
         <item itemvalue="Python.speed_test" />
         <item itemvalue="Python.configtool" />
-        <item itemvalue="Python.onehotdb" />
       </list>
     </recent_temporary>
   </component>
@@ -211,6 +219,12 @@
       <workItem from="1672871203617" duration="2365000" />
       <workItem from="1672955328926" duration="1238000" />
       <workItem from="1673197556113" duration="3797000" />
+      <workItem from="1673400418654" duration="1554000" />
+      <workItem from="1673405588438" duration="580000" />
+      <workItem from="1673406712692" duration="24000" />
+      <workItem from="1673406787460" duration="215000" />
+      <workItem from="1673658933123" duration="818000" />
+      <workItem from="1673663583680" duration="3399000" />
     </task>
     <task id="LOCAL-00001" summary="work on configtool.py">
       <created>1672355787029</created>
@@ -245,6 +259,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="work on configtool.py" />
@@ -325,10 +350,10 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/dataspoon$configtool.coverage" NAME="configtool Coverage Results" MODIFIED="1672359662108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1672872368118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1672359294203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1673702755373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui.coverage" NAME="onehotdb_gui Coverage Results" MODIFIED="1673198489944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1673198404110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$configtool.coverage" NAME="configtool Coverage Results" MODIFIED="1672359662108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
   </component>
 </project>
