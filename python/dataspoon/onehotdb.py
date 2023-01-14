@@ -49,6 +49,11 @@ USER = 'bilbo'
 
 
 class OneHotDB:
+    @staticmethod
+    @staticmethod
+    @staticmethod
+    @staticmethod
+    @staticmethod
     def __init__(self, _database_name=None, _table_name=None, _config_key=None):
         """
         OneHotDB takes data, breaks it into smaller parts, and then stores indices to those smaller parts in a database.  Those smaller parts are stored using OneHotWords.
@@ -231,7 +236,6 @@ class OneHotDB:
                 # print('created new database: ' + db_name)
         return connection
 
-    @staticmethod
     def _get_html_unescape(_string):
         clean_string = str(_string)
         clean_string = clean_string.lstrip('_')
@@ -258,7 +262,6 @@ class OneHotDB:
         print('_get_onehot_words: ' + _onehot_index_list[0])
         return words
 
-    @staticmethod
     def _replace_none(_lists):
         if type(_lists) == list and len(_lists) > 0:
             if type(_lists[0]) == list:
@@ -302,7 +305,6 @@ class OneHotDB:
         result = self._execute_mysql(sql_statement)
         return self.remove_none(result)
 
-    @staticmethod
     def get_clean_key_string(_string):
         """
         DBTool().get_clean_key_string() replaces certain characters with web entity values or escape codes.
@@ -368,13 +370,6 @@ class OneHotDB:
         else:
             print('get_id: ' + str(link_key_id))
             return link_key_id
-
-    def get_sentence_indices(self):
-        dataframe = self.get_dataframe()
-        link_keys = dataframe[LINK_KEY].values.tolist()
-        # link_key_array = link_keys.
-        print('get_sentence_indices done!')
-        return link_keys
 
     def get_onehot(self, _link_key, _use_column_names=True, _count_uses=False):
         """
@@ -460,6 +455,13 @@ class OneHotDB:
         else:
             return row_number
 
+    def get_sentence_indices(self):
+        dataframe = self.get_dataframe()
+        link_keys = dataframe[LINK_KEY].values.tolist()
+        # link_key_array = link_keys.
+        print('get_sentence_indices done!')
+        return link_keys
+
     def get_values(self, _link_key, _exclude_2=False):
         values = list(self.get(_link_key))
         if _exclude_2:
@@ -495,6 +497,25 @@ class OneHotDB:
         self._execute_mysql(mysql_open_table)
         # self._add_column('link_key')
         # print('open_table: ' + _table_name)
+
+    def pickle_words(_filename_key=None):
+        """
+        This method pickles the words in OneHotWords using _filename_key
+        :param _words_filename_key:
+        :return:
+        """
+        words = OneHotWords().get_words()
+        # pickle
+        try:
+            os.mkdir("../../data/words/")
+        except FileExistsError:
+            pass
+        words_file_name = "../../data/words/" + ('default' if _filename_key is None else _filename_key) + ".onehotwords.pkl"
+        words_dataframe = pandas.DataFrame(words)
+        words_dataframe = words_dataframe.transpose()
+        words_dataframe.to_pickle(words_file_name)
+        print('pickle_words: ' + words_file_name)
+        return words_dataframe
 
     def put(self, _link_key, _key_value=None, _value=None):
         """
@@ -548,7 +569,6 @@ class OneHotDB:
         combined_indices = combined_indices.rstrip(',')
         return self.put(_link_key, SENTENCE_KEY, combined_indices)
 
-    @staticmethod
     def remove_none(_result):
         if _result is None:
             _result = 'None'
@@ -557,26 +577,6 @@ class OneHotDB:
                 if _result[index] is None:
                     _result[index] = 'None'
         return _result
-
-    @staticmethod
-    def pickle_words(_filename_key=None):
-        """
-        This method pickles the words in OneHotWords using _filename_key
-        :param _words_filename_key:
-        :return:
-        """
-        words = OneHotWords().get_words()
-        # pickle
-        try:
-            os.mkdir("../../data/words/")
-        except FileExistsError:
-            pass
-        words_file_name = "../../data/words/" + ('default' if _filename_key is None else _filename_key) + ".onehotwords.pkl"
-        words_dataframe = pandas.DataFrame(words)
-        words_dataframe = words_dataframe.transpose()
-        words_dataframe.to_pickle(words_file_name)
-        print('pickle_words: ' + words_file_name)
-        return words_dataframe
 
     def update_value(self, _link_key, _key, _value):
         mysql_insert_statement = MYSQL_UPDATE_STATEMENT.format(self.table_name, self.get_clean_key_string(_key),
@@ -632,6 +632,10 @@ def test_get_row_count():
     print('test_get_row_count: ' + str(row_count))
 
 
+def test_get_sentence_indices():
+    onehotdb = OneHotDB()
+    link_keys = onehotdb.get_sentence_indices()
+    print('test_get_sentence_indices done!')
 def test_init():
     onehotdb = OneHotDB()
     # print('test_init done!')
@@ -651,10 +655,6 @@ def test_to_pickle():
     onehotdb.pickle_words('word_key')
     print('test_to_pickle done!')
 
-def test_get_sentence_indices():
-    onehotdb = OneHotDB()
-    link_keys = onehotdb.get_sentence_indices()
-    print('test_get_sentence_indices done!')
 
 
 # edit configuration /etc/mysql/mysql.conf.d/mysqld.cnf to change bind-address/127.0.0.1 and port/3306
