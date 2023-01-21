@@ -187,6 +187,10 @@ sudo aptitude install mysql-workbench-community
 4. install packages
    ````
    pip install mysql-connector-python
+   
+5. make a default.ini file
+    ````
+   python configtool.py
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -242,6 +246,16 @@ Don't forget to give the project a star! Thanks again!
 
 <!-- TROUBLESHOOTING -->
 ## Troubleshooting
+
+If you get a root password error when starting MySQL consider: https://askubuntu.com/questions/1406395/mysql-root-password-setup-error
+
+If bilbo is not present then use mysql:
+````
+create user 'bilbo'@'127.0.0.1' identified by 'baggins';
+GRANT ALL PRIVILEGES ON *.* TO 'bilbo'@'127.0.0.1' WITH GRANT OPTION;
+show grants for 'bilbo'@'127.0.0.1';
+````
+If you update Ubuntu and cannot reboot then fix your grub: https://phoenixnap.com/kb/grub-rescue
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

@@ -23,15 +23,17 @@ HTML_UNESCAPE_TABLE = {
     "&#x27;": "'",
     "&quot;": "\""
 }
-MYSQL_SELECT_ROW_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
-MYSQL_SELECT_SINGLE_ROW_STATEMENT = "SELECT FROM {1} WHERE {2} = '{3}';"
+MYSQL_SELECT_ROW_FROM_WHERE = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
+MYSQL_SELECT_FROM = "SELECT {0} FROM {1};"
+# MYSQL_SELECT_SINGLE_ROW_STATEMENT = "SELECT FROM {1} WHERE {2} = '{3}';"
 UPDATE_STATEMENT = "UPDATE {0} SET {1} = '{2}' WHERE {3} = '{4}';"
 MYSQL_DELETE_STATEMENT = "DELETE FROM {0} WHERE {1} = '{2}';"
+MYSQL_DROP_TABLE = "DROP TABLE {0};"
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 ONEHOT_KEY = 'sentence'
 DEFAULT_PKL_INPUT = '../../data/users.pkl'
 DEFAULT_PKL_OUTPUT = '../../data/output.pkl'
-
+MYSQL_DROP_DATABASE = "DROP DATABASE {0};"
 
 class DBTool:
     def __init__(self, _database_name=None, _table_name=None, _config_key=None):
@@ -79,7 +81,7 @@ class DBTool:
         DBTool._add_column() adds a column your MySQL database table
         :param _column_name: name of the new column
         """
-        query = "ALTER TABLE {0} ADD {1} VARCHAR(4096);".format(self.table_name,
+        query = "ALTER TABLE {0} ADD {1} VARCHAR(256);".format(self.table_name,
                                                                 self.get_clean_key_string(_column_name))
         # values = [self.table_name, self.get_clean_key_string(_column_name)]
 
@@ -205,7 +207,7 @@ class DBTool:
 
     def add_dataframe(self, _data_frame, _link_key_column_num=0):
         """
-
+        This method adds a dataframe to MySQL
         :param _data_frame: the pandas.DataFrame to be added to self.table_name
         :param _link_key_column_num: when adding a dataframe each row requires a link_key.  _link_key_column_row is the column_number of _data_frame to be used as link_key then adding each row
         """
@@ -245,12 +247,12 @@ class DBTool:
         return self.get_id(_to_link_key)
 
     def delete_database(self, _database_name):
-        mysql_drop_database = "DROP DATABASE {0}".format(self.get_clean_key_string(_database_name))
+        mysql_drop_database = MYSQL_DROP_DATABASE.format(self.get_clean_key_string(_database_name))
         self._execute_mysql(mysql_drop_database)
         # print('delete_database: ' + _database_name)
 
     def delete_table(self, _table_name):
-        mysql_drop_table = "DROP TABLE {0}".format(self.get_clean_key_string(_table_name))
+        mysql_drop_table = MYSQL_DROP_TABLE.format(self.get_clean_key_string(_table_name))
         self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
 
     @staticmethod
@@ -291,7 +293,7 @@ class DBTool:
             return None
 
     def get_dataframe(self):
-        get_all_rows_mysql_statement = "SELECT * FROM {0}".format(self.table_name)
+        get_all_rows_mysql_statement = MYSQL_SELECT_FROM.format('*', self.table_name)
         all_rows = self._execute_mysql(get_all_rows_mysql_statement)
         dataframe = pandas.DataFrame(all_rows)
         columns = self.get_columns(_exclude_2_keys=False)
@@ -356,23 +358,25 @@ class DBTool:
         if _key is None:
             # 1 result: link_key returns the entire row for link_key
             self._add_column(LINK_KEY)
-            sql_statement = MYSQL_SELECT_ROW_STATEMENT.format('*',
-                                                              self.table_name,
-                                                              LINK_KEY,
-                                                              self.get_clean_key_string(_link_key))
+            sql_statement = MYSQL_SELECT_ROW_FROM_WHERE.format('*',
+                                                               self.table_name,
+                                                               LINK_KEY,
+                                                               self.get_clean_key_string(_link_key))
         else:
             # 2 result: returns the value for key on the link_key row
             self._add_column(_link_key)
-            sql_statement = MYSQL_SELECT_ROW_STATEMENT.format(self.get_clean_key_string(_key), self.table_name,
-                                                              LINK_KEY,
-                                                              self.get_clean_key_string(_link_key))
+            sql_statement = MYSQL_SELECT_ROW_FROM_WHERE.format(self.get_clean_key_string(_key), self.table_name,
+                                                               LINK_KEY,
+                                                               self.get_clean_key_string(_link_key))
         result = self._execute_mysql(sql_statement)
         return self.remove_none(result)
 
     def open_database(self, _database_name, _table_name=None):
         # self.database_name = str(re.sub(LEGAL_CHARACTERS, '_', _database_name.strip()))
         self.database_name = self.get_clean_key_string(_database_name)
-        if _table_name is not None:
+        if _table_name is None:
+            _table_name = self.table_name
+        else:
             # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
             self.table_name = self.get_clean_key_string(_table_name)
 
@@ -392,7 +396,7 @@ class DBTool:
         # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
         self.table_name = self.get_clean_key_string(_table_name)
         # clean_table_name = self.get_clean_key_string(self.table_name)
-        mysql_open_table = "CREATE TABLE {0} ({1} int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,  {2} varchar(4096));".format(
+        mysql_open_table = "CREATE TABLE {0} ({1} int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,  {2} varchar(256));".format(
             self.table_name, 'id', LINK_KEY)
         self._execute_mysql(mysql_open_table)
         # self._add_column('link_key')

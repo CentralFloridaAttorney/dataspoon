@@ -38,22 +38,22 @@ ONE_HOT_WORD_TABLE_NAME = 'test_dict'
 PASSWD = 'baggins'
 # port = '50011'
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)).rsplit('/', 1)[0] + '/'
+MYSQL_CREATE_DATABASE = "CREATE DATABASE {0};"
+MYSQL_CREATE_TABLE = "CREATE TABLE {0} ({1} int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,  {2} TEXT NOT NULL DEFAULT 'default');"
 MYSQL_SELECT_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
 MYSQL_SELECT_ROW_STATEMENT = "SELECT {0} FROM {1} WHERE {2} = '{3}';"
 MYSQL_SELECT_SINGLE_ROW_STATEMENT = "SELECT FROM {1} WHERE {2} = '{3}';"
 MYSQL_UPDATE_STATEMENT = "UPDATE {0} SET {1} = '{2}' WHERE {3} = '{4}';"
 MYSQL_DELETE_STATEMENT = "DELETE FROM {0} WHERE {1} = '{2}';"
+MYSQL_DROP_TABLE = "DROP TABLE {0};"
+MYSQL_DROP_DATABASE = "DROP DATABASE {0};"
 SENTENCE_KEY = 'sentence'
 TABLE_NAME = 'sentences'
 USER = 'bilbo'
 
 
 class OneHotDB:
-    @staticmethod
-    @staticmethod
-    @staticmethod
-    @staticmethod
-    @staticmethod
+
     def __init__(self, _database_name=None, _table_name=None, _config_key=None):
         """
         OneHotDB takes data, breaks it into smaller parts, and then stores indices to those smaller parts in a database.  Those smaller parts are stored using OneHotWords.
@@ -82,7 +82,7 @@ class OneHotDB:
         self.host = these_configs.get('host')
         self.port = these_configs.get('port')
         self.database_name = (these_configs.get('database_name') if _database_name is None else _database_name)
-        self.table_name = (these_configs.get('table_name)') if _table_name is None else _table_name)
+        self.table_name = (these_configs.get('table_name') if _table_name is None else _table_name)
         self.onehotdb_name = these_configs.get('onehotdb_name')
         self.onehotdb_table = these_configs.get('onehotdb_table')
         self.words_filename_key = these_configs.get('words_filename_key')  # used in pickle_words
@@ -95,7 +95,7 @@ class OneHotDB:
         DBTool._add_column() adds a column your MySQL database table
         :param _column_name: name of the new column
         """
-        query = "ALTER TABLE {0} ADD {1} VARCHAR(4096);".format(self.table_name,
+        query = "ALTER TABLE {0} ADD {1} BLOB;".format(self.table_name,
                                                                 self.get_clean_key_string(_column_name))
         # values = [self.table_name, self.get_clean_key_string(_column_name)]
 
@@ -236,6 +236,7 @@ class OneHotDB:
                 # print('created new database: ' + db_name)
         return connection
 
+    @staticmethod
     def _get_html_unescape(_string):
         clean_string = str(_string)
         clean_string = clean_string.lstrip('_')
@@ -262,6 +263,7 @@ class OneHotDB:
         print('_get_onehot_words: ' + _onehot_index_list[0])
         return words
 
+    @staticmethod
     def _replace_none(_lists):
         if type(_lists) == list and len(_lists) > 0:
             if type(_lists[0]) == list:
@@ -269,17 +271,17 @@ class OneHotDB:
                     _lists[list_index] = ['None' if v is None else v for v in _lists[list_index]]
                     print('replace many')
             else:
-                _lists = ['None' if v is None else v for v in _lists]
+                _lists = ['_None' if v is None else v for v in _lists]
         _lists = ['default']
         return _lists
 
     def delete_database(self, _database_name):
-        mysql_drop_database = "DROP DATABASE {0}".format(self.get_clean_key_string(_database_name))
+        mysql_drop_database = MYSQL_DROP_DATABASE.format(self.get_clean_key_string(_database_name))
         self._execute_mysql(mysql_drop_database)
         # print('delete_database: ' + _database_name)
 
     def delete_table(self, _table_name):
-        mysql_drop_table = "DROP TABLE {0}".format(self.get_clean_key_string(_table_name))
+        mysql_drop_table = MYSQL_DROP_TABLE.format(self.get_clean_key_string(_table_name))
         self._execute_mysql(mysql_drop_table)  # print('delete_table: ' + _table_name)
 
     def get(self, _link_key=str, _key=None):
@@ -305,6 +307,7 @@ class OneHotDB:
         result = self._execute_mysql(sql_statement)
         return self.remove_none(result)
 
+    @staticmethod
     def get_clean_key_string(_string):
         """
         DBTool().get_clean_key_string() replaces certain characters with web entity values or escape codes.
@@ -389,8 +392,13 @@ class OneHotDB:
         onehot_list_dataframe = pandas.DataFrame(numpy.ones((1, len(onehot_list))), dtype=int)
         onehot_list_dataframe.columns = onehot_list
         onehot_dataframe = pandas.DataFrame(numpy.zeros((1, OneHotWords().get_row_count())), dtype=int)
-        for column in onehot_list_dataframe:
-            word_index = int(onehot_list.pop())
+        for column in range(1, len(onehot_dataframe.columns), 1):
+            this_value = onehot_list.pop()
+            if this_value.isdigit():
+                word_index = int(this_value)
+            else:
+                word_index = 0
+
             # indices begin at 1 and dataframe begins at 0
             onehot_dataframe.iat[0, word_index - 1] = (1 if not _count_uses else onehot_dataframe.iat[0, word_index - 1] + 1)
             print('word index: ' + str(word_index))
@@ -408,7 +416,7 @@ class OneHotDB:
         :param _link_key: references the row with the one-hot encoded value
         :return: returns a list of integers, where each integer is an index to a word in OneHotWords()
         """
-        result = self.get(_link_key, 'sentence')
+        result = str(self.get(_link_key, 'sentence'))
         if result is None:
             return ['1', '2']
         result = result.lstrip('|')
@@ -483,7 +491,7 @@ class OneHotDB:
 
         # self.database_name = _database_name
         # open_table_mysql = "CREATE TABLE " + self.table_name + "(id int(10) NOT NULL AUTO_INCREMENT," + LINK_KEY + " varchar(255), PRIMARY KEY (id))"
-        open_database_mysql = "CREATE DATABASE {0};".format(self.get_clean_key_string(_database_name))
+        open_database_mysql = MYSQL_CREATE_DATABASE.format(self.get_clean_key_string(_database_name))
         self._execute_mysql(open_database_mysql)
         self.open_table(self.table_name)
         print('open_database: ' + _database_name)
@@ -492,12 +500,13 @@ class OneHotDB:
         # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', _table_name.strip()))
         self.table_name = self.get_clean_key_string(_table_name)
         # clean_table_name = self.get_clean_key_string(self.table_name)
-        mysql_open_table = "CREATE TABLE {0} ({1} int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,  {2} varchar(4096));".format(
+        mysql_open_table = MYSQL_CREATE_TABLE.format(
             self.table_name, 'id', LINK_KEY)
         self._execute_mysql(mysql_open_table)
         # self._add_column('link_key')
         # print('open_table: ' + _table_name)
 
+    @staticmethod
     def pickle_words(_filename_key=None):
         """
         This method pickles the words in OneHotWords using _filename_key
@@ -569,6 +578,7 @@ class OneHotDB:
         combined_indices = combined_indices.rstrip(',')
         return self.put(_link_key, SENTENCE_KEY, combined_indices)
 
+    @staticmethod
     def remove_none(_result):
         if _result is None:
             _result = 'None'
@@ -687,15 +697,18 @@ def test_to_pickle():
 #   sudo apt-get install mysql-server
 # import pickle5 as pickle is used to convert formats when pkl files are from an older version
 if __name__ == '__main__':
-    # test_get_onehot_matrix()
-    # test_delete_table()
-    # test_delete_database()
-    # test_init()
-    # test_get_row_count()
-    # test_get_clean_key_string()
-    # test_put_onehot()
-    # test_get_onehot()
-    test_to_pickle()
+    test_init()
+
+    test_put_onehot()
+
+    test_get_onehot_matrix()
+    test_delete_table()
+    test_delete_database()
+    test_get_row_count()
+    test_get_clean_key_string()
+    test_get_onehot()
     test_get_sentence_indices()
+    test_to_pickle()
+
     # the following line is not reached because of sys.exit() in python()
     print("python done!")
