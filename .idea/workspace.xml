@@ -239,6 +239,7 @@
       <workItem from="1673751580299" duration="28000" />
       <workItem from="1673751621555" duration="2950000" />
       <workItem from="1674271963384" duration="345000" />
+      <workItem from="1674272632381" duration="320000" />
     </task>
     <task id="LOCAL-00001" summary="work on configtool.py">
       <created>1672355787029</created>
@@ -282,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673703106673</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="predator reboot">
+      <created>1674272951714</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1674272951714</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
