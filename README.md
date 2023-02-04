@@ -128,7 +128,6 @@ value = DBTool('magicdb', 'magic_table').get('xyzzy', 'ala')
 DBTool allows you to create and use MySQL databases in Python with simple get and put commands.
 ````
     def put(self, _link_key, _key_value=None, _value=None):
-        # returns row_number of _link_key
         Behavior differs depending on the number of parameters passed
         # 1 parameter: add _link_key (returns row_number of _link_key)
         # 2 parameters: copy values from first_link_key to second_link_key (returns row_number of second_link_key)
