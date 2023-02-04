@@ -102,10 +102,7 @@ DBTool provides a simple way to connect to a MySQL database
  5) create a value
  6) create a key
  7) create a link_key
- 8) create a link_key_value
- 9) create a key_value
- 10) create a key_value_pair
- 11) create a key_value
+
 
 DBTool() allows you to create and modify MySQL databases using Python with simple get and put commands.
 
