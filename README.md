@@ -128,8 +128,7 @@ DBTool allows you to create and use MySQL databases in Python with simple get an
 ````
 
 
-azxf
-
+Examples of using DBTool
 
 ````
     xyzzydb = DBTool() creates a database named dBTool with table named default_table.
