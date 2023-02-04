@@ -147,8 +147,10 @@ azxf
     6. Save xyzzydb.magic_table as a pandas.DataFrame .pkl file ('data/mysql.pkl'): xyzzydb.pickle_words('data/mysql.pkl')
 ````
 ### dbtool.OneHotWords()
-
-onehotdb builds upon dBTool and instead of storing the value, onehotdb splits the value into smaller parts or words and stores the smaller parts in a database of words.  The indices to those words are stored in onehotdb.
+ 1. Create a new instance of the OneHotWords class
+ 2. Get the index of the word 'hello'
+ 3. Get the word at index 1
+ 4. Get all the words in the onehot index
 
 ### Prerequisites
 
