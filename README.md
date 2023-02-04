@@ -129,9 +129,10 @@ DBTool allows you to create and use MySQL databases in Python with simple get an
 ````
     def put(self, _link_key, _key_value=None, _value=None):
         # returns row_number of _link_key
-        # 1 value: new_link_key
-        # 2 value: old_link_key_value, new_link_key_value
-        # 3 value: link_key, key, value
+        Behavior differs depending on the number of parameters passed
+        # 1 parameter: add _link_key
+        # 2 parameters: copy values from first_link_key to second_link_key
+        # 3 parameters: for link_key set key/value
 ````
 
 
