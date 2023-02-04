@@ -123,12 +123,10 @@ And, to perform the same operation in a different database ('magic_carpet') and 
 DBTool('magicdb', 'magic_table').put('xyzzy', 'ala', 'kazam')
 value = DBTool('magicdb', 'magic_table').get('xyzzy', 'ala')
 ````
+The behavior of the put method differs depending on the number of parameters passed.
 
-
-DBTool allows you to create and use MySQL databases in Python with simple get and put commands.
 ````
     def put(self, _link_key, _key_value=None, _value=None):
-        Behavior differs depending on the number of parameters passed
         # 1 parameter: add _link_key (returns row_number of _link_key)
         # 2 parameters: copy values from first_link_key to second_link_key (returns row_number of second_link_key)
         # 3 parameters: for _link_key set key/value (returns row_number of _link_key)
