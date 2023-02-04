@@ -120,8 +120,8 @@ value = DBTool('magicdb').get('xyzzy', 'ala')
 
 And, to perform the same operation in a different database ('magic_carpet') and a different table ('magic_table')
 ````
-DBTool('magicdb', 'magic_table').put('xyzzy', 'ala', 'kazam')
-value = DBTool('magicdb', 'magic_table').get('xyzzy', 'ala')
+DBTool('magic_carpet', 'magic_table').put('xyzzy', 'ala', 'kazam')
+value = DBTool('magic_carpet', 'magic_table').get('xyzzy', 'ala')
 ````
 The behavior of the put method differs depending on the number of parameters passed.
 
