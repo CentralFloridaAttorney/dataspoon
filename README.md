@@ -121,25 +121,6 @@ DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
 value = DBTool('magicdb').get('xyzzy', 'ala')
 ````
 
-### onehotdb makes data taste better
-
-# Explanation of what the code does
- 1) create a new database
- 2) create a new table
- 3) add a column to the table
- 4) add a row to the table
- 5) get the row number for a link_key
- 6) get the value for a key in a row
- 7) get the entire row for a link_key
- 8) update a value in a row
- 9) delete a row
- 10) delete a table
- 11) delete a database
- 12) get the number of rows in a table
- 13) get the column names for a table
- 14) get a dataframe for a table
- 15) get a dataframe for a link_key
-
 And, to perform the same operation in a different database ('magic_carpet') and a different table ('magic_table')
 ````
 DBTool('magicdb', 'magic_table').put('xyzzy', 'ala', 'kazam')
@@ -181,6 +162,26 @@ Examples of using DBTool
  2. Get the index of the word 'hello'
  3. Get the word at index 1
  4. Get all the words in the onehot index
+
+
+### onehotdb makes data taste better
+
+# Explanation of what the code does
+ 1) create a new database
+ 2) create a new table
+ 3) add a column to the table
+ 4) add a row to the table
+ 5) get the row number for a link_key
+ 6) get the value for a key in a row
+ 7) get the entire row for a link_key
+ 8) update a value in a row
+ 9) delete a row
+ 10) delete a table
+ 11) delete a database
+ 12) get the number of rows in a table
+ 13) get the column names for a table
+ 14) get a dataframe for a table
+ 15) get a dataframe for a link_key
 
 ### Prerequisites
 
