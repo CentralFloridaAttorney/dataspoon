@@ -92,6 +92,20 @@
 ## Getting Started With dataspoon
 
 ### dbtool helps you to eat more data
+DBTool provides a simple way to connect to a MySQL database
+
+# Explanation of what the code does
+ 1) create a database
+ 2) create a table
+ 3) create a row
+ 4) create a column
+ 5) create a value
+ 6) create a key
+ 7) create a link_key
+ 8) create a link_key_value
+ 9) create a key_value
+ 10) create a key_value_pair
+ 11) create a key_value
 
 DBTool() allows you to create and modify MySQL databases using Python with simple get and put commands.
 
@@ -161,6 +175,8 @@ Examples of using DBTool
     6. Save xyzzydb.magic_table as a pandas.DataFrame .pkl file ('data/mysql.pkl'): xyzzydb.pickle_words('data/mysql.pkl')
 ````
 ### dbtool.OneHotWords()
+
+# Explanation of what the code does
  1. Create a new instance of the OneHotWords class
  2. Get the index of the word 'hello'
  3. Get the word at index 1
