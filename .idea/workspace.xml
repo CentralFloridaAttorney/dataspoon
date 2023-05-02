@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="reorganize examples">
-      <change afterPath="$PROJECT_DIR$/dbtool_gui_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dataspoon/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/dbtool.py" afterDir="false" />
+    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="make simple get and put interface">
+      <change beforePath="$PROJECT_DIR$/dbtool_gui_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbtool_gui_app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675528740913</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="make simple get and put interface">
+      <created>1683037506126</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683037506126</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,7 +415,8 @@
     <MESSAGE value="update README.md for OneHotWords" />
     <MESSAGE value="update README.md for OneHotDB" />
     <MESSAGE value="update README.md for DBTool" />
-    <option name="LAST_COMMIT_MESSAGE" value="update README.md for DBTool" />
+    <MESSAGE value="make simple get and put interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="make simple get and put interface" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -54,4 +54,4 @@ switch_interface_app = gr.Interface(
     description="Choose the interface to use: put or get."
 )
 
-switch_interface_app.launch(share=True, inbrowser=True)
+switch_interface_app.launch(share=False, inbrowser=True)
