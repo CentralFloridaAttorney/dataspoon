@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="update README.md for DBTool" />
+    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="reorganize examples">
+      <change afterPath="$PROJECT_DIR$/dbtool_gui_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/dbtool.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +68,7 @@
       <recent name="C:\Users\attorneycentralflori\PycharmProjects\dataspoon\python" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dbtool">
+  <component name="RunManager" selected="Python.dbtool_gui_app">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,6 +113,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="dbtool_gui_app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dataspoon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dbtool_gui_app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="onehotdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -122,28 +146,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dataspoon/onehotdb.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="plot_digits_denoising" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="dataspoon" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/examples/applications" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/examples/applications/plot_digits_denoising.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -198,11 +200,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.dbtool_gui_app" />
         <item itemvalue="Python.dbtool" />
         <item itemvalue="Python.onehotdb" />
         <item itemvalue="Python.speed_test" />
         <item itemvalue="Python.plot_model_complexity_influence" />
-        <item itemvalue="Python.plot_digits_denoising" />
       </list>
     </recent_temporary>
   </component>
@@ -428,11 +430,11 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1673726660487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/examples" />
-    <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1673752204468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui.coverage" NAME="onehotdb_gui Coverage Results" MODIFIED="1673198489944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1673788700704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$stockdata.coverage" NAME="stockdata Coverage Results" MODIFIED="1673704565543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$configtool.coverage" NAME="configtool Coverage Results" MODIFIED="1672359662108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1672872368118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples" />
+    <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1672359294203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1683035240476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$stockdata.coverage" NAME="stockdata Coverage Results" MODIFIED="1673704565543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui.coverage" NAME="onehotdb_gui Coverage Results" MODIFIED="1673198489944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
   </component>
 </project>

@@ -3,9 +3,6 @@ import os
 import pandas
 import mysql
 from mysql.connector import Error
-
-
-
 from python.dataspoon.configtool import ConfigTool
 
 LINK_KEY = 'link_key'
