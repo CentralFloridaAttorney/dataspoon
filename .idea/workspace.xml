@@ -254,11 +254,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.dbtool" />
       <item itemvalue="Python.dbtool_gui_app" />
       <item itemvalue="Python.dbtoolcaller" />
       <item itemvalue="Python.gpttool" />
       <item itemvalue="Python.gpttool_app" />
+      <item itemvalue="Python.dbtool" />
     </list>
     <recent_temporary>
       <list>
