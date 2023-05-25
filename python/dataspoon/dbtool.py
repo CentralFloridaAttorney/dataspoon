@@ -55,7 +55,7 @@ class DBTool:
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
         try:
-            open('../../default.ini', 'r+')
+            open('default.ini', 'r+')
         except FileNotFoundError:
             config_tool = ConfigTool('default')
             config_tool.write_default_configs()
