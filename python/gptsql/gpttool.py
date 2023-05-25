@@ -3,7 +3,8 @@ import os
 import pandas
 import mysql
 from mysql.connector import Error
-from python.dataspoon.configtool import ConfigTool
+
+from python.gptsql.configtool import ConfigTool
 
 LINK_KEY = 'link_key'
 HTML_ESCAPE_TABLE = {
@@ -32,7 +33,7 @@ DEFAULT_PKL_INPUT = '../../data/users.pkl'
 DEFAULT_PKL_OUTPUT = '../../data/output.pkl'
 MYSQL_DROP_DATABASE = "DROP DATABASE {0};"
 
-class DBTool:
+class GptTool:
     def __init__(self, _database_name=None, _table_name=None, _config_key=None):
         """
         DBTool() provides access to MySQL functions within Python.
@@ -55,7 +56,7 @@ class DBTool:
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
         try:
-            open('../../default.ini', 'r+')
+            open('default.ini', 'r+')
         except FileNotFoundError:
             config_tool = ConfigTool('default')
             config_tool.write_default_configs()
@@ -361,7 +362,7 @@ class DBTool:
                                                                self.get_clean_key_string(_link_key))
         else:
             # 2 result: returns the value for key on the link_key row
-            self._add_column(_link_key)
+            # self._add_column(_link_key)
             sql_statement = MYSQL_SELECT_ROW_FROM_WHERE.format(self.get_clean_key_string(_key), self.table_name,
                                                                LINK_KEY,
                                                                self.get_clean_key_string(_link_key))
@@ -464,7 +465,7 @@ class DBTool:
         return column_values
 
 
-class OneHotWords(DBTool):
+class OneHotWords(GptTool):
     # mysql has a maximum number of 4096 columns per table
     # Therefore, each sentence has a maximum number of words
     def __init__(self, _config_key=None):
@@ -497,14 +498,14 @@ class OneHotWords(DBTool):
 
 
 def test_get_row_count():
-    dbtool = DBTool()
+    dbtool = GptTool()
     row_count = dbtool.get_row_count()
     print('test_get_row_count: ' + str(row_count))
 
 
 def test_get_clean_key():
     KEY = "Instrument #"
-    dbtool = DBTool()
+    dbtool = GptTool()
     clean_key = dbtool.get_clean_key_string(KEY)
     print("test_get_clean_key: '" + KEY + "' = '" + clean_key + "'")
 
@@ -517,7 +518,7 @@ def test_add_data_frame():
     columns = ['username', 'password']
     data_frame.columns = columns
     # test the system
-    dbtool = DBTool()
+    dbtool = GptTool()
     dbtool.add_dataframe(data_frame)
     print('test_add_dataframe: ')
 
@@ -533,15 +534,15 @@ def create_simple_pkl():
 
 
 def test_to_pickle():
-    dbtool = DBTool()
+    dbtool = GptTool()
     dbtool.to_pickle('../../data/mysql.pkl')
     print('test_to_pickle done!')
 
 
 def github_demo_1():
-    xyzzydb = DBTool()
-    xyzzydb = DBTool('xyzzydb')
-    xyzzydb = DBTool('xyzzydb', 'new_magic_table')
+    xyzzydb = GptTool()
+    xyzzydb = GptTool('xyzzydb')
+    xyzzydb = GptTool('xyzzydb', 'new_magic_table')
     xyzzydb.put('link_key_xyzzy')
     xyzzydb.put('link_key_xyzzy', 'revised_link_key_xyzzy')
     xyzzydb.put('revised_link_key_xyzzy', 'ala', 'kazam')
@@ -549,7 +550,7 @@ def github_demo_1():
 
 
 def test_get_row_number():
-    dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
+    dbtool = GptTool('dbtool_test_db', 'dbtool_test_table')
     row_number_1 = dbtool.get_id('xyzzy')
     row_number_2 = dbtool.get_id('new_link_key')
     row_number_3 = dbtool.get_id('failures', '543')
@@ -567,41 +568,40 @@ def test_onehotwords():
 
 
 def test_delete_database():
-    temp_dbtool = DBTool('temp_db')
+    temp_dbtool = GptTool('temp_db')
     temp_dbtool.delete_database('temp_db')
 
 
 def test_delete_table():
-    dbtool = DBTool('test_out_word_db', 'put_word_table')
+    dbtool = GptTool('test_out_word_db', 'put_word_table')
     dbtool.open_table('temp_table')
     dbtool.delete_table('temp_table')
     print('test_delete_table done!')
 
 
 def test_get_html_unescape():
-    dbtool = DBTool('test_out_word_db', 'put_word_table')
+    dbtool = GptTool('test_out_word_db', 'put_word_table')
     test_unescape = dbtool._get_html_unescape('asdf&quot;erhert&quot;')
     print('test_get_html_unescape: ' + test_unescape)
 
 
 def test_init():
-    dbtool = DBTool()
+    dbtool = GptTool()
     # print('test_init done!')
 
 
 def test_static_operation():
-    DBTool().put('1234', '5678', '9101112')
-    test_value = DBTool().get('1234', '5678')
+    GptTool().put('1234', '5678', '9101112')
+    test_value = GptTool().get('1234', '5678')
     print('test_static_operation test_value: ' + test_value)
-    DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
-    DBTool().put('xyzzy', 'ala', 'kazam')
-    value = DBTool().get('xyzzy', 'ala')
+    GptTool('magicdb').put('xyzzy', 'ala', 'kazam')
+    GptTool().put('xyzzy', 'ala', 'kazam')
+    value = GptTool().get('xyzzy', 'ala')
     print('value: ' + str(value))
 
 
 def test_put():
-    dbtool = DBTool()
-    # dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
+    dbtool = GptTool('dbtool_test_db', 'dbtool_test_table')
     row_1 = dbtool.put('link_key_1')
     row_1 = dbtool.put('link_key_1', 'first_key', 'link_key_1_first_value')
     row_1 = dbtool.put('link_key_1', 'second_key', 'link_key_1_second_value')
@@ -619,7 +619,7 @@ def test_put():
 
 
 def test_get():
-    dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
+    dbtool = GptTool('dbtool_test_db', 'dbtool_test_table')
     columns = dbtool.get_columns()
     link_keys = dbtool.get_link_keys()
     rows = []
@@ -634,20 +634,20 @@ def test_get():
 
 if __name__ == '__main__':
     test_put()
-    # test_get()
-    # test_onehotwords()
-    # test_static_operation()
-    # test_get_html_unescape()
-    # test_init()
-    # test_get_row_number()
-    # test_get_row_count()
-    # create_simple_pkl()
-    # test_add_data_frame()
-    # test_get_clean_key()
-    # github_demo_1()
-    # test_to_pickle()
-    # test_delete_database()
-    # test_delete_table()
+    test_get()
+    test_onehotwords()
+    test_static_operation()
+    test_get_html_unescape()
+    test_init()
+    test_get_row_number()
+    test_get_row_count()
+    create_simple_pkl()
+    test_add_data_frame()
+    test_get_clean_key()
+    github_demo_1()
+    test_to_pickle()
+    test_delete_database()
+    test_delete_table()
 
     # the following line is not reached because of sys.exit() in python()
     print("dbtool done!")

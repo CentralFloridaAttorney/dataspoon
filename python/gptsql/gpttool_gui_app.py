@@ -1,16 +1,16 @@
 import gradio as gr
 
-from python.dataspoon.dbtool import DBTool
+from python.gptsql.gpttool import GptTool
 
 
 def put_data(database_name, table_name, unique_id, key, value):
-    db_tool = DBTool(database_name, table_name)
-    db_tool.put(unique_id, key, value)
+    gpt_tool = GptTool(database_name, table_name)
+    gpt_tool.put(unique_id, key, value)
     return "Data inserted successfully!"
 
 def get_data(database_name, table_name, unique_id, key):
-    db_tool = DBTool(database_name, table_name)
-    value = db_tool.get(unique_id, key)
+    gpt_tool = GptTool(database_name, table_name)
+    value = gpt_tool.get(unique_id, key)
     return value
 
 def switch_interface(interface_to_show):
@@ -50,7 +50,7 @@ switch_interface_app = gr.Interface(
     fn=switch_interface,
     inputs=gr.inputs.Radio(["put", "get"], label="Select Interface"),
     outputs=None,
-    title="DBTool GUI",
+    title="GptTool GUI",
     description="Choose the interface to use: put or get."
 )
 
