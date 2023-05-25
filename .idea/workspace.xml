@@ -4,24 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="update README.md for DBTool">
-      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app_dataspoon.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/csv/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/docx/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/img/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/ini/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/md/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/models/resnet/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/pdf/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/pkl/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/png/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/stocks/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/txt/__init__.py" afterDir="false" />
+    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="begin gptsql">
+      <change afterPath="$PROJECT_DIR$/data/gptsql/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/gptsql/tmpdm55fyp1/example_v000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/gptsql/tmpvr6njed_/example_v000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/default.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/key.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/gptsql/ai_plugin.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/gptsql/configtool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/gptsql/dbtoolcaller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/gptsql/default.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/gptsql/file_system_tools.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/gptsql/gpttool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/gptsql/gpttool_app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/gptsql/gpttool_gui_app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/gptsql/langchain_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dataspoon/configtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/configtool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ini/default.ini" beforeDir="false" afterPath="$PROJECT_DIR$/data/ini/default.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbtool_gui_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbtool_gui_app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,10 +39,38 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="gptsql" />
+                    <option name="lastUsedInstant" value="1684978806" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1684978805" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -53,22 +83,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/overlordx/PycharmProjects/dataspoon/data/models/resnet&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;PyConsoleConfigurable.Python Console&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "gptsql",
+    "last_opened_file_path": "/home/overlordx/PycharmProjects/imagine",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "PyConsoleConfigurable.Python Console",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings sdk-home="$USER_HOME$/anaconda3/envs/mysql_3_8_13/bin/python" working-directory="$PROJECT_DIR$">
@@ -79,6 +110,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/python/gptsql" />
       <recent name="$PROJECT_DIR$/data/models/resnet" />
       <recent name="$PROJECT_DIR$/data/models" />
       <recent name="$PROJECT_DIR$/data" />
@@ -88,7 +120,7 @@
       <recent name="C:\Users\attorneycentralflori\PycharmProjects\dataspoon\python" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app_dataspoon">
+  <component name="RunManager" selected="Python.gpttool_app">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,35 +143,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="app_dataspoon" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="dataspoon" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app_dataspoon.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="dbtool" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/dataspoon" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -148,27 +155,24 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dataspoon/dbtool.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="onehotdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="dbtool_gui_app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/dataspoon" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dataspoon/onehotdb.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dbtool_gui_app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -177,20 +181,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="plot_model_complexity_influence" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="dbtoolcaller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/examples/applications" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/gptsql" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/examples/applications/plot_model_complexity_influence.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/gptsql/dbtoolcaller.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -199,20 +200,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="speed_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="gpttool" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/examples" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/gptsql" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/examples/speed_test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/gptsql/gpttool.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -221,13 +219,39 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="gpttool_app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dataspoon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/gptsql" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/gptsql/gpttool_app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.dbtool_gui_app" />
+      <item itemvalue="Python.dbtoolcaller" />
+      <item itemvalue="Python.gpttool" />
+      <item itemvalue="Python.gpttool_app" />
+      <item itemvalue="Python.dbtool" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.app_dataspoon" />
+        <item itemvalue="Python.gpttool_app" />
+        <item itemvalue="Python.dbtool_gui_app" />
+        <item itemvalue="Python.gpttool" />
+        <item itemvalue="Python.dbtoolcaller" />
         <item itemvalue="Python.dbtool" />
-        <item itemvalue="Python.onehotdb" />
-        <item itemvalue="Python.speed_test" />
-        <item itemvalue="Python.plot_model_complexity_influence" />
       </list>
     </recent_temporary>
   </component>
@@ -266,6 +290,7 @@
       <workItem from="1675651478038" duration="5000" />
       <workItem from="1676331849797" duration="28000" />
       <workItem from="1679101075862" duration="9373000" />
+      <workItem from="1684976469805" duration="16298000" />
     </task>
     <task id="LOCAL-00001" summary="work on configtool.py">
       <created>1672355787029</created>
@@ -400,7 +425,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675528740913</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="update README.md for DBTool">
+      <created>1684976651658</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1684976651658</updated>
+    </task>
+    <task id="LOCAL-00021" summary="begin gptsql">
+      <created>1684978897714</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1684978897714</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,7 +478,8 @@
     <MESSAGE value="update README.md for OneHotWords" />
     <MESSAGE value="update README.md for OneHotDB" />
     <MESSAGE value="update README.md for DBTool" />
-    <option name="LAST_COMMIT_MESSAGE" value="update README.md for DBTool" />
+    <MESSAGE value="begin gptsql" />
+    <option name="LAST_COMMIT_MESSAGE" value="begin gptsql" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -455,30 +495,53 @@
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app_dataspoon.py</url>
-          <line>9</line>
-          <option name="timeStamp" value="85" />
+          <url>file://$PROJECT_DIR$/python/gptsql/file_system_tools.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app_dataspoon.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="86" />
+          <url>file://$PROJECT_DIR$/python/gptsql/dbtoolcaller.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app_dataspoon.py</url>
-          <line>7</line>
-          <option name="timeStamp" value="87" />
+          <url>file://$PROJECT_DIR$/python/gptsql/gpttool.py</url>
+          <line>368</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/gptsql/gpttool.py</url>
+          <line>369</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/gptsql/gpttool.py</url>
+          <line>446</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/gptsql/gpttool_app.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/gptsql/gpttool_app.py</url>
+          <line>34</line>
+          <option name="timeStamp" value="98" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dataspoon$app_dataspoon.coverage" NAME="app_dataspoon Coverage Results" MODIFIED="1679149024812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui.coverage" NAME="onehotdb_gui Coverage Results" MODIFIED="1673198489944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$configtool.coverage" NAME="configtool Coverage Results" MODIFIED="1672359662108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$gpttool_app.coverage" NAME="gpttool_app Coverage Results" MODIFIED="1685023741094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/gptsql" />
+    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1679101725004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$file_system_tools.coverage" NAME="file_system_tools Coverage Results" MODIFIED="1685016195945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/gptsql" />
     <SUITE FILE_PATH="coverage/dataspoon$speed_test.coverage" NAME="speed_test Coverage Results" MODIFIED="1673726660487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/examples" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb.coverage" NAME="onehotdb Coverage Results" MODIFIED="1673752204468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui.coverage" NAME="onehotdb_gui Coverage Results" MODIFIED="1673198489944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$dbtool.coverage" NAME="dbtool Coverage Results" MODIFIED="1679101725004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
     <SUITE FILE_PATH="coverage/dataspoon$stockdata.coverage" NAME="stockdata Coverage Results" MODIFIED="1673704565543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$configtool.coverage" NAME="configtool Coverage Results" MODIFIED="1672359662108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$dbtoolcaller.coverage" NAME="dbtoolcaller Coverage Results" MODIFIED="1685019436888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/gptsql" />
   </component>
 </project>
