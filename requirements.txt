@@ -1,4 +1,8 @@
-mysql-connector-python
+mysql-connector-python~=8.0.31
 myst-parser
-ConfigParser
-pandas
+ConfigParser==5.0.2
+pandas~=1.5.2
+matplotlib~=3.7.1
+numpy~=1.23.5
+python~=3.8.15
+gradio~=3.21.0

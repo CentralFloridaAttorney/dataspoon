@@ -1,5 +1,7 @@
 from configparser import ConfigParser
 
+import pkg_resources
+
 DEFAULT_INI_FILE_PATH = '../../data/ini/configtool_default.ini'
 DEFAULT_INI = {
             "ini_file_path": "../../default.ini",
@@ -34,7 +36,8 @@ class ConfigTool:
             config_object.write(conf)
 
     def get_configs(self):
-        file_path = '../../' + self.config_key + '.ini'
+        # file_path = '../../' + self.config_key + '.ini'
+        file_path = pkg_resources.resource_filename("data", "ini/" + self.config_key + ".ini")
         config_object = ConfigParser()
         config_object.read(file_path)
         return config_object.defaults()
