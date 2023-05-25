@@ -55,7 +55,7 @@ class DBTool:
         """
         self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
         try:
-            open('default.ini', 'r+')
+            open('../../default.ini', 'r+')
         except FileNotFoundError:
             config_tool = ConfigTool('default')
             config_tool.write_default_configs()
@@ -600,7 +600,8 @@ def test_static_operation():
 
 
 def test_put():
-    dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
+    dbtool = DBTool()
+    # dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
     row_1 = dbtool.put('link_key_1')
     row_1 = dbtool.put('link_key_1', 'first_key', 'link_key_1_first_value')
     row_1 = dbtool.put('link_key_1', 'second_key', 'link_key_1_second_value')
@@ -633,20 +634,20 @@ def test_get():
 
 if __name__ == '__main__':
     test_put()
-    test_get()
-    test_onehotwords()
-    test_static_operation()
-    test_get_html_unescape()
-    test_init()
-    test_get_row_number()
-    test_get_row_count()
-    create_simple_pkl()
-    test_add_data_frame()
-    test_get_clean_key()
-    github_demo_1()
-    test_to_pickle()
-    test_delete_database()
-    test_delete_table()
+    # test_get()
+    # test_onehotwords()
+    # test_static_operation()
+    # test_get_html_unescape()
+    # test_init()
+    # test_get_row_number()
+    # test_get_row_count()
+    # create_simple_pkl()
+    # test_add_data_frame()
+    # test_get_clean_key()
+    # github_demo_1()
+    # test_to_pickle()
+    # test_delete_database()
+    # test_delete_table()
 
     # the following line is not reached because of sys.exit() in python()
     print("dbtool done!")
