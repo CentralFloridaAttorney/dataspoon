@@ -1,4 +1,7 @@
 import gradio as gr
+from langchain import SQLDatabase, OpenAI
+from langchain.agents import create_sql_agent
+from langchain.agents.agent_toolkits import SQLDatabaseToolkit
 from langchain.tools import Tool
 from langchain.utilities import PythonREPL
 
@@ -10,10 +13,28 @@ def put_data(database_name, table_name, unique_id, key, value):
     gpt_tool.put(unique_id, key, value)
     return "Data inserted successfully!"
 
-def get_data(database_name, table_name, unique_id, key):
-    gpt_tool = GptTool(database_name, table_name)
-    value = gpt_tool.get(unique_id, key)
-    return value
+
+
+def get_data(_database_name, _table_name, _unique_id, _key):
+    # Create a SQLDatabase instance
+    database_uri = "mysql+mysqlconnector://bilbo:baggins@localhost:3306/"+_database_name
+    db = SQLDatabase.from_uri(database_uri)
+
+    # Create the OpenAI language model instance
+    llm = OpenAI(temperature=0)
+
+    # Create a SQLDatabaseToolkit instance with the llm argument
+    toolkit = SQLDatabaseToolkit(db=db, llm=llm)
+
+    # Create the SQL agent
+    agent_executor = create_sql_agent(
+        llm=llm,
+        toolkit=toolkit,
+        verbose=True
+    )
+
+    result = agent_executor.run("return the value using the key equal " + _key + "from table " + _table_name + " for the record that has link_key equal " + _unique_id)
+    return result
 
 def chat_bot(message):
     # Your chatbot logic here

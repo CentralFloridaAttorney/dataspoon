@@ -2,10 +2,12 @@ import gradio as gr
 
 from python.dataspoon.configtool import ConfigTool
 from python.dataspoon.dbtool import DBTool
-
+DEFAULT_DATABASE = "svgobject_database"
+DEFAULT_TABLE = "svgobject_table"
 
 def load_db():
-    dbtool = DBTool(configs["dbtool_db"], configs["dbtool_table"])
+    # dbtool = DBTool(configs["dbtool_db"], configs["dbtool_table"])
+    dbtool = DBTool(DEFAULT_DATABASE, DEFAULT_TABLE)
     dataframe = dbtool.get_dataframe()
     return dataframe
 
