@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="test.txt">
-      <change afterPath="$PROJECT_DIR$/python/assets/mysql.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/assets/users.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/dataspoon/feature_hash_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/dataspoon/feature_hash_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/dataspoon/feature_hash_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="update to fix many issues in dbtool.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_dataspoon.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_dataspoon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/assets/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/python/assets/mysql.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/dataspoon/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/dbtool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/gptsql/gpttool_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/gpttool_app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +28,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
@@ -71,9 +61,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2JbkRa8m5wp0RvCoy8oGJVvGIBN" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -146,6 +136,9 @@
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -305,7 +298,8 @@
       <workItem from="1685980233792" duration="7000" />
       <workItem from="1685987966336" duration="13000" />
       <workItem from="1686593350761" duration="1315000" />
-      <workItem from="1692311777578" duration="1547000" />
+      <workItem from="1692311777578" duration="2930000" />
+      <workItem from="1692372812297" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="work on configtool.py">
       <created>1672355787029</created>
@@ -468,7 +462,23 @@
       <option name="project" value="LOCAL" />
       <updated>1685047934920</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="update to fix many issues in dbtool.py">
+      <option name="closed" value="true" />
+      <created>1692314318684</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1692314318684</updated>
+    </task>
+    <task id="LOCAL-00025" summary="update to fix many issues in dbtool.py">
+      <option name="closed" value="true" />
+      <created>1692317642749</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1692317642749</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +519,8 @@
     <MESSAGE value="update README.md for DBTool" />
     <MESSAGE value="begin gptsql" />
     <MESSAGE value="test.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="test.txt" />
+    <MESSAGE value="update to fix many issues in dbtool.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="update to fix many issues in dbtool.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

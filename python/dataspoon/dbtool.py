@@ -11,7 +11,7 @@ from mysql.connector import Error
 DEFAULT_DATABASE = "svgobject_database"
 DEFAULT_TABLE = "svgobject_table"
 DEFAULT_INI_FILE_PATH = ''
-# primary_key = 'primary_key'
+# key = 'key'
 HTML_ESCAPE_TABLE = {
     '"': "&quot;",
     "'": "&apos;",
@@ -204,7 +204,7 @@ class DBTool:
                         'Duplicate'):
                     print('non-fatal error in dbtool._execute_mysql: ' + _mysql_statement)
                 elif err.errno == 1064:
-                    return 'mysql syntax error: ' + _mysql_statement
+                    print('mysql syntax error: ' + _mysql_statement)
                 else:
                     print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
                 return False
@@ -231,7 +231,7 @@ class DBTool:
         """
         This method adds a dataframe to MySQL
         :param _data_frame: the pandas.DataFrame to be added to self.table_name
-        :param _primary_key_column_num: when adding a dataframe each row requires a primary_key.  _primary_key_column_row is the column_number of _data_frame to be used as primary_key then adding each row
+        :param _primary_key_column_num: when adding a dataframe each row requires a key.  _primary_key_column_row is the column_number of _data_frame to be used as key then adding each row
         """
 
         h, w = _data_frame.shape
@@ -272,25 +272,27 @@ class DBTool:
             :
         # this method creates a shallow paste by ignoring None values in _from_primary_key
         # if a key/value is null then skip (or consider set value as 'default' for deep paste)
-        # index 0 is id and index 1 is primary_key, copied values thus begin at index 2
+        # index 0 is id and index 1 is key, copied values thus begin at index 2
         # if the _from_primary_key does not exist then create it
         # if the _to_primary_key does not exist then create it
         if self.get_id(_from_primary_key) == 0:
             self.put(_from_primary_key)
         else:
             old_values = self.get_values(_from_primary_key)
-            old_keys = self.get_columns()
-            # if the _to_primary_key does not exist then create it
-            if self.get_id(_to_primary_key) == 0:
-                self.put(_to_primary_key)
-            # index 0 is id and index 1 is primary_key, copied values thus begin at index 2
-            for index in range(1, len(old_keys), 1):
-                try:
-                    self.put(_to_primary_key, old_keys[index], old_values[index])
-                except:
-                    self.put(_to_primary_key, old_keys[index], 'default')
-
-        return self.get_id(_to_primary_key)
+            if len(old_values) == 0:
+                return 0
+            else:
+                old_keys = self.get_columns()
+                # if the _to_primary_key does not exist then create it
+                if self.get_id(_to_primary_key) == 0:
+                    self.put(_to_primary_key)
+                # index 0 is id and index 1 is key, copied values thus begin at index 2
+                for index in range(1, len(old_keys), 1):
+                    try:
+                        self.put(_to_primary_key, old_keys[index], old_values[index])
+                    except:
+                        self.put(_to_primary_key, old_keys[index], 'default')
+                return self.get_id(_to_primary_key)
 
     def delete_database(self, _database_name):
         mysql_drop_database = MYSQL_DROP_DATABASE.format(self.get_clean_key_string(_database_name))
@@ -341,7 +343,9 @@ class DBTool:
     def get_dataframe(self):
         get_all_rows_mysql_statement = MYSQL_SELECT_FROM.format('*', self.table_name)
         all_rows = self.execute_mysql(get_all_rows_mysql_statement)
+        all_rows = self.remove_none(all_rows)
         columns = self.get_columns(_exclude_2_keys=False)
+
         if len(all_rows) == 0:
             data = {"Column" + str(i + 1): ["default"] for i in range(len(columns))}
             dataframe = pandas.DataFrame(data)
@@ -350,26 +354,28 @@ class DBTool:
         dataframe.columns = columns
         return dataframe
 
-    def get_id(self, primary_key, value=None):
+    def get_id(self, key, value=None):
         """
-        DBToolAsync.get_id() returns a row number for either a primary_key or key/value pair.
+        DBToolAsync.get_id() returns a row number for either a key or key/value pair.
         :param _primary_key: _primary_key uniquely identifies the row.
         :param _value: _key is an optional parameter, which is used to identify the column name.
-        :return: If _key=None then return the row_number where primary_key = _primary_key.  Otherwise, return the ro_number where a key/value pair matches _primary_key/_key_value.
+        :return: If _key=None then return the row_number where key = _primary_key.  Otherwise, return the ro_number where a key/value pair matches _primary_key/_key_value.
         """
 
         if value is None:
             select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, "primary_key",
-                                                                         self.get_clean_key_string(primary_key))
+                                                                         self.get_clean_key_string(key))
         else:
             select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name,
-                                                                         self.get_clean_key_string(primary_key),
+                                                                         self.get_clean_key_string(key),
                                                                          self.get_clean_key_string(value))
 
         primary_key_id = self.execute_mysql(select_sql)
         if primary_key_id is None or primary_key_id == "None":
+            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, "primary_key",
+                                                                         self.get_clean_key_string(key))
+            primary_key_id = self.execute_mysql(select_sql)
             print('get_id: ' + str(primary_key_id))
-            return 0
         else:
             print('get_id: ' + str(primary_key_id))
             return primary_key_id
@@ -377,8 +383,6 @@ class DBTool:
     def get_primary_keys(self):
         dataframe = self.get_dataframe()
         primary_keys = dataframe['primary_key'].values.tolist()
-        # primary_key_array = primary_keys.
-        print('get_sentence_indices done!')
         return primary_keys
 
     def get_row_count(self):
@@ -413,21 +417,17 @@ class DBTool:
         # Therefore, table_name may be required for open_database
 
         # self.database_name = _database_name
-        # open_table_mysql = "CREATE TABLE " + self.table_name + "(id int(10) NOT NULL AUTO_INCREMENT," + primary_key + " varchar(255), PRIMARY KEY (id))"
+        # open_table_mysql = "CREATE TABLE " + self.table_name + "(id int(10) NOT NULL AUTO_INCREMENT," + key + " varchar(255), PRIMARY KEY (id))"
         open_database_mysql = "CREATE DATABASE {0};".format(self.get_clean_key_string(_database_name))
         self.execute_mysql(open_database_mysql)
         self.open_table(self.table_name)
         print('open_database: ' + _database_name)
 
     def open_table(self, _table_name):
-        # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', table_name.strip()))
         self.table_name = self.get_clean_key_string(_table_name)
-        # clean_table_name = self.get_clean_key_string(self.table_name)
         mysql_open_table = "CREATE TABLE {0} ({1} int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,  {2} varchar(256));".format(
             self.table_name, 'id', 'primary_key')
         self.execute_mysql(mysql_open_table)
-        # self._add_column('primary_key')
-        # print('open_table: ' + table_name)
 
     def get(self, primary_key=str, _key=None):
         """
@@ -437,17 +437,17 @@ class DBTool:
         :return: If _key=None then return the entire row.  Otherwise, return the value in the column named _key.
         """
         if _key is None:
-            # 1 result: primary_key returns the entire row for primary_key
-            self._add_column(primary_key)
+            # 1 result: key returns the entire row for key
+            # self._add_column(key)
             sql_statement = MYSQL_SELECT_ROW_FROM_WHERE.format('*',
                                                                self.table_name,
-                                                               primary_key,
+                                                               'primary_key',
                                                                self.get_clean_key_string(primary_key))
         else:
-            # 2 result: returns the value for key on the primary_key row
-            self._add_column(primary_key)
+            # 2 result: returns the value for key on the key row
+            # self._add_column(key)
             sql_statement = MYSQL_SELECT_ROW_FROM_WHERE.format(self.get_clean_key_string(_key), self.table_name,
-                                                               primary_key,
+                                                               'primary_key',
                                                                self.get_clean_key_string(primary_key))
         result = self.execute_mysql(sql_statement)
         result = self.remove_none(result)
@@ -456,43 +456,46 @@ class DBTool:
         else:
             return result
 
+
     def put(self, primary_key="xyzzy_primary_key", element_key=None, value=None):
         """
-        DBToolAsync().put() inserts values and returns the id of the affected record.
+        Inserts or updates values in the database row and returns the ID of the affected record.
 
-        DBToolAsync().put() behaves differently depending upon the number of parameters that are passed:
-            1) adds a row with primary_key = _primary_key
-            2) copies the key/value pairs from _primary_key to _primary_key_value
-            3) sets a key/value pair in _primary_key
+        Depending on the provided parameters, this method behaves as follows:
+            1) If only 'primary_key' is provided, adds a new row with the specified primary key value if it doesn't already exist.
+            2) If both 'element_key' and 'value' are provided, updates the specified 'element_key' value in the row
+               identified by the 'primary_key'.
 
-        :param primary_key: the value used to identify the row of data
-        :param element_key: if 2 parameters then is the row for the key/value pairs in _primary_key; if 3 parameters then is the key for _value
-        :param value: is the value for key named _primary_key_value in row _primary_key
-        :return: returns the row_number of the affected row
+        :param primary_key: The value used to identify the row of data.
+        :param element_key: The key for the value to be updated in the row of data.
+        :param value: The value to be associated with the provided 'element_key'.
+        :return: The row number of the affected row.
         """
-        # returns row_number of _primary_key
-        # 1 value: new_primary_key
-        # 2 value: old_primary_key_value, new_primary_key_value
-        # 3 value: primary_key, key, value
-        if element_key is None:
-            primary_key_id = self.get_id(primary_key)
-            if primary_key_id == 0 or "None":
-                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(self.table_name,
-                                                                                 'primary_key',
-                                                                                 self.get_clean_key_string(primary_key))
+        primary_key_id = self.get_id(primary_key)
+
+        if (element_key is None and value is not None) or (element_key is not None and value is None):
+            raise ValueError(
+                "Either both 'element_key' and 'value' must be provided, or neither should be provided.")
+
+        if element_key is None and value is None:
+            # Check if the row with the given primary key already exists
+            if primary_key_id == 0 or primary_key_id is None:
+                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(
+                    self.table_name, 'primary_key', self.get_clean_key_string(primary_key))
                 self.execute_mysql(mysql_statement)
-            primary_key_id = self.get_id(primary_key)
-        elif value is None:
-            primary_key_id = self.copy_primary_key(primary_key, element_key)
-        else:
-            # sets value in the column _primary_key_value to _key_value in the row where the primary_key is _primary_key
-            if self.get_id(primary_key) == 0:
-                self.put(primary_key)
+                primary_key_id = self.get_id(primary_key)
+
+        if element_key is not None and value is not None:
+            self.put(primary_key)
             self._add_column(element_key)
             if isinstance(value, str):
                 value = value.replace("#", "&#35;")
             value_escaped = self.escape_nonascii(value)
-            primary_key_id = self.update_value(primary_key, element_key, value_escaped)
+
+            mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE {3} = '{4}';".format(
+                self.table_name, element_key, value_escaped, 'primary_key', self.get_clean_key_string(primary_key))
+            self.execute_mysql(mysql_statement)
+
         return primary_key_id
 
     @staticmethod
@@ -535,9 +538,18 @@ class DBTool:
         if _result is None:
             _result = 'None'
         if type(_result) == list:
-            for index in range(0, len(_result), 1):
-                if _result[index] is None:
-                    _result[index] = 'None'
+            if len(_result) == 1:
+                for column_index in range(len(_result)):
+                    temp_value = _result[column_index]
+                    if temp_value is None:
+                        _result[column_index] = 'None'
+        else:
+            for index in range(len(_result)):
+                temp_row = _result[index]
+                for column_index in range(len(temp_row)):
+                    temp_value = _result[index][column_index]
+                    if temp_value is None:
+                        _result[index][column_index] = 'None'
         return _result
 
     def to_pickle(self, _file_path):
@@ -587,7 +599,7 @@ class OneHotWords(DBTool):
         return row_number
 
     def get_words(self):
-        words = super().get_column('primary_key')
+        words = super().get_column('key')
         print('get_words done!')
         return words
 
@@ -663,13 +675,13 @@ def test_to_pickle():
     print('test_to_pickle done!')
 
 
-def github_demo_1():
+def test_copy_row():
     xyzzydb = DBTool()
     xyzzydb = DBTool('xyzzydb')
     xyzzydb = DBTool('xyzzydb', 'new_magic_table')
     xyzzydb.put('primary_key_xyzzy')
-    xyzzydb.put('primary_key_xyzzy', 'revised_primary_key_xyzzy')
-    xyzzydb.put('revised_primary_key_xyzzy', 'ala', 'kazam')
+    xyzzydb.put('primary_key_xyzzy', 'ala', 'kazam')
+    xyzzydb.put('primary_key_xyzzy', 'ala', 'kazoo')
     print('github_demo done!')
 
 
@@ -730,33 +742,28 @@ def test_put():
     row_1 = dbtool.put('primary_key_1', 'first_key', 'primary_key_1_first_value')
     row_1 = dbtool.put('primary_key_1', 'second_key', 'primary_key_1_second_value')
     row_2 = dbtool.put('primary_key_2', 'first_key', 'primary_key_2_first_value')
-    row_2 = dbtool.put('primary_key_1', 'primary_key_2')
     row_2 = dbtool.put('primary_key_2', 'xyzzy_key', "primary_key_2_xyzzy_key")
-    row_1 = dbtool.put('primary_key_2', "primary_key_1")
     row_2 = dbtool.put('primary_key_2', 'second_key', "primary_key_2_xyzzy")
-    row_3 = dbtool.put('primary_key_2', 'primary_key_3')
-    row_3 = dbtool.put('primary_key_1', 'primary_key_3')
     row_3 = dbtool.put('primary_key_3', 'magic_key', "primary_key_3_magic_key")
-    row_3 = dbtool.put('primary_key_2', 'primary_key_3')
     row_3 = dbtool.put('primary_key_3', 'first_key', 'primary_key_3_first_key_xyzzy')
     print('test_put done!')
 
 
 def test_get():
     dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
-    # columns = dbtool.get_columns()
-    # primary_keys = dbtool.get_primary_keys()
-    # rows = []
-    # for primary_key in primary_keys:
-    #     this_row = dbtool.get(primary_key)
-    #     for column in columns:
-    #         value = dbtool.get(primary_key, column)
-    #         print("*** test_get primary_key: " + primary_key + " \n*** column: " + column + " \n*** value: " + str(value))
-    #     rows.append(this_row)
-    # this_dataframe = pandas.DataFrame(data=rows)
-    # this_dataframe.columns = columns
+    columns = dbtool.get_columns()
+    primary_keys = dbtool.get_primary_keys()
+    rows = []
+    for primary_key in primary_keys:
+        this_row = dbtool.get(primary_key)
+        for column in columns:
+            value = dbtool.get(primary_key, column)
+            print("*** test_get key: " + primary_key + " \n*** column: " + column + " \n*** value: " + str(value))
+        rows.append(this_row)
+    this_dataframe = pandas.DataFrame(data=rows)
+    this_dataframe.columns = columns
     that_dataframe = dbtool.get_dataframe()
-    # print(this_dataframe.equals(that_dataframe))
+    print(this_dataframe.equals(that_dataframe))
     print('test_get done!')
 
 
@@ -803,11 +810,10 @@ if __name__ == '__main__':
     create_simple_pkl()
     test_add_data_frame()
     test_get_clean_key()
-    github_demo_1()
+    test_copy_row()
     test_to_pickle()
     test_delete_database()
     test_delete_table()
-
     init_dbtool()
     # the following line is not reached because of sys.exit() in python()
     print("dbtool done!")
