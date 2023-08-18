@@ -170,8 +170,9 @@ Examples of using DBTool
  6) get the value for a key in a row
  7) get the entire row for a link_key
  8) update a value in a row
- 9) delete a row
- 10) delete a table
+ 9) delete a table
+ 10) delete a row
+ 11) delete a column
  11) delete a database
  12) get the number of rows in a table
  13) get the column names for a table
