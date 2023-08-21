@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="test_dbtool.py">
+    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="Updated README.md updated to run with .env files for configuration">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -287,7 +287,7 @@
       <workItem from="1692550900136" duration="1219000" />
       <workItem from="1692553781534" duration="599000" />
       <workItem from="1692564179224" duration="600000" />
-      <workItem from="1692643385903" duration="1324000" />
+      <workItem from="1692643385903" duration="1735000" />
     </task>
     <task id="LOCAL-00001" summary="work on configtool.py">
       <created>1672355787029</created>
@@ -482,7 +482,39 @@
       <option name="project" value="LOCAL" />
       <updated>1692649048896</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="updated to run with .env files for configuration">
+      <option name="closed" value="true" />
+      <created>1692649601362</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1692649601362</updated>
+    </task>
+    <task id="LOCAL-00029" summary="updated to run with .env files for configuration">
+      <option name="closed" value="true" />
+      <created>1692649624333</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1692649624333</updated>
+    </task>
+    <task id="LOCAL-00030" summary="updated to run with .env files for configuration">
+      <option name="closed" value="true" />
+      <created>1692649680833</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1692649680833</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Updated README.md updated to run with .env files for configuration">
+      <option name="closed" value="true" />
+      <created>1692649872084</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1692649872084</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -525,7 +557,9 @@
     <MESSAGE value="test.txt" />
     <MESSAGE value="update to fix many issues in dbtool.py" />
     <MESSAGE value="test_dbtool.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="test_dbtool.py" />
+    <MESSAGE value="updated to run with .env files for configuration" />
+    <MESSAGE value="Updated README.md updated to run with .env files for configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md updated to run with .env files for configuration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

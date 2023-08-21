@@ -195,7 +195,7 @@ Examples of using DBTool
     ```
 3. Optionally, install mysql-workbench:
     ```
-    sudo aptitude install mysql-workbench-community
+    sudo apt install mysql-workbench-community
     ```
 
 4. You need to know the location (ex. 127.0.0.1 or 192.168.1.69) and port number (ex. 3306 or 50011)
