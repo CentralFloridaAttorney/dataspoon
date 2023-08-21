@@ -216,10 +216,26 @@ sudo aptitude install mysql-workbench-community
 4. install packages
    ````
    pip install mysql-connector-python
-   
-5. make a default.ini file
-    ````
-   python configtool.py
+
+5 Create a file named `.env` in the root directory of your project and populate it with the following values:
+
+```
+# Used by DBTool
+DBTOOL_USER=bilbo
+DBTOOL_PASSWD=baggins
+DBTOOL_HOST=127.0.0.1
+DBTOOL_PORT=3306
+DBTOOL_DATABASE_NAME=default_database
+DBTOOL_TABLE_NAME=default_table
+DBTOOL_ONEHOTDB_NAME=default_onehotdb
+DBTOOL_ONEHOTDB_TABLE=default_onehotdb_table
+```
+7. Install dotenv:
+
+```
+pip install dotenv
+```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
