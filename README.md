@@ -126,10 +126,9 @@ value = DBTool('magic_carpet', 'magic_table').get('xyzzy', 'ala')
 The behavior of the put method differs depending on the number of parameters passed.
 
 ````
-    def put(self, _link_key, _key_value=None, _value=None):
+    def put(self, primary_key, element_key=None, value=None):
         # 1 parameter: add _link_key (returns row_number of _link_key)
-        # 2 parameters: copy values from first_link_key to second_link_key (returns row_number of second_link_key)
-        # 3 parameters: for _link_key set key/value (returns row_number of _link_key)
+        # 3 parameters: for primary_key set key/value (returns row_number of _link_key)
 ````
 
 
@@ -140,7 +139,6 @@ Examples of using DBTool
     xyzzydb = DBTool('xyzzydb') creates a database named xyzzydb with a table named default_table.
     xyzzydb = DBTool('xyzzydb', 'best_magic_table') creates a database named xyzzydb with a table named best_magic_table.
     xyzzydb.put('link_key_xyzzy') creates a row with link_key ('link_key_xyzzy')
-    xyzzydb.put('link_key_xyzzy', 'other_link_key') copies the values from link_key_xyzzy to other_link_key
     xyzzydb.put('other_link_key', 'ala', 'kazam') sets key ('ala') to value ('kazam') in row with link_key ('other_link_key')
     
     1. Create a database ('xyzzydb', 'magic_table'): xyzzydb = DBTool('xyzzydb', 'magic_table').  The MySQL.table_name is a default name, unless you specify a table_name during creation (ex. xyzzydb = DBTool('xyzzydb', 'magic_table')) or after creation (ex. xyzzydb.open_table('new_magic_table'))

@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="Updated README.md updated to run with .env files for configuration">
+    <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="moved dbtool.py and test_dbtool.py to root">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,6 +105,7 @@
       <recent name="$PROJECT_DIR$/data/models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="C:\Users\attorneycentralflori\PycharmProjects\dataspoon\python" />
     </key>
   </component>
@@ -162,7 +164,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/dataspoon/dbtool.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dbtool.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -193,7 +195,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for dbtool.TestDBTool.test_get_id_primary_key_and_element_value" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for dbtool" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -204,7 +206,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;dbtool.TestDBTool.test_get_id_primary_key_and_element_value&quot;" />
+      <option name="_new_target" value="&quot;dbtool&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -287,7 +289,7 @@
       <workItem from="1692550900136" duration="1219000" />
       <workItem from="1692553781534" duration="599000" />
       <workItem from="1692564179224" duration="600000" />
-      <workItem from="1692643385903" duration="1735000" />
+      <workItem from="1692643385903" duration="3035000" />
     </task>
     <task id="LOCAL-00001" summary="work on configtool.py">
       <created>1672355787029</created>
@@ -514,7 +516,39 @@
       <option name="project" value="LOCAL" />
       <updated>1692649872084</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Updated README.md updated to run with .env files for configuration">
+      <option name="closed" value="true" />
+      <created>1692649983927</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1692649983927</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Updated README.md updated to run with .env files for configuration">
+      <option name="closed" value="true" />
+      <created>1692650017023</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1692650017023</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Updated README.md updated to run with .env files for configuration">
+      <option name="closed" value="true" />
+      <created>1692650100377</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1692650100377</updated>
+    </task>
+    <task id="LOCAL-00035" summary="moved dbtool.py and test_dbtool.py to root">
+      <option name="closed" value="true" />
+      <created>1692650463202</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1692650463202</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -559,7 +593,8 @@
     <MESSAGE value="test_dbtool.py" />
     <MESSAGE value="updated to run with .env files for configuration" />
     <MESSAGE value="Updated README.md updated to run with .env files for configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md updated to run with .env files for configuration" />
+    <MESSAGE value="moved dbtool.py and test_dbtool.py to root" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved dbtool.py and test_dbtool.py to root" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -618,6 +653,6 @@
     <SUITE FILE_PATH="coverage/dataspoon$dbtoolcaller.coverage" NAME="dbtoolcaller Coverage Results" MODIFIED="1685019436888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/gptsql" />
     <SUITE FILE_PATH="coverage/dataspoon$app_dataspoon.coverage" NAME="app_dataspoon Coverage Results" MODIFIED="1679149024812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/dataspoon$onehotdb_gui.coverage" NAME="onehotdb_gui Coverage Results" MODIFIED="1673198489944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
-    <SUITE FILE_PATH="coverage/dataspoon$.coverage" NAME=" Coverage Results" MODIFIED="1692649005258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
+    <SUITE FILE_PATH="coverage/dataspoon$.coverage" NAME=" Coverage Results" MODIFIED="1692650428160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python/dataspoon" />
   </component>
 </project>
