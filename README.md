@@ -190,7 +190,7 @@ Examples of using DBTool
     sudo apt-get install mysql-server
     ```
 2. Install mysql-connector-python:
-    ``
+    ```
     pip install mysql-connector-python
     ```
 3. Optionally, install mysql-workbench:
