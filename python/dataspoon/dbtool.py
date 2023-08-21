@@ -1,15 +1,17 @@
+import argparse
+import csv
 import html
+import json
 import os
-import uuid
-from configparser import ConfigParser
 from urllib.parse import quote, unquote
 
 import mysql
 import pandas
+from dotenv import load_dotenv
 from mysql.connector import Error
 
-DEFAULT_DATABASE = "svgobject_database"
-DEFAULT_TABLE = "svgobject_table"
+DEFAULT_DATABASE = "default_database"
+DEFAULT_TABLE = "default_table"
 DEFAULT_INI_FILE_PATH = ''
 # key = 'key'
 HTML_ESCAPE_TABLE = {
@@ -46,59 +48,270 @@ COLORS = [
 
 
 class DBTool:
-    def __init__(self, database_name="svgobject_database", table_name="svgobject_table", config_key=None):
+    def __init__(self, database_name=DEFAULT_DATABASE,
+                 table_name=DEFAULT_TABLE, user="default", passwd="default", host="default", port="default",
+                 onehotdb_name="onehot_database", onehotdb_table="onehot_table"):
         """
-        DBToolAsync() provides access to MySQL functions within Python.
+         Initializes the DBTool object for handling interactions with the database.
 
-        :param database_name: Optionally, specify self.database_name
-        :param table_name: Optionally, specify self.table_name
-        :param config_key: Optionally, specify ConfigTool(_config_key); default is 'bilbo'
-        To open the default database:
+        :param user: User name for the database connection. Defaults to value in .env file.
+        :param passwd: Password for the database connection. Defaults to value in .env file.
+        :param host: Host address for the database connection. Defaults to value in .env file.
+        :param port: Port number for the database connection. Defaults to value in .env file.
+        :param database_name: The name of the primary database. Defaults to "svgobject_database".
+        :param table_name: The name of the primary table within the database. Defaults to "svgobject_table".
+        :param onehotdb_name: The name of the one-hot encoding database. Defaults to "onehot_database".
+        :param onehotdb_table: The name of the one-hot encoding table. Defaults to "onehot_table".
 
-        dbtool = DBToolAsync()
+        Example Usage:
 
-        To open a database named 'xyzzydb'
+        # Using default values:
+        dbtool = DBTool()
 
-        xyzzydb = DBToolAsync('xyzzydb')
+        # Specifying a custom database name:
+        xyzzydb = DBTool(database_name='xyzzydb')
 
-        To open a database named 'xyzzydb' and a table named 'magic_table'
+        # Specifying both custom database and table name:
+        xyzzydb = DBTool(database_name='xyzzydb', table_name='magic_table')
 
-        xyzzydb = DBToolAsync('xyzzydb', 'magic_table')
+        # Full customization including user, password, host, and port:
+        xyzzydb = DBTool(user='bilbo', passwd='baggins', host='127.0.0.1', port='3306', database_name='xyzzydb', table_name='magic_table')
 
         """
-        # self.base_dir = ROOT_DIR.rsplit('/', 0)[0] + '/'
-        try:
-            open(DEFAULT_INI_FILE_PATH + 'default.ini', 'r+')
-        except FileNotFoundError:
-            config_tool = ConfigTool('default')
-            config_tool.write_default_configs()
-        configtool = ConfigTool('default' if config_key is None else config_key)
-        these_configs = configtool.get_configs()
-        self.user = these_configs.get('user')
-        self.passwd = these_configs.get('passwd')
-        self.host = these_configs.get('host')
-        self.port = these_configs.get('port')
-        self.database_name = (these_configs.get('database_name') if database_name is None else database_name)
-        self.table_name = (these_configs.get('table_name)') if table_name is None else table_name)
-        self.onehotdb_name = these_configs.get('onehotdb_name')
-        self.onehotdb_table = these_configs.get('onehotdb_table')
-        self.open_database(self.database_name)
-        # self.open_table(self.table_name)
-        # print('__init__ done!')
 
-    def _add_column(self, _column_name):
+        load_dotenv()
+        self.user = os.getenv('DBTOOL_USER') if user == "default" else user
+        self.passwd = os.getenv('DBTOOL_PASSWD') if passwd == "default" else passwd
+        self.host = os.getenv('DBTOOL_HOST') if host == "default" else host
+        self.port = int(os.getenv('DBTOOL_PORT') if port == "default" else port)
+        self.database_name = os.getenv(
+            'DBTOOL_DATABASE_NAME') if database_name == "svgobject_database" else database_name
+        self.table_name = os.getenv('DBTOOL_TABLE_NAME') if table_name == "svgobject_table" else table_name
+        self.onehotdb_name = os.getenv('DBTOOL_ONEHOTDB_NAME') if onehotdb_name == "onehot_database" else onehotdb_name
+        self.onehotdb_table = os.getenv('DBTOOL_ONEHOTDB_TABLE') if onehotdb_table == "onehot_table" else onehotdb_table
+        self.open_database(self.database_name, self.table_name)
+        self.write_default_json()
+        self.write_advanced_json()
+        self.write_default_csv()
+
+    def add_column(self, _column_name):
         """
-        DBToolAsync._add_column() adds a column your MySQL database table
+        DBTool._add_column() adds a column your MySQL database table
         :param _column_name: name of the new column
         """
         query = "ALTER TABLE {0} ADD {1} VARCHAR(256);".format(self.table_name,
                                                                self.get_clean_key_string(_column_name))
-        # values = [self.table_name, self.get_clean_key_string(_column_name)]
-
         self.execute_mysql(query)
-        # print('Add column: '+ _column_name)
 
-    def _get_db_connection(self, host_name, user_name, user_password, port_num, _db_name=None):
+    @staticmethod
+    def _get_html_unescape(_string):
+        clean_string = str(_string)
+        unescape_string = html.unescape(clean_string)
+        for item in HTML_UNESCAPE_TABLE:
+            unescape_string = unescape_string.replace(item, HTML_UNESCAPE_TABLE.get(item))
+        print("_get_html_unescape: " + unescape_string)
+        return unescape_string
+
+    def drop_column(self, column_name="None"):
+        mysql_drop_column = MYSQL_DROP_COLUMN.format(self.table_name, column_name)
+        self.execute_mysql(mysql_drop_column)
+
+    def add_dataframe(self, _data_frame, _primary_key_column_num=0):
+        """
+        This method adds a dataframe to MySQL
+        :param _data_frame: the pandas.DataFrame to be added to self.table_name
+        :param _primary_key_column_num: when adding a dataframe each row requires a key.  _primary_key_column_row is the column_number of _data_frame to be used as key then adding each row
+        """
+        h, w = _data_frame.shape
+        for row in range(0, h, 1):
+            for column in range(0, w, 1):
+                primary_key = _data_frame.iloc[row][_primary_key_column_num]
+                column_name = _data_frame.columns[column]
+                value = str(_data_frame.iloc[row][column])
+                self.put(primary_key, column_name, value)
+
+        print("done add_dataframe")
+
+    @staticmethod
+    def convert_value(value):
+        if value is None:
+            return "None"
+        if isinstance(value, int):
+            return str(value)
+        if isinstance(value, str):
+            return unquote(str(value))
+        return value
+
+    def convert_ints_and_none_to_strings(self, input_list):
+        # If input_list is not a list, simply convert the value and return
+        if not isinstance(input_list, list):
+            return self.convert_value(input_list)
+
+        # Determine if it is a list of lists
+        is_nested_list = all(isinstance(item, list) for item in input_list)
+        print("list of lists" if is_nested_list else "not list of lists")
+
+        # Convert the elements in the list or nested list
+        if is_nested_list:
+            converted_list = [[self.convert_value(item) for item in row] for row in input_list]
+        else:
+            converted_list = [self.convert_value(item) for item in input_list]
+
+        return converted_list
+
+    def csv2dbtool(self, csv_path="default.csv"):
+        dataframe = pandas.read_csv(filepath_or_buffer=csv_path, header=0)
+        self.add_dataframe(dataframe, 0)
+        return self.get_dataframe()
+
+    def delete_database(self, database_name=DEFAULT_DATABASE):
+        mysql_drop_database = MYSQL_DROP_DATABASE.format(self.get_clean_key_string(database_name))
+        self.execute_mysql(mysql_drop_database)
+
+    def delete_table(self, table_name=DEFAULT_TABLE):
+        mysql_delete_data = "DELETE FROM {0};".format(self.get_clean_key_string(table_name))
+        self.execute_mysql(mysql_delete_data)
+
+    def execute_mysql(self, _mysql_statement, _value=None):
+        """
+        DBTool.execute_mysql() executes MySQL commands, which are called by other methods.
+        :param _mysql_statement: a formatted string with a MySQL command.
+        :param _value: RESERVED for future use
+        :return: returns the result of the MySQL statement or an error message.
+        """
+        result = 'default'
+        connection = self.get_db_connection(host_name=self.host, user_name=self.user, user_password=self.passwd,
+                                            port_num=self.port, _db_name=self.database_name)
+        if connection is not None:
+            try:
+                cursor = connection.cursor(buffered=True)
+                if _value is None:
+                    cursor.execute(_mysql_statement)
+                else:
+                    cursor.execute(_mysql_statement, _value)
+                connection.commit()
+                if _mysql_statement.startswith('SELECT'):
+                    if "*" not in _mysql_statement:
+                        result = cursor.fetchone()
+                        if result is not None:
+                            result = result[0]
+                    else:
+                        result = cursor.fetchall()
+                        if result is not None:
+                            result = [list(x) for x in result]
+                            if len(result) == 1:
+                                result = result[0]
+                cursor.close()
+                connection.close()
+            except Error as err:
+                if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__(
+                        'Duplicate'):
+                    print('non-fatal error in dbtool.execute_mysql: ' + _mysql_statement)
+                elif err.errno == 1064:
+                    print('mysql syntax error: ' + _mysql_statement)
+                else:
+                    print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
+                return False
+        return result
+
+    def get(self, primary_key, column_name=None):
+        """
+        Retrieves data from the database.
+
+        :param primary_key: Primary key that uniquely identifies the row.
+        :param column_name: Optional, the name of the column from which to retrieve the value.
+        :return: If column_name=None, returns the entire row. Otherwise, returns the value in the specified column.
+
+        Example Usage:
+
+        # Retrieve the entire row:
+        result = dbtool.get('some_primary_key')
+
+        # Retrieve a specific value:
+        result = dbtool.get('some_primary_key', 'column_name'
+        """
+        if column_name is None:
+            # 1 result: key returns the entire row for key
+            sql_statement = MYSQL_SELECT_ROW_FROM_WHERE.format('*',
+                                                               self.table_name,
+                                                               'primary_key',
+                                                               self.get_clean_key_string(primary_key))
+        else:
+            # 2 result: returns the value for key on the key row
+            sql_statement = MYSQL_SELECT_ROW_FROM_WHERE.format(self.get_clean_key_string(column_name), self.table_name,
+                                                               'primary_key',
+                                                               self.get_clean_key_string(primary_key))
+        result = self.execute_mysql(sql_statement)
+        result = self.convert_ints_and_none_to_strings(result)
+        return result
+
+    @staticmethod
+    def get_clean_key_string(_string=str):
+        """
+        DBTool().get_clean_key_string() replaces certain characters with web entity values or escape codes.
+
+        :param _string: a string value
+        :return: returns a value that is suitable for being used as a name in MySQL
+
+        MySQL has rules about what values can be in an identifier. This method processes string values to comply with the rules.
+
+        clean_value = DBTool().get_clean_key_string("That's great!")
+
+        clean_value = 'That&apos;s&nbspa&nbspgreat!'
+        """
+        _string = str(_string)
+        _string = html.escape(_string)
+        return _string
+
+    def get_columns(self, exclude_2_keys=False):
+        connection = self.get_db_connection(host_name=self.host, user_name=self.user, user_password=self.passwd,
+                                            port_num=self.port, _db_name=self.database_name)
+        if connection is not None:
+            cursor = connection.cursor(buffered=True)
+
+            # Check if the table exists before executing the query
+            check_table_existence_statement = "SHOW TABLES LIKE '{0}';".format(self.table_name)
+            cursor.execute(check_table_existence_statement)
+            table_exists = cursor.fetchone()
+
+            if table_exists:
+                mysql_statement = "SELECT {0} FROM {1};".format('*', self.table_name)
+                cursor.execute(mysql_statement)
+                columns = list(cursor.column_names)
+                if exclude_2_keys:
+                    columns.pop(0)
+                    columns.pop(0)
+                cursor.close()
+                connection.close()
+                return columns
+            else:
+                cursor.close()
+                connection.close()
+                return None
+        else:
+            return None
+
+    def get_dataframe(self):
+        get_all_rows_mysql_statement = MYSQL_SELECT_FROM.format('*', self.table_name)
+        all_rows = self.execute_mysql(get_all_rows_mysql_statement)
+        # all_rows = self.remove_none(all_rows)
+        if all_rows == "default" or all_rows == "None":
+            all_rows = self.get_default_all_rows()
+        all_rows = self.convert_ints_and_none_to_strings(all_rows)
+        columns = self.get_columns(exclude_2_keys=False)
+
+        if len(all_rows) == 0:
+            data = {"Column" + str(i + 1): ["default"] for i in range(len(columns))}
+            dataframe = pandas.DataFrame(data)
+        else:
+            dataframe = pandas.DataFrame(all_rows)
+            if dataframe.shape[1] == 1:
+                dataframe = dataframe.transpose()
+        dataframe.columns = columns
+        return dataframe
+
+    def get_db_connection(self, host_name="127.0.0.1", user_name="default", user_password="default", port_num=3306,
+                          _db_name=DEFAULT_DATABASE):
         connection = None
         try:
             if _db_name is not None:
@@ -107,9 +320,8 @@ class DBTool:
                     user=user_name,
                     passwd=user_password,
                     port=port_num,
-                    database=self.get_clean_key_string(_db_name)
+                    database=_db_name
                 )
-                self.database_name = self.get_clean_key_string(_db_name)
             else:
                 connection = mysql.connector.connect(
                     host=host_name,
@@ -135,250 +347,36 @@ class DBTool:
                     cursor.execute(mysql_create_database)
                     cursor.close()
                     connection.commit()
-                    self.database_name = self.get_clean_key_string(_db_name)
-                    # print("_get_db_connection created database: " + db_name)
                 except Error as err:
                     print(f"Error: '{err}'")
             else:
-                print('*** Did you update default.ini: ' + self.user)
+                print('*** DBTool Did you update default.ini: ' + self.user)
+                print(f"Error: '{err}'")
+
                 # print('created new database: ' + db_name)
         return connection
 
-    @staticmethod
-    def _get_html_escape(_string):
-        # clean_string = str(_string)
-        # print("***** test: " + clean_string)
-        # clean_string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
-        clean_string = html.escape(_string)
-        print('get_html_escape: ' + clean_string)
-        return clean_string
-
-    @staticmethod
-    def _get_html_unescape(_string):
-        clean_string = str(_string)
-        clean_string = clean_string.lstrip('_')
-        unescape_string = html.unescape(clean_string)
-        for item in HTML_UNESCAPE_TABLE:
-            unescape_string = unescape_string.replace(item, HTML_UNESCAPE_TABLE.get(item))
-        print("_get_html_unescape: " + unescape_string)
-        return unescape_string
-
-    def drop_column(self, column_name="None"):
-        mysql_drop_column = MYSQL_DROP_COLUMN.format(self.table_name, column_name)
-        self.execute_mysql(mysql_drop_column)
-
-        pass
-
-    def execute_mysql(self, _mysql_statement, _value=None):
+    def get_id(self, primary_key, element_value=None):
         """
-        DBToolAsync._execute_mysql() executes MySQL commands, which are called by other methods.
-        :param _mysql_statement: a formatted string with a MySQL command.
-        :param _value: RESERVED for future use
-        :return: returns the result of the MySQL statement or an error message.
-        """
-        result = 'default'
-        connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
-        if connection is not None:
-            try:
-                cursor = connection.cursor(buffered=True)
-                if _value is None:
-                    cursor.execute(_mysql_statement)
-                else:
-                    cursor.execute(_mysql_statement, _value)
-                connection.commit()
-                if _mysql_statement.startswith('SELECT'):
-                    if "*" not in _mysql_statement:
-                        result = cursor.fetchone()
-                        if result is not None:
-                            result = result[0]
-                    else:
-                        result = cursor.fetchall()
-                        if result is not None:
-                            result = [list(x) for x in result]
-                            if len(result) == 1:
-                                result = result[0]
-                cursor.close()
-                connection.close()
-            except Error as err:
-                if err.errno == 1054 or str(err.args[1]).endswith('exists') or str(err.args[1]).__contains__(
-                        'Duplicate'):
-                    print('non-fatal error in dbtool._execute_mysql: ' + _mysql_statement)
-                elif err.errno == 1064:
-                    print('mysql syntax error: ' + _mysql_statement)
-                else:
-                    print(f"Error: '{err}'\n" + _mysql_statement + "\n*****")
-                return False
-        if type(result) == list:
-            result = self.unescape_nonascii(result)
-            result = self.convert_ints_to_strings(result)
-        else:
-            result = unquote(str(result))
-        return result
-
-    @staticmethod
-    def _replace_none(_lists):
-        if type(_lists) == list and len(_lists) > 0:
-            if type(_lists[0]) == list:
-                for list_index in range(0, len(_lists)):
-                    _lists[list_index] = ['None' if v is None else v for v in _lists[list_index]]
-                    print('replace many')
-            else:
-                _lists = ['None' if v is None else v for v in _lists]
-        _lists = ['default']
-        return _lists
-
-    def add_dataframe(self, _data_frame, _primary_key_column_num=0):
-        """
-        This method adds a dataframe to MySQL
-        :param _data_frame: the pandas.DataFrame to be added to self.table_name
-        :param _primary_key_column_num: when adding a dataframe each row requires a key.  _primary_key_column_row is the column_number of _data_frame to be used as key then adding each row
+        DBTool.get_id() returns a row number for either a primary key or a combination of a primary key and key/value pair.
+        :param primary_key: The primary key whose corresponding row number is to be retrieved.
+        :param element_value: Optional value corresponding to the element_key.
+                              Used in conjunction with element_key to refine the search.
+        :return: The row ID corresponding to the specified primary key, and possibly the element key/value pair.
         """
 
-        h, w = _data_frame.shape
-        for row in range(0, h, 1):
-            primary_key = str(_data_frame.iloc[row][_primary_key_column_num])
-            for column in range(0, w, 1):
-                key = str(_data_frame.columns[column])
-                value = str(_data_frame.iloc[row][column])
-                self.put(primary_key, key, value)
-        # print('_add_dataframe done!')
-
-    @staticmethod
-    def convert_ints_to_strings(input_list):
-        try:
-            converted_list = []
-            for row in input_list:
-                converted_row = [str(item) if isinstance(item, int) else item for item in row]
-                converted_list.append(converted_row)
-            return converted_list
-        except Exception as e:
-            print(f"An error occurred: {str(e)}")
-            return input_list
-
-    @staticmethod
-    def convert_to_strings(input_list):
-        if isinstance(input_list, int):
-            return str(input_list)
-        else:
-            string_list = []
-            for row in range(len(input_list)):
-                this_row = []
-                for column in range(len(input_list)):
-                    this_row.append(input_list[row][column])
-                string_list.append(this_row)
-            return string_list
-
-    def copy_primary_key(self, _from_primary_key, _to_primary_key) \
-            :
-        # this method creates a shallow paste by ignoring None values in _from_primary_key
-        # if a key/value is null then skip (or consider set value as 'default' for deep paste)
-        # index 0 is id and index 1 is key, copied values thus begin at index 2
-        # if the _from_primary_key does not exist then create it
-        # if the _to_primary_key does not exist then create it
-        if self.get_id(_from_primary_key) == 0:
-            self.put(_from_primary_key)
-        else:
-            old_values = self.get_values(_from_primary_key)
-            if len(old_values) == 0:
-                return 0
-            else:
-                old_keys = self.get_columns()
-                # if the _to_primary_key does not exist then create it
-                if self.get_id(_to_primary_key) == 0:
-                    self.put(_to_primary_key)
-                # index 0 is id and index 1 is key, copied values thus begin at index 2
-                for index in range(1, len(old_keys), 1):
-                    try:
-                        self.put(_to_primary_key, old_keys[index], old_values[index])
-                    except:
-                        self.put(_to_primary_key, old_keys[index], 'default')
-                return self.get_id(_to_primary_key)
-
-    def delete_database(self, _database_name):
-        mysql_drop_database = MYSQL_DROP_DATABASE.format(self.get_clean_key_string(_database_name))
-        self.execute_mysql(mysql_drop_database)
-        # print('delete_database: ' + _database_name)
-
-    def delete_table(self, table_name):
-        mysql_drop_table = MYSQL_DROP_TABLE.format(self.get_clean_key_string(table_name))
-        self.execute_mysql(mysql_drop_table)  # print('delete_table: ' + table_name)
-
-    @staticmethod
-    def get_clean_key_string(_string=str):
-        """
-        DBToolAsync().get_clean_key_string() replaces certain characters with web entity values or escape codes.
-
-        :param _string: a string value
-        :return: returns a value that is suitable for being used as a name in MySQL
-
-        MySQL has rules about what values can be in an identifier. This method processes string values to comply with the rules.
-
-        clean_value = DBToolAsync().get_clean_key_string("That's great!")
-
-        clean_value = 'That&apos;s&nbspa&nbspgreat!'
-        """
-        _string = str(_string)
-        if _string.isdigit():
-            _string = "_" + str(_string)
-        # _string = "".join(HTML_ESCAPE_TABLE.get(c, c) for c in str(_string))
-        _string = html.escape(_string)
-        return _string
-
-    def get_columns(self, _exclude_2_keys=False):
-        connection = self._get_db_connection(self.host, self.user, self.passwd, self.port, self.database_name)
-        if connection is not None:
-            cursor = connection.cursor(buffered=True)
-            mysql_statement = "SELECT {0} FROM {1};".format('*', self.table_name)
-            cursor.execute(mysql_statement)
-            columns = list(cursor.column_names)
-            if _exclude_2_keys:
-                columns.pop(0)
-                columns.pop(0)
-            cursor.close()
-            connection.close()
-            return columns
-        else:
-            return None
-
-    def get_dataframe(self):
-        get_all_rows_mysql_statement = MYSQL_SELECT_FROM.format('*', self.table_name)
-        all_rows = self.execute_mysql(get_all_rows_mysql_statement)
-        all_rows = self.remove_none(all_rows)
-        columns = self.get_columns(_exclude_2_keys=False)
-
-        if len(all_rows) == 0:
-            data = {"Column" + str(i + 1): ["default"] for i in range(len(columns))}
-            dataframe = pandas.DataFrame(data)
-        else:
-            dataframe = pandas.DataFrame(all_rows)
-        dataframe.columns = columns
-        return dataframe
-
-    def get_id(self, key, value=None):
-        """
-        DBToolAsync.get_id() returns a row number for either a key or key/value pair.
-        :param _primary_key: _primary_key uniquely identifies the row.
-        :param _value: _key is an optional parameter, which is used to identify the column name.
-        :return: If _key=None then return the row_number where key = _primary_key.  Otherwise, return the ro_number where a key/value pair matches _primary_key/_key_value.
-        """
-
-        if value is None:
-            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, "primary_key",
-                                                                         self.get_clean_key_string(key))
+        if element_value is None:
+            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, 'primary_key',
+                                                                         self.get_clean_key_string(primary_key))
         else:
             select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name,
-                                                                         self.get_clean_key_string(key),
-                                                                         self.get_clean_key_string(value))
+                                                                         self.get_clean_key_string(
+                                                                             primary_key),
+                                                                         self.get_clean_key_string(
+                                                                             element_value))
 
-        primary_key_id = self.execute_mysql(select_sql)
-        if primary_key_id is None or primary_key_id == "None":
-            select_sql = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('id', self.table_name, "primary_key",
-                                                                         self.get_clean_key_string(key))
-            primary_key_id = self.execute_mysql(select_sql)
-            print('get_id: ' + str(primary_key_id))
-        else:
-            print('get_id: ' + str(primary_key_id))
-            return primary_key_id
+        row_id = self.execute_mysql(select_sql)
+        return row_id
 
     def get_primary_keys(self):
         dataframe = self.get_dataframe()
@@ -402,26 +400,66 @@ class DBTool:
             values.pop(0)
         return values
 
+    def json2dbtool(self, primary_key_name="primary_key",
+                    json_file_path="default.json"):
+        """
+        Inserts the contents of a JSON file into a database using the DBTool class's put method.
+
+        :param primary_key_name: The name of the key in the JSON data that will be used as the primary key for the database. Default is "primary_key".
+        :param json_file_path: The path to the JSON file that contains the data to be inserted. Defaults to the given path.
+
+        Example JSON structure:
+        {
+            "primary_key": "3c401888-b6b0-4806-aafc-c8888a4899af",
+            "directory": "imagine/",
+            "file_identifier": "puppy",
+            ...
+        }
+
+        :return: The ID of the affected row, retrieved using the `get_id` method and the primary key.
+        """
+        # Read the JSON file
+        with open(json_file_path, 'r') as file:
+            data = json.load(file)
+
+        primary_key = data[primary_key_name]
+
+        # Insert or update primary_key
+        self.put(primary_key=primary_key)
+
+        # Loop through other keys in the JSON object and use the put method to update the values in the DB
+        for element_key, value in data.items():
+            if element_key != primary_key_name:  # Avoid reinserting the primary key
+                self.put(primary_key=primary_key, element_key=element_key, value=value)
+
+        return self.get_dataframe()
+
     def open_database(self, _database_name, _table_name=None):
-        # self.database_name = str(re.sub(LEGAL_CHARACTERS, '_', _database_name.strip()))
+        """
+        Opens a database and optionally a table in the MySQL server.
+
+        This method establishes a connection to the specified database and, if provided, a table within that database.
+
+        :param _database_name: The name of the database to open.
+        :param _table_name: Optional. The name of the table to open within the database.
+
+        Note:
+        - The `self.table_name` attribute remains unchanged when using `open_database`.
+        - The `self.table_name` attribute is used in various methods such as `_add_column`, `get`, `get_id`, `open_table`, `_add_dataframe`, and `put`.
+        - The default value for `self.table_name` is set in the `.env` file.
+
+        After successfully opening the database and table, a MySQL query is executed to create the specified database,
+        and the `open_table` method is called to initialize the selected table.
+        """
         self.database_name = self.get_clean_key_string(_database_name)
-        if _table_name is None:
-            _table_name = self.table_name
-        else:
-            # self.table_name = str(re.sub(LEGAL_CHARACTERS, '_', table_name.strip()))
+        if _table_name is not None:
             self.table_name = self.get_clean_key_string(_table_name)
 
-        # When you open_database self.table_name does not change
-        # self.table is used in: _add_column, get, get_id, open_table, _add_dataframe, and put
-        # The default value for self.table_name is python
-        # Therefore, table_name may be required for open_database
-
-        # self.database_name = _database_name
-        # open_table_mysql = "CREATE TABLE " + self.table_name + "(id int(10) NOT NULL AUTO_INCREMENT," + key + " varchar(255), PRIMARY KEY (id))"
-        open_database_mysql = "CREATE DATABASE {0};".format(self.get_clean_key_string(_database_name))
+        open_database_mysql = "CREATE DATABASE {0};".format(self.database_name)
         self.execute_mysql(open_database_mysql)
         self.open_table(self.table_name)
-        print('open_database: ' + _database_name)
+
+        print('open_database: ' + self.database_name)
 
     def open_table(self, _table_name):
         self.table_name = self.get_clean_key_string(_table_name)
@@ -429,67 +467,32 @@ class DBTool:
             self.table_name, 'id', 'primary_key')
         self.execute_mysql(mysql_open_table)
 
-    def get(self, primary_key=str, _key=None):
-        """
-        DBToolAsync.get() returns an entire row or the value of a column within a row.
-        :param primary_key: _primary_key uniquely identifies the row.
-        :param _key: _key is an optional parameter, which is used to identify the column name.
-        :return: If _key=None then return the entire row.  Otherwise, return the value in the column named _key.
-        """
-        if _key is None:
-            # 1 result: key returns the entire row for key
-            # self._add_column(key)
-            sql_statement = MYSQL_SELECT_ROW_FROM_WHERE.format('*',
-                                                               self.table_name,
-                                                               'primary_key',
-                                                               self.get_clean_key_string(primary_key))
-        else:
-            # 2 result: returns the value for key on the key row
-            # self._add_column(key)
-            sql_statement = MYSQL_SELECT_ROW_FROM_WHERE.format(self.get_clean_key_string(_key), self.table_name,
-                                                               'primary_key',
-                                                               self.get_clean_key_string(primary_key))
-        result = self.execute_mysql(sql_statement)
-        result = self.remove_none(result)
-        if type(result) == list:
-            return self.convert_ints_to_strings(result)
-        else:
-            return result
-
-
     def put(self, primary_key="xyzzy_primary_key", element_key=None, value=None):
         """
-        Inserts or updates values in the database row and returns the ID of the affected record.
+        Inserts or updates data in the database.
 
-        Depending on the provided parameters, this method behaves as follows:
-            1) If only 'primary_key' is provided, adds a new row with the specified primary key value if it doesn't already exist.
-            2) If both 'element_key' and 'value' are provided, updates the specified 'element_key' value in the row
-               identified by the 'primary_key'.
+        :param primary_key: Primary key identifying the row of data.
+        :param element_key: Key for the value to be updated in the row.
+        :param value: Value to be associated with the provided element_key.
+        :return: Row number of the affected row.
 
-        :param primary_key: The value used to identify the row of data.
-        :param element_key: The key for the value to be updated in the row of data.
-        :param value: The value to be associated with the provided 'element_key'.
-        :return: The row number of the affected row.
+        Example Usage:
+
+        # Insert or update a specific value:
+        row_num = dbtool.put('some_primary_key', 'element_key', 'value')
         """
         primary_key_id = self.get_id(primary_key)
-
-        if (element_key is None and value is not None) or (element_key is not None and value is None):
-            raise ValueError(
-                "Either both 'element_key' and 'value' must be provided, or neither should be provided.")
-
-        if element_key is None and value is None:
-            # Check if the row with the given primary key already exists
-            if primary_key_id == 0 or primary_key_id is None:
-                mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(
-                    self.table_name, 'primary_key', self.get_clean_key_string(primary_key))
-                self.execute_mysql(mysql_statement)
-                primary_key_id = self.get_id(primary_key)
+        if primary_key_id == 0 or primary_key_id is None or primary_key_id == "None":
+            mysql_statement = "INSERT INTO {0} ({1}) VALUES ('{2}');".format(
+                self.table_name, 'primary_key', self.get_clean_key_string(primary_key))
+            self.execute_mysql(mysql_statement)
+            primary_key_id = self.get_id(primary_key)
 
         if element_key is not None and value is not None:
-            self.put(primary_key)
-            self._add_column(element_key)
-            if isinstance(value, str):
-                value = value.replace("#", "&#35;")
+            self.add_column(element_key)
+            if isinstance(value, int):
+                value = str(value)
+            value = value.replace("#", "&#35;")
             value_escaped = self.escape_nonascii(value)
 
             mysql_statement = "UPDATE {0} SET {1} = '{2}' WHERE {3} = '{4}';".format(
@@ -557,49 +560,137 @@ class DBTool:
         dataframe.to_pickle(_file_path)
         print('pickle_words: ' + _file_path)
 
-    def update_value(self, _primary_key, _key, _value):
-        primary_key = self.get_id(_primary_key)
-        clean_value = self.get_clean_key_string(_value)
-        mysql_insert_statement = UPDATE_STATEMENT.format(self.table_name, self.get_clean_key_string(_key),
-                                                         clean_value, 'id', primary_key)
-        self.execute_mysql(mysql_insert_statement)
-        return self.get_id(_primary_key)
-
-    def get_column(self, _column_name):
+    def get_column(self, column_name):
         dataframe = self.get_dataframe()
-        column_values = dataframe[_column_name].values.tolist()
+        column_values = dataframe[column_name].values.tolist()
         print('get_column done!')
         return column_values
+
+    def write_default_json(self):
+        data = {
+            "database_name": self.database_name,
+            "table_name": self.table_name,
+            "directory": "imagine/",
+            "file_identifier": "puppy",
+            "height": 480,
+            "width": 480,
+            "inference_steps": 20,
+            "seed": "78901427222289238",
+            "primary_key": "7592f4b7-7d16-4009-b09f-2c1ad220423f",
+            "file_type": "png"
+        }
+
+        with open('default.json', 'w') as file:
+            json.dump(data, file, indent=4)
+
+    def write_advanced_json(self):
+        data = {
+            "database_name": self.database_name,
+            "table_name": self.table_name,
+            "characters": [
+                {
+                    "name": "Harry Potter",
+                    "house": "Gryffindor",
+                    "wand": "11\", Holly, phoenix feather core",
+                    "patronus": "Stag"
+                },
+                {
+                    "name": "Hermione Granger",
+                    "house": "Gryffindor",
+                    "wand": "10¾\", Vine wood, dragon heartstring core",
+                    "patronus": "Otter"
+                },
+                {
+                    "name": "Severus Snape",
+                    "house": "Slytherin",
+                    "wand": "Unknown",
+                    "patronus": "Doe"
+                }
+            ],
+            "houses": [
+                "Gryffindor",
+                "Hufflepuff",
+                "Ravenclaw",
+                "Slytherin"
+            ],
+            "spells": [
+                {
+                    "name": "Expelliarmus",
+                    "type": "Charm",
+                    "effect": "Disarms opponent"
+                },
+                {
+                    "name": "Wingardium Leviosa",
+                    "type": "Charm",
+                    "effect": "Makes objects float"
+                },
+                {
+                    "name": "Alohomora",
+                    "type": "Charm",
+                    "effect": "Opens locked doors"
+                }
+            ],
+            "quidditch_teams": [
+                "Gryffindor Quidditch Team",
+                "Hufflepuff Quidditch Team",
+                "Ravenclaw Quidditch Team",
+                "Slytherin Quidditch Team"
+            ]
+        }
+
+        with open('advanced.json', 'w') as file:
+            json.dump(data, file, indent=4)
+
+    def write_default_csv(self):
+        # Define a list of vegetables with their common names and scientific names
+        vegetables = [
+            ['Common Name', 'Scientific Name'],
+            ['Tomato', 'Solanum lycopersicum'],
+            ['Carrot', 'Daucus carota'],
+            ['Potato', 'Solanum tuberosum'],
+            ['Cabbage', 'Brassica oleracea'],
+            ['Spinach', 'Spinacia oleracea'],
+            ['Onion', 'Allium cepa'],
+            ['Broccoli', 'Brassica oleracea var. italica'],
+            ['Cucumber', 'Cucumis sativus']
+        ]
+
+        # Open the CSV file for writing
+        with open('default.csv', 'w+', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+
+            # Write the rows to the CSV file
+            writer.writerows(vegetables)
+
+        print('CSV file written successfully.')
 
 
 class OneHotWords(DBTool):
     # mysql has a maximum number of 4096 columns per table
     # Therefore, each sentence has a maximum number of words
-    def __init__(self, config_key=None):
-        configtool = ConfigTool('default' if config_key is None else config_key)
+    def __init__(self, onehotdb_name=None, onehotdb_table=None, config_key=None):
+        load_dotenv()
+        onehotdb_name = onehotdb_name if onehotdb_name else os.getenv('DBTOOL_ONEHOTDB_NAME')
+        onehotdb_table = onehotdb_table if onehotdb_table else os.getenv('DBTOOL_ONEHOTDB_TABLE')
 
-        super().__init__(configtool.get_configs().get('onehotdb_name'), configtool.get_configs().get('onehotdb_table'))
+        super().__init__(onehotdb_name, onehotdb_table)
         # print('__init__ done!')
 
     def get_word(self, _index):
         # try to get the word at _index, if it fails then add _index
-        sql_statement = "SELECT {0} FROM {1} WHERE {2} = '{3}';".format('primary_key',
-                                                                        self.table_name,
-                                                                        'id',
-                                                                        str(_index))
-        this_word = self.execute_mysql(sql_statement)
-        if this_word is None:
-            this_word = 'default'
-        return html.unescape(str(this_word))
+        result = self.get(primary_key=_index, column_name='primary_key')
+        if result is None:
+            result = 'default'
+        return html.unescape(str(result))
 
     def get_index(self, _word):
         # This function returns the row number of _word in the onehot index
         clean_word = self.get_clean_key_string(_word)
-        row_number = super().get_id(clean_word)
+        row_number = self.get(primary_key=clean_word, column_name='id')
         return row_number
 
     def get_words(self):
-        words = super().get_column('key')
+        words = self.get_column(column_name='key')
         print('get_words done!')
         return words
 
@@ -608,7 +699,7 @@ DEFAULT_INI = {
     "user": "bilbo",
     "passwd": "baggins",
     "port": "3306",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "database_name": "dbtool_db",
     "table_name": "dbtool_table",
     "onehotdb_name": "onehotwords",
@@ -617,203 +708,39 @@ DEFAULT_INI = {
 }
 
 
-class ConfigTool:
-    def __init__(self, _config_key):
-        self.config_key = _config_key
-        self.file_path = f"{self.config_key}.ini"
-        self.config_object = ConfigParser()
+def main():
+    parser = argparse.ArgumentParser(description="Command-line interface for DBTool")
+    parser.add_argument("--get", metavar="PRIMARY_KEY", help="Retrieve data using primary key")
+    parser.add_argument("--column", metavar="COLUMN_NAME", help="Optional, specify a column for --get")
+    parser.add_argument("--put", metavar="PRIMARY_KEY", help="Insert or update data using primary key")
+    parser.add_argument("--element", metavar="ELEMENT_KEY", help="Key for the value to be updated with --put")
+    parser.add_argument("--value", metavar="VALUE", help="Value to be updated with --put")
+    parser.add_argument("--json2db", metavar="JSON_FILE_PATH", help="Path to JSON file for database insertion")
+    parser.add_argument("--primary_key_name", metavar="PRIMARY_KEY_NAME", help="Primary key name for JSON to DB",
+                        default="primary_key")
 
-    def write_default_configs(self):
-        self.config_object["DEFAULT"] = DEFAULT_INI
-        with open(self.file_path, 'w+') as conf:
-            self.config_object.write(conf)
+    args = parser.parse_args()
 
-    def get_configs(self):
-        self.config_object.read(self.file_path)
-        return self.config_object.defaults()
+    if not any(vars(args).values()):
+        parser.print_help()  # Print help message when no arguments are provided
+        exit()
 
-
-def test_get_row_count():
     dbtool = DBTool()
-    row_count = dbtool.get_row_count()
-    print('test_get_row_count: ' + str(row_count))
 
+    if args.get:
+        result = dbtool.get(args.get, args.column)
+        print(result)
 
-def test_get_clean_key():
-    KEY = "Instrument #"
-    dbtool = DBTool()
-    clean_key = dbtool.get_clean_key_string(KEY)
-    print("test_get_clean_key: '" + KEY + "' = '" + clean_key + "'")
+    if args.put and args.element and args.value:
+        row_num = dbtool.put(args.put, args.element, args.value)
+        print(f"Updated row number: {row_num}")
 
+    if args.json2db:
+        row_id = dbtool.json2dbtool(primary_key_name=args.primary_key_name, json_file_path=args.json2db)
+        print(f"Updated row with ID: {row_id}")
 
-def test_add_data_frame():
-    # create the test data_frame
-    data = [['bilbo', 'thoron'], ['baggins', 'falbright']]
-    data_frame = pandas.DataFrame(data)
-    data_frame = data_frame.transpose()
-    columns = ['username', 'password']
-    data_frame.columns = columns
-    # test the system
-    dbtool = DBTool()
-    dbtool.add_dataframe(data_frame)
-    print('test_add_dataframe: ')
-
-
-def create_simple_pkl():
-    # create the test data_frame and pickle file
-    user_data = [['bilbo', 'thoron'], ['baggins', 'falbright']]
-    data_frame = pandas.DataFrame(user_data)
-    data_frame = data_frame.transpose()
-    columns = ['username', 'password']
-    data_frame.columns = columns
-    data_frame.to_pickle(DEFAULT_PKL_INPUT)
-
-
-def test_to_pickle():
-    dbtool = DBTool()
-    dbtool.to_pickle('../assets/mysql.pkl')
-    print('test_to_pickle done!')
-
-
-def test_copy_row():
-    xyzzydb = DBTool()
-    xyzzydb = DBTool('xyzzydb')
-    xyzzydb = DBTool('xyzzydb', 'new_magic_table')
-    xyzzydb.put('primary_key_xyzzy')
-    xyzzydb.put('primary_key_xyzzy', 'ala', 'kazam')
-    xyzzydb.put('primary_key_xyzzy', 'ala', 'kazoo')
-    print('github_demo done!')
-
-
-def test_get_row_number():
-    dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
-    row_number_1 = dbtool.get_id('xyzzy')
-    row_number_2 = dbtool.get_id('new_primary_key')
-    row_number_3 = dbtool.get_id('failures', '543')
-    row_number_4 = dbtool.get_id('failures', '123')
-    print('test_get_row_number done!')
-
-
-def test_onehotwords():
-    onehotwords = OneHotWords()
-    word_index_1 = onehotwords.get_index('the')
-    word_index_2 = onehotwords.get_index('qwerty')
-    word_value_1 = onehotwords.get_word(12)
-
-    print('test_onehotwords done!')
-
-
-def test_delete_database():
-    temp_dbtool = DBTool('temp_db')
-    temp_dbtool.delete_database('temp_db')
-
-
-def test_delete_table():
-    dbtool = DBTool('test_out_word_db', 'put_word_table')
-    dbtool.open_table('temp_table')
-    dbtool.delete_table('temp_table')
-    print('test_delete_table done!')
-
-
-def test_get_html_unescape():
-    dbtool = DBTool('test_out_word_db', 'put_word_table')
-    test_unescape = dbtool._get_html_unescape('asdf&quot;erhert&quot;')
-    print('test_get_html_unescape: ' + test_unescape)
-
-
-def test_init():
-    dbtool = DBTool()
-    # print('test_init done!')
-
-
-def test_static_operation():
-    DBTool().put('1234', '5678', '9101112')
-    test_value = DBTool().get('1234', '5678')
-    print('test_static_operation test_value: ' + test_value)
-    DBTool('magicdb').put('xyzzy', 'ala', 'kazam')
-    DBTool().put('xyzzy', 'ala', 'kazam')
-    value = DBTool().get('xyzzy', 'ala')
-    print('value: ' + str(value))
-
-
-def test_put():
-    dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
-    row_1 = dbtool.put('primary_key_1')
-    row_1 = dbtool.put('primary_key_1', 'first_key', 'primary_key_1_first_value')
-    row_1 = dbtool.put('primary_key_1', 'second_key', 'primary_key_1_second_value')
-    row_2 = dbtool.put('primary_key_2', 'first_key', 'primary_key_2_first_value')
-    row_2 = dbtool.put('primary_key_2', 'xyzzy_key', "primary_key_2_xyzzy_key")
-    row_2 = dbtool.put('primary_key_2', 'second_key', "primary_key_2_xyzzy")
-    row_3 = dbtool.put('primary_key_3', 'magic_key', "primary_key_3_magic_key")
-    row_3 = dbtool.put('primary_key_3', 'first_key', 'primary_key_3_first_key_xyzzy')
-    print('test_put done!')
-
-
-def test_get():
-    dbtool = DBTool('dbtool_test_db', 'dbtool_test_table')
-    columns = dbtool.get_columns()
-    primary_keys = dbtool.get_primary_keys()
-    rows = []
-    for primary_key in primary_keys:
-        this_row = dbtool.get(primary_key)
-        for column in columns:
-            value = dbtool.get(primary_key, column)
-            print("*** test_get key: " + primary_key + " \n*** column: " + column + " \n*** value: " + str(value))
-        rows.append(this_row)
-    this_dataframe = pandas.DataFrame(data=rows)
-    this_dataframe.columns = columns
-    that_dataframe = dbtool.get_dataframe()
-    print(this_dataframe.equals(that_dataframe))
-    print('test_get done!')
-
-
-def add_user():
-    dbtool = DBTool()
-    dbtool.put("xyzzy", "password", "xyzzy")
-
-
-def init_dbtool():
-    # DBTool(database_name=DEFAULT_DATABASE, table_name=DEFAULT_TABLE).delete_table(table_name=DEFAULT_TABLE)
-    uuid_value = str(uuid.uuid4())
-    DBTool(database_name=DEFAULT_DATABASE, table_name=DEFAULT_TABLE).put(primary_key="xyzzy", element_key="uuid",
-                                                                         value=uuid_value)
-    DBTool(database_name=DEFAULT_DATABASE, table_name=DEFAULT_TABLE).put(primary_key="xyzzy",
-                                                                         element_key="background_color",
-                                                                         value=COLORS[11])
-    DBTool(database_name=DEFAULT_DATABASE, table_name=DEFAULT_TABLE).put(primary_key="xyzzy",
-                                                                         element_key="text_color_1",
-                                                                         value=COLORS[3])
-    DBTool(database_name=DEFAULT_DATABASE, table_name=DEFAULT_TABLE).put(primary_key="xyzzy",
-                                                                         element_key="text_color_2",
-                                                                         value=COLORS[9])
-    DBTool(database_name=DEFAULT_DATABASE, table_name=DEFAULT_TABLE).put(primary_key="xyzzy",
-                                                                         element_key="font_size",
-                                                                         value="24")
-    DBTool(database_name=DEFAULT_DATABASE, table_name=DEFAULT_TABLE).put(primary_key="xyzzy",
-                                                                         element_key="user_name",
-                                                                         value="overlordx")
-    DBTool(database_name=DEFAULT_DATABASE, table_name=DEFAULT_TABLE).put(primary_key="xyzzy",
-                                                                         element_key="text_message",
-                                                                         value="Hello World!")
-
+    print("dbtool.main() done!")
 
 if __name__ == '__main__':
-    add_user()
-    test_put()
-    test_get()
-    test_onehotwords()
-    test_static_operation()
-    test_get_html_unescape()
-    test_init()
-    test_get_row_number()
-    test_get_row_count()
-    create_simple_pkl()
-    test_add_data_frame()
-    test_get_clean_key()
-    test_copy_row()
-    test_to_pickle()
-    test_delete_database()
-    test_delete_table()
-    init_dbtool()
-    # the following line is not reached because of sys.exit() in python()
+    main()
     print("dbtool done!")

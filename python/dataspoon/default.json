@@ -1,0 +1,12 @@
+{
+    "database_name": "test_db",
+    "table_name": "test_table",
+    "directory": "imagine/",
+    "file_identifier": "puppy",
+    "height": 480,
+    "width": 480,
+    "inference_steps": 20,
+    "seed": "78901427222289238",
+    "primary_key": "7592f4b7-7d16-4009-b09f-2c1ad220423f",
+    "file_type": "png"
+}

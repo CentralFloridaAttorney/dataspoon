@@ -1,0 +1,53 @@
+{
+    "database_name": "test_db",
+    "table_name": "test_table",
+    "characters": [
+        {
+            "name": "Harry Potter",
+            "house": "Gryffindor",
+            "wand": "11\", Holly, phoenix feather core",
+            "patronus": "Stag"
+        },
+        {
+            "name": "Hermione Granger",
+            "house": "Gryffindor",
+            "wand": "10\u00be\", Vine wood, dragon heartstring core",
+            "patronus": "Otter"
+        },
+        {
+            "name": "Severus Snape",
+            "house": "Slytherin",
+            "wand": "Unknown",
+            "patronus": "Doe"
+        }
+    ],
+    "houses": [
+        "Gryffindor",
+        "Hufflepuff",
+        "Ravenclaw",
+        "Slytherin"
+    ],
+    "spells": [
+        {
+            "name": "Expelliarmus",
+            "type": "Charm",
+            "effect": "Disarms opponent"
+        },
+        {
+            "name": "Wingardium Leviosa",
+            "type": "Charm",
+            "effect": "Makes objects float"
+        },
+        {
+            "name": "Alohomora",
+            "type": "Charm",
+            "effect": "Opens locked doors"
+        }
+    ],
+    "quidditch_teams": [
+        "Gryffindor Quidditch Team",
+        "Hufflepuff Quidditch Team",
+        "Ravenclaw Quidditch Team",
+        "Slytherin Quidditch Team"
+    ]
+}
