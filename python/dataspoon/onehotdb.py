@@ -7,7 +7,7 @@ import pandas
 from mysql.connector import Error
 
 from python.dataspoon.configtool import ConfigTool
-from python.dataspoon.dbtool import OneHotWords
+from dbtool import OneHotWords
 from python.dataspoon.textprocessor import TextProcessor
 
 FILE_PATH_CONFIG_INI = '../configuration.ini'

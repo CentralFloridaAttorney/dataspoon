@@ -2,12 +2,11 @@ import configparser as cp
 import ntpath
 import tkinter as tk
 import tkinter.messagebox as msg
-from pathlib import Path
 from tkinter import filedialog
 
 import pandas
 
-from python.dataspoon.dbtool import OneHotWords
+from dbtool import OneHotWords
 from python.dataspoon.onehotdb import OneHotDB
 from python.dataspoon.textprocessor import TextProcessor
 

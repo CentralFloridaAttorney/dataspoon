@@ -1,7 +1,7 @@
 import datetime
 import html
 
-from python.dataspoon.dbtool import DBTool
+from dbtool import DBTool
 from python.dataspoon.onehotdb import OneHotDB
 
 # This example demonstrates the use of DBTool as a static tool

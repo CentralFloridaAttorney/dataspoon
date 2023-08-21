@@ -1,7 +1,7 @@
 import gradio as gr
 
 from python.dataspoon.configtool import ConfigTool
-from python.dataspoon.dbtool import DBTool
+from dbtool import DBTool
 DEFAULT_DATABASE = "svgobject_database"
 DEFAULT_TABLE = "svgobject_table"
 

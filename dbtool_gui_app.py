@@ -1,6 +1,6 @@
 import gradio as gr
 
-from python.dataspoon.dbtool import DBTool
+from dbtool import DBTool
 
 
 def put_data(database_name, table_name, unique_id, key, value):

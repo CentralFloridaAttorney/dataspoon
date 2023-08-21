@@ -1,8 +1,5 @@
-import json
 import unittest
-from unittest import mock
-from unittest.mock import MagicMock, patch
-import pandas as pd
+from unittest.mock import MagicMock
 
 from dbtool import DBTool
 
