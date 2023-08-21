@@ -182,21 +182,21 @@ Examples of using DBTool
 ### Prerequisites
 
 1. Install MySQL:
-````
-sudo rm -rf /var/lib/mysql/mysql
-sudo apt-get remove --purge mysql-server mysql-client mysql-common
-sudo apt-get autoremove
-sudo apt-get autoclean
-sudo apt-get install mysql-server
-````
+    ```
+    sudo rm -rf /var/lib/mysql/mysql
+    sudo apt-get remove --purge mysql-server mysql-client mysql-common
+    sudo apt-get autoremove
+    sudo apt-get autoclean
+    sudo apt-get install mysql-server
+    ```
 2. Install mysql-connector-python:
-````
-pip install mysql-connector-python
-````
+    ``
+    pip install mysql-connector-python
+    ```
 3. Optionally, install mysql-workbench:
-````
-sudo aptitude install mysql-workbench-community
-````
+    ```
+    sudo aptitude install mysql-workbench-community
+    ```
 
 4. You need to know the location (ex. 127.0.0.1 or 192.168.1.69) and port number (ex. 3306 or 50011)
 5. You must know the username (ex. 'bilbo') and password (ex. 'baggins') of an authorized user in mysql
@@ -206,35 +206,35 @@ sudo aptitude install mysql-workbench-community
 
 1. If you need help using dataspoon then [Talk to John](https://centralfloridaattorney.net/schedule-consultation/)
 2. Clone the repo
-   ```sh
+   ```
    git clone https://github.com/CentralFloridaAttorney/dataspoon.git
    ```
 3. No NPM packages to install
-   ```sh
+   ```
    NO npm install
    ```
 4. Install mysql packages
-   ````
+   ```
    pip install mysql-connector-python
-
+   ```
 5. Create a file named `.env` in the root directory of your project and populate it with the following values:
 
-```
-# Used by DBTool
-DBTOOL_USER=bilbo
-DBTOOL_PASSWD=baggins
-DBTOOL_HOST=127.0.0.1
-DBTOOL_PORT=3306
-DBTOOL_DATABASE_NAME=default_database
-DBTOOL_TABLE_NAME=default_table
-DBTOOL_ONEHOTDB_NAME=default_onehotdb
-DBTOOL_ONEHOTDB_TABLE=default_onehotdb_table
-```
+    ```
+    # Used by DBTool
+    DBTOOL_USER=bilbo
+    DBTOOL_PASSWD=baggins
+    DBTOOL_HOST=127.0.0.1
+    DBTOOL_PORT=3306
+    DBTOOL_DATABASE_NAME=default_database
+    DBTOOL_TABLE_NAME=default_table
+    DBTOOL_ONEHOTDB_NAME=default_onehotdb
+    DBTOOL_ONEHOTDB_TABLE=default_onehotdb_table
+    ```
 7. Install dotenv:
 
-```
-pip install dotenv
-```
+    ```
+    pip install dotenv
+    ```
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
