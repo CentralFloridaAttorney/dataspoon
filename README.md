@@ -217,7 +217,7 @@ sudo aptitude install mysql-workbench-community
    ````
    pip install mysql-connector-python
 
-5 Create a file named `.env` in the root directory of your project and populate it with the following values:
+5. Create a file named `.env` in the root directory of your project and populate it with the following values:
 
 ```
 # Used by DBTool
