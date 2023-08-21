@@ -213,7 +213,7 @@ sudo aptitude install mysql-workbench-community
    ```sh
    NO npm install
    ```
-4. install packages
+4. Install mysql packages
    ````
    pip install mysql-connector-python
 
