@@ -5,8 +5,520 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e64451cb-9729-4051-95cf-e086d9662112" name="Changes" comment="moved dbtool.py and test_dbtool.py to root">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/dependency-review.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dependency-review.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataspoon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataspoon.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_dataspoon.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_dataspoon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/AMD.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/AMD.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/KO.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/KO.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/PFE.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/PFE.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/RealEstateSchoolLicense.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/RealEstateSchoolLicense.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/TSLA.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/TSLA.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/credit_card_applications.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/credit_card_applications.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/nasdaq-listed.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/nasdaq-listed.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/raw_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/raw_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/csv/stock_data_amd.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/csv/stock_data_amd.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/docx/Nationwide Mut. Fire Ins. Co. v. Darragh, 95 So.3d 897 (Fla. App. 2012).docx" beforeDir="false" afterPath="$PROJECT_DIR$/data/docx/Nationwide Mut. Fire Ins. Co. v. Darragh, 95 So.3d 897 (Fla. App. 2012).docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/docx/Weinhoffer v. Davie Shoring, Inc., 23 F.4th 579 (5th Cir. 2022).docx" beforeDir="false" afterPath="$PROJECT_DIR$/data/docx/Weinhoffer v. Davie Shoring, Inc., 23 F.4th 579 (5th Cir. 2022).docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/docx/Wise v. Bowling (N.D. Okla. 2020).docx" beforeDir="false" afterPath="$PROJECT_DIR$/data/docx/Wise v. Bowling (N.D. Okla. 2020).docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/docx/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/docx/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/gptsql/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/gptsql/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/gptsql/tmpdm55fyp1/example_v000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/gptsql/tmpdm55fyp1/example_v000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/gptsql/tmpvr6njed_/example_v000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/gptsql/tmpvr6njed_/example_v000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/001_vanilla_ellipse.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/001_vanilla_ellipse.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/img/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/img/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ini/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/ini/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ini/bilbo.ini" beforeDir="false" afterPath="$PROJECT_DIR$/data/ini/bilbo.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ini/default.ini" beforeDir="false" afterPath="$PROJECT_DIR$/data/ini/default.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ini/overlordx.ini" beforeDir="false" afterPath="$PROJECT_DIR$/data/ini/overlordx.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/md/TSLA.md" beforeDir="false" afterPath="$PROJECT_DIR$/data/md/TSLA.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/md/TSLA_xtarget.md" beforeDir="false" afterPath="$PROJECT_DIR$/data/md/TSLA_xtarget.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/md/TSLA_xtrain.md" beforeDir="false" afterPath="$PROJECT_DIR$/data/md/TSLA_xtrain.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/md/TSLA_ytarget.md" beforeDir="false" afterPath="$PROJECT_DIR$/data/md/TSLA_ytarget.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/md/TSLA_ytrain.md" beforeDir="false" afterPath="$PROJECT_DIR$/data/md/TSLA_ytrain.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/md/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/md/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/models/multimodel.save" beforeDir="false" afterPath="$PROJECT_DIR$/data/models/multimodel.save" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/models/mymodel.save" beforeDir="false" afterPath="$PROJECT_DIR$/data/models/mymodel.save" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/models/mymodel1" beforeDir="false" afterPath="$PROJECT_DIR$/data/models/mymodel1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/models/mymodel2" beforeDir="false" afterPath="$PROJECT_DIR$/data/models/mymodel2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/models/resnet/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/models/resnet/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/models/resnet/hub/checkpoints/resnet18-5c106cde.pth" beforeDir="false" afterPath="$PROJECT_DIR$/data/models/resnet/hub/checkpoints/resnet18-5c106cde.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict10.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict10.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict11.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict11.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict12.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict12.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict13.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict13.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict14.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict14.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict15.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict15.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict16.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict16.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict17.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict17.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict18.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict18.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict19.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict19.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict20.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict20.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict21.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict21.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict22.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict22.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict23.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict23.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict24.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict3.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict3.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict4.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict4.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict5.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict5.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict6.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict6.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict7.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict8.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict8.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pdf/predict9.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/data/pdf/predict9.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pkl/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/pkl/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pkl/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/pkl/mysql.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pkl/users.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/pkl/users.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/png/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/png/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/png/test.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/png/test.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/put_word_table.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/put_word_table.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/ABIO.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/ABIO.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/ABMD.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/ABMD.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/AMD.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/AMD.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/BBY.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/BBY.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/BTC-USD.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/BTC-USD.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/CVS.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/CVS.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/DBC.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/DBC.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/DEA.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/DEA.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/ECH.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/ECH.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/ETH-USD.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/ETH-USD.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/FUTU.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/FUTU.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/HRL.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/HRL.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/KO.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/KO.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/LIC.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/LIC.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/MRTX.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/MRTX.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/MSFT.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/MSFT.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/MSPR.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/MSPR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/NIO.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/NIO.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/OPI.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/OPI.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/PDBC.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/PDBC.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/SAP.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/SAP.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/SDCI.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/SDCI.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/SJR.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/SJR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/SRNE.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/SRNE.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/TSLA.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/TSLA.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/stocks/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/txt/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/txt/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/txt/requirements.linux.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/txt/requirements.linux.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/txt/shakespear.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/txt/shakespear.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/txt/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/txt/test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/txt/words.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/txt/words.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/users.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/users.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbtool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbtool_gui_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbtool_gui_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/default.ini" beforeDir="false" afterPath="$PROJECT_DIR$/default.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/dataspoon_project.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/dataspoon_project.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/onehotdb.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/onehotdb.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/spoon.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/spoon.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/spoon_green.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/spoon_green.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/assets/mysql.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/python/assets/mysql.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/assets/users.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/python/assets/users.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/caseprocessor/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/caseprocessor/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/caseprocessor/docxtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/caseprocessor/docxtool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/caseprocessor/extract_topics.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/caseprocessor/extract_topics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/caseprocessor/plot_bicluster_newsgroups.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/caseprocessor/plot_bicluster_newsgroups.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/caseprocessor/plot_classifier_chain_yeast.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/caseprocessor/plot_classifier_chain_yeast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/advanced.json" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/advanced.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/configtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/configtool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/dbtool_overlordx" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/dbtool_overlordx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/default.csv" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/default.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/default.ini" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/default.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/default.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/feature_hash_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/feature_hash_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/feature_hash_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/feature_hash_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/feature_hash_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/feature_hash_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/onehotdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/onehotdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/onehotdb_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/onehotdb_gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/stockdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/stockdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/test_pickle.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/test_pickle.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/dataspoon/textprocessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dataspoon/textprocessor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_cyclical_feature_engineering.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_cyclical_feature_engineering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_digits_denoising.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_digits_denoising.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_face_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_face_recognition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_model_complexity_influence.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_model_complexity_influence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_out_of_core_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_out_of_core_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_outlier_detection_wine.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_outlier_detection_wine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_prediction_latency.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_prediction_latency.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_species_distribution_modeling.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_species_distribution_modeling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_stock_market.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_stock_market.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_tomography_l1_reconstruction.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_tomography_l1_reconstruction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/plot_topics_extraction_with_nmf_lda.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/plot_topics_extraction_with_nmf_lda.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/svm_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/svm_gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/applications/wikipedia_principal_eigenvector.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/applications/wikipedia_principal_eigenvector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/bicluster/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/bicluster/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/bicluster/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/bicluster/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/bicluster/plot_bicluster_newsgroups.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/bicluster/plot_bicluster_newsgroups.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/bicluster/plot_spectral_biclustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/bicluster/plot_spectral_biclustering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/bicluster/plot_spectral_coclustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/bicluster/plot_spectral_coclustering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/calibration/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/calibration/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/calibration/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/calibration/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/calibration/plot_calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/calibration/plot_calibration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/calibration/plot_calibration_curve.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/calibration/plot_calibration_curve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/calibration/plot_calibration_multiclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/calibration/plot_calibration_multiclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/calibration/plot_compare_calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/calibration/plot_compare_calibration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/classification/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/classification/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/classification/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/classification/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/classification/plot_classification_probability.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/classification/plot_classification_probability.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/classification/plot_classifier_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/classification/plot_classifier_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/classification/plot_digits_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/classification/plot_digits_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/classification/plot_lda.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/classification/plot_lda.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/classification/plot_lda_qda.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/classification/plot_lda_qda.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_adjusted_for_chance_measures.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_adjusted_for_chance_measures.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_affinity_propagation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_affinity_propagation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_agglomerative_clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_agglomerative_clustering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_agglomerative_clustering_metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_agglomerative_clustering_metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_agglomerative_dendrogram.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_agglomerative_dendrogram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_birch_vs_minibatchkmeans.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_birch_vs_minibatchkmeans.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_bisect_kmeans.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_bisect_kmeans.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_cluster_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_cluster_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_cluster_iris.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_cluster_iris.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_coin_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_coin_segmentation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_coin_ward_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_coin_ward_segmentation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_color_quantization.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_color_quantization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_dbscan.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_dbscan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_dict_face_patches.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_dict_face_patches.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_digits_agglomeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_digits_agglomeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_digits_linkage.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_digits_linkage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_face_compress.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_face_compress.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_feature_agglomeration_vs_univariate_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_feature_agglomeration_vs_univariate_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_inductive_clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_inductive_clustering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_assumptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_assumptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_digits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_plusplus.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_plusplus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_silhouette_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_silhouette_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_stability_low_dim_dense.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_kmeans_stability_low_dim_dense.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_linkage_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_linkage_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_mean_shift.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_mean_shift.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_mini_batch_kmeans.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_mini_batch_kmeans.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_optics.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_optics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_segmentation_toy.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_segmentation_toy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cluster/plot_ward_structured_vs_unstructured.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cluster/plot_ward_structured_vs_unstructured.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/compose/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/compose/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/compose/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/compose/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/compose/plot_column_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/compose/plot_column_transformer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/compose/plot_column_transformer_mixed_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/compose/plot_column_transformer_mixed_types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/compose/plot_compare_reduction.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/compose/plot_compare_reduction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/compose/plot_digits_pipe.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/compose/plot_digits_pipe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/compose/plot_feature_union.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/compose/plot_feature_union.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/compose/plot_transformed_target.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/compose/plot_transformed_target.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/covariance/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/covariance/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/covariance/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/covariance/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/covariance/plot_covariance_estimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/covariance/plot_covariance_estimation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/covariance/plot_lw_vs_oas.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/covariance/plot_lw_vs_oas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/covariance/plot_mahalanobis_distances.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/covariance/plot_mahalanobis_distances.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/covariance/plot_robust_vs_empirical_covariance.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/covariance/plot_robust_vs_empirical_covariance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/covariance/plot_sparse_cov.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/covariance/plot_sparse_cov.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cross_decomposition/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cross_decomposition/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cross_decomposition/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cross_decomposition/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cross_decomposition/plot_compare_cross_decomposition.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cross_decomposition/plot_compare_cross_decomposition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/cross_decomposition/plot_pcr_vs_pls.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/cross_decomposition/plot_pcr_vs_pls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/datasets/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/datasets/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/datasets/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/datasets/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/datasets/plot_digits_last_image.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/datasets/plot_digits_last_image.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/datasets/plot_iris_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/datasets/plot_iris_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/datasets/plot_random_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/datasets/plot_random_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/datasets/plot_random_multilabel_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/datasets/plot_random_multilabel_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_beta_divergence.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_beta_divergence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_faces_decomposition.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_faces_decomposition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_ica_blind_source_separation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_ica_blind_source_separation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_ica_vs_pca.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_ica_vs_pca.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_image_denoising.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_image_denoising.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_incremental_pca.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_incremental_pca.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_kernel_pca.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_kernel_pca.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_pca_3d.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_pca_3d.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_pca_iris.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_pca_iris.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_pca_vs_fa_model_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_pca_vs_fa_model_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_pca_vs_lda.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_pca_vs_lda.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_sparse_coding.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_sparse_coding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/decomposition/plot_varimax_fa.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/decomposition/plot_varimax_fa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_adaboost_hastie_10_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_adaboost_hastie_10_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_adaboost_multiclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_adaboost_multiclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_adaboost_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_adaboost_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_adaboost_twoclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_adaboost_twoclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_bias_variance.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_bias_variance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_ensemble_oob.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_ensemble_oob.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_feature_transformation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_feature_transformation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_forest_importances.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_forest_importances.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_forest_importances_faces.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_forest_importances_faces.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_forest_iris.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_forest_iris.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_categorical.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_categorical.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_early_stopping.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_early_stopping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_oob.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_oob.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_quantile.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_quantile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_regularization.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_gradient_boosting_regularization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_isolation_forest.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_isolation_forest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_monotonic_constraints.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_monotonic_constraints.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_random_forest_embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_random_forest_embedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_random_forest_regression_multioutput.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_random_forest_regression_multioutput.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_stack_predictors.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_stack_predictors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_voting_decision_regions.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_voting_decision_regions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_voting_probas.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_voting_probas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/ensemble/plot_voting_regressor.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/ensemble/plot_voting_regressor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/exercises/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/exercises/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/exercises/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/exercises/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/exercises/plot_cv_diabetes.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/exercises/plot_cv_diabetes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/exercises/plot_cv_digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/exercises/plot_cv_digits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/exercises/plot_digits_classification_exercise.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/exercises/plot_digits_classification_exercise.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/exercises/plot_iris_exercise.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/exercises/plot_iris_exercise.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/feature_selection/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/feature_selection/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/feature_selection/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/feature_selection/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/feature_selection/plot_f_test_vs_mi.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/feature_selection/plot_f_test_vs_mi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/feature_selection/plot_feature_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/feature_selection/plot_feature_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/feature_selection/plot_feature_selection_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/feature_selection/plot_feature_selection_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/feature_selection/plot_rfe_digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/feature_selection/plot_rfe_digits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/feature_selection/plot_rfe_with_cross_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/feature_selection/plot_rfe_with_cross_validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/feature_selection/plot_select_from_model_diabetes.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/feature_selection/plot_select_from_model_diabetes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_compare_gpr_krr.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_compare_gpr_krr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpc.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpc_iris.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpc_iris.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpc_isoprobability.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpc_isoprobability.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpc_xor.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpc_xor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_co2.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_co2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_noisy.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_noisy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_noisy_targets.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_noisy_targets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_on_structured_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_on_structured_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_prior_posterior.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/gaussian_process/plot_gpr_prior_posterior.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/impute/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/impute/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/impute/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/impute/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/impute/plot_iterative_imputer_variants_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/impute/plot_iterative_imputer_variants_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/impute/plot_missing_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/impute/plot_missing_values.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/inspection/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/inspection/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/inspection/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/inspection/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/inspection/plot_linear_model_coefficient_interpretation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/inspection/plot_linear_model_coefficient_interpretation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/inspection/plot_partial_dependence.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/inspection/plot_partial_dependence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/inspection/plot_permutation_importance.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/inspection/plot_permutation_importance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/inspection/plot_permutation_importance_multicollinear.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/inspection/plot_permutation_importance_multicollinear.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/kernel_approximation/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/kernel_approximation/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/kernel_approximation/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/kernel_approximation/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/kernel_approximation/plot_scalable_poly_kernels.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/kernel_approximation/plot_scalable_poly_kernels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_ard.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_ard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_bayesian_ridge_curvefit.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_bayesian_ridge_curvefit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_elastic_net_precomputed_gram_matrix_with_weighted_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_elastic_net_precomputed_gram_matrix_with_weighted_samples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_huber_vs_ridge.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_huber_vs_ridge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_iris_logistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_iris_logistic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_and_elasticnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_and_elasticnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_coordinate_descent_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_coordinate_descent_path.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_dense_vs_sparse_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_dense_vs_sparse_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_lars.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_lars.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_lars_ic.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_lars_ic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_model_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_lasso_model_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_logistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_logistic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_logistic_l1_l2_sparsity.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_logistic_l1_l2_sparsity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_logistic_multinomial.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_logistic_multinomial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_logistic_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_logistic_path.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_multi_task_lasso_support.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_multi_task_lasso_support.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_nnls.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_nnls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_ols.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_ols.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_ols_3d.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_ols_3d.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_ols_ridge_variance.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_ols_ridge_variance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_omp.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_omp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_poisson_regression_non_normal_loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_poisson_regression_non_normal_loss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_polynomial_interpolation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_polynomial_interpolation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_quantile_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_quantile_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_ransac.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_ransac.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_ridge_coeffs.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_ridge_coeffs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_ridge_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_ridge_path.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_robust_fit.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_robust_fit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_early_stopping.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_early_stopping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_iris.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_iris.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_loss_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_loss_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_penalties.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_penalties.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_separating_hyperplane.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_separating_hyperplane.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_weighted_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sgd_weighted_samples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sgdocsvm_vs_ocsvm.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sgdocsvm_vs_ocsvm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sparse_logistic_regression_20newsgroups.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sparse_logistic_regression_20newsgroups.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_sparse_logistic_regression_mnist.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_sparse_logistic_regression_mnist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_theilsen.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_theilsen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/linear_model/plot_tweedie_regression_insurance_claims.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/linear_model/plot_tweedie_regression_insurance_claims.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/manifold/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/manifold/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/manifold/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/manifold/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/manifold/plot_compare_methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/manifold/plot_compare_methods.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/manifold/plot_lle_digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/manifold/plot_lle_digits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/manifold/plot_manifold_sphere.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/manifold/plot_manifold_sphere.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/manifold/plot_mds.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/manifold/plot_mds.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/manifold/plot_swissroll.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/manifold/plot_swissroll.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/manifold/plot_t_sne_perplexity.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/manifold/plot_t_sne_perplexity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/minisom.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/minisom.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_anomaly_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_anomaly_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_changed_only_pprint_parameter.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_changed_only_pprint_parameter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_display_object_visualization.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_display_object_visualization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_isotonic_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_isotonic_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_johnson_lindenstrauss_bound.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_johnson_lindenstrauss_bound.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_kernel_approximation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_kernel_approximation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_kernel_ridge_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_kernel_ridge_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_multilabel.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_multilabel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_multioutput_face_completion.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_multioutput_face_completion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_outlier_detection_bench.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_outlier_detection_bench.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_partial_dependence_visualization_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_partial_dependence_visualization_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_pipeline_display.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_pipeline_display.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/miscellaneous/plot_roc_curve_visualization_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/miscellaneous/plot_roc_curve_visualization_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/mixture/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/mixture/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/mixture/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/mixture/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/mixture/plot_concentration_prior.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/mixture/plot_concentration_prior.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/mixture/plot_gmm.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/mixture/plot_gmm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_covariances.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_covariances.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_init.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_init.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_pdf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_sin.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/mixture/plot_gmm_sin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/grid_search_text_feature_extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/grid_search_text_feature_extraction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_confusion_matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_confusion_matrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_cv_indices.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_cv_indices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_cv_predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_cv_predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_det.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_det.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_grid_search_digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_grid_search_digits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_grid_search_refit_callable.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_grid_search_refit_callable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_grid_search_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_grid_search_stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_learning_curve.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_learning_curve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_multi_metric_evaluation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_multi_metric_evaluation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_nested_cross_validation_iris.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_nested_cross_validation_iris.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_permutation_tests_for_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_permutation_tests_for_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_precision_recall.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_precision_recall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_randomized_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_randomized_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_roc.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_roc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_roc_crossval.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_roc_crossval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_successive_halving_heatmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_successive_halving_heatmap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_successive_halving_iterations.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_successive_halving_iterations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_train_error_vs_test_error.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_train_error_vs_test_error.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_underfitting_overfitting.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_underfitting_overfitting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/model_selection/plot_validation_curve.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/model_selection/plot_validation_curve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/multioutput/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/multioutput/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/multioutput/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/multioutput/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/multioutput/plot_classifier_chain_yeast.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/multioutput/plot_classifier_chain_yeast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/approximate_nearest_neighbors.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/approximate_nearest_neighbors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_caching_nearest_neighbors.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_caching_nearest_neighbors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_digits_kde_sampling.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_digits_kde_sampling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_kde_1d.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_kde_1d.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_lof_novelty_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_lof_novelty_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_lof_outlier_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_lof_outlier_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_nca_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_nca_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_nca_dim_reduction.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_nca_dim_reduction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_nca_illustration.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_nca_illustration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_nearest_centroid.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_nearest_centroid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neighbors/plot_species_kde.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neighbors/plot_species_kde.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neural_networks/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neural_networks/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neural_networks/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neural_networks/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neural_networks/plot_mlp_alpha.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neural_networks/plot_mlp_alpha.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neural_networks/plot_mlp_training_curves.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neural_networks/plot_mlp_training_curves.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neural_networks/plot_mnist_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neural_networks/plot_mnist_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/neural_networks/plot_rbm_logistic_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/neural_networks/plot_rbm_logistic_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/preprocessing/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/preprocessing/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/preprocessing/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/preprocessing/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/preprocessing/plot_all_scaling.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/preprocessing/plot_all_scaling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/preprocessing/plot_discretization.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/preprocessing/plot_discretization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/preprocessing/plot_discretization_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/preprocessing/plot_discretization_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/preprocessing/plot_discretization_strategies.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/preprocessing/plot_discretization_strategies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/preprocessing/plot_map_data_to_normal.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/preprocessing/plot_map_data_to_normal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/preprocessing/plot_scaling_importance.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/preprocessing/plot_scaling_importance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/release_highlights/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/release_highlights/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/release_highlights/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/release_highlights/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_0_22_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_0_22_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_0_23_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_0_23_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_0_24_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_0_24_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_1_0_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_1_0_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_1_1_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/release_highlights/plot_release_highlights_1_1_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/semi_supervised/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/semi_supervised/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/semi_supervised/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/semi_supervised/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/semi_supervised/plot_label_propagation_digits.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/semi_supervised/plot_label_propagation_digits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/semi_supervised/plot_label_propagation_digits_active_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/semi_supervised/plot_label_propagation_digits_active_learning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/semi_supervised/plot_label_propagation_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/semi_supervised/plot_label_propagation_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/semi_supervised/plot_self_training_varying_threshold.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/semi_supervised/plot_self_training_varying_threshold.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/semi_supervised/plot_semi_supervised_newsgroups.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/semi_supervised/plot_semi_supervised_newsgroups.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/semi_supervised/plot_semi_supervised_versus_svm_iris.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/semi_supervised/plot_semi_supervised_versus_svm_iris.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/som.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/som.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/speed_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/speed_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_custom_kernel.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_custom_kernel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_iris_svc.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_iris_svc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_linearsvc_support_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_linearsvc_support_vectors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_oneclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_oneclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_rbf_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_rbf_parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_separating_hyperplane.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_separating_hyperplane.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_separating_hyperplane_unbalanced.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_separating_hyperplane_unbalanced.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_svm_anova.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_svm_anova.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_svm_kernels.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_svm_kernels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_svm_margin.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_svm_margin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_svm_nonlinear.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_svm_nonlinear.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_svm_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_svm_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_svm_scale_c.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_svm_scale_c.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_svm_tie_breaking.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_svm_tie_breaking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/svm/plot_weighted_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/svm/plot_weighted_samples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/test_python.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/test_python.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/text/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/text/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/text/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/text/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/text/plot_document_classification_20newsgroups.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/text/plot_document_classification_20newsgroups.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/text/plot_document_clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/text/plot_document_clustering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/text/plot_hashing_vs_dict_vectorizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/text/plot_hashing_vs_dict_vectorizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/tree/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/tree/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/tree/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/tree/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/tree/plot_cost_complexity_pruning.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/tree/plot_cost_complexity_pruning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/tree/plot_iris_dtc.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/tree/plot_iris_dtc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/tree/plot_tree_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/tree/plot_tree_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/tree/plot_tree_regression_multioutput.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/tree/plot_tree_regression_multioutput.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/examples/tree/plot_unveil_tree_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/examples/tree/plot_unveil_tree_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/ai_plugin.json" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/ai_plugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/configtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/configtool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/dbtoolcaller.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/dbtoolcaller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/default.ini" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/default.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/file_system_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/file_system_tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/gpttool.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/gpttool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/gpttool_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/gpttool_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/gpttool_gui_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/gpttool_gui_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/gptsql/langchain_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/gptsql/langchain_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/tkinter/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tkinter/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/tkinter/inieditor.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tkinter/inieditor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/toolbag/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/toolbag/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_dbtool.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_dbtool.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +540,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;CentralFloridaAttorney&quot;
+  }
+}</component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
@@ -54,9 +572,12 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="5f7c7a64-6221-4770-b5b9-6f43d387ec7f" />
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/CentralFloridaAttorney/dataspoon.git&quot;,
+    &quot;accountId&quot;: &quot;73325afe-0c0f-49dc-99f2-2aa91983205a&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -71,23 +592,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/overlordx/pycharm/dataspoon/python/dataspoon",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "PyConsoleConfigurable.Python Console",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/overlordx/pycharm/dataspoon/python/dataspoon&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings sdk-home="$USER_HOME$/anaconda3/envs/mysql_3_8_13/bin/python" working-directory="$PROJECT_DIR$">
@@ -112,6 +633,7 @@
   <component name="RunManager" selected="Python tests.Python tests for test_dbtool.TestDBTool">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="dataspoon" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -134,6 +656,7 @@
     </configuration>
     <configuration name="app_dataspoon" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -156,8 +679,12 @@
     </configuration>
     <configuration name="dbtool" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/dataspoon" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -175,6 +702,7 @@
     </configuration>
     <configuration name="feature_hash_3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -197,6 +725,7 @@
     </configuration>
     <configuration name="Python tests for dbtool" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -212,6 +741,7 @@
     </configuration>
     <configuration name="Python tests for test_dbtool.TestDBTool" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="dataspoon" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -229,18 +759,25 @@
       <item itemvalue="Python.app_dataspoon" />
       <item itemvalue="Python.dbtool" />
       <item itemvalue="Python.feature_hash_3" />
-      <item itemvalue="Python tests.Python tests for dbtool.TestDBTool.test_get_id_primary_key_and_element_value" />
+      <item itemvalue="Python tests.Python tests for dbtool" />
       <item itemvalue="Python tests.Python tests for test_dbtool.TestDBTool" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Python tests for test_dbtool.TestDBTool" />
         <item itemvalue="Python.dbtool" />
-        <item itemvalue="Python tests.Python tests for dbtool.TestDBTool.test_get_id_primary_key_and_element_value" />
         <item itemvalue="Python.app_dataspoon" />
         <item itemvalue="Python.feature_hash_3" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
+        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -290,6 +827,9 @@
       <workItem from="1692553781534" duration="599000" />
       <workItem from="1692564179224" duration="600000" />
       <workItem from="1692643385903" duration="3035000" />
+      <workItem from="1723138304170" duration="39000" />
+      <workItem from="1723138600376" duration="201000" />
+      <workItem from="1723138817044" duration="482000" />
     </task>
     <task id="LOCAL-00001" summary="work on configtool.py">
       <created>1672355787029</created>
